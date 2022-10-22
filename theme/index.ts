@@ -11,6 +11,7 @@ const theme: ITheme = {
         'on-def': { dark: { s: 10, l: 90 } },
         'on-def-2': { dark: { s: 20, l: 60 } },
         'on-def-3': { dark: { s: 20, l: 40 } },
+        'on-def-4': { dark: { s: 10, l: 10 } },
 
         'srf': { dark: { s: 20, l: 10 } },
         'on-srf': { dark: { s: 100, l: 80 } },
