@@ -21,3 +21,4 @@ export const presetWrapp = (options: PresetOptions = {}): Preset<{}> => {
 }
 
 export default presetWrapp;
+export { theme };
