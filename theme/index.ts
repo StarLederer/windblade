@@ -13,22 +13,25 @@ const theme: ITheme = {
         'on-def-3': { dark: { s: 20, l: 40 } },
         'on-def-4': { dark: { s: 10, l: 10 } },
 
-        'srf': { dark: { s: 20, l: 10 } },
+        'srf': { dark: { s: 40, l: 20, a: 10 } },
         'on-srf': { dark: { s: 100, l: 80 } },
         'on-srf-2': { dark: { s: 40, l: 60 } },
 
-        'srf2': { dark: { s: 20, l: 20 } },
+        'srf2': { dark: { s: 40, l: 40, a: 20 } },
         'on-srf2': { dark: { s: 20, l: 80 } },
       },
       interactive: {
-        'int': { dark: { s: 100, l: 60 }, light: { l: 60 } },
+        'int': { dark: { s: 100, l: 60}, light: { l: 60 } },
         'on-int': { dark: { s: 100, l: 10 }, light: { l: 10 } },
 
-        'int2': { dark: { s: 60, l: 20 }, light: { s: 90 } },
+        'int2': { dark: { s: 80, l: 40, a: 40 }, light: { s: 90 } },
         'on-int2': { dark: { s: 100, l: 80 } },
 
-        'int3': { dark: { s: 10, l: 10 } },
-        'on-int3': { dark: { s: 10, l: 80 } },
+        'int3': { dark: { s: 60, l: 60, a: 10 } },
+        // 'on-int3': { dark: { s: 10, l: 80 } },
+
+        'int4': { dark: { s: 10, l: 60, a: 20 } },
+        'on-int4': { dark: { s: 10, l: 80 } },
       },
     },
     sizes: {

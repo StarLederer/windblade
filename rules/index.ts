@@ -6,7 +6,7 @@ import sizeRule from "./sizes";
 
 const rules: Rule<ITheme>[] = [
   // Colors
-  ['highlight', { '--highlight': 'var(--base-highlight)' }],
+  ['highlight', { '--highlight': 'var(--base-highlight);' }],
   ['highlight+', { '--highlight': 'var(--base-highlight-plus)' }],
 
   ['bg-none', { background: 'none' }],

@@ -1,8 +1,8 @@
 import { DynamicRule } from "@unocss/core";
 import { ITheme, IThemeColor } from "../theme/types";
 
-const staticColorCss = (color: string) => `hsl(var(--hue), var(--col-${color}-s), var(--col-${color}-l));`;
-const interactiveColorCss = (color: string) => `hsl(var(--hue), var(--col-${color}-s), calc(var(--col-${color}-l) + var(--highlight)));`;
+const staticColorCss = (color: string) => `hsla(var(--hue), var(--col-${color}-s), var(--col-${color}-l), var(--col-${color}-a));`;
+const interactiveColorCss = (color: string) => `hsl(var(--hue), var(--col-${color}-s), calc(var(--col-${color}-l) + var(--highlight)), var(--col-${color}-a));`;
 
 const colorRule = (prefix: string, property: string): DynamicRule<ITheme> => {
   return [
