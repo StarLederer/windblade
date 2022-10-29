@@ -18,6 +18,7 @@ const getColorCSS = (
   const cssDark = `
     --col-${name}-s: ${dark.s}%;
     --col-${name}-l: ${dark.l}%;
+    --col-${name}-a: ${dark.a ?? 100}%;
   `;
 
   // We could generate this the same as cssDark
@@ -36,6 +37,10 @@ const getColorCSS = (
   else {
     cssLight += `--col-${name}-l: ${100 - dark.l}%;`
   }
+
+  // if (light?.a !== undefined) {
+  //   cssLight += `--col-${name}-a: ${light.a}%;`
+  // }
 
   return [cssDark, cssLight];
 }
