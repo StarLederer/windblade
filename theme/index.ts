@@ -30,7 +30,7 @@ const theme: ITheme = {
         'int3': { dark: { s: 60, l: 60, a: 10 } },
         // 'on-int3': { dark: { s: 10, l: 80 } },
 
-        'int4': { dark: { s: 10, l: 60, a: 20 } },
+        'int4': { dark: { s: 20, l: 20, a: 20 } },
         'on-int4': { dark: { s: 10, l: 80 } },
       },
     },
