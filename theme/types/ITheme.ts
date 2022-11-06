@@ -1,10 +1,10 @@
-import type { IThemeColor } from "./IThemeColors"
+import type { IThemeColorCombo } from "./IThemeColors"
 
 type ITheme = {
   wrapp: {
     colors: {
-      static: Record<string, IThemeColor>,
-      interactive: Record<string, IThemeColor>,
+      static: Record<string, IThemeColorCombo>,
+      interactive: Record<string, IThemeColorCombo>,
     };
     sizes: Record<string, string>;
   };

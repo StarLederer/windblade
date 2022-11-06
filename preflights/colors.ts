@@ -53,8 +53,18 @@ const getColorCSS = (
 const getCSS = ({ theme: { wrapp } }: PreflightContext<ITheme>): string => {
   const themeColors = {...wrapp.colors.static, ...wrapp.colors.interactive};
 
-  const colors = Object.keys(themeColors).map((color) => {
-    return getColorCSS(color, themeColors[color]);
+  // Collect custom properties for light and dark variatns of
+  // color.base and all color.on
+  const colors = [];
+  Object.keys(themeColors).forEach((color) => {
+    // Add color.base custom CSS properties
+    colors.push(getColorCSS(color, themeColors[color].base));
+
+    // Add custom CSS properties for each color.on
+    // On colors are used as foreground variants
+    themeColors[color].on.forEach((on, i) => {
+      colors.push(getColorCSS(`on-${color}-${i}`, on));
+    })
   });
 
 

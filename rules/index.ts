@@ -1,7 +1,7 @@
 import type { Rule } from "@unocss/core";
 
 import { ITheme } from "../theme/types";
-import { colorRule } from "./colors";
+import { colorRule, colorBgRule } from "./colors";
 import sizeRule from "./sizes";
 
 const rules: Rule<ITheme>[] = [
@@ -10,9 +10,21 @@ const rules: Rule<ITheme>[] = [
   ['highlight+', { '--highlight': 'var(--base-highlight-plus)' }],
 
   ['bg-none', { background: 'none' }],
+  colorBgRule('bg'),
+
   colorRule('border-color', 'border-color'),
-  colorRule('bg', 'background'),
-  colorRule('text', 'color'),
+
+  // TODO: Turn these into dynamic rules and move to a getter function
+  ['border-color-on0', { 'border-color': 'var(--fg0)' }],
+  ['border-color-on1', { 'border-color': 'var(--fg1)' }],
+  ['border-color-on2', { 'border-color': 'var(--fg2)' }],
+  ['border-color-on3', { 'border-color': 'var(--fg3)' }],
+  ['border-color-on4', { 'border-color': 'var(--fg4)' }],
+  ['text-on0', { color: 'var(--fg0)' }],
+  ['text-on1', { color: 'var(--fg1)' }],
+  ['text-on2', { color: 'var(--fg2)' }],
+  ['text-on3', { color: 'var(--fg3)' }],
+  ['text-on4', { color: 'var(--fg4)' }],
 
   // Shapesand sizes
   sizeRule('inset', 'inset'),

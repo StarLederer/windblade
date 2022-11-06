@@ -11,4 +11,9 @@ type IThemeColor = {
   }
 };
 
-export type { IThemeColor };
+type IThemeColorCombo = {
+  base: IThemeColor;
+  on: IThemeColor[];
+};
+
+export type { IThemeColor, IThemeColorCombo };
