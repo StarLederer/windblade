@@ -64,4 +64,17 @@ const colorBgRule = (prefix: string): DynamicRule<ITheme> => {
   ];
 };
 
-export { colorRule, colorBgRule }
+const fgColorRule = (prefix: string, property: string): DynamicRule<ITheme> => {
+  return [
+    new RegExp(`^(${prefix})-(.+)$`),
+    (match, { theme }) => {
+      const css = {};
+
+      css[property] = `var(--fg${match[2]})`
+
+      return css;
+    }
+  ];
+};
+
+export { colorRule, colorBgRule, fgColorRule }
