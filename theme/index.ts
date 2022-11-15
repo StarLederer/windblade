@@ -15,6 +15,7 @@ const theme: ITheme = {
           base: { dark: { s: 10, l: 5 } },
           on: [
             { dark: { s: 10, l: 90 } },
+            { dark: { s: 20, l: 80 } },
             { dark: { s: 20, l: 60 } },
             { dark: { s: 20, l: 40 } },
             { dark: { s: 10, l: 10 } },
