@@ -1,5 +1,6 @@
 import { DynamicRule } from "@unocss/core";
 import { ITheme } from "../theme/types";
+import logicalRuleSet from "./logicalSet";
 
 const sizeRule = (prefix: string, property: string): DynamicRule<ITheme> => {
   return [
@@ -12,4 +13,8 @@ const sizeRule = (prefix: string, property: string): DynamicRule<ITheme> => {
   ];
 };
 
-export default sizeRule;
+const logicalSizeSet = (prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) => (
+  logicalRuleSet(prefix, postfix, propertyPrefix, propertyPostfix, sizeRule)
+);
+
+export { sizeRule, logicalSizeSet };

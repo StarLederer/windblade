@@ -1,51 +1,103 @@
 import type { Rule } from "@unocss/core";
 
 import { ITheme } from "../theme/types";
+import logicalRuleSet from "./logicalSet";
 import { colorRule, colorBgRule, fgColorRule } from "./colors";
-import sizeRule from "./sizes";
+import { sizeRule, logicalSizeSet } from "./sizes";
 
 const rules: Rule<ITheme>[] = [
   // Colors
+  [
+    new RegExp(`^(hue)-(.+)$`),
+    (match, { theme }) => ({
+      '--hue': match[2],
+    })
+  ],
   ['highlight', { '--highlight': 'var(--base-highlight);' }],
   ['highlight+', { '--highlight': 'var(--base-highlight-plus)' }],
 
   ['bg-none', { background: 'none' }],
   colorBgRule('bg'),
 
-  colorRule('border-color', 'border-color'),
-  colorRule('text', 'color'),
+  // Borders
+  ['border', {
+    'border-style': 'solid',
+    'border-width': '1px',
+  }],
+  ...logicalRuleSet('border', 'color', 'border', 'color', colorRule),
+  ...logicalRuleSet('border', 'color', 'border', 'color', fgColorRule),
 
-  fgColorRule('border-color-fg', 'border-color'),
+  // Typography
+  colorRule('text', 'color'),
   fgColorRule('text-fg', 'color'),
 
-  // Shapesand sizes
-  sizeRule('inset', 'inset'),
-  sizeRule('inset-b', 'inset-block'),
-  sizeRule('inset-bs', 'inset-block-start'),
-  sizeRule('inset-be', 'inset-block-end'),
-  sizeRule('inset-i', 'inset-inline'),
-  sizeRule('inset-is', 'inset-inline-start'),
-  sizeRule('inset-ie', 'inset-inline-end'),
+  sizeRule('text', 'font-size'),
 
+  ['font-thin', { 'font-weight': '100' }],
+  ['font-extralight', { 'font-weight': '200' }],
+  ['font-light', { 'font-weight': '300' }],
+  ['font-normal', { 'font-weight': '400' }],
+  ['font-medium', { 'font-weight': '500' }],
+  ['font-semibold', { 'font-weight': '600' }],
+  ['font-bold', { 'font-weight': '700' }],
+  ['font-extrabold', { 'font-weight': '800' }],
+  ['font-black', { 'font-weight': '900' }],
+
+  ['text-start', { 'text-align': 'start' }],
+  ['text-end', { 'text-align': 'end' }],
+  ['text-center', { 'text-align': 'center' }],
+  ['text-justify', { 'text-align': 'justify' }],
+
+  // Lists
+  ['list-none', { 'list-style-type': 'none' }],
+  ['list-disc', { 'list-style-type': 'disc' }],
+  ['list-decimal', { 'list-style-type': 'decimal' }],
+
+  // Shapes and sizes
+  ['width-full', { 'width': '100%' }],
+  ['height-full', { 'height': '100%' }],
+  sizeRule('width', 'width'),
+  sizeRule('height', 'height'),
+  ...logicalSizeSet('inset', '', 'inset', ''),
+  ...logicalSizeSet('pd', '', 'padding', ''),
+  ...logicalSizeSet('mg', '', 'margin', ''),
   sizeRule('round', 'border-radius'),
 
-  sizeRule('pd', 'padding'),
-  sizeRule('pd-i', 'padding-inline'),
-  sizeRule('pd-is', 'padding-inline-start'),
-  sizeRule('pd-ie', 'padding-inline-end'),
-  sizeRule('pd-b', 'padding-block'),
-  sizeRule('pd-bs', 'padding-block-start'),
-  sizeRule('pd-be', 'padding-block-end'),
-
-  sizeRule('mg', 'margin'),
-  sizeRule('mg-i', 'margin-inline'),
-  sizeRule('mg-is', 'margin-inline-start'),
-  sizeRule('mg-ie', 'margin-inline-end'),
-  sizeRule('mg-b', 'margin-block'),
-  sizeRule('mg-bs', 'margin-block-start'),
-  sizeRule('mg-be', 'margin-block-end'),
-
+  // Gaps
   sizeRule('gap', 'gap'),
+  sizeRule('gap-col', 'column-gap'),
+  sizeRule('gap-row', 'row-gap'),
+
+  // Flex
+  ['flex', { display: 'flex' }],
+  ['flex-col', { 'flex-direction': 'column' }],
+  ['flex-row', { 'flex-direction': 'row' }],
+  ['flex-wrap', { 'flex-wrap': 'wrap' }],
+  ['flex-wrap-reverse', { 'flex-wrap': 'wrap-reverse' }],
+  ['flex-nowrap', { 'flex-wrap': 'nowrap' }],
+  ['flex-1', { 'flex': '1 1 0%' }],
+  ['flex-auto', { 'flex': '1 1 auto' }],
+  ['flex-initial', { 'flex': '0 1 auto' }],
+  ['grow', { 'flex-grow': '1' }],
+  ['grow-0', { 'flex-grow': '0' }],
+  ['shrink', { 'flex-shrink': '1' }],
+  ['shrink-0', { 'flex-shrink': '0' }],
+
+  // TODO: Grids
+
+  // ALignment
+  ['justify-start', { 'justify-content': 'flex-start' }],
+  ['justify-end', { 'justify-content': 'flex-end' }],
+  ['justify-center', { 'justify-content': 'center' }],
+  ['justify-between', { 'justify-content': 'space-between' }],
+  ['justify-around', { 'justify-content': 'space-around' }],
+  ['justify-evenly', { 'justify-content': 'space-evenly' }],
+
+  ['items-start', { 'align-items': 'flex-start' }],
+  ['items-end', { 'align-items': 'flex-end' }],
+  ['items-center', { 'align-items': 'center' }],
+  ['items-baseline', { 'align-items': 'baseline' }],
+  ['items-stretch', { 'align-items': 'stretch' }],
 ];
 
 export default rules;
