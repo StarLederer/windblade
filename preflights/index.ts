@@ -13,8 +13,8 @@ const preflights: Preflight<{}>[] = [
         color: inherit;
         background: none;
         border: none;
-        font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
         font-size: inherit;
+        font-weight: inherit;
         line-height: 1;
 
         color-scheme: light dark;
@@ -23,7 +23,9 @@ const preflights: Preflight<{}>[] = [
       }
 
       :root {
+        font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
         font-size: 16px;
+        font-weight: normal;
 
         font-synthesis: none;
         text-rendering: optimizeLegibility;
