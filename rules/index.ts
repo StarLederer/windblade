@@ -59,9 +59,17 @@ const rules: Rule<ITheme>[] = [
   sizeRule('width', 'width'),
   sizeRule('height', 'height'),
   ...logicalSizeSet('inset', '', 'inset', ''),
+
   ...logicalSizeSet('pd', '', 'padding', ''),
   ...logicalSizeSet('mg', '', 'margin', ''),
+
   sizeRule('round', 'border-radius'),
+
+  ['static', { 'position': 'static' }],
+  ['fixed', { 'position': 'fixed' }],
+  ['absolute', { 'position': 'absolute' }],
+  ['relative', { 'position': 'relative' }],
+  ['sticky', { 'position': 'sticky' }],
 
   // Gaps
   sizeRule('gap', 'gap'),
