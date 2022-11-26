@@ -63,6 +63,7 @@ const rules: Rule<ITheme>[] = [
   ...logicalSizeSet('pd', '', 'padding', ''),
   ...logicalSizeSet('mg', '', 'margin', ''),
 
+  ['round-full', { 'border-radius': '999999px' }],
   sizeRule('round', 'border-radius'),
 
   ['static', { 'position': 'static' }],
