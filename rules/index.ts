@@ -25,7 +25,7 @@ const rules: Rule<ITheme>[] = [
     'border-width': '1px',
   }],
   ...logicalRuleSet('border', 'color', 'border', 'color', colorRule),
-  ...logicalRuleSet('border', 'color', 'border', 'color', fgColorRule),
+  ...logicalRuleSet('border', 'color-fg', 'border', 'color', fgColorRule),
 
   // Typography
   colorRule('text', 'color'),
@@ -56,8 +56,12 @@ const rules: Rule<ITheme>[] = [
   // Shapes and sizes
   ['width-full', { 'width': '100%' }],
   ['height-full', { 'height': '100%' }],
+  ['min-width-full', { 'min-width': '100%' }],
+  ['min-height-full', { 'min-height': '100%' }],
   sizeRule('width', 'width'),
   sizeRule('height', 'height'),
+  sizeRule('min-width', 'min-width'),
+  sizeRule('min-height', 'min-height'),
   ...logicalSizeSet('inset', '', 'inset', ''),
 
   ...logicalSizeSet('pd', '', 'padding', ''),
@@ -107,6 +111,9 @@ const rules: Rule<ITheme>[] = [
   ['items-center', { 'align-items': 'center' }],
   ['items-baseline', { 'align-items': 'baseline' }],
   ['items-stretch', { 'align-items': 'stretch' }],
+
+  // Transitions
+  ['transition', { 'transition': '100ms linear' }],
 ];
 
 export default rules;
