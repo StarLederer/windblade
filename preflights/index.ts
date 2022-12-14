@@ -1,8 +1,9 @@
 import { Preflight } from "@unocss/core";
+import { ITheme } from "../theme/types";
 
 import getColorCSS from "./colors"
 
-const preflights: Preflight<{}>[] = [
+const preflights: Preflight<ITheme>[] = [
   // Setup
   {
     getCSS: ({ theme }) => `

@@ -2,8 +2,9 @@ import type { Preset, PresetOptions } from '@unocss/core'
 import theme from "./theme";
 import rules from "./rules";
 import preflights from "./preflights";
+import { ITheme } from './theme/types';
 
-export const presetWrapp = (options: PresetOptions = {}): Preset<{}> => {
+export const presetWrapp = (options: PresetOptions = {}): Preset<ITheme> => {
   return {
     name: '@wrapp/unocss-preset',
     theme,
