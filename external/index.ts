@@ -1,5 +1,23 @@
 import type { IThemeColor } from "../theme/types/"
 
+const getSLA = (color: IThemeColor) => {
+  let s = color.dark.s;
+  let l = color.dark.l;
+  let a = color.dark.a ?? 100;
+
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    s = color.light?.s ?? s;
+    l = color.light?.l ?? l;
+    a = color.light?.a ?? a;
+  }
+
+  return [s, l, a];
+};
+
+const getHSLA = (hue: number, color: IThemeColor) => {
+  return [hue, ...getSLA(color)];
+};
+
 const getColor = (hue: number, color: IThemeColor) => {
   let s = color.dark.s;
   let l = color.dark.l;
@@ -15,5 +33,7 @@ const getColor = (hue: number, color: IThemeColor) => {
 };
 
 export {
+  getSLA,
+  getHSLA,
   getColor
 }
