@@ -27,6 +27,7 @@ const theme: ITheme = {
           on: [
             { dark: { s: 100, l: 80 } },
             { dark: { s: 40, l: 60 } },
+            { dark: { s: 20, l: 40 } },
           ]
         },
 
