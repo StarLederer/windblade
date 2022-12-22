@@ -62,6 +62,8 @@ const rules: Rule<ITheme>[] = [
   sizeRule('height', 'height'),
   sizeRule('min-width', 'min-width'),
   sizeRule('min-height', 'min-height'),
+  sizeRule('max-width', 'max-width'),
+  sizeRule('max-height', 'max-height'),
   ...logicalSizeSet('inset', '', 'inset', ''),
 
   ...logicalSizeSet('pd', '', 'padding', ''),
