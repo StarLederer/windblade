@@ -12,6 +12,18 @@ const logicalRuleSet = (
 ) => ([
   rule(join([prefix, postfix]), join([propertyPrefix, propertyPostfix])),
   rule(join([prefix, "b", postfix]), join([propertyPrefix, "block", propertyPostfix])),
+  rule(join([prefix, "i", postfix]), join([propertyPrefix, "inline", propertyPostfix])),
+]);
+
+const logicalRuleSetFull = (
+  prefix: string,
+  postfix: string | undefined,
+  propertyPrefix: string,
+  propertyPostfix: string | undefined,
+  rule: (prefix: string, property: string) => Rule<ITheme>
+) => ([
+  rule(join([prefix, postfix]), join([propertyPrefix, propertyPostfix])),
+  rule(join([prefix, "b", postfix]), join([propertyPrefix, "block", propertyPostfix])),
   rule(join([prefix, "bs", postfix]), join([propertyPrefix, "block-start", propertyPostfix])),
   rule(join([prefix, "be", postfix]), join([propertyPrefix, "block-end", propertyPostfix])),
   rule(join([prefix, "i", postfix]), join([propertyPrefix, "inline", propertyPostfix])),
@@ -19,4 +31,7 @@ const logicalRuleSet = (
   rule(join([prefix, "ie", postfix]), join([propertyPrefix, "inline-end", propertyPostfix])),
 ]);
 
-export default logicalRuleSet;
+export {
+  logicalRuleSet,
+  logicalRuleSetFull
+};

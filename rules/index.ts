@@ -1,9 +1,17 @@
 import type { Rule } from "@unocss/core";
 
 import { ITheme } from "../theme/types";
-import logicalRuleSet from "./logicalSet";
+import { logicalRuleSet, logicalRuleSetFull } from "./logicalSet";
 import { colorRule, colorBgRule, fgColorRule } from "./colors";
 import { sizeRule, logicalSizeSet } from "./sizes";
+
+const simpleRule = (prefix: string, property: string, value: string): Rule<ITheme> => {
+  const css = {};
+  css[property] = value;
+  return [
+    prefix, css,
+  ]
+};
 
 const rules: Rule<ITheme>[] = [
   // Colors
@@ -18,14 +26,15 @@ const rules: Rule<ITheme>[] = [
 
   ['bg-none', { background: 'none' }],
   colorBgRule('bg'),
+  fgColorRule('bg-fg', 'background'),
 
   // Borders
   ['border', {
     'border-style': 'solid',
     'border-width': '1px',
   }],
-  ...logicalRuleSet('border', 'color', 'border', 'color', colorRule),
-  ...logicalRuleSet('border', 'color-fg', 'border', 'color', fgColorRule),
+  ...logicalRuleSetFull('border', 'color', 'border', 'color', colorRule),
+  ...logicalRuleSetFull('border', 'color-fg', 'border', 'color', fgColorRule),
 
   // Typography
   colorRule('text', 'color'),
@@ -55,7 +64,11 @@ const rules: Rule<ITheme>[] = [
 
   // Shapes and sizes
   ['width-full', { 'width': '100%' }],
+  ['width-min-content', { 'width': 'min-content' }],
+  ['width-max-content', { 'width': 'max-content' }],
   ['height-full', { 'height': '100%' }],
+  ['height-min-content', { 'height': 'min-content' }],
+  ['height-max-content', { 'height': 'max-content' }],
   ['min-width-full', { 'min-width': '100%' }],
   ['min-height-full', { 'min-height': '100%' }],
   sizeRule('width', 'width'),
@@ -68,6 +81,7 @@ const rules: Rule<ITheme>[] = [
 
   ...logicalSizeSet('pd', '', 'padding', ''),
   ...logicalSizeSet('mg', '', 'margin', ''),
+  ...logicalRuleSetFull('mg', 'auto', 'margin', '', (pref, prop) => (simpleRule(pref, prop, 'auto'))),
 
   ['round-full', { 'border-radius': '999999px' }],
   sizeRule('round', 'border-radius'),
@@ -98,7 +112,12 @@ const rules: Rule<ITheme>[] = [
   ['shrink', { 'flex-shrink': '1' }],
   ['shrink-0', { 'flex-shrink': '0' }],
 
-  // TODO: Grids
+  // Grids
+  ['grid', { display: 'grid' }],
+  sizeRule('grid-auto-cols', 'grid-auto-columns'),
+  sizeRule('grid-auto-rows', 'grid-auto-rows'),
+  sizeRule('grid-auto-fit', 'grid-template-columns', (size) => (`repeat(auto-fit, minmax(${size}, 1fr))`)),
+  sizeRule('grid-auto-fill', 'grid-template-columns', (size) => (`repeat(auto-fill, minmax(${size}, 1fr))`)),
 
   // ALignment
   ['justify-start', { 'justify-content': 'flex-start' }],
@@ -116,6 +135,12 @@ const rules: Rule<ITheme>[] = [
 
   // Transitions
   ['transition', { 'transition': '100ms linear' }],
+
+  // Misc
+  ...logicalRuleSet('overflow', 'visible', 'overflow', '', (pref, prop) => (simpleRule(pref, prop, 'visible'))),
+  ...logicalRuleSet('overflow', 'hidden', 'overflow', '', (pref, prop) => (simpleRule(pref, prop, 'hidden'))),
+  ...logicalRuleSet('overflow', 'scroll', 'overflow', '', (pref, prop) => (simpleRule(pref, prop, 'scroll'))),
+  ...logicalRuleSet('overflow', 'auto', 'overflow', '', (pref, prop) => (simpleRule(pref, prop, 'auto'))),
 ];
 
 export default rules;

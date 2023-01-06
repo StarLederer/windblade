@@ -22,6 +22,18 @@ const theme: ITheme = {
           ]
         },
 
+        'def2': {
+          base: { dark: { s: 10, l: 10 } },
+          on: [
+            { dark: { s: 10, l: 90 } },
+            { dark: { s: 20, l: 80 } },
+            { dark: { s: 20, l: 60 } },
+            { dark: { s: 10, l: 40 } },
+            { dark: { s: 10, l: 40, a: 60 } },
+            { dark: { s: 10, l: 40, a: 10 } },
+          ]
+        },
+
         'srf': {
           base: { dark: { s: 40, l: 20, a: 10 } },
           on: [
