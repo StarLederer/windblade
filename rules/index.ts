@@ -63,14 +63,10 @@ const rules: Rule<ITheme>[] = [
   ['list-decimal', { 'list-style-type': 'decimal' }],
 
   // Shapes and sizes
-  ['width-full', { 'width': '100%' }],
   ['width-min-content', { 'width': 'min-content' }],
   ['width-max-content', { 'width': 'max-content' }],
-  ['height-full', { 'height': '100%' }],
   ['height-min-content', { 'height': 'min-content' }],
   ['height-max-content', { 'height': 'max-content' }],
-  ['min-width-full', { 'min-width': '100%' }],
-  ['min-height-full', { 'min-height': '100%' }],
   sizeRule('width', 'width'),
   sizeRule('height', 'height'),
   sizeRule('min-width', 'min-width'),
@@ -81,7 +77,6 @@ const rules: Rule<ITheme>[] = [
 
   ...logicalSizeSet('pd', '', 'padding', ''),
   ...logicalSizeSet('mg', '', 'margin', ''),
-  ...logicalRuleSetFull('mg', 'auto', 'margin', '', (pref, prop) => (simpleRule(pref, prop, 'auto'))),
 
   ['round-full', { 'border-radius': '999999px' }],
   sizeRule('round', 'border-radius'),

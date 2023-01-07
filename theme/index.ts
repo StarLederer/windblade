@@ -104,6 +104,9 @@ const theme: ITheme = {
       'l+': '60rem',
       'l++': '80rem',
       'xl0': '100rem',
+      'half': '50%',
+      'full': '100%',
+      'auto': 'auto',
     }
   }
 };
