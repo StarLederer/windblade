@@ -27,6 +27,8 @@ const rules: Rule<ITheme>[] = [
   ['bg-none', { background: 'none' }],
   colorBgRule('bg'),
   fgColorRule('bg-fg', 'background'),
+  colorRule('fill', 'fill'),
+  fgColorRule('fill-fg', 'fill'),
 
   // Borders
   ['border', {
