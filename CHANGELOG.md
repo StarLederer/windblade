@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - full (100%), half (50%) and auto size units.
-- fill and fill-fg color rules sor SVGs.
+- fill and fill-fg color rules for SVGs.
 
 ### Fixed
 
