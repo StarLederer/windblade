@@ -6,7 +6,7 @@ const sizeRule = (prefix: string, property: string, value?: (size: string) => st
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
-      const css = {};
+      const css: any = {};
       css[property] = value?.(theme.wrapp.sizes[match[2]]) ?? theme.wrapp.sizes[match[2]];
       return css;
     }

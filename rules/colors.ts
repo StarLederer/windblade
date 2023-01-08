@@ -8,7 +8,7 @@ const colorRule = (prefix: string, property: string): DynamicRule<ITheme> => {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
-      const css = {};
+      const css: any = {};
 
       // Static css
       const statColor = theme.wrapp.colors.static[match[2]];
@@ -37,7 +37,7 @@ const colorBgRule = (prefix: string): DynamicRule<ITheme> => {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
-      const css = {};
+      const css: any = {};
 
       // Static css
       const statColor = theme.wrapp.colors.static[match[2]];
@@ -68,10 +68,8 @@ const fgColorRule = (prefix: string, property: string): DynamicRule<ITheme> => {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
-      const css = {};
-
+      const css: any = {};
       css[property] = `var(--fg${match[2]})`
-
       return css;
     }
   ];

@@ -6,7 +6,7 @@ import { colorRule, colorBgRule, fgColorRule } from "./colors";
 import { sizeRule, logicalSizeSet } from "./sizes";
 
 const simpleRule = (prefix: string, property: string, value: string): Rule<ITheme> => {
-  const css = {};
+  const css: any = {};
   css[property] = value;
   return [
     prefix, css,
