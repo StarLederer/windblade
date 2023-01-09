@@ -15,10 +15,7 @@ export const presetWrapp = (options: PresetOptions = {}): Preset<ITheme> => {
     postprocess: [],
     preflights,
     prefix: undefined,
-    shortcuts: [
-      { 'int-text': 'font-semibold' },
-      { 'panel': 'round-m-- pd-m0' },
-    ],
+    shortcuts: [],
   }
 }
 
