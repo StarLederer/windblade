@@ -1,7 +1,7 @@
 import type { ITheme } from "./types/ITheme";
 
 const theme: ITheme = {
-  wrapp: {
+  windblade: {
     colors: {
       static: {
         'abs': {

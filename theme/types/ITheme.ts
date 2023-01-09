@@ -1,7 +1,7 @@
 import type { IThemeColorCombo } from "./IThemeColors"
 
 type ITheme = {
-  wrapp: {
+  windblade: {
     colors: {
       static: Record<string, IThemeColorCombo>,
       interactive: Record<string, IThemeColorCombo>,

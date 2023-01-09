@@ -11,13 +11,13 @@ const colorRule = (prefix: string, property: string): DynamicRule<ITheme> => {
       const css: any = {};
 
       // Static css
-      const statColor = theme.wrapp.colors.static[match[2]];
+      const statColor = theme.windblade.colors.static[match[2]];
       if (statColor !== undefined) {
         css[property] = staticColorCss(match[2]);
       }
 
       // Interactive css
-      const intColor = theme.wrapp.colors.interactive[match[2]];
+      const intColor = theme.windblade.colors.interactive[match[2]];
       if (intColor !== undefined) {
         css[property] = interactiveColorCss(match[2]);
       }
@@ -40,7 +40,7 @@ const colorBgRule = (prefix: string): DynamicRule<ITheme> => {
       const css: any = {};
 
       // Static css
-      const statColor = theme.wrapp.colors.static[match[2]];
+      const statColor = theme.windblade.colors.static[match[2]];
       if (statColor !== undefined) {
         css['background'] = staticColorCss(match[2]);
         statColor.on.forEach((_, i) => {
@@ -49,7 +49,7 @@ const colorBgRule = (prefix: string): DynamicRule<ITheme> => {
       }
 
       // Interactive css
-      const intColor = theme.wrapp.colors.interactive[match[2]];
+      const intColor = theme.windblade.colors.interactive[match[2]];
       if (intColor !== undefined) {
         css['background'] = interactiveColorCss(match[2]);
         intColor.on.forEach((_, i) => {

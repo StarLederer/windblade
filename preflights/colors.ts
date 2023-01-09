@@ -50,12 +50,12 @@ const getColorCSS = (
  *
  * @returns :root CSS containing various color variables for dark (default) and light (@media) modes. The variables are intended for internal use by this UnoCSS preset
  */
-const getCSS = ({ theme: { wrapp } }: PreflightContext<ITheme>): string => {
-  const themeColors = {...wrapp.colors.static, ...wrapp.colors.interactive};
+const getCSS = ({ theme: { windblade } }: PreflightContext<ITheme>): string => {
+  const themeColors = {...windblade.colors.static, ...windblade.colors.interactive};
 
   // Collect custom properties for light and dark variatns of
   // color.base and all color.on
-  const colors = [];
+  const colors: string[][] = [];
   Object.keys(themeColors).forEach((color) => {
     // Add color.base custom CSS properties
     colors.push(getColorCSS(color, themeColors[color].base));

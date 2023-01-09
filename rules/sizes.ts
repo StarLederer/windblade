@@ -15,7 +15,7 @@ const resolveTokens = (tokens: Token[], theme: ITheme): ResolvedToken[] => {
     }
 
     // Try to replace with a theme design token
-    let themeValue = theme.wrapp.sizes.tokens[token.value as string];
+    let themeValue = theme.windblade.sizes.tokens[token.value as string];
     if (themeValue !== undefined) {
       resolvedTokens.push({
         type: token.type,
@@ -50,8 +50,8 @@ const solve = (expr: string, theme: ITheme): string | undefined => {
       console.error(err);
     }
   } else {
-    let token = theme.wrapp.sizes.tokens[expr];
-    let misc = theme.wrapp.sizes.misc[expr];
+    let token = theme.windblade.sizes.tokens[expr];
+    let misc = theme.windblade.sizes.misc[expr];
     if (token !== undefined) return `${token}rem`;
     else if (misc !== undefined) return `${misc}`;
   }

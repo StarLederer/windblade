@@ -5,9 +5,9 @@ import rules from "./rules";
 import preflights from "./preflights";
 import { ITheme } from './theme/types';
 
-export const presetWrapp = (options: PresetOptions = {}): Preset<ITheme> => {
+export const presetWindblade = (options: PresetOptions = {}): Preset<ITheme> => {
   return {
-    name: '@wrapp/unocss-preset',
+    name: 'Windblade',
     theme,
     rules,
     variants: [],
@@ -19,5 +19,5 @@ export const presetWrapp = (options: PresetOptions = {}): Preset<ITheme> => {
   }
 }
 
-export default presetWrapp;
+export default presetWindblade;
 export { theme, external };
