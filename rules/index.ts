@@ -4,6 +4,7 @@ import { ITheme } from "../theme/types";
 import { logicalRuleSet, logicalRuleSetFull } from "./logicalSet";
 import { colorRule, colorBgRule, fgColorRule } from "./colors";
 import { sizeRule, logicalSizeSet } from "./sizes";
+import { getThemeCSS } from "../core/theme";
 
 const simpleRule = (prefix: string, property: string, value: string): Rule<ITheme> => {
   const css: any = {};
@@ -15,6 +16,15 @@ const simpleRule = (prefix: string, property: string, value: string): Rule<IThem
 
 const rules: Rule<ITheme>[] = [
   // Colors
+  [
+    new RegExp(`^(theme-dark)$`),
+    (match, { theme }) => (getThemeCSS(theme).dark)
+  ],
+  [
+    new RegExp(`^(theme-light)$`),
+    (match, { theme }) => (getThemeCSS(theme).light)
+  ],
+
   [
     new RegExp(`^(hue)-(.+)$`),
     (match, { theme }) => ({

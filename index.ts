@@ -1,5 +1,5 @@
 import type { Preset, PresetOptions } from '@unocss/core'
-import * as external from "./external";
+import * as core from "./core";
 import theme from "./theme";
 import rules from "./rules";
 import preflights from "./preflights";
@@ -20,4 +20,4 @@ export const presetWindblade = (options: PresetOptions = {}): Preset<ITheme> => 
 }
 
 export default presetWindblade;
-export { theme, external };
+export { theme, core };

@@ -6,7 +6,7 @@ import getColorCSS from "./colors"
 const preflights: Preflight<ITheme>[] = [
   // Setup
   {
-    getCSS: ({ theme }) => `
+    getCSS: () => `
       * {
         padding: 0;
         margin: 0;
