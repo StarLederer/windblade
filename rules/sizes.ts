@@ -132,7 +132,7 @@ const solveTree = (tree: Tree, theme: ITheme): number => {
   return result;
 }
 
-const solve = (expr: string, theme: ITheme): string => {
+const solve = (expr: string, theme: ITheme): string | undefined => {
   if (expr.startsWith("(")) {
     try {
       const tokens = tokenize(expr);
@@ -149,8 +149,8 @@ const solve = (expr: string, theme: ITheme): string => {
     else if (misc !== undefined) return `${misc}`;
   }
 
-  console.error(`Unable to resolve size unit: ${expr}`);
-  return '0px';
+  // console.error(`Unable to resolve size unit: ${expr}`);
+  return undefined;
 };
 
 const sizeRule = (prefix: string, property: string, value?: (size: string) => string): DynamicRule<ITheme> => {
@@ -159,6 +159,7 @@ const sizeRule = (prefix: string, property: string, value?: (size: string) => st
     (match, { theme }) => {
       const css: any = {};
       let parameter = solve(match[2], theme);
+      if (parameter === undefined) return undefined;
       css[property] = value?.(parameter) ?? parameter;
       return css;
     }
