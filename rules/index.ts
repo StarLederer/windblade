@@ -116,7 +116,7 @@ const rules: Rule<ITheme>[] = [
   sizeRule('grid-auto-fit', 'grid-template-columns', (size) => (`repeat(auto-fit, minmax(${size}, 1fr))`)),
   sizeRule('grid-auto-fill', 'grid-template-columns', (size) => (`repeat(auto-fill, minmax(${size}, 1fr))`)),
 
-  // ALignment
+  // Alignment
   ['justify-start', { 'justify-content': 'flex-start' }],
   ['justify-end', { 'justify-content': 'flex-end' }],
   ['justify-center', { 'justify-content': 'center' }],
