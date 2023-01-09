@@ -39,6 +39,10 @@ const preflights: Preflight<ITheme>[] = [
         user-select: none;
         -webkit-user-select: none;
       }
+
+      a {
+        cursor: pointer;
+      }
     `
   },
   // Color properties
