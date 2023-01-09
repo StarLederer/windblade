@@ -82,15 +82,16 @@ const tokenize = (expr: string): Token[] => {
 const buildTree = (tokens: ResolvedToken[]): Tree => {
   const tree: Tree = [];
 
-  let operator: Operator = "+";
-  let value: number = 0;
   let i = 0;
+  let operator: Operator = "+"; // current operator
   while (i < tokens.length) {
     if (operators.includes(tokens[i].type as Operator)) {
+      // Change current operator
       operator = tokens[i].type as Operator;
       i++;
     } else if (tokens[i].type === "unit") {
-      tree.push({ operator, value });
+      // Push a new leaf of curent operator and current token value
+      tree.push({ operator, value: (tokens[i] as ResolvedUnitToken).value });
       i++;
     } else if (tokens[i].type === "(") {
       let open = 1;
