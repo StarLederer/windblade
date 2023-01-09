@@ -12,18 +12,18 @@ const theme: ITheme = {
         },
 
         'def': {
-          base: { dark: { s: 10, l: 5 } },
+          base: { dark: { s: 10, l: 5 }, light: { l: 90 } },
           on: [
             { dark: { s: 10, l: 90 } },
             { dark: { s: 20, l: 80 } },
             { dark: { s: 20, l: 60 } },
             { dark: { s: 20, l: 40 } },
-            { dark: { s: 10, l: 10 } },
+            { dark: { s: 10, l: 10 }, light: { l: 80 } },
           ]
         },
 
         'def2': {
-          base: { dark: { s: 10, l: 10 } },
+          base: { dark: { s: 10, l: 10 }, light: { l: 80 } },
           on: [
             { dark: { s: 10, l: 90 } },
             { dark: { s: 20, l: 80 } },
@@ -35,7 +35,7 @@ const theme: ITheme = {
         },
 
         'srf': {
-          base: { dark: { s: 40, l: 20, a: 10 } },
+          base: { dark: { s: 40, l: 20, a: 10 }, light: { a: 40 } },
           on: [
             { dark: { s: 100, l: 80 } },
             { dark: { s: 40, l: 60 } },

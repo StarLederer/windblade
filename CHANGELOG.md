@@ -18,15 +18,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- .
+- Overwriting light variant color alpha inside the theme not working.
 
 ### Changed
 
 - Renamed preset to Windblade.
 - Renamed `external` to `core`.
-- `getSLA` and `getHSLA` in `core` (ex. `external`) now return values for all themes.
+- `getSLA` and `getHSLA` in `core` (ex. `external`) now return values for all variants.
 - Renamed all size units.
 - Size units are now sorted between `units` and `misc` in theme.
+- Improved light variants of `def`, `def2` and `srf` colors.
 
 ### Removed
 

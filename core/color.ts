@@ -34,9 +34,9 @@ const getCSSProperties = (name: string, color: IThemeColor): ThemedProps => {
     propsLight[`--col-${name}-l`] = `${100 - dark.l}%;`;
   }
 
-  // if (light?.a !== undefined) {
-  //   cssLight[`--col-${name}-a`] = `${dark.a}%;`;
-  // }
+  if (light?.a !== undefined) {
+    propsLight[`--col-${name}-a`] = `${light.a}%;`;
+  }
 
   return {
     dark: propsDark,
