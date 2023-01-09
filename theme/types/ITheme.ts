@@ -6,7 +6,10 @@ type ITheme = {
       static: Record<string, IThemeColorCombo>,
       interactive: Record<string, IThemeColorCombo>,
     };
-    sizes: Record<string, string>;
+    sizes: {
+      tokens: Record<string, number>,
+      misc: Record<string, string>,
+    };
   };
 };
 

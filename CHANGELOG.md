@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- 
+- Dynamic size calculations using mathematical expressions inside `()` (e.g `mg-(-s)`, `inset-(m/2)`).
 
 ### Fixed
 
@@ -17,7 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- .
+- Renamed all size units.
+- Size units are now sorted between `units` and `misc` in theme.
 
 ### Removed
 
