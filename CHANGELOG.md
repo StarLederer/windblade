@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Dynamic size calculations using mathematical expressions inside `()` (e.g `mg-(-s)`, `inset-(m/2)`).
+- `getCSSProperties` to `core/color` (ex. `external`).
+- `core/theme`.
+- `theme-dark` and `theme-light` rules.
+- `theme-initial` class (not a rule; does not work in @apply).
 
 ### Fixed
 
@@ -18,12 +22,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Renamed preset to Windblade.
+- Renamed `external` to `core`.
+- `getSLA` and `getHSLA` in `core` (ex. `external`) now return values for all themes.
 - Renamed all size units.
 - Size units are now sorted between `units` and `misc` in theme.
 
 ### Removed
 
-- .
+- `getColor` from `core` (ex. `external`).
 
 ## 1.1.0 - 2023-01-06
 
