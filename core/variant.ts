@@ -1,17 +1,17 @@
 import { ITheme } from "../theme/types";
 import { getCSSProperties } from "./color";
 
-type ThemeType = "dark" | "light";
+type Variant = "dark" | "light";
 
-type ThemedProps = Record<ThemeType, Record<string, string>>;
+type VariantProps = Record<Variant, Record<string, string>>;
 
-const getThemeCSS = (theme: ITheme): ThemedProps => {
+const getThemeCSS = (theme: ITheme): VariantProps => {
   const { windblade } = theme;
   const themeColors = { ...windblade.colors.static, ...windblade.colors.interactive };
 
   // Collect custom properties for light and dark variatns of
   // color.base and all color.on
-  const colors: ThemedProps[] = [];
+  const colors: VariantProps[] = [];
   Object.keys(themeColors).forEach((color) => {
     // Add color.base custom CSS properties
     colors.push(getCSSProperties(color, themeColors[color].base));
@@ -46,5 +46,5 @@ const getThemeCSS = (theme: ITheme): ThemedProps => {
   };
 };
 
-export type { ThemeType, ThemedProps };
+export type { Variant, VariantProps };
 export { getThemeCSS };

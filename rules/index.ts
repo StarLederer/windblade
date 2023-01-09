@@ -4,7 +4,7 @@ import { ITheme } from "../theme/types";
 import { logicalRuleSet, logicalRuleSetFull } from "./logicalSet";
 import { colorRule, colorBgRule, fgColorRule } from "./colors";
 import { sizeRule, logicalSizeSet } from "./sizes";
-import { getThemeCSS } from "../core/theme";
+import { getThemeCSS } from "../core/variant";
 
 const simpleRule = (prefix: string, property: string, value: string): Rule<ITheme> => {
   const css: any = {};

@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Dynamic size calculations using mathematical expressions inside `()` (e.g `mg-(-s)`, `inset-(m/2)`).
 - `getCSSProperties` to `core/color` (ex. `external`).
-- `core/theme`.
+- `core/variant`.
 - `theme-dark` and `theme-light` rules.
 - `theme-initial` class (not a rule; does not work in @apply).
 - `objToCSS` to `core`.

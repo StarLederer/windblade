@@ -1,6 +1,6 @@
 import { PreflightContext } from "@unocss/core";
 import { objToCSS } from "../core";
-import { getThemeCSS } from "../core/theme";
+import { getThemeCSS } from "../core/variant";
 import { ITheme } from "../theme/types";
 
 /**
