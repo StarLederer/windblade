@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `theme-dark` and `theme-light` rules.
 - `theme-initial` class (not a rule; does not work in @apply).
 - `objToCSS` to `core`.
+- Text transform rules.
 
 ### Fixed
 

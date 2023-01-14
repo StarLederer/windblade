@@ -69,6 +69,11 @@ const rules: Rule<ITheme>[] = [
   ['text-center', { 'text-align': 'center' }],
   ['text-justify', { 'text-align': 'justify' }],
 
+  ['uppercase', { 'text-transform': 'uppercase' }],
+  ['lowercase', { 'text-transform': 'lowercase' }],
+  ['capitalize', { 'text-transform': 'capitalize' }],
+  ['normal-case', { 'text-transform': 'none' }],
+
   // Lists
   ['list-none', { 'list-style-type': 'none' }],
   ['list-disc', { 'list-style-type': 'disc' }],
