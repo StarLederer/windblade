@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `objToCSS` to `core`.
 - Text transform rules.
 - `flex-row-reverse` and `flex-col-reverse`.
+- New `def` color variations.
 
 ### Fixed
 
@@ -29,7 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `getSLA` and `getHSLA` in `core` (ex. `external`) now return values for all variants.
 - Renamed all size units.
 - Size units are now sorted between `units` and `misc` in theme.
-- Improved light variants of `def`, `def2` and `srf` colors.
+- Renamed `def` to `def3` and `def2` to `def4`
+- Improved light variants of `def3` (ex. `def`), `def4` (ex. `def2`) and `srf` colors.
 
 ### Removed
 
