@@ -112,7 +112,9 @@ const rules: Rule<ITheme>[] = [
   // Flex
   ['flex', { display: 'flex' }],
   ['flex-col', { 'flex-direction': 'column' }],
+  ['flex-col-reverse', { 'flex-direction': 'column-reverse' }],
   ['flex-row', { 'flex-direction': 'row' }],
+  ['flex-row-reverse', { 'flex-direction': 'row-reverse' }],
   ['flex-wrap', { 'flex-wrap': 'wrap' }],
   ['flex-wrap-reverse', { 'flex-wrap': 'wrap-reverse' }],
   ['flex-nowrap', { 'flex-wrap': 'nowrap' }],
