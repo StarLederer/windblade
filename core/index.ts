@@ -7,5 +7,5 @@ const objToCSS = (obj: Record<string, string>) => {
 };
 
 export { objToCSS };
-export * as Color from "./color";
-export * as Variant from "./variant";
+export * from "./color";
+export * from "./variant";
