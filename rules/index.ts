@@ -53,6 +53,7 @@ const rules: Rule<ITheme>[] = [
   fgColorRule('text-fg', 'color'),
 
   sizeRule('text', 'font-size'),
+  sizeRule('line-height', 'line-height'),
 
   ['font-thin', { 'font-weight': '100' }],
   ['font-extralight', { 'font-weight': '200' }],
