@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `flex-row-reverse` and `flex-col-reverse`.
 - New `def` color variations.
 - `line-height` rule.
-- Logical `round` rule variuants.
+- Logical `rounded` (ex. `round`) rule variuants.
 
 ### Fixed
 
@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Size units are now sorted between `units` and `misc` in theme.
 - Renamed `def` to `def3` and `def2` to `def4`
 - Improved light variants of `def3` (ex. `def`), `def4` (ex. `def2`) and `srf` colors.
+- Renamed `round` to `rounded`.
 
 ### Removed
 
