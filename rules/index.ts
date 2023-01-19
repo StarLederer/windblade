@@ -1,9 +1,9 @@
 import type { Rule } from "@unocss/core";
 
 import { ITheme } from "../theme/types";
-import { logicalRuleSet, logicalRuleSetFull } from "./logicalSet";
+import * as logical from "./logicalSet";
 import { colorRule, colorBgRule, fgColorRule } from "./colors";
-import { sizeRule, logicalSizeSet } from "./sizes";
+import * as size from "./sizes";
 import { getThemeCSS } from "../core/variant";
 
 const simpleRule = (prefix: string, property: string, value: string): Rule<ITheme> => {
@@ -45,15 +45,15 @@ const rules: Rule<ITheme>[] = [
     'border-style': 'solid',
     'border-width': '1px',
   }],
-  ...logicalRuleSetFull('border', 'color', 'border', 'color', colorRule),
-  ...logicalRuleSetFull('border', 'color-fg', 'border', 'color', fgColorRule),
+  ...logical.edgeRules('border', 'color', 'border', 'color', colorRule),
+  ...logical.edgeRules('border', 'color-fg', 'border', 'color', fgColorRule),
 
   // Typography
   colorRule('text', 'color'),
   fgColorRule('text-fg', 'color'),
 
-  sizeRule('text', 'font-size'),
-  sizeRule('line-height', 'line-height'),
+  size.rule('text', 'font-size'),
+  size.rule('line-height', 'line-height'),
 
   ['font-thin', { 'font-weight': '100' }],
   ['font-extralight', { 'font-weight': '200' }],
@@ -85,19 +85,19 @@ const rules: Rule<ITheme>[] = [
   ['width-max-content', { 'width': 'max-content' }],
   ['height-min-content', { 'height': 'min-content' }],
   ['height-max-content', { 'height': 'max-content' }],
-  sizeRule('width', 'width'),
-  sizeRule('height', 'height'),
-  sizeRule('min-width', 'min-width'),
-  sizeRule('min-height', 'min-height'),
-  sizeRule('max-width', 'max-width'),
-  sizeRule('max-height', 'max-height'),
-  ...logicalSizeSet('inset', '', 'inset', ''),
+  size.rule('width', 'width'),
+  size.rule('height', 'height'),
+  size.rule('min-width', 'min-width'),
+  size.rule('min-height', 'min-height'),
+  size.rule('max-width', 'max-width'),
+  size.rule('max-height', 'max-height'),
+  ...size.axisRules('inset', '', 'inset', ''),
 
-  ...logicalSizeSet('pd', '', 'padding', ''),
-  ...logicalSizeSet('mg', '', 'margin', ''),
+  ...size.edgeRules('pd', '', 'padding', ''),
+  ...size.edgeRules('mg', '', 'margin', ''),
 
   ['round-full', { 'border-radius': '999999px' }],
-  sizeRule('round', 'border-radius'),
+  size.rule('round', 'border-radius'),
 
   ['static', { 'position': 'static' }],
   ['fixed', { 'position': 'fixed' }],
@@ -106,9 +106,9 @@ const rules: Rule<ITheme>[] = [
   ['sticky', { 'position': 'sticky' }],
 
   // Gaps
-  sizeRule('gap', 'gap'),
-  sizeRule('gap-col', 'column-gap'),
-  sizeRule('gap-row', 'row-gap'),
+  size.rule('gap', 'gap'),
+  size.rule('gap-col', 'column-gap'),
+  size.rule('gap-row', 'row-gap'),
 
   // Flex
   ['flex', { display: 'flex' }],
@@ -129,10 +129,10 @@ const rules: Rule<ITheme>[] = [
 
   // Grids
   ['grid', { display: 'grid' }],
-  sizeRule('grid-auto-cols', 'grid-auto-columns'),
-  sizeRule('grid-auto-rows', 'grid-auto-rows'),
-  sizeRule('grid-auto-fit', 'grid-template-columns', (size) => (`repeat(auto-fit, minmax(${size}, 1fr))`)),
-  sizeRule('grid-auto-fill', 'grid-template-columns', (size) => (`repeat(auto-fill, minmax(${size}, 1fr))`)),
+  size.rule('grid-auto-cols', 'grid-auto-columns'),
+  size.rule('grid-auto-rows', 'grid-auto-rows'),
+  size.rule('grid-auto-fit', 'grid-template-columns', (size) => (`repeat(auto-fit, minmax(${size}, 1fr))`)),
+  size.rule('grid-auto-fill', 'grid-template-columns', (size) => (`repeat(auto-fill, minmax(${size}, 1fr))`)),
 
   // Alignment
   ['justify-start', { 'justify-content': 'flex-start' }],
@@ -152,10 +152,10 @@ const rules: Rule<ITheme>[] = [
   ['transition', { 'transition': '100ms linear' }],
 
   // Misc
-  ...logicalRuleSet('overflow', 'visible', 'overflow', '', (pref, prop) => (simpleRule(pref, prop, 'visible'))),
-  ...logicalRuleSet('overflow', 'hidden', 'overflow', '', (pref, prop) => (simpleRule(pref, prop, 'hidden'))),
-  ...logicalRuleSet('overflow', 'scroll', 'overflow', '', (pref, prop) => (simpleRule(pref, prop, 'scroll'))),
-  ...logicalRuleSet('overflow', 'auto', 'overflow', '', (pref, prop) => (simpleRule(pref, prop, 'auto'))),
+  ...logical.axisRules('overflow', 'visible', 'overflow', '', (pref, prop) => (simpleRule(pref, prop, 'visible'))),
+  ...logical.axisRules('overflow', 'hidden', 'overflow', '', (pref, prop) => (simpleRule(pref, prop, 'hidden'))),
+  ...logical.axisRules('overflow', 'scroll', 'overflow', '', (pref, prop) => (simpleRule(pref, prop, 'scroll'))),
+  ...logical.axisRules('overflow', 'auto', 'overflow', '', (pref, prop) => (simpleRule(pref, prop, 'auto'))),
 ];
 
 export default rules;

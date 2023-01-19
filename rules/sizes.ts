@@ -1,7 +1,7 @@
 import { DynamicRule } from "@unocss/core";
 import { ITheme } from "../theme/types";
 import { buildTree, ResolvedToken, solveTree, Token, tokenize } from "./expressions";
-import { logicalRuleSetFull } from "./logicalSet";
+import * as logical from "./logicalSet";
 
 const resolveTokens = (tokens: Token[], theme: ITheme): ResolvedToken[] => {
   let resolvedTokens: ResolvedToken[] = [];
@@ -60,7 +60,7 @@ const solve = (expr: string, theme: ITheme): string | undefined => {
   return undefined;
 };
 
-const sizeRule = (prefix: string, property: string, value?: (size: string) => string): DynamicRule<ITheme> => {
+const rule = (prefix: string, property: string, value?: (size: string) => string): DynamicRule<ITheme> => {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
@@ -73,8 +73,16 @@ const sizeRule = (prefix: string, property: string, value?: (size: string) => st
   ];
 };
 
-const logicalSizeSet = (prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) => (
-  logicalRuleSetFull(prefix, postfix, propertyPrefix, propertyPostfix, sizeRule)
+const axisRules = (prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) => (
+  logical.axisRules(prefix, postfix, propertyPrefix, propertyPostfix, rule)
 );
 
-export { sizeRule, logicalSizeSet };
+const edgeRules = (prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) => (
+  logical.edgeRules(prefix, postfix, propertyPrefix, propertyPostfix, rule)
+);
+
+const cornerRules = (prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) => (
+  logical.cornerRules(prefix, postfix, propertyPrefix, propertyPostfix, rule)
+);
+
+export { rule, axisRules, edgeRules, cornerRules };

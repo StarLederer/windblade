@@ -3,7 +3,7 @@ import { ITheme } from "../theme/types";
 
 const join = (arr: Array<any>) => (arr.filter(Boolean).join("-"));
 
-const logicalRuleSet = (
+const axisRules = (
   prefix: string,
   postfix: string | undefined,
   propertyPrefix: string,
@@ -15,7 +15,7 @@ const logicalRuleSet = (
   rule(join([prefix, "i", postfix]), join([propertyPrefix, "inline", propertyPostfix])),
 ]);
 
-const logicalRuleSetFull = (
+const edgeRules = (
   prefix: string,
   postfix: string | undefined,
   propertyPrefix: string,
@@ -31,7 +31,22 @@ const logicalRuleSetFull = (
   rule(join([prefix, "ie", postfix]), join([propertyPrefix, "inline-end", propertyPostfix])),
 ]);
 
+const cornerRules = (
+  prefix: string,
+  postfix: string | undefined,
+  propertyPrefix: string,
+  propertyPostfix: string | undefined,
+  rule: (prefix: string, property: string) => Rule<ITheme>
+) => ([
+  rule(join([prefix, postfix]), join([propertyPrefix, propertyPostfix])),
+  rule(join([prefix, "ss", postfix]), join([propertyPrefix, "start-start", propertyPostfix])),
+  rule(join([prefix, "se", postfix]), join([propertyPrefix, "start-end", propertyPostfix])),
+  rule(join([prefix, "ee", postfix]), join([propertyPrefix, "end-end", propertyPostfix])),
+  rule(join([prefix, "es", postfix]), join([propertyPrefix, "end-start", propertyPostfix])),
+]);
+
 export {
-  logicalRuleSet,
-  logicalRuleSetFull
+  axisRules,
+  edgeRules,
+  cornerRules,
 };
