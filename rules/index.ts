@@ -45,6 +45,10 @@ const rules: Rule<ITheme>[] = [
     'border-style': 'solid',
     'border-width': '1px',
   }],
+  // ['round-full', { 'border-radius': '999999px' }],
+  // size.rule('round', 'border-radius'),
+  ...size.cornerRules('round', '', 'border', 'radius'),
+  ...logical.cornerRules('round', 'full', 'border', 'radius', (pref, prop) => simpleRule(pref, prop, '999999px')),
   ...logical.edgeRules('border', 'color', 'border', 'color', colorRule),
   ...logical.edgeRules('border', 'color-fg', 'border', 'color', fgColorRule),
 
@@ -95,9 +99,6 @@ const rules: Rule<ITheme>[] = [
 
   ...size.edgeRules('pd', '', 'padding', ''),
   ...size.edgeRules('mg', '', 'margin', ''),
-
-  ['round-full', { 'border-radius': '999999px' }],
-  size.rule('round', 'border-radius'),
 
   ['static', { 'position': 'static' }],
   ['fixed', { 'position': 'fixed' }],

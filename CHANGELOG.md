@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `flex-row-reverse` and `flex-col-reverse`.
 - New `def` color variations.
 - `line-height` rule.
+- Logical `round` rule variuants.
 
 ### Fixed
 
