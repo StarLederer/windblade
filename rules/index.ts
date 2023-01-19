@@ -88,7 +88,7 @@ const rules: Rule<ITheme>[] = [
   ...size.axisRules('max-size', '', 'max', 'size'),
   ...logical.axisRules('size', 'min-content', 'size', '', (pref, prop) => simpleRule(pref, prop, 'min-content')),
   ...logical.axisRules('size', 'max-content', 'size', '', (pref, prop) => simpleRule(pref, prop, 'max-content')),
-  ...size.axisRules('inset', '', 'inset', ''),
+  ...size.edgeRules('inset', '', 'inset', ''),
 
   ...size.edgeRules('pd', '', 'padding', ''),
   ...size.edgeRules('mg', '', 'margin', ''),
