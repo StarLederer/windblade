@@ -83,16 +83,11 @@ const rules: Rule<ITheme>[] = [
   ['list-decimal', { 'list-style-type': 'decimal' }],
 
   // Shapes and sizes
-  ['width-min-content', { 'width': 'min-content' }],
-  ['width-max-content', { 'width': 'max-content' }],
-  ['height-min-content', { 'height': 'min-content' }],
-  ['height-max-content', { 'height': 'max-content' }],
-  size.rule('width', 'width'),
-  size.rule('height', 'height'),
-  size.rule('min-width', 'min-width'),
-  size.rule('min-height', 'min-height'),
-  size.rule('max-width', 'max-width'),
-  size.rule('max-height', 'max-height'),
+  ...size.axisRules('size', '', '', 'size'),
+  ...size.axisRules('min-size', '', 'min', 'size'),
+  ...size.axisRules('max-size', '', 'max', 'size'),
+  ...logical.axisRules('size', 'min-content', 'size', '', (pref, prop) => simpleRule(pref, prop, 'min-content')),
+  ...logical.axisRules('size', 'max-content', 'size', '', (pref, prop) => simpleRule(pref, prop, 'max-content')),
   ...size.axisRules('inset', '', 'inset', ''),
 
   ...size.edgeRules('pd', '', 'padding', ''),

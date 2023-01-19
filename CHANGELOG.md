@@ -39,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - `getColor` from `core` (ex. `external`).
+- `width` and `height` rules in favor of `size`.
 
 ## 1.1.0 - 2023-01-06
 
