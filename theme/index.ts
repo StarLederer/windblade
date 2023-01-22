@@ -111,6 +111,7 @@ const theme: Theme = {
         interactive: true,
       },
     },
+
     sizes: {
       tokens: {
         's.2': 0.2,
