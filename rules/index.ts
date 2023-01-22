@@ -1,12 +1,12 @@
 import type { Rule } from "@unocss/core";
 
-import { ITheme } from "../theme/types";
+import Theme from "../theme/Theme";
 import * as logical from "./logicalSet";
 import { colorRule, colorBgRule, fgColorRule } from "./colors";
 import * as size from "./sizes";
 import { getThemeCSS } from "../core/variant";
 
-const simpleRule = (prefix: string, property: string, value: string): Rule<ITheme> => {
+const simpleRule = (prefix: string, property: string, value: string): Rule<Theme> => {
   const css: any = {};
   css[property] = value;
   return [
@@ -14,7 +14,7 @@ const simpleRule = (prefix: string, property: string, value: string): Rule<IThem
   ]
 };
 
-const rules: Rule<ITheme>[] = [
+const rules: Rule<Theme>[] = [
   // Colors
   [
     new RegExp(`^(theme-dark)$`),

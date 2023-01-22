@@ -1,14 +1,14 @@
 import { PreflightContext } from "@unocss/core";
 import { objToCSS } from "../core";
 import { getThemeCSS } from "../core/variant";
-import { ITheme } from "../theme/types";
+import Theme from "../theme/Theme";
 
 /**
  * An preflight getter for UnoCSS
  *
  * @returns :root CSS containing various color variables for dark (default) and light (@media) modes. The variables are intended for internal use by this UnoCSS preset
  */
-const getCSS = ({ theme }: PreflightContext<ITheme>): string => {
+const getCSS = ({ theme }: PreflightContext<Theme>): string => {
   const {dark, light} = getThemeCSS(theme);
 
   return `

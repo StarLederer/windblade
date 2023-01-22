@@ -1,5 +1,5 @@
 import { DynamicRule } from "@unocss/core";
-import { ITheme } from "../theme/types";
+import { ITheme } from "../theme/Theme";
 import { buildTree, ResolvedToken, solveTree, Token, tokenize } from "./expressions";
 import * as logical from "./logicalSet";
 

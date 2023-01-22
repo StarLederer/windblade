@@ -1,4 +1,4 @@
-import type { IThemeColor } from "../theme/types/"
+import type { ThemeColor } from "../theme/Theme"
 import type { VariantProps, Variant } from "./variant";
 
 /**
@@ -9,7 +9,7 @@ import type { VariantProps, Variant } from "./variant";
  * @param light
  * @returns a tuple of (s)aturation, (l)ightness and (a)lpha custom CSS properties for dark (default) and light modes
  */
-const getCSSProperties = (name: string, color: IThemeColor): VariantProps => {
+const getCSSProperties = (name: string, color: ThemeColor): VariantProps => {
   const { dark, light } = color;
 
   const propsDark: any = {};
@@ -44,7 +44,7 @@ const getCSSProperties = (name: string, color: IThemeColor): VariantProps => {
   };
 };
 
-const getSLA = (color: IThemeColor): Record<Variant, {s: number, l: number, a: number}> => {
+const getSLA = (color: ThemeColor): Record<Variant, {s: number, l: number, a: number}> => {
   const s = color.dark.s;
   const l = color.dark.l;
   const a = color.dark.a ?? 100;
@@ -59,7 +59,7 @@ const getSLA = (color: IThemeColor): Record<Variant, {s: number, l: number, a: n
   }
 };
 
-const getHSLA = (hue: number, color: IThemeColor): Record<Variant, {h: number, s: number, l: number, a: number}> => {
+const getHSLA = (hue: number, color: ThemeColor): Record<Variant, {h: number, s: number, l: number, a: number}> => {
   let sla: any = getSLA(color);
   Object.assign(sla, {
     dark: {h: hue},

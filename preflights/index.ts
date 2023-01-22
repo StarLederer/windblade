@@ -1,5 +1,5 @@
 import { Preflight } from "@unocss/core";
-import { ITheme } from "../theme/types";
+import { ITheme } from "../theme/Theme";
 
 import getColorCSS from "./colors"
 

@@ -3,9 +3,9 @@ import * as core from "./core";
 import theme from "./theme";
 import rules from "./rules";
 import preflights from "./preflights";
-import { ITheme } from './theme/types';
+import Theme from './theme/Theme';
 
-export const presetWindblade = (options: PresetOptions = {}): Preset<ITheme> => {
+export const presetWindblade = (options: PresetOptions = {}): Preset<Theme> => {
   return {
     name: 'Windblade',
     theme,

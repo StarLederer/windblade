@@ -1,5 +1,5 @@
 import type { Rule } from "@unocss/core";
-import { ITheme } from "../theme/types";
+import Theme from "../theme/Theme";
 
 const join = (arr: Array<any>) => (arr.filter(Boolean).join("-"));
 
@@ -8,7 +8,7 @@ const axisRules = (
   postfix: string | undefined,
   propertyPrefix: string,
   propertyPostfix: string | undefined,
-  rule: (prefix: string, property: string) => Rule<ITheme>
+  rule: (prefix: string, property: string) => Rule<Theme>
 ) => ([
   rule(join([prefix, postfix]), join([propertyPrefix, propertyPostfix])),
   rule(join([prefix, "b", postfix]), join([propertyPrefix, "block", propertyPostfix])),
@@ -20,7 +20,7 @@ const edgeRules = (
   postfix: string | undefined,
   propertyPrefix: string,
   propertyPostfix: string | undefined,
-  rule: (prefix: string, property: string) => Rule<ITheme>
+  rule: (prefix: string, property: string) => Rule<Theme>
 ) => ([
   rule(join([prefix, postfix]), join([propertyPrefix, propertyPostfix])),
   rule(join([prefix, "b", postfix]), join([propertyPrefix, "block", propertyPostfix])),
@@ -36,7 +36,7 @@ const cornerRules = (
   postfix: string | undefined,
   propertyPrefix: string,
   propertyPostfix: string | undefined,
-  rule: (prefix: string, property: string) => Rule<ITheme>
+  rule: (prefix: string, property: string) => Rule<Theme>
 ) => ([
   rule(join([prefix, postfix]), join([propertyPrefix, propertyPostfix])),
   rule(join([prefix, "ss", postfix]), join([propertyPrefix, "start-start", propertyPostfix])),
