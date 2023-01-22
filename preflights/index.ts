@@ -40,7 +40,8 @@ const preflights: Preflight<ITheme>[] = [
         -webkit-user-select: none;
       }
 
-      a {
+      a,
+      button {
         cursor: pointer;
       }
     `
