@@ -1,9 +1,42 @@
 import type { Rule } from "@unocss/core";
 import Theme from "../theme/Theme";
 
+export const abbreviations = {
+  axis: {
+    b: 'block',
+    i: 'inline',
+  },
+  edges: {
+    bs: 'block-start',
+    be: 'block-end',
+    is: 'inline-start',
+    ie: 'inline-end',
+  },
+  blockEdges: {
+    bs: 'block-start',
+    be: 'block-end',
+  },
+  inlineEdges: {
+    is: 'inline-start',
+    ie: 'inline-end',
+  },
+  coners: {
+    srs: 'start-start',
+    se: 'start-end',
+    es: 'end-start',
+    ee: 'end-end',
+  },
+} as const;
+
+export type Axis = typeof abbreviations.axis[keyof typeof abbreviations.axis];
+export type Edge = typeof abbreviations.edges[keyof typeof abbreviations.edges];
+export type BlockEdge = typeof abbreviations.blockEdges[keyof typeof abbreviations.blockEdges];
+export type InlineEdge = typeof abbreviations.inlineEdges[keyof typeof abbreviations.inlineEdges];
+export type Corner = typeof abbreviations.coners[keyof typeof abbreviations.coners];
+
 const join = (arr: Array<any>) => (arr.filter(Boolean).join("-"));
 
-const axisRules = (
+export const axisRules = (
   prefix: string,
   postfix: string | undefined,
   propertyPrefix: string,
@@ -15,7 +48,7 @@ const axisRules = (
   rule(join([prefix, "i", postfix]), join([propertyPrefix, "inline", propertyPostfix])),
 ]);
 
-const edgeRules = (
+export const edgeRules = (
   prefix: string,
   postfix: string | undefined,
   propertyPrefix: string,
@@ -31,7 +64,7 @@ const edgeRules = (
   rule(join([prefix, "ie", postfix]), join([propertyPrefix, "inline-end", propertyPostfix])),
 ]);
 
-const cornerRules = (
+export const cornerRules = (
   prefix: string,
   postfix: string | undefined,
   propertyPrefix: string,
@@ -44,9 +77,3 @@ const cornerRules = (
   rule(join([prefix, "ee", postfix]), join([propertyPrefix, "end-end", propertyPostfix])),
   rule(join([prefix, "es", postfix]), join([propertyPrefix, "end-start", propertyPostfix])),
 ]);
-
-export {
-  axisRules,
-  edgeRules,
-  cornerRules,
-};

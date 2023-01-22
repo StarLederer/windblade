@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Dynamic size calculations using mathematical expressions inside `()` (e.g `mg-(-s)`, `inset-(m/2)`).
+- Dynamic size calculations using mathematical expressions inside `()` (e.g `m-(-s)`, `inset-(m/2)`).
 - `getCSSProperties` to `core/color` (ex. `external`).
 - `core/variant`.
 - `theme-dark` and `theme-light` rules.
@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New `def` color variations.
 - `line-height` rule.
 - Logical `rounded` (ex. `round`) rule variuants.
+- All Tailwind v3.2.4 rules from Layout and Flex & Grid categories except container and spacing (margin). 
 
 ### Fixed
 
@@ -36,6 +37,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved light variants of `def3` (ex. `def`), `def4` (ex. `def2`) and `srf` colors.
 - Renamed `round` to `rounded`.
 - Static and interactive colors are now merged and have optional `interactive` property.
+- Renamed `mg` and `pd` to `m` and `p`.
+- Renamed `grid-auto-fit` and `grid-auto-fill` to `grid-fit-cols` and `grid-fill-cols`.
 
 ### Removed
 

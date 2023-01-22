@@ -60,7 +60,11 @@ const solve = (expr: string, theme: Theme): string | undefined => {
   return undefined;
 };
 
-const rule = (prefix: string, property: string, value?: (size: string) => string): DynamicRule<Theme> => {
+const rule = (
+  prefix: string,
+  property: string,
+  value?: (size: string) => string
+): DynamicRule<Theme> => {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
@@ -85,4 +89,4 @@ const cornerRules = (prefix: string, postfix: string, propertyPrefix: string, pr
   logical.cornerRules(prefix, postfix, propertyPrefix, propertyPostfix, rule)
 );
 
-export { rule, axisRules, edgeRules, cornerRules };
+export { solve, rule, axisRules, edgeRules, cornerRules };
