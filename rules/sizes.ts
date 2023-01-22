@@ -1,9 +1,9 @@
 import { DynamicRule } from "@unocss/core";
-import { ITheme } from "../theme/Theme";
+import Theme from "../theme/Theme";
 import { buildTree, ResolvedToken, solveTree, Token, tokenize } from "./expressions";
 import * as logical from "./logicalSet";
 
-const resolveTokens = (tokens: Token[], theme: ITheme): ResolvedToken[] => {
+const resolveTokens = (tokens: Token[], theme: Theme): ResolvedToken[] => {
   let resolvedTokens: ResolvedToken[] = [];
 
   // Iterate over types and values of each token given
@@ -38,7 +38,7 @@ const resolveTokens = (tokens: Token[], theme: ITheme): ResolvedToken[] => {
   return resolvedTokens;
 };
 
-const solve = (expr: string, theme: ITheme): string | undefined => {
+const solve = (expr: string, theme: Theme): string | undefined => {
   if (expr.startsWith("(")) {
     try {
       const tokens = tokenize(expr);
@@ -60,7 +60,7 @@ const solve = (expr: string, theme: ITheme): string | undefined => {
   return undefined;
 };
 
-const rule = (prefix: string, property: string, value?: (size: string) => string): DynamicRule<ITheme> => {
+const rule = (prefix: string, property: string, value?: (size: string) => string): DynamicRule<Theme> => {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
