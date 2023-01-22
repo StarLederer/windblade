@@ -35,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Renamed `def` to `def3` and `def2` to `def4`
 - Improved light variants of `def3` (ex. `def`), `def4` (ex. `def2`) and `srf` colors.
 - Renamed `round` to `rounded`.
+- Static and interactive colors are now merged and have optional `interactive` property.
 
 ### Removed
 
