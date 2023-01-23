@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Text transform rules.
 - New `def` color variations.
 - Logical `rounded` (ex. `round`) rule variuants.
-- All Tailwind v3.2.4 rules from Layout and Flex & Grid categories except container and spacing (margin). 
+- All fitting Tailwind v3.2.4 rules from Layout, Flex & Grid, Spacing, Sizing, Typography, Backgroiunds and Borders categories.
 
 ### Fixed
 
@@ -37,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Static and interactive colors are now merged and have optional `interactive` property.
 - Renamed `mg` and `pd` to `m` and `p`.
 - Renamed `grid-auto-fit` and `grid-auto-fill` to `grid-fit-cols` and `grid-fill-cols`.
+- Renamed `min` size token to `px`.
 
 ### Removed
 

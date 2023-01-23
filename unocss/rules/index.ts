@@ -112,7 +112,7 @@ const rules: Rule<Theme>[] = [
 
   [
     new RegExp(`^z-(.+)$`),
-    (match) => {return { 'z-index': match[2] }},
+    (match) => { return { 'z-index': match[2] } },
   ],
 
   // Flexbox & Grid
@@ -202,8 +202,6 @@ const rules: Rule<Theme>[] = [
     },
   ].flatMap(({ cssName, ruleName }): Rule<Theme>[] => [
     [`auto-${ruleName}-auto`, { ['grid-auto-' + cssName]: 'auto' }],
-    [`auto-${ruleName}-min`, { ['grid-auto-' + cssName]: 'min-content' }],
-    [`auto-${ruleName}-max`, { ['grid-auto-' + cssName]: 'max-content' }],
     [`auto-${ruleName}-fr`, { ['grid-auto-' + cssName]: 'minmax(0, 1fr)' }],
     // tailwind doesnt have length values for this rule, let's add them
     size.rule(`auto-${ruleName}`, `grid-auto-${cssName}`),
@@ -281,11 +279,210 @@ const rules: Rule<Theme>[] = [
 
   // Sizing
 
+  ...size.axisRules('size', '', '', 'size'),
+  ...size.axisRules('min-size', '', 'min', 'size'),
+  ...size.axisRules('max-size', '', 'max', 'size'),
+  // our sizing units do not include 'screen' (100vw / 100vh)
+  // TODO: implement more fractions and unit overides
+
   // Typography
+
+  // we are skipping font-family rule because in UnoCSS it is better that develoeprs set this up themselves
+
+  size.rule('text', 'font-size'),
+
+  // we are skipping font smoothing because we set it by default in preflight and it should never be changed
+
+  ['italic', { 'font-style': 'italic' }],
+  ['not-italic', { 'font-style': 'normal' }],
+
+  ['font-thin', { 'font-weight': '100' }],
+  ['font-extralight', { 'font-weight': '200' }],
+  ['font-light', { 'font-weight': '300' }],
+  ['font-normal', { 'font-weight': '400' }],
+  ['font-medium', { 'font-weight': '500' }],
+  ['font-semibold', { 'font-weight': '600' }],
+  ['font-bold', { 'font-weight': '700' }],
+  ['font-extrabold', { 'font-weight': '800' }],
+  ['font-black', { 'font-weight': '900' }],
+
+  ['normal-nums', { 'font-variant-numeric': 'normal' }],
+  ['ordinal', { 'font-variant-numeric': 'ordinal' }],
+  ['slashed-zero', { 'font-variant-numeric': 'slashed-zero' }],
+  ['lining-nums', { 'font-variant-numeric': 'lining-nums' }],
+  ['oldstyle-nums', { 'font-variant-numeric': 'oldstyle-nums' }],
+  ['proportional-nums', { 'font-variant-numeric': 'proportional-nums' }],
+  ['tabular-nums', { 'font-variant-numeric': 'tabular-nums' }],
+  ['diagonal-fractions', { 'font-variant-numeric': 'diagonal-fractions' }],
+  ['stacked-fractions', { 'font-variant-numeric': 'stacked-fractions' }],
+
+  // we are substituting Tailwinds contants with size units
+  size.rule('tracking', 'letter-spacing', (val) => val.replace('rem', 'em')),
+
+  // we are substituting Tailwinds contants with size units
+  // TODO: could really use custom units here
+  size.rule('leading', 'line-height', (val) => val.replace('rem', '')),
+
+  ['list-none', { 'list-style-type': 'none' }],
+  ['list-disc', { 'list-style-type': 'disc' }],
+  ['list-decimal', { 'list-style-type': 'decimal' }],
+
+  ['list-inside', { 'list-style-position': 'inside' }],
+  ['list-outside', { 'list-style-position': 'outside' }],
+
+  ['text-start', { 'text-align': 'start' }],
+  ['text-center', { 'text-align': 'center' }],
+  ['text-end', { 'text-align': 'end' }],
+  ['text-justify', { 'text-align': 'justify' }],
+
+  // TODO: could use constant CSS colors like transparent, currentColor or inherit
+  colorRule('text', 'color'),
+  fgColorRule('text-fg', 'color'),
+
+  ['underline', { 'text-decoration-line': 'underline' }],
+  ['overline', { 'text-decoration-line': 'overline' }],
+  ['line-through', { 'text-decoration-line': 'line-through' }],
+  ['no-underline', { 'text-decoration-line': 'none' }], // this doesnt make sense,
+  // ['no-line', { 'text-decoration-line': 'none' }], // this would make sense.
+
+  colorRule('decoration', 'text-decoration-color'),
+  fgColorRule('decoration-fg', 'text-decoration-color'),
+
+  ['decoration-solid', { 'text-decoration-style': 'solid' }],
+  ['decoration-double', { 'text-decoration-style': 'double' }],
+  ['decoration-dotted', { 'text-decoration-style': 'dotted' }],
+  ['decoration-dashed', { 'text-decoration-style': 'dashed' }],
+  ['decoration-wavy', { 'text-decoration-style': 'wavy' }],
+
+  // we use design tokens instead of preset pixel counts
+  ['decoration-from-font', { 'text-decoration-thickness': 'from-font' }],
+  size.rule('decoration', 'text-decoration-thickness'),
+
+  // we use design tokens instead of preset pixel counts
+  size.rule('underline-offset', 'text-underline-offset'),
+
+  ['uppercase', { 'text-transform': 'uppercase' }],
+  ['lowercase', { 'text-transform': 'lowercase' }],
+  ['capitalize', { 'text-transform': 'capitalize' }],
+  ['normal-case', { 'text-transform': 'none' }],
+
+  ['text-ellipsis', {
+    'overflow': 'hidden',
+    'text-overflow': 'ellipsis',
+    'white-space': 'nowrap',
+  }],
+  ['text-ellipsis', { 'text-overflow': 'ellipsis' }],
+  ['text-clip', { 'text-overflow': 'clip' }],
+
+  size.rule('indent', 'text-indent'),
+
+  // TODO: check if this is not rtl-tb-dependent
+  ['align-baseline', { 'vertical-align': 'baseline' }],
+  ['align-top', { 'vertical-align': 'top' }],
+  ['align-middle', { 'vertical-align': 'middle' }],
+  ['align-bottom', { 'vertical-align': 'bottom' }],
+  ['align-text-top', { 'vertical-align': 'text-top' }],
+  ['align-text-bottom', { 'vertical-align': 'text-bottom' }],
+  ['align-sub', { 'vertical-align': 'sub' }],
+  ['align-super', { 'vertical-align': 'super' }],
+  // TODO: could really use fractions here
+  size.rule('align', 'vertical-align'),
+
+  ['whitespace-normal', { 'white-space': 'normal' }],
+  ['whitespace-nowrap', { 'white-space': 'nowrap' }],
+  ['whitespace-pre', { 'white-space': 'pre' }],
+  ['whitespace-pre-line', { 'white-space': 'pre-line' }],
+  ['whitespace-pre-wrap', { 'white-space': 'pre-wrap' }],
+
+  ['break-normal', { 'overflow-wrap': 'normal', 'word-break': 'normal' }],
+  ['break-words', { 'overflow-wrap': 'break-word' }],
+  ['break-all', { 'word-break': 'break-all' }],
+  ['break-keep', { 'word-break': 'keep-all' }],
+
+  ['content-none', { 'content': 'none' }],
 
   // Backgrounds
 
+  ['bg-fixed', { 'background-attachment': '' }],
+  ['bg-local', { 'background-attachment': 'local' }],
+  ['bg-scroll', { 'background-attachment': 'scroll' }],
+
+  ['bg-clip-border', { 'background-clip': 'border-box' }],
+  ['bg-clip-padding', { 'background-clip': 'padding-box' }],
+  ['bg-clip-content', { 'background-clip': 'content-box' }],
+  ['bg-clip-text', { 'background-clip': 'text' }],
+
+  colorBgRule('bg'),
+  fgColorRule('bg-fg', 'background'),
+  // TODO: we might need a set-fg rule that is the same as bg but does not actually ahcnge background color
+
+  ['bg-origin-border', { 'background-origin': 'border-box' }],
+  ['bg-origin-padding', { 'background-origin': 'padding-box' }],
+  ['bg-origin-content', { 'background-origin': 'content-box' }],
+
+  // we are skipping most most background-position values because there are no logical alternatives yet
+  ['bg-center', { 'background-position': 'center' }],
+
+  // TODO: check whether these are really logical properties
+  ['bg-repeat', { 'background-repeat': 'repeat' }],
+  ['bg-no-repeat', { 'background-repeat': 'no-repeat' }],
+  ['bg-repeat-x', { 'background-repeat': 'repeat-x' }], // especially these two
+  ['bg-repeat-y', { 'background-repeat': 'repeat-y' }], // especially these two
+  ['bg-repeat-round', { 'background-repeat': 'round' }],
+  ['bg-repeat-space', { 'background-repeat': 'space' }],
+
+  ['bg-auto', { 'background-size': 'auto' }],
+  ['bg-cover', { 'background-size': 'cover' }],
+  ['bg-contain', { 'background-size': 'contain' }],
+
+  ['bg-none', { 'background-image': 'none' }],
+  ['bg-gradient-to-t', { 'background-image': 'linear-gradient(to top, var(--wb-gradient-stops))' }],
+  ['bg-gradient-to-tr', { 'background-image': 'linear-gradient(to top right, var(--wb-gradient-stops))' }],
+  ['bg-gradient-to-r', { 'background-image': 'linear-gradient(to right, var(--wb-gradient-stops))' }],
+  ['bg-gradient-to-br', { 'background-image': 'linear-gradient(to bottom right, var(--wb-gradient-stops))' }],
+  ['bg-gradient-to-b', { 'background-image': 'linear-gradient(to bottom, var(--wb-gradient-stops))' }],
+  ['bg-gradient-to-bl', { 'background-image': 'linear-gradient(to bottom left, var(--wb-gradient-stops))' }],
+  ['bg-gradient-to-l', { 'background-image': 'linear-gradient(to left, var(--wb-gradient-stops))' }],
+  ['bg-gradient-to-tl', { 'background-image': 'linear-gradient(to top left, var(--wb-gradient-stops))' }],
+
+  colorRule('from', '--wb-gradient-from'),
+  colorRule('to', '--wb-gradient-to'),
+
+  [new RegExp(`^(bg-gradient)-.*$`), () => ({ '--wb-gradient-stops': 'var(--wb-gradient-from, transparent), var(--wb-gradient-to, transparent)' })],
+  // TODO implement 'via'
+  // colorRule('via', '--wb-gradient-stops', (val) => `var(--wb-gradient-from, transparent), ${val}, var(--wb-gradient-to, transparent)`),
+
   // Borders
+
+  ...size.cornerRules('rounded', '', 'border', 'radius'),
+  ...logical.cornerRules('rounded', 'full', 'border', 'radius', (pref, prop) => simpleRule(pref, prop, '999999px')),
+  ...logical.cornerRules('rounded', 'none', 'border', 'radius', (pref, prop) => simpleRule(pref, prop, 'none')),
+
+  ...size.edgeRules('border', '', 'border', 'width'),
+  ...logical.edgeRules('border', 'color', 'border', 'color', colorRule),
+  ...logical.edgeRules('border', 'color-fg', 'border', 'color', fgColorRule),
+
+  ['border-solid', { 'border-style': 'solid' }],
+  ['border-dashed', { 'border-style': 'dashed' }],
+  ['border-dotted', { 'border-style': 'dotted' }],
+  ['border-double', { 'border-style': 'double' }],
+  ['border-hidden', { 'border-style': 'hidden' }],
+  ['border-none', { 'border-style': 'none' }],
+
+  // we are skipping Devides becasue we believe it does not fit with the architecture
+
+  size.rule('outline', 'outline-width'),
+  colorRule('outline', 'outline-color'),
+
+  ['outline-none', { 'outline': '0px solid transparent', 'outline-offset': '0px' }],
+  ['outline', { 'outline-style': 'solid' }],
+  ['outline-dashed', { 'outline-style': 'dashed' }],
+  ['outline-dotted', { 'outline-style': 'dotted' }],
+  ['outline-double', { 'outline-style': 'double' }],
+
+  size.rule('outline-offset', 'outline-offset'),
+
+  // we are skipping Rings becasue we believe it does not fit with the architecture
 
   // Effects
 
@@ -303,9 +500,7 @@ const rules: Rule<Theme>[] = [
 
   // Accessibility
 
-
-
-  // Colors
+  // Old Windblade (TODO: re-sort)
   [
     new RegExp(`^(theme-dark)$`),
     (match, { theme }) => (getThemeCSS(theme).dark)
@@ -324,62 +519,9 @@ const rules: Rule<Theme>[] = [
   ['highlight', { '--highlight': 'var(--base-highlight)' }],
   ['highlight+', { '--highlight': 'var(--base-highlight-plus)' }],
 
-  ['bg-none', { background: 'none' }],
-  colorBgRule('bg'),
-  fgColorRule('bg-fg', 'background'),
   colorRule('fill', 'fill'),
   fgColorRule('fill-fg', 'fill'),
 
-  // Borders
-  ['border', {
-    'border-style': 'solid',
-    'border-width': '1px',
-  }],
-  ...size.cornerRules('rounded', '', 'border', 'radius'),
-  ...logical.cornerRules('rounded', 'full', 'border', 'radius', (pref, prop) => simpleRule(pref, prop, '999999px')),
-  ...logical.edgeRules('border', 'color', 'border', 'color', colorRule),
-  ...logical.edgeRules('border', 'color-fg', 'border', 'color', fgColorRule),
-
-  // Typography
-  colorRule('text', 'color'),
-  fgColorRule('text-fg', 'color'),
-
-  size.rule('text', 'font-size'),
-  size.rule('line-height', 'line-height'),
-
-  ['font-thin', { 'font-weight': '100' }],
-  ['font-extralight', { 'font-weight': '200' }],
-  ['font-light', { 'font-weight': '300' }],
-  ['font-normal', { 'font-weight': '400' }],
-  ['font-medium', { 'font-weight': '500' }],
-  ['font-semibold', { 'font-weight': '600' }],
-  ['font-bold', { 'font-weight': '700' }],
-  ['font-extrabold', { 'font-weight': '800' }],
-  ['font-black', { 'font-weight': '900' }],
-
-  ['text-start', { 'text-align': 'start' }],
-  ['text-end', { 'text-align': 'end' }],
-  ['text-center', { 'text-align': 'center' }],
-  ['text-justify', { 'text-align': 'justify' }],
-
-  ['uppercase', { 'text-transform': 'uppercase' }],
-  ['lowercase', { 'text-transform': 'lowercase' }],
-  ['capitalize', { 'text-transform': 'capitalize' }],
-  ['normal-case', { 'text-transform': 'none' }],
-
-  // Lists
-  ['list-none', { 'list-style-type': 'none' }],
-  ['list-disc', { 'list-style-type': 'disc' }],
-  ['list-decimal', { 'list-style-type': 'decimal' }],
-
-  // Shapes and sizes
-  ...size.axisRules('size', '', '', 'size'),
-  ...size.axisRules('min-size', '', 'min', 'size'),
-  ...size.axisRules('max-size', '', 'max', 'size'),
-  ...logical.axisRules('size', 'min-content', 'size', '', (pref, prop) => simpleRule(pref, prop, 'min-content')),
-  ...logical.axisRules('size', 'max-content', 'size', '', (pref, prop) => simpleRule(pref, prop, 'max-content')),
-
-  // Transitions
   ['transition', { 'transition': '100ms linear' }],
 ];
 
