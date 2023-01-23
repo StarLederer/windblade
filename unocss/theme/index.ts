@@ -134,11 +134,14 @@ const theme: Theme = {
         'l': 100,
       },
       misc: {
-        'min': '1px',
-        '0': '0rem',
+        '0': '0px',
+        'px': '1px',
         'half': '50%',
         'full': '100%',
         'auto': 'auto',
+        'min': 'min-content',
+        'max': 'max-content',
+        'fit': 'fit-content',
       },
     }
   }
