@@ -16,9 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `theme-initial` class (not a rule; does not work in @apply).
 - `objToCSS` to `core`.
 - Text transform rules.
-- `flex-row-reverse` and `flex-col-reverse`.
 - New `def` color variations.
-- `line-height` rule.
 - Logical `rounded` (ex. `round`) rule variuants.
 - All Tailwind v3.2.4 rules from Layout and Flex & Grid categories except container and spacing (margin). 
 
