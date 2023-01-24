@@ -16,6 +16,7 @@
 - [x] All rtl-tb utilities replaced with logical counterparts (or removed if not possible).
 - [x] Automatic color system.
 - [x] Javascript access to automatic color system.
+- [ ] Detailed README
 - [ ] Published on NPM.
 - [ ] Listed on [UnoCSS](https://github.com/unocss/unocss) readme.
 - [ ] Documentation.
