@@ -146,7 +146,7 @@ const theme: Theme = {
     },
 
     time: {
-      baseUnitMs: 150,
+      baseUnitMs: 100,
 
       functions: {
         default: 'cubic-bezier(0.4, 0, 0.2, 1)',
