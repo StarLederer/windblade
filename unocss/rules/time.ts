@@ -10,7 +10,7 @@ const durationRule = (
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
       const css: any = {};
-      let parameter = "" + theme.windblade.sizes.tokens[match[2]] * theme.windblade.time.baseUnitMs;
+      let parameter = theme.windblade.sizes.tokens[match[2]] * theme.windblade.time.baseUnitMs + "ms";
       if (parameter === undefined) return undefined;
       css[property] = value?.(parameter) ?? parameter;
       return css;
