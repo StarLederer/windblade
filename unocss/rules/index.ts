@@ -427,8 +427,15 @@ const rules: Rule<Theme>[] = [
   ['bg-origin-padding', { 'background-origin': 'padding-box' }],
   ['bg-origin-content', { 'background-origin': 'content-box' }],
 
-  // we are skipping most most background-position values because there are no logical alternatives yet
+  ['bg-ss', { 'background-position': 'var(--start-start)' }],
+  ['bg-bs', { 'background-position': 'var(--block-start)' }],
+  ['bg-es', { 'background-position': 'var(--end-start)' }],
+  ['bg-is', { 'background-position': 'var(--inline-start)' }],
   ['bg-center', { 'background-position': 'center' }],
+  ['bg-ie', { 'background-position': 'var(--inline-start)' }],
+  ['bg-se', { 'background-position': 'var(--start-end)' }],
+  ['bg-be', { 'background-position': 'var(--block-end)' }],
+  ['bg-ee', { 'background-position': 'var(--end-end)' }],
 
   // TODO: check whether these are really logical properties
   ['bg-repeat', { 'background-repeat': 'repeat' }],
