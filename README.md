@@ -12,7 +12,7 @@
 
 ## Progress
 
-- [x] All suitable Tailwind utilities implemented.
+- [x] All suitable Tailwind utilities implemented (all except animations).
 - [x] All rtl-tb utilities replaced with logical counterparts (or removed if not possible).
 - [x] Automatic color system.
 - [x] Javascript access to automatic color system.
