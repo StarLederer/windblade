@@ -21,7 +21,7 @@ export const abbreviations = {
     ie: 'inline-end',
   },
   coners: {
-    srs: 'start-start',
+    ss: 'start-start',
     se: 'start-end',
     es: 'end-start',
     ee: 'end-end',
