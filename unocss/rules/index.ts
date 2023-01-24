@@ -583,32 +583,32 @@ const rules: Rule<Theme>[] = [
 
   ['transition-none', { 'transition-property': 'none' }],
   [/^(transition-all)$/, (_, {theme}) => ({
-    'transition-all': 'all',
+    'transition': 'all',
     'transition-timing-function': theme.windblade.time.functions.default,
     'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
   })],
   [/^(transition)$/, (_, {theme}) => ({
-    'transition-all': 'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
+    'transition': 'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
     'transition-timing-function': theme.windblade.time.functions.default,
     'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
   })],
   [/^(transition-colors)$/, (_, {theme}) => ({
-    'transition-all': 'color, background-color, border-color, text-decoration-color, fill, stroke    ',
+    'transition': 'color, background-color, border-color, text-decoration-color, fill, stroke    ',
     'transition-timing-function': theme.windblade.time.functions.default,
     'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
   })],
   [/^(transition-opacity)$/, (_, {theme}) => ({
-    'transition-all': 'opacity',
+    'transition': 'opacity',
     'transition-timing-function': theme.windblade.time.functions.default,
     'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
   })],
   [/^(transition-shadow)$/, (_, {theme}) => ({
-    'transition-all': 'box-shadow',
+    'transition': 'box-shadow',
     'transition-timing-function': theme.windblade.time.functions.default,
     'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
   })],
   [/^(transition-transform)$/, (_, {theme}) => ({
-    'transition-all': 'transform',
+    'transition': 'transform',
     'transition-timing-function': theme.windblade.time.functions.default,
     'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
   })],
