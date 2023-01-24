@@ -436,19 +436,24 @@ const rules: Rule<Theme>[] = [
   ['bg-contain', { 'background-size': 'contain' }],
 
   ['bg-none', { 'background-image': 'none' }],
-  ['bg-gradient-to-t', { 'background-image': 'linear-gradient(to top, var(--wb-gradient-stops))' }],
-  ['bg-gradient-to-tr', { 'background-image': 'linear-gradient(to top right, var(--wb-gradient-stops))' }],
-  ['bg-gradient-to-r', { 'background-image': 'linear-gradient(to right, var(--wb-gradient-stops))' }],
-  ['bg-gradient-to-br', { 'background-image': 'linear-gradient(to bottom right, var(--wb-gradient-stops))' }],
-  ['bg-gradient-to-b', { 'background-image': 'linear-gradient(to bottom, var(--wb-gradient-stops))' }],
-  ['bg-gradient-to-bl', { 'background-image': 'linear-gradient(to bottom left, var(--wb-gradient-stops))' }],
-  ['bg-gradient-to-l', { 'background-image': 'linear-gradient(to left, var(--wb-gradient-stops))' }],
-  ['bg-gradient-to-tl', { 'background-image': 'linear-gradient(to top left, var(--wb-gradient-stops))' }],
+  ...(Object.keys(logical.abbreviations.edges) as Array<keyof typeof logical.abbreviations.edges>).map((edgeKey): Rule<Theme> => [
+    `bg-gradient-to-${edgeKey}`,
+    {
+      '--wb-gradient-stops': 'var(--wb-gradient-from, transparent), var(--wb-gradient-to, transparent)',
+      'background-image': `linear-gradient(to var(--${logical.abbreviations.edges[edgeKey]}), var(--wb-gradient-stops))`
+    }
+  ]),
+  ...(Object.keys(logical.abbreviations.coners) as Array<keyof typeof logical.abbreviations.coners>).map((cornerKey): Rule<Theme> => [
+    `bg-gradient-to-${cornerKey}`,
+    {
+      '--wb-gradient-stops': 'var(--wb-gradient-from, transparent), var(--wb-gradient-to, transparent)',
+      'background-image': `linear-gradient(to var(--${logical.abbreviations.coners[cornerKey]}), var(--wb-gradient-stops))`
+    }
+  ]),
 
   colorRule('from', '--wb-gradient-from'),
   colorRule('to', '--wb-gradient-to'),
 
-  [new RegExp(`^(bg-gradient)-.*$`), () => ({ '--wb-gradient-stops': 'var(--wb-gradient-from, transparent), var(--wb-gradient-to, transparent)' })],
   // TODO implement 'via'
   // colorRule('via', '--wb-gradient-stops', (val) => `var(--wb-gradient-from, transparent), ${val}, var(--wb-gradient-to, transparent)`),
 
@@ -485,6 +490,8 @@ const rules: Rule<Theme>[] = [
   // we are skipping Rings becasue we believe it does not fit with the architecture
 
   // Effects
+
+
 
   // Filters
 
@@ -523,6 +530,40 @@ const rules: Rule<Theme>[] = [
   fgColorRule('fill-fg', 'fill'),
 
   ['transition', { 'transition': '100ms linear' }],
+
+  ['horizontal-tb', {
+    'writing-mode': 'horizontal-tb',
+    '--block-start': 'top',
+    '--block-end': ' bottom',
+    '--inline-start': 'left',
+    '--inline-end': 'right',
+    '--start-start': 'top left',
+    '--start-end': 'top right',
+    '--end-start': 'bottom left',
+    '--end-end': 'bottom right',
+  }],
+  ['vertical-lr', {
+    'writing-mode': 'vertical-lr',
+    '--block-start': 'left',
+    '--block-end': 'right',
+    '--inline-start': 'top',
+    '--inline-end': 'bottom',
+    '--start-start': 'top left',
+    '--start-end': 'top right',
+    '--end-start': 'bottom left',
+    '--end-end': 'bottom right',
+  }],
+  ['vertical-rl', {
+    'writing-mode': 'vertical-rl',
+    '--block-start': 'right',
+    '--block-end': 'left',
+    '--inline-start': 'top',
+    '--inline-end': 'bottom',
+    '--start-start': 'top right',
+    '--start-end': 'top left',
+    '--end-start': 'bottom right',
+    '--end-end': 'bottom left',
+  }],
 ];
 
 export default rules;

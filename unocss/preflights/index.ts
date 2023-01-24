@@ -1,9 +1,9 @@
 import { Preflight } from "@unocss/core";
-import { ITheme } from "../theme/Theme";
+import Theme from "../theme/Theme";
 
 import getColorCSS from "./colors"
 
-const preflights: Preflight<ITheme>[] = [
+const preflights: Preflight<Theme>[] = [
   // Setup
   {
     getCSS: () => `
@@ -46,6 +46,25 @@ const preflights: Preflight<ITheme>[] = [
       }
     `
   },
+
+  // Polyfill logical values
+  // TODO: add writimg mode queries when CSS implements it
+  // TODO: remove when CSS implements logical values
+  {
+    getCSS: () => `
+    :root {
+      --block-start: top;
+      --block-end: bottom;
+      --inline-start: left;
+      --inline-end: right;
+      --start-start: top left;
+      --start-end: top right;
+      --end-start: bottom left;
+      --end-end: bottom right;
+    }
+    `
+  },
+
   // Color properties
   {
     getCSS: getColorCSS
