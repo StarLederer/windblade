@@ -505,11 +505,72 @@ const rules: Rule<Theme>[] = [
 
   // Effects
 
+  // we are skipping box-shadows for now because we cannot make them similar to Tailwind and use theme's size tokens
 
+  // we are using size units (ideall fractions) instead of predefined constants
+  size.rule('opacity', 'opacity', (val) => val.replace('rem', '')),
+
+  ['mix-blend-normal', { 'mix-blend-mode': 'normal' }],
+  ['mix-blend-multiply', { 'mix-blend-mode': 'multiply' }],
+  ['mix-blend-screen', { 'mix-blend-mode': 'screen' }],
+  ['mix-blend-overlay', { 'mix-blend-mode': 'overlay' }],
+  ['mix-blend-darken', { 'mix-blend-mode': 'darken' }],
+  ['mix-blend-lighten', { 'mix-blend-mode': 'lighten' }],
+  ['mix-blend-color-dodge', { 'mix-blend-mode': 'color-dodge' }],
+  ['mix-blend-color-burn', { 'mix-blend-mode': 'color-burn' }],
+  ['mix-blend-hard-light', { 'mix-blend-mode': 'hard-light' }],
+  ['mix-blend-soft-light', { 'mix-blend-mode': 'soft-light' }],
+  ['mix-blend-difference', { 'mix-blend-mode': 'difference' }],
+  ['mix-blend-exclusion', { 'mix-blend-mode': 'exclusion' }],
+  ['mix-blend-hue', { 'mix-blend-mode': 'hue' }],
+  ['mix-blend-saturation', { 'mix-blend-mode': 'saturation' }],
+  ['mix-blend-color', { 'mix-blend-mode': 'color' }],
+  ['mix-blend-luminosity', { 'mix-blend-mode': 'luminosity' }],
+  ['mix-blend-plus-lighter', { 'mix-blend-mode': 'plus-lighter' }],
+
+  ['bg-blend-normal', { 'background-blend-mode': 'normal' }],
+  ['bg-blend-multiply', { 'background-blend-mode': 'multiply' }],
+  ['bg-blend-screen', { 'background-blend-mode': 'screen' }],
+  ['bg-blend-overlay', { 'background-blend-mode': 'overlay' }],
+  ['bg-blend-darken', { 'background-blend-mode': 'darken' }],
+  ['bg-blend-lighten', { 'background-blend-mode': 'lighten' }],
+  ['bg-blend-color-dodge', { 'background-blend-mode': 'color-dodge' }],
+  ['bg-blend-color-burn', { 'background-blend-mode': 'color-burn' }],
+  ['bg-blend-hard-light', { 'background-blend-mode': 'hard-light' }],
+  ['bg-blend-soft-light', { 'background-blend-mode': 'soft-light' }],
+  ['bg-blend-difference', { 'background-blend-mode': 'difference' }],
+  ['bg-blend-exclusion', { 'background-blend-mode': 'exclusion' }],
+  ['bg-blend-hue', { 'background-blend-mode': 'hue' }],
+  ['bg-blend-saturation', { 'background-blend-mode': 'saturation' }],
+  ['bg-blend-color', { 'background-blend-mode': 'color' }],
+  ['bg-blend-luminosity', { 'background-blend-mode': 'luminosity' }],
 
   // Filters
 
+  size.rule('blur', 'filter', (val) => `blur(${val})`),
+  size.rule('brightness', 'filter', (val) => `brightness(${val})`),
+  size.rule('contrast', 'filter', (val) => `contrast(${val})`),
+  // we are skipping drop shadows for now because we cannot make it similar to Talwind and stick to out size tokens at the same time
+  size.rule('grayscale', 'filter', (val) => `grayscale(${val})`),
+  size.rule('hue-rotate', 'filter', (val) => `hue-rotate(${Number(val.replace('rem', '')) * 360}deg)`),
+  size.rule('invert', 'filter', (val) => `invert(${val})`),
+  size.rule('saturate', 'filter', (val) => `saturate(${val})`),
+  size.rule('sepia', 'filter', (val) => `sepia(${val})`),
+
+  size.rule('backdrop-blur', 'backdrop-filter', (val) => `blur(${val})`),
+  size.rule('backdrop-brightness', 'backdrop-filter', (val) => `brightness(${val})`),
+  size.rule('backdrop-contrast', 'backdrop-filter', (val) => `contrast(${val})`),
+  size.rule('backdrop-grayscale', 'backdrop-filter', (val) => `grayscale(${val})`),
+  size.rule('backdrop-hue-rotate', 'backdrop-filter', (val) => `hue-rotate(${Number(val.replace('rem', '')) * 360}deg)`),
+  size.rule('backdrop-invert', 'backdrop-filter', (val) => `invert(${val})`),
+  size.rule('backdrop-opacity', 'backdrop-filter', (val) => `opacity(${val})`),
+  size.rule('backdrop-saturate', 'backdrop-filter', (val) => `saturate(${val})`),
+  size.rule('backdrop-sepia', 'backdrop-filter', (val) => `sepia(${val})`),
+
+
   // Tables
+
+
 
   // Transitions & Animations
 
