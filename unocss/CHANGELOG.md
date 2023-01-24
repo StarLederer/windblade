@@ -12,13 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dynamic size calculations using mathematical expressions inside `()` (e.g `m-(-s)`, `inset-(m/2)`).
 - `getCSSProperties` to `core/color` (ex. `external`).
 - `core/variant`.
-- `theme-dark` and `theme-light` rules.
-- `theme-initial` class (not a rule; does not work in @apply).
+- `scheme-dark` and `scheme-light` rules.
+- `scheme-initial` class (not a rule; does not work in @apply).
 - `objToCSS` to `core`.
 - Text transform rules.
 - New `def` color variations.
 - Logical `rounded` (ex. `round`) rule variuants.
-- All fitting Tailwind v3.2.4 rules from Layout, Flex & Grid, Spacing, Sizing, Typography, Backgroiunds and Borders categories.
+- Time units to theme.
+- All fitting Tailwind v3.2.4 rules.
 
 ### Fixed
 
@@ -38,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Renamed `mg` and `pd` to `m` and `p`.
 - Renamed `grid-auto-fit` and `grid-auto-fill` to `grid-fit-cols` and `grid-fill-cols`.
 - Renamed `min` size token to `px`.
+- Default transition now matches tailwind.
 
 ### Removed
 

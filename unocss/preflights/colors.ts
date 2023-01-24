@@ -17,13 +17,13 @@ const getCSS = ({ theme }: PreflightContext<Theme>): string => {
       --highlight: 0%,
     }
 
-    .theme-initial,
+    .scheme-initial,
     :root {
       ${objToCSS(dark)}
     }
 
     @media (prefers-color-scheme: light) {
-      .theme-initial,
+      .scheme-initial,
       :root {
         ${objToCSS(light)}
       }

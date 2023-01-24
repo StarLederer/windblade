@@ -12,9 +12,11 @@
 
 ## Progress
 
-- [ ] All suitable Tailwind utilities implemented.
-- [ ] All rtl-tb utilities replaced with logical counterparts.
+- [x] All suitable Tailwind utilities implemented.
+- [x] All rtl-tb utilities replaced with logical counterparts (or removed if not possible).
 - [x] Automatic color system.
 - [x] Javascript access to automatic color system.
+- [ ] Published on NPM.
+- [ ] Listed on [UnoCSS](https://github.com/unocss/unocss) readme.
 - [ ] Documentation.
-- [ ] Get listed on [UnoCSS](https://github.com/unocss/unocss) readme.
+- [ ] Become UnoCSS default preset 🤷🫣

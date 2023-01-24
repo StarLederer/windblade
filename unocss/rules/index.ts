@@ -4,6 +4,7 @@ import Theme from "../theme/Theme";
 import * as logical from "./logicalSet";
 import { colorRule, colorBgRule, fgColorRule } from "./colors";
 import * as size from "./sizes";
+import * as time from "./time";
 import { getThemeCSS } from "../core/variant";
 
 const simpleRule = (prefix: string, property: string, value: string): Rule<Theme> => {
@@ -567,44 +568,230 @@ const rules: Rule<Theme>[] = [
   size.rule('backdrop-saturate', 'backdrop-filter', (val) => `saturate(${val})`),
   size.rule('backdrop-sepia', 'backdrop-filter', (val) => `sepia(${val})`),
 
-
   // Tables
 
+  ['border-collapse', { 'border-collapse': 'collapse' }],
+  ['border-separate', { 'border-collapse': 'separate' }],
 
+  size.rule('border-spacing', 'border-spacing', (val) => `${val}`),
+  // we are skiping border-spacing-b and borer-spacing-i for now beccause theya re hard to implement
+
+  ['table-auto', { 'table-layout': 'auto' }],
+  ['table-fixed', { 'table-layout': 'fixed' }],
 
   // Transitions & Animations
 
+  ['transition-none', { 'transition-property': 'none' }],
+  [/^(transition-all)$/, (_, {theme}) => ({
+    'transition-all': 'all',
+    'transition-timing-function': theme.windblade.time.functions.default,
+    'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
+  })],
+  [/^(transition)$/, (_, {theme}) => ({
+    'transition-all': 'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
+    'transition-timing-function': theme.windblade.time.functions.default,
+    'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
+  })],
+  [/^(transition-colors)$/, (_, {theme}) => ({
+    'transition-all': 'color, background-color, border-color, text-decoration-color, fill, stroke    ',
+    'transition-timing-function': theme.windblade.time.functions.default,
+    'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
+  })],
+  [/^(transition-opacity)$/, (_, {theme}) => ({
+    'transition-all': 'opacity',
+    'transition-timing-function': theme.windblade.time.functions.default,
+    'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
+  })],
+  [/^(transition-shadow)$/, (_, {theme}) => ({
+    'transition-all': 'box-shadow',
+    'transition-timing-function': theme.windblade.time.functions.default,
+    'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
+  })],
+  [/^(transition-transform)$/, (_, {theme}) => ({
+    'transition-all': 'transform',
+    'transition-timing-function': theme.windblade.time.functions.default,
+    'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
+  })],
+
+  // we are replacing Tailwind contants with theme's proportions
+  time.durationRule('duration', 'transition-duration'),
+  time.timingFunctionRule('ease', 'transition-timing-function'),
+  time.durationRule('delay', 'transition-delay'),
+
+  // we are replacing Tailwind's animations with simple animation paramters, at least for now
+  time.durationRule('animation-duration', 'animation-duration'),
+  time.timingFunctionRule('animation-ease', 'animation-timing-function'),
+  time.durationRule('animation-delay', 'animation-delay'),
+
   // Transforms
+
+  // we are skiping X and Y scales because they are not logical values
+  size.rule('scale', 'transform', (val) => `scale(${val.replace('rem', '')})`),
+  // we are replacting Tailwind's constants with theme's proportions
+  size.rule('rotate', 'transform', (val) => `rotate(${Number(val.replace('rem', '')) * 360}deg)`),
+  // we are skiping X and Y translations because they are not logical values
+  size.rule('translate', 'transform', (val) => `translate(${val})`),
+  // we are replacting Tailwind's constants with theme's proportions
+  size.rule('skew', 'transform', (val) => `skew(${Number(val.replace('rem', '')) * 360}deg)`),
+
+  ['origin-ss', { 'transform-origin': 'var(--start-start)' }],
+  ['origin-bs', { 'transform-origin': 'var(--block-start)' }],
+  ['origin-es', { 'transform-origin': 'var(--end-start)' }],
+  ['origin-is', { 'transform-origin': 'var(--inline-start)' }],
+  ['origin-center', { 'transform-origin': 'center' }],
+  ['origin-ie', { 'transform-origin': 'var(--inline-start)' }],
+  ['origin-se', { 'transform-origin': 'var(--start-end)' }],
+  ['origin-be', { 'transform-origin': 'var(--block-end)' }],
+  ['origin-ee', { 'transform-origin': 'var(--end-end)' }],
 
   // Interactivity
 
-  // SVG
+  colorRule('accent', 'accent-color'),
 
-  // Accessibility
+  ['appearance-none', { 'appearance': 'none' }],
 
-  // Old Windblade (TODO: re-sort)
-  [
-    new RegExp(`^(theme-dark)$`),
-    (match, { theme }) => (getThemeCSS(theme).dark)
-  ],
-  [
-    new RegExp(`^(theme-light)$`),
-    (match, { theme }) => (getThemeCSS(theme).light)
-  ],
+  ['cursor-auto', { 'cursor': 'auto' }],
+  ['cursor-default', { 'cursor': 'default' }],
+  ['cursor-pointer', { 'cursor': 'pointer' }],
+  ['cursor-wait', { 'cursor': 'wait' }],
+  ['cursor-text', { 'cursor': 'text' }],
+  ['cursor-move', { 'cursor': 'move' }],
+  ['cursor-help', { 'cursor': 'help' }],
+  ['cursor-not-allowed', { 'cursor': 'not-allowed' }],
+  ['cursor-none', { 'cursor': 'none' }],
+  ['cursor-context-menu', { 'cursor': 'context-menu' }],
+  ['cursor-progress', { 'cursor': 'progress' }],
+  ['cursor-cell', { 'cursor': 'cell' }],
+  ['cursor-crosshair', { 'cursor': 'crosshair' }],
+  ['cursor-vertical-text', { 'cursor': 'vertical-text' }],
+  ['cursor-alias', { 'cursor': 'alias' }],
+  ['cursor-copy', { 'cursor': 'copy' }],
+  ['cursor-no-drop', { 'cursor': 'no-drop' }],
+  ['cursor-grab', { 'cursor': 'grab' }],
+  ['cursor-grabbing', { 'cursor': 'grabbing' }],
+  ['cursor-all-scroll', { 'cursor': 'all-scroll' }],
+  ['cursor-col-resize', { 'cursor': 'col-resize' }],
+  ['cursor-row-resize', { 'cursor': 'row-resize' }],
+  ['cursor-n-resize', { 'cursor': 'n-resize' }],
+  ['cursor-e-resize', { 'cursor': 'e-resize' }],
+  ['cursor-s-resize', { 'cursor': 's-resize' }],
+  ['cursor-w-resize', { 'cursor': 'w-resize' }],
+  ['cursor-ne-resize', { 'cursor': 'ne-resize' }],
+  ['cursor-nw-resize', { 'cursor': 'nw-resize' }],
+  ['cursor-se-resize', { 'cursor': 'se-resize' }],
+  ['cursor-sw-resize', { 'cursor': 'sw-resize' }],
+  ['cursor-ew-resize', { 'cursor': 'ew-resize' }],
+  ['cursor-ns-resize', { 'cursor': 'ns-resize' }],
+  ['cursor-nesw-resize', { 'cursor': 'nesw-resize' }],
+  ['cursor-nwse-resize', { 'cursor': 'nwse-resize' }],
+  ['cursor-zoom-in', { 'cursor': 'zoom-in' }],
+  ['cursor-zoom-out', { 'cursor': 'zoom-out' }],
 
+  colorRule('caret', 'caret-color'),
+
+  ['pointer-events-none', { 'pointer-events': 'none' }],
+  ['pointer-events-auto', { 'pointer-events': 'auto' }],
+
+  ['resize-none', { 'resize': 'none' }],
+  ['resize-b', { 'resize': 'block' }],
+  ['resize-i', { 'resize': 'inline' }],
+  ['resize', { 'resize': 'both' }],
+
+  ['scroll-auto', { 'scroll-behavior': 'auto' }],
+  ['scroll-smooth', { 'scroll-behavior': 'smooth' }],
+
+  ...size.edgeRules('scroll-m', '', 'scroll-margin', ''),
+
+  ...size.edgeRules('scroll-p', '', 'scroll-padding', ''),
+
+  ['snap-start', { 'scroll-snap-align': 'start' }],
+  ['snap-end', { 'scroll-snap-align': 'end' }],
+  ['snap-center', { 'scroll-snap-align': 'center' }],
+  ['snap-align-none', { 'scroll-snap-align': 'none' }],
+
+  ['snap-normal', { 'scroll-snap-stop': 'normal' }],
+  ['snap-always', { 'scroll-snap-stop': 'always' }],
+
+  ['snap-none', { 'scroll-snap-type': 'none' }],
+  // we are skipping snap x and y because they have no logical counterparts yet
+  ['snap-both', { 'scroll-snap-type': 'both var(--wb-scroll-snap-strictness)' }],
+  ['snap-mandatory', { '--wb-scroll-snap-strictness': 'mandatory' }],
+  ['snap-proximity', { '--wb-scroll-snap-strictness': 'proximity' }],
+
+  ['touch-auto', { 'touch-action': 'auto' }],
+  ['touch-none', { 'touch-action': 'none' }],
+  // we are skipping pan touch-actions because they have no logical values
+  ['touch-pinch-zoom', { 'touch-action': 'pinch-zoom' }],
+  ['touch-manipulation', { 'touch-action': 'manipulation' }],
+
+  ['select-none', { 'user-select': 'none' }],
+  ['select-text', { 'user-select': 'text' }],
+  ['select-all', { 'user-select': 'all' }],
+  ['select-auto', { 'user-select': 'auto' }],
+
+  ['will-change-auto', { 'will-change': 'auto' }],
+  ['will-change-scroll', { 'will-change': 'scroll-position' }],
+  ['will-change-contents', { 'will-change': 'contents' }],
+  ['will-change-transform', { 'will-change': 'transform' }],
+
+  // Windblade rules for interactive colors
   [
     new RegExp(`^(hue)-(.+)$`),
-    (match, { theme }) => ({
+    (match) => ({
       '--hue': match[2],
     })
   ],
   ['highlight', { '--highlight': 'var(--base-highlight)' }],
   ['highlight+', { '--highlight': 'var(--base-highlight-plus)' }],
 
+  // SVG
+
   colorRule('fill', 'fill'),
   fgColorRule('fill-fg', 'fill'),
 
-  ['transition', { 'transition': '100ms linear' }],
+  colorRule('stroke', 'stroke'),
+  fgColorRule('stroke-fg', 'stroke'),
+
+  // we are replacing Tailwind's constants with theme's proportion units
+  size.rule('stroke', 'stroke-width'),
+
+  // Accessibility
+
+  ['sr-only', {
+    'position': 'absolute',
+    'block-size': '1px',
+    'inline-size': '1px',
+    'padding': '0',
+    'margin': '-1px',
+    'overflow': 'hidden',
+    'clip': 'rect(0, 0, 0, 0)',
+    'white-space': 'nowrap',
+    'border-width': '0',
+  }],
+
+  ['not-sr-only', {
+    'position': 'static',
+    'block-size': 'auto',
+    'inline-size': 'auto',
+    'padding': '0',
+    'margin': '0',
+    'overflow': 'visible',
+    'clip': 'auto',
+    'white-space': 'normal',
+  }],
+
+  // Tailwind doesn't have color scheme overrides, let's add them
+  [
+    new RegExp(`^(scheme-dark)$`),
+    (match, { theme }) => (getThemeCSS(theme).dark)
+  ],
+  [
+    new RegExp(`^(scheme-light)$`),
+    (match, { theme }) => (getThemeCSS(theme).light)
+  ],
+
+  // Internationalization
+  // Tailwind doesn't have this category
 
   ['horizontal-tb', {
     'writing-mode': 'horizontal-tb',
