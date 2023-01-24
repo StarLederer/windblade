@@ -87,8 +87,15 @@ const rules: Rule<Theme>[] = [
     { 'object-fit': val }
   ]),
 
-  // we are skipping a most object-position values because there are no logical counterparts yet
+  ['object-be', { 'object-position': 'var(--block-end)' }],
   ['object-center', { 'object-position': 'center' }],
+  ['object-is', { 'object-position': 'var(--inline-start)' }],
+  ['object-se', { 'object-position': 'var(--start-end)' }],
+  ['object-ss', { 'object-position': 'var(--start-start)' }],
+  ['object-ie', { 'object-position': 'var(--inline-start)' }],
+  ['object-ee', { 'object-position': 'var(--end-end)' }],
+  ['object-se', { 'object-position': 'var(--start-end)' }],
+  ['object-bs', { 'object-position': 'var(--block-start)' }],
 
   ...["auto", "hidden", "clip", "visible", "scroll"].flatMap((val): Rule<Theme>[] =>
     logical.axisRules('overflow', val, 'overflow', '', (pref, prop) => (simpleRule(pref, prop, val))),
