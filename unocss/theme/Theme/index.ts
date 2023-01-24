@@ -7,6 +7,12 @@ type ITheme = {
       tokens: Record<string, number>,
       misc: Record<string, string>,
     };
+    time: {
+      baseUnitMs: number,
+      functions: Record<string, string> & {
+        default: string;
+      },
+    };
   };
 };
 
