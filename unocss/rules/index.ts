@@ -478,6 +478,10 @@ const rules: Rule<Theme>[] = [
   ...logical.cornerRules('rounded', 'full', 'border', 'radius', (pref, prop) => simpleRule(pref, prop, '999999px')),
   ...logical.cornerRules('rounded', 'none', 'border', 'radius', (pref, prop) => simpleRule(pref, prop, 'none')),
 
+  [/^(border)$/, (_, {theme}) => ({
+    'border-style': 'solid',
+    'border-width': '1px',
+  })],
   ...size.edgeRules('border', '', 'border', 'width'),
   ...logical.edgeRules('border', 'color', 'border', 'color', colorRule),
   ...logical.edgeRules('border', 'color-fg', 'border', 'color', fgColorRule),
