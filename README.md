@@ -57,6 +57,50 @@ export default defineConfig({
 })
 ```
 
+### Using proportions
+
+Windblade uses Tailwind's 'spacing' with 't' appended to them + 'screen' units as proportions by default.
+
+```html
+<main class="max-size-i-xl">
+  <div class="m-10t p-2t"></div>
+</main>
+```
+
+Since Windblade is so easily customizable it is highly recommended that you change the units to match your design system.
+
+```js
+import { defineConfig } from 'unocss'
+
+export default defineConfig({
+  extendTheme: [
+    ({ windblade }) => {
+      // These are the proportions Star uses
+      windblade.proportions = {
+        's.2': 0.2,
+        's.4': 0.4,
+        's.5': 0.5,
+        's.6': 0.6,
+        's.8': 0.8,
+        's': 1,
+        'm.2': 2,
+        'm.4': 4,
+        'm.5': 5,
+        'm.6': 6,
+        'm.8': 8,
+        'm': 10,
+        'l.2': 20,
+        'l.4': 40,
+        'l.5': 50,
+        'l.6': 60,
+        'l.8': 80,
+        'l': 100,
+      };
+    }
+  ],
+})
+```
+
 ### Using colors
 
 Windblade comes with a semantic color system. Refer to colors by their names and defined [here](https://github.com/StarLederer/windblade/blob/master/unocss/theme/index.ts) or in your theme.
@@ -136,6 +180,23 @@ getBrandColor((light?: boolean) => {
 export default getBrandColor;
 
 ```
+
+### Using logical properties
+
+Windblade uses logical properties and values only.
+
+All properties that can be customized on multiple axis/edges/corenrs can be prepended with:
+- `-b` for block axis (e.g. `size-b`).
+- `-i` for inline axis (e.g. `size-i`).
+- `-bs` and `-be` for block start and end edges.
+- `-is` and `-ie` for inline start and end edges.
+- `-ss` `-se` `-es` `-ee` for corners (start start, start end, end start & end end)
+
+Windblade polyfills logical values so you can use this even where CSS does not support it yet (e.g. `background-position` with `bg-{corner}` utility).
+
+If you are new to logical properties try playing with `bg-gradient-to-{edge/corner}` and see which way the gradient goes.
+
+Please note that `width` and `height` are completely removed in favor of `size-{axis}`.
 
 ### Customizing theme
 
@@ -233,12 +294,11 @@ See the [default theme](https://github.com/StarLederer/windblade/blob/master/uno
 
 Tailwind allows you to use custom values when your design specification does not fit with their design language. Windblade does not allow that to help you stay within the design language but allows you to do calculations with your proportions right inside CSS.
 
-Windblade ⚡:
 ```html
-<div class="p-s">
+<div class="p-4t">
   Label
   <!-- Custom underline -->
-  <div class="absolute height-s.2 inset-bottom-((s - s.2) / 2)" />
+  <div class="absolute size-i-full size-b-1t inset-bottom-((4t - 1t) / 2)"></div>
 </div>
 ```
 
@@ -360,7 +420,7 @@ unocss({
 <div class="hue-0 bg-surface"> Red </div>
 <div class="hue-120 bg-surface"> Green </div>
 <div class="hue-240 bg-surface"> Blue </div>
-<div class="bg-blue-600 text-fg-2"> Blue but text is desaturated </div>
+<div class="hue-240 bg-surface text-fg-2"> Blue but text is desaturated </div>
 ```
 
 #### Foreground colors in Tailwind are too much manual work
@@ -403,13 +463,13 @@ Tailwind is very hard to use for multilanguage applications because layout reori
 
 T🤮ilwind:
 ```html
-<div class="rtl:m-right-l ltr:m-left-l" />
+<div class="rtl:m-right-l ltr:m-left-l"></div>
 <div>Horizontal writing modes are not supported at all =(</div>
 ```
 
 Windblade ⚡:
 ```html
-<div class="margin-ie-l" />
+<div class="margin-ie-l"></div>
 <div class="size-i-l"> Size in the direction of writing (width if horizontal, height if vertical) </div>
 ```
 
@@ -500,7 +560,7 @@ T🤮ilwind:
 <div class="p-4">
   Label
   <!-- Custom underline -->
-  <div class="absolute height-1 inset-bottom-[0.375rem]" />
+  <div class="absolute width-full height-1 inset-bottom-[0.375rem]"></div>
   <!-- (4-1) / 2 -->
   <!-- (1rem - 0.25rem) / 2 -->
   <!-- was hard to calculate and will break if the theme changes -->
@@ -509,10 +569,10 @@ T🤮ilwind:
 
 Windblade ⚡:
 ```html
-<div class="p-s">
+<div class="p-4t">
   Label
   <!-- Custom underline -->
-  <div class="absolute height-s.2 inset-bottom-((s - s.2) / 2)" />
+  <div class="absolute size-i-full size-b-1t inset-bottom-((4t - 1t) / 2)"></div>
   <!-- We did not need to calculate anything and this will not break if proportions change -->
   <!-- One downside, we cannot name proportions with valid numbers if we want to use this -->
   <!-- Temporary gotcha: calculations do not propritize * and / so 2+2*2 is 8. Working on fixing this... -->
