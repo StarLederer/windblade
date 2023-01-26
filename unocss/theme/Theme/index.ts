@@ -1,20 +1,18 @@
 import type { ThemeColorCombo } from "./ThemeColors"
 
-type ITheme = {
+type Theme = {
   windblade: {
-    colors: Record<string, ThemeColorCombo>,
-    sizes: {
-      tokens: Record<string, number>,
-      misc: Record<string, string>,
-    };
+    colors: Record<string, ThemeColorCombo>;
+    proportions: Record<string, number>;
+    miscSizes: Record<string, string>;
     time: {
-      baseUnitMs: number,
+      baseUnitMs: number;
       functions: Record<string, string> & {
         default: string;
-      },
+      };
     };
   };
 };
 
-export default ITheme;
+export default Theme;
 export * from "./ThemeColors";
