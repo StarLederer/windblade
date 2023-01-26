@@ -73,8 +73,8 @@ All colors have one or more foreground colors. The first foreground color is set
 ```html
 <div class="bg-normal">
   This will have the 'normal' background and default foreground color.
-  <span class="text-fg-1"> And this will have the secondary foreground color </span>
-  <div class="bg-fg-1"> <!-- This div has secondary foreground color as background --> </div>
+  <span class="text-fg-2"> And this will have the secondary foreground color </span>
+  <div class="bg-fg-2"> <!-- This div has secondary foreground color as background --> </div>
 </div>
 ```
 
@@ -360,7 +360,7 @@ unocss({
 <div class="hue-0 bg-surface"> Red </div>
 <div class="hue-120 bg-surface"> Green </div>
 <div class="hue-240 bg-surface"> Blue </div>
-<div class="bg-blue-600 text-fg-1"> Blue but text is desaturated </div>
+<div class="bg-blue-600 text-fg-2"> Blue but text is desaturated </div>
 ```
 
 #### Foreground colors in Tailwind are too much manual work
@@ -376,9 +376,9 @@ T🤮ilwind:
 
 Windblade ⚡:
 ```html
-<div class="bg-blue"> Primary (text-fg-0 is applied by default) </div>
-<div class="bg-blue text-fg-1"> Secondary </div>
-<div class="bg-blue text-fg-2"> Tertiary </div>
+<div class="bg-blue"> Primary (text-fg-1 is applied by default) </div>
+<div class="bg-blue text-fg-2"> Secondary </div>
+<div class="bg-blue text-fg-3"> Tertiary </div>
 ```
 
 #### Color-scheme adaptation with Tailwind is a nightmare
