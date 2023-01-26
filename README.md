@@ -18,7 +18,7 @@
 - [x] Automatic color system.
 - [x] Javascript access to the automatic color system.
 - [x] Detailed README.
-- [x] Published to NPM.
+- [ ] Published to NPM.
 - [ ] Cool demo.
 - [ ] Listed on [UnoCSS](https://github.com/unocss/unocss) readme.
 - [ ] Documentation.
@@ -92,7 +92,25 @@ It is a good idea to override the default hue at the root of your app.
 </body>
 ```
 
-### Using windblade colors in JavaScrtipt
+Windblade can make colors interactive which uses a `calc` and a css varaible to boost color lightness when `highlight` or `highlight+` utilities are applied.
+
+```html
+<button class="bg-interactive hover:highlight active:highlight+"></button>
+```
+
+Windblade uses `@media (prefers-color-scheme: light)` to determine which color scheme to use but you can override it with `scheme-dark` and `scheme-light` utilities or use `scheme-initial` class to reset.
+
+```html
+<body class="hue-45 bg-normal scheme-light">
+  This website is always light
+  <section class="dark-scheme bg-normal">
+    But this section is always dark.
+  </section>
+  It's a panda! 🐼
+</body>
+```
+
+### Using Windblade colors in JavaScrtipt
 
 Sometimes you might need to set a color with JavaScript and you might be unable to use a class (e.g. drawing to a canvas). In those situations, you can use Windblade's `core` module.
 
@@ -154,17 +172,35 @@ It is highly recommended to avoid doing this!
 const theme: Theme = {
   windblade: {
     colors: {
-      'mycolor': {
+      'myColor': {
         base: { dark: { s: 0, l: 0 }, light: { s: 10, l: 90 } }, // slightly more saturated and darker than it would be otherwise in light mode (100 - 0 = 100, we tell it to be 90)
         on: [
           { dark: { s: 0, l: 100 }, light: { a: 80 } }, // more transparent in light mode (80%)
         ],
       },
-      'brand': {
+      'brandColor': {
         base: { dark: { s: 100, l: 60 }, light: { l: 60 } }, // has lightness 60 in both color schemes
         on: [
           { dark: { s: 0, l: 0 } },
         ],
+      },
+    },
+  },
+};
+```
+
+Colors can be marked as `interactive`, it will make them respect `highlight` and `highlight+` utilities. This is not always on to avoid extra `calc`s.
+
+```js
+const theme: Theme = {
+  windblade: {
+    colors: {
+      'my-interactive-color': {
+        base: { dark: { s: 0, l: 0 } },
+        on: [
+          { dark: { s: 0, l: 100 } },
+        ],
+        interactive: true,
       },
     },
   },
