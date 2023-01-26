@@ -32,13 +32,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `getSLA` and `getHSLA` in `core` (ex. `external`) now return values for all variants.
 - Renamed all size units.
 - Size units are now sorted between `units` and `misc` in theme.
-- Renamed `def` to `def3` and `def2` to `def4`
-- Improved light variants of `def3` (ex. `def`), `def4` (ex. `def2`) and `srf` colors.
+- Renamed and improved colors.
+- Renamed `theme.sizes.tokens` to `theme.proportions`.
+- Renamed `theme.sizes.misc` to `theme.miscSizes`.
+- Changed `theme.proportions` (ex. `theme.sizes.tokens`) to match Tailwind.
 - Renamed `round` to `rounded`.
 - Static and interactive colors are now merged and have optional `interactive` property.
 - Renamed `mg` and `pd` to `m` and `p`.
 - Renamed `grid-auto-fit` and `grid-auto-fill` to `grid-fit-cols` and `grid-fill-cols`.
-- Renamed `min` size token to `px`.
+- Renamed `min` size to `px`.
 - Default transition now matches tailwind.
 - Renamed `*-fg-0` to `*-fg-1`, `*-fg-1` to `*-fg-2` etc.
 
