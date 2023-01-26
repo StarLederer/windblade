@@ -40,16 +40,16 @@ const colorBgRule = (prefix: string): DynamicRule<Theme> => {
       if (color.interactive) {
         css['background'] = interactiveColorCss(match[2]);
         color.on.forEach((_, i) => {
-          css[`--fg${i}`] = interactiveColorCss(`on-${match[2]}-${i}`);
+          css[`--fg-${i + 1}`] = interactiveColorCss(`on-${match[2]}-${i}`);
         });
       } else {
         css['background'] = staticColorCss(match[2]);
         color.on.forEach((_, i) => {
-          css[`--fg${i}`] = staticColorCss(`on-${match[2]}-${i}`);
+          css[`--fg-${i + 1}`] = staticColorCss(`on-${match[2]}-${i}`);
         });
       }
 
-      css['color'] = 'var(--fg0)';
+      css['color'] = 'var(--fg-1)';
 
       return css;
     }
@@ -61,7 +61,7 @@ const fgColorRule = (prefix: string, property: string): DynamicRule<Theme> => {
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
       const css: any = {};
-      css[property] = `var(--fg${match[2]})`
+      css[property] = `var(--fg-${match[2]})`
       return css;
     }
   ];

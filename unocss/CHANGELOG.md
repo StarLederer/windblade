@@ -40,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Renamed `grid-auto-fit` and `grid-auto-fill` to `grid-fit-cols` and `grid-fill-cols`.
 - Renamed `min` size token to `px`.
 - Default transition now matches tailwind.
+- Renamed `*-fg-0` to `*-fg-1`, `*-fg-1` to `*-fg-2` etc.
 
 ### Removed
 
