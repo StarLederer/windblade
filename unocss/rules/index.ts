@@ -513,7 +513,7 @@ const rules: Rule<Theme>[] = [
   // we are skipping box-shadows for now because we cannot make them similar to Tailwind and use theme's size tokens
 
   // we are using size units (ideall fractions) instead of predefined constants
-  size.rule('opacity', 'opacity', (val) => val.replace('rem', '')),
+  size.rule('opacity', 'opacity', (val) => val.replace('rem', '').replace('px', '')),
 
   ['mix-blend-normal', { 'mix-blend-mode': 'normal' }],
   ['mix-blend-multiply', { 'mix-blend-mode': 'multiply' }],
