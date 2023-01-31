@@ -67,7 +67,7 @@ Windblade uses Tailwind's 'spacing' with 't' appended to them + 'screen' units a
 </main>
 ```
 
-Since Windblade is so easily customizable it is highly recommended that you change the units to match your design system.
+Since Windblade is so easily customizable it is highly recommended that you change the units to match your design system (please avoid using valid JavaScript numbers as names).
 
 ```js
 import { defineConfig } from 'unocss'
@@ -573,6 +573,5 @@ Windblade ⚡:
   <div class="absolute size-i-full size-b-1t inset-bottom-((4t - 1t) / 2)"></div>
   <!-- We did not need to calculate anything and this will not break if proportions change -->
   <!-- One downside, we cannot name proportions with valid numbers if we want to use this -->
-  <!-- Temporary gotcha: calculations do not propritize * and / so 2+2*2 is 8. Working on fixing this... -->
 </div>
 ```

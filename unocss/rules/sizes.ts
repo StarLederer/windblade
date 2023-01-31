@@ -1,54 +1,20 @@
 import { DynamicRule } from "@unocss/core";
 import Theme from "../theme/Theme";
-import { buildTree, ResolvedToken, solveTree, Token, tokenize } from "./expressions";
 import * as logical from "./logicalSet";
-
-const resolveTokens = (tokens: Token[], theme: Theme): ResolvedToken[] => {
-  let resolvedTokens: ResolvedToken[] = [];
-
-  // Iterate over types and values of each token given
-  tokens.forEach((token) => {
-    // Only care about units
-    if (token.type !== "unit") {
-      resolvedTokens.push({type: token.type});
-      return;
-    }
-
-    // Try to replace with a theme design token
-    let themeValue = theme.windblade.proportions[token.value as string];
-    if (themeValue !== undefined) {
-      resolvedTokens.push({
-        type: token.type,
-        value: themeValue,
-      });
-      return;
-    }
-
-    // Try to replace with a number
-    let numberValue = Number(token.value);
-    if (!Number.isNaN(numberValue)) {
-      resolvedTokens.push({
-        type: token.type,
-        value: numberValue,
-      });
-      return;
-    }
-  });
-
-  return resolvedTokens;
-};
 
 const solve = (expr: string, theme: Theme): string | undefined => {
   if (expr.startsWith("(")) {
-    try {
-      const tokens = tokenize(expr);
-      const resolvedTokens = resolveTokens(tokens, theme);
-      const tree = buildTree(resolvedTokens);
-      const result = solveTree(tree);
-      return `${result}rem`;
-    } catch (err) {
-      console.error(err);
-    }
+    let resolved = expr;
+
+    // Resolve
+    Object.entries(theme.windblade.proportions).forEach(([name, value]) => {
+      resolved = resolved.replaceAll(name, value.toString());
+    });
+
+    // Evaluate
+    resolved = Function(`'use strict'; return (${resolved})`)()
+
+    return `${resolved}rem`;
   } else {
     let token = theme.windblade.proportions[expr];
     let misc = theme.windblade.miscSizes[expr];
@@ -56,7 +22,6 @@ const solve = (expr: string, theme: Theme): string | undefined => {
     else if (misc !== undefined) return `${misc}`;
   }
 
-  // console.error(`Unable to resolve size unit: ${expr}`);
   return undefined;
 };
 
