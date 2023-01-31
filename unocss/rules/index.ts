@@ -6,6 +6,7 @@ import { colorRule, colorBgRule, fgColorRule } from "./colors";
 import * as size from "./sizes";
 import * as time from "./time";
 import { getThemeCSS } from "../core/variant";
+import { layout } from "./documented";
 
 const simpleRule = (prefix: string, property: string, value: string): Rule<Theme> => {
   const css: any = {};
@@ -17,72 +18,17 @@ const simpleRule = (prefix: string, property: string, value: string): Rule<Theme
 
 const rules: Rule<Theme>[] = [
   // Layout
-
-  [
-    new RegExp(`^(aspect)-(.+)$`),
-    (match) => {
-      if (match[2].includes(":")) return undefined;
-      return { 'aspect-ratio': match[2] }
-    },
-  ],
-
+  ...layout.aspectRatio().rules,
   // we are skipping container because max-size-i does that already
-
-  [
-    new RegExp(`^(columns)-(.+)$`),
-    (match, { theme }) => {
-      const values = match[2].split(',');
-      const minWidth = size.solve(values[0], theme, 'rem');
-      const maxNumCols = values[1];
-      return { 'columns': [minWidth, maxNumCols].join(" ") };
-    },
-  ],
-
-  ...["auto", "avoid", "all", "avoid-page", "page", "recto", "verso", "column"].map((val): Rule<Theme> => [
-    `break-after-${val}`,
-    { 'break-after': val }
-  ]),
-
-  ...["auto", "avoid", "all", "avoid-page", "page", "recto", "verso", "column"].map((val): Rule<Theme> => [
-    `break-before-${val}`,
-    { 'break-before': val }
-  ]),
-
-  ...["auto", "avoid", "all", "avoid-page", "avoid-column"].map((val): Rule<Theme> => [
-    `break-inside-${val}`,
-    { 'break-inside': val }
-  ]),
-
-  ...["clone", "slice"].map((val): Rule<Theme> => [
-    `box-decoration-${val}`,
-    { 'box-decoration': val }
-  ]),
-
-  ...["border", "content"].map((val): Rule<Theme> => [
-    `box-${val}`,
-    { 'box-sizing': `${val}-box` }
-  ]),
-
-  // we are skipping some display types because we belive they cannot be used semantically
-  ...["block", "inline-block", "inline", "flex", "inline-flex", "flow-root", "grid", "inline-grid", "contents", "hidden"].map((val): Rule<Theme> => [
-    `${val}`,
-    { 'display': val }
-  ]),
-
-  ...(Object.keys(logical.abbreviations.inlineEdges) as Array<keyof typeof logical.abbreviations.inlineEdges>).map((val): Rule<Theme> => [
-    `float-${val}`,
-    { 'float': logical.abbreviations.inlineEdges[val] }
-  ]),
-  ['float-none', { 'float': 'none' }],
-
-  ...(Object.keys(logical.abbreviations.inlineEdges) as Array<keyof typeof logical.abbreviations.inlineEdges>).map((val): Rule<Theme> => [
-    `clear-${val}`,
-    { 'clear': logical.abbreviations.inlineEdges[val] }
-  ]),
-  ...["both", "none"].map((val): Rule<Theme> => [
-    `clear-${val}`,
-    { 'clear': val }
-  ]),
+  ...layout.columns().rules,
+  ...layout.breakAfter().rules,
+  ...layout.breakBefore().rules,
+  ...layout.breakInside().rules,
+  ...layout.boxDecorationBreak().rules,
+  ...layout.boxSizing().rules,
+  ...layout.display().rules,
+  ...layout.floats().rules,
+  ...layout.clear().rules,
 
   ['isolate', { 'isolation': 'isolate' }],
   ['isolation-auto', { 'isolation': 'auto' }],
