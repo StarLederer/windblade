@@ -45,12 +45,12 @@ const colorBgRule = (prefix: string): DynamicRule<Theme> => {
       if (!color) return;
 
       if (color.interactive) {
-        css['background'] = interactiveColorCss(match[2]);
+        css['background-color'] = interactiveColorCss(match[2]);
         color.on.forEach((_, i) => {
           css[`--fg-${i + 1}`] = interactiveColorCss(`on-${match[2]}-${i}`);
         });
       } else {
-        css['background'] = staticColorCss(match[2]);
+        css['background-color'] = staticColorCss(match[2]);
         color.on.forEach((_, i) => {
           css[`--fg-${i + 1}`] = staticColorCss(`on-${match[2]}-${i}`);
         });

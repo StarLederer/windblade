@@ -308,9 +308,9 @@ const rules: Rule<Theme>[] = [
   ['bg-clip-content', { 'background-clip': 'content-box' }],
   ['bg-clip-text', { 'background-clip': 'text' }],
 
-  colorRule('bg', 'background'),
+  colorRule('bg', 'background-color'),
   colorBgRule('bg'),
-  fgColorRule('bg-fg', 'background'),
+  fgColorRule('bg-fg', 'background-color'),
   // TODO: we might need a set-fg rule that is the same as bg but does not actually change background color
 
   ['bg-origin-border', { 'background-origin': 'border-box' }],
