@@ -27,6 +27,7 @@ const rules: Rule<Theme>[] = [
   ],
 
   // we are skipping container because max-size-i does that already
+
   [
     new RegExp(`^(columns)-(.+)$`),
     (match, { theme }) => {
