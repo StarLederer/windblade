@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://starlederer.github.io/windblade" target="_blank">
-    <img alt="Windblade" src="https://raw.githubusercontent.com/starlederer/windblade/HEAD/brand/logo.svg" width="64" height="64" style="max-width: 100%;">
+    <img alt="Windblade" src="https://raw.githubusercontent.com/starlederer/windblade/HEAD/brand/logo.svg" width="64" height="64" style="max-inline-size: 100%;">
   </a>
 
   Windblade
@@ -103,7 +103,7 @@ export default defineConfig({
 
 ### Using colors
 
-Windblade comes with a semantic color system. Refer to colors by their names and defined [here](https://github.com/StarLederer/windblade/blob/master/unocss/theme/index.ts) or in your theme.
+Windblade comes with a semantic color system. Refer to colors by their names as defined [here](https://github.com/StarLederer/windblade/blob/master/unocss/theme/index.ts) or in your theme.
 
 ```html
 <div class="bg-normal">
@@ -142,12 +142,12 @@ Windblade can make colors interactive which uses a `calc` and a css varaible to 
 <button class="bg-interactive hover:highlight active:highlight+"></button>
 ```
 
-Windblade uses `@media (prefers-color-scheme: light)` to determine which color scheme to use but you can override it with `scheme-dark` and `scheme-light` utilities or use `scheme-initial` class to reset.
+Windblade uses `@media (prefers-color-scheme: light)` to determine which color scheme to use but you can override it with `scheme-dark` and `scheme-light` utilities or use `scheme-initial` to reset.
 
 ```html
 <body class="hue-45 bg-normal scheme-light">
   This website is always light
-  <section class="dark-scheme bg-normal">
+  <section class="scheme-dark bg-normal">
     But this section is always dark.
   </section>
   It's a panda! 🐼
@@ -455,8 +455,6 @@ Windblade ⚡:
 <div class="bg-blue"> Hello </div>
 ```
 
-Tailwind has a lot of colors and does not automatically adapt to the browser color scheme, as a result, it is quite hard to customize and your code ends up repeating the same color combinations across everything you develop.
-
 ### Logical properties
 
 Tailwind is very hard to use for multilanguage applications because layout reorientation has to be done manually. Windblade solves this by replacing all physical properties with logical counterparts even where CSS doesn't support it yet.
@@ -469,7 +467,7 @@ T🤮ilwind:
 
 Windblade ⚡:
 ```html
-<div class="margin-ie-l"></div>
+<div class="m-ie-l"></div>
 <div class="size-i-l"> Size in the direction of writing (width if horizontal, height if vertical) </div>
 ```
 
