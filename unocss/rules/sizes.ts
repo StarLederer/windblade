@@ -2,7 +2,7 @@ import { DynamicRule } from "@unocss/core";
 import Theme from "../theme/Theme";
 import * as logical from "./logicalSet";
 
-const solve = (expr: string, theme: Theme): string | undefined => {
+const solve = (expr: string, theme: Theme, defaultUnit: string): string | undefined => {
   if (expr.startsWith("(")) {
     let resolved = expr;
 
@@ -14,11 +14,11 @@ const solve = (expr: string, theme: Theme): string | undefined => {
     // Evaluate
     resolved = Function(`'use strict'; return (${resolved})`)()
 
-    return `${resolved}rem`;
+    return `${resolved}${defaultUnit}`;
   } else {
     let token = theme.windblade.proportions[expr];
     let misc = theme.windblade.miscSizes[expr];
-    if (token !== undefined) return `${token}rem`;
+    if (token !== undefined) return `${token}${defaultUnit}`;
     else if (misc !== undefined) return `${misc}`;
   }
 
@@ -28,15 +28,23 @@ const solve = (expr: string, theme: Theme): string | undefined => {
 const rule = (
   prefix: string,
   property: string,
-  value?: (size: string) => string
+  options?: {
+    defaultUnit?: string,
+    postprocess?: (size: string) => string,
+  },
 ): DynamicRule<Theme> => {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
       const css: any = {};
-      let parameter = solve(match[2], theme);
-      if (parameter === undefined) return undefined;
-      css[property] = value?.(parameter) ?? parameter;
+      let value = solve(match[2], theme, options?.defaultUnit ?? "rem");
+      if (value === undefined) return undefined;
+
+      if (options?.postprocess) {
+        value = options.postprocess(value);
+      }
+
+      css[property] = value;
       return css;
     }
   ];

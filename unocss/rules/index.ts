@@ -28,7 +28,7 @@ const rules: Rule<Theme>[] = [
     new RegExp(`^(columns)-(.+)$`),
     (match, { theme }) => {
       const values = match[2].split(',');
-      const minWidth = size.solve(values[0], theme);
+      const minWidth = size.solve(values[0], theme, 'rem');
       const maxNumCols = values[1];
       return { 'columns': [minWidth, maxNumCols].join(" ") };
     },
@@ -172,8 +172,8 @@ const rules: Rule<Theme>[] = [
       (match) => ({ ['grid-template-' + cssName + "s"]: `repeat(${match[2]}, minmax(0, 1fr))` }),
     ],
     // Tailwind doesn't have rules that do auto fit and auto fill, let's add them
-    size.rule(`grid-fit-${ruleName}s`, `grid-template-${cssName}s`, (size) => (`repeat(auto-fit, minmax(${size}, 1fr))`)),
-    size.rule(`grid-fill-${ruleName}s`, `grid-template-${cssName}s`, (size) => (`repeat(auto-fill, minmax(${size}, 1fr))`)),
+    size.rule(`grid-fit-${ruleName}s`, `grid-template-${cssName}s`, { postprocess: (size) => (`repeat(auto-fit, minmax(${size}, 1fr))`) }),
+    size.rule(`grid-fill-${ruleName}s`, `grid-template-${cssName}s`, { postprocess: (size) => (`repeat(auto-fill, minmax(${size}, 1fr))`) }),
     [`grid-${ruleName}s-none`, { ['grid-template-' + cssName + "s"]: 'none' }],
     [`${ruleName}-auto`, { ['grid-' + cssName]: 'auto' }],
     [
@@ -388,11 +388,10 @@ const rules: Rule<Theme>[] = [
   ['stacked-fractions', { 'font-variant-numeric': 'stacked-fractions' }],
 
   // we are substituting Tailwinds contants with size units
-  size.rule('tracking', 'letter-spacing', (val) => val.replace('rem', 'em')),
+  size.rule('tracking', 'letter-spacing', { defaultUnit: 'em' }),
 
   // we are substituting Tailwinds contants with size units
-  // TODO: could really use custom units here
-  size.rule('leading', 'line-height', (val) => val.replace('rem', '')),
+  size.rule('leading', 'line-height', { defaultUnit: '' }),
 
   ['list-none', { 'list-style-type': 'none' }],
   ['list-disc', { 'list-style-type': 'disc' }],
@@ -513,7 +512,7 @@ const rules: Rule<Theme>[] = [
   // we are skipping box-shadows for now because we cannot make them similar to Tailwind and use theme's size tokens
 
   // we are using size units (ideall fractions) instead of predefined constants
-  size.rule('opacity', 'opacity', (val) => val.replace('rem', '').replace('px', '')),
+  size.rule('opacity', 'opacity', { defaultUnit: '' }),
 
   ['mix-blend-normal', { 'mix-blend-mode': 'normal' }],
   ['mix-blend-multiply', { 'mix-blend-mode': 'multiply' }],
@@ -552,32 +551,32 @@ const rules: Rule<Theme>[] = [
 
   // Filters
 
-  size.rule('blur', 'filter', (val) => `blur(${val})`),
-  size.rule('brightness', 'filter', (val) => `brightness(${val})`),
-  size.rule('contrast', 'filter', (val) => `contrast(${val})`),
+  size.rule('blur', 'filter', { postprocess: (val) => `blur(${val})` }),
+  size.rule('brightness', 'filter', { postprocess: (val) => `brightness(${val})` }),
+  size.rule('contrast', 'filter', { postprocess: (val) => `contrast(${val})` }),
   // we are skipping drop shadows for now because we cannot make it similar to Talwind and stick to out size tokens at the same time
-  size.rule('grayscale', 'filter', (val) => `grayscale(${val})`),
-  size.rule('hue-rotate', 'filter', (val) => `hue-rotate(${Number(val.replace('rem', '')) * 360}deg)`),
-  size.rule('invert', 'filter', (val) => `invert(${val})`),
-  size.rule('saturate', 'filter', (val) => `saturate(${val})`),
-  size.rule('sepia', 'filter', (val) => `sepia(${val})`),
+  size.rule('grayscale', 'filter', { postprocess: (val) => `grayscale(${val})` }),
+  size.rule('hue-rotate', 'filter', { postprocess: (val) => `hue-rotate(${Number(val) * 360})`, defaultUnit: 'deg' }),
+  size.rule('invert', 'filter', { postprocess: (val) => `invert(${val})` }),
+  size.rule('saturate', 'filter', { postprocess: (val) => `saturate(${val})` }),
+  size.rule('sepia', 'filter', { postprocess: (val) => `sepia(${val})` }),
 
-  size.rule('backdrop-blur', 'backdrop-filter', (val) => `blur(${val})`),
-  size.rule('backdrop-brightness', 'backdrop-filter', (val) => `brightness(${val})`),
-  size.rule('backdrop-contrast', 'backdrop-filter', (val) => `contrast(${val})`),
-  size.rule('backdrop-grayscale', 'backdrop-filter', (val) => `grayscale(${val})`),
-  size.rule('backdrop-hue-rotate', 'backdrop-filter', (val) => `hue-rotate(${Number(val.replace('rem', '')) * 360}deg)`),
-  size.rule('backdrop-invert', 'backdrop-filter', (val) => `invert(${val})`),
-  size.rule('backdrop-opacity', 'backdrop-filter', (val) => `opacity(${val})`),
-  size.rule('backdrop-saturate', 'backdrop-filter', (val) => `saturate(${val})`),
-  size.rule('backdrop-sepia', 'backdrop-filter', (val) => `sepia(${val})`),
+  size.rule('backdrop-blur', 'backdrop-filter', { postprocess: (val) => `blur(${val})` }),
+  size.rule('backdrop-brightness', 'backdrop-filter', { postprocess: (val) => `brightness(${val})` }),
+  size.rule('backdrop-contrast', 'backdrop-filter', { postprocess: (val) => `contrast(${val})` }),
+  size.rule('backdrop-grayscale', 'backdrop-filter', { postprocess: (val) => `grayscale(${val})` }),
+  size.rule('backdrop-hue-rotate', 'backdrop-filter', { postprocess: (val) => `hue-rotate(${Number(val) * 360})`, defaultUnit: 'deg' }),
+  size.rule('backdrop-invert', 'backdrop-filter', { postprocess: (val) => `invert(${val})` }),
+  size.rule('backdrop-opacity', 'backdrop-filter', { postprocess: (val) => `opacity(${val})` }),
+  size.rule('backdrop-saturate', 'backdrop-filter', { postprocess: (val) => `saturate(${val})` }),
+  size.rule('backdrop-sepia', 'backdrop-filter', { postprocess: (val) => `sepia(${val})` }),
 
   // Tables
 
   ['border-collapse', { 'border-collapse': 'collapse' }],
   ['border-separate', { 'border-collapse': 'separate' }],
 
-  size.rule('border-spacing', 'border-spacing', (val) => `${val}`),
+  size.rule('border-spacing', 'border-spacing'),
   // we are skiping border-spacing-b and borer-spacing-i for now beccause theya re hard to implement
 
   ['table-auto', { 'table-layout': 'auto' }],
@@ -630,13 +629,13 @@ const rules: Rule<Theme>[] = [
   // Transforms
 
   // we are skiping X and Y scales because they are not logical values
-  size.rule('scale', 'transform', (val) => `scale(${val.replace('rem', '')})`),
+  size.rule('scale', 'transform', {defaultUnit: '', postprocess: (val) => `scale${val}`}),
   // we are replacting Tailwind's constants with theme's proportions
-  size.rule('rotate', 'transform', (val) => `rotate(${Number(val.replace('rem', '')) * 360}deg)`),
+  size.rule('rotate', 'transform', {defaultUnit: 'deg', postprocess: (val) => `rotate${Number(val) * 360}`}),
   // we are skiping X and Y translations because they are not logical values
-  size.rule('translate', 'transform', (val) => `translate(${val})`),
+  size.rule('translate', 'transform', {postprocess: (val) => `translate${val}`}),
   // we are replacting Tailwind's constants with theme's proportions
-  size.rule('skew', 'transform', (val) => `skew(${Number(val.replace('rem', '')) * 360}deg)`),
+  size.rule('skew', 'transform', {defaultUnit: 'deg', postprocess: (val) => `skew${Number(val) * 360}`}),
 
   ['origin-ss', { 'transform-origin': 'var(--start-start)' }],
   ['origin-bs', { 'transform-origin': 'var(--block-start)' }],
