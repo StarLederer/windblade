@@ -293,6 +293,69 @@ const rules: Rule<Theme>[] = [
   // our sizing units do not include 'screen' (100vw / 100vh)
   // TODO: implement more fractions and unit overides
 
+  // Backgrounds
+
+  ['bg-fixed', { 'background-attachment': '' }],
+  ['bg-local', { 'background-attachment': 'local' }],
+  ['bg-scroll', { 'background-attachment': 'scroll' }],
+
+  ['bg-clip-border', { 'background-clip': 'border-box' }],
+  ['bg-clip-padding', { 'background-clip': 'padding-box' }],
+  ['bg-clip-content', { 'background-clip': 'content-box' }],
+  ['bg-clip-text', { 'background-clip': 'text' }],
+
+  colorBgRule('bg'),
+  fgColorRule('bg-fg', 'background'),
+  // TODO: we might need a set-fg rule that is the same as bg but does not actually ahcnge background color
+
+  ['bg-origin-border', { 'background-origin': 'border-box' }],
+  ['bg-origin-padding', { 'background-origin': 'padding-box' }],
+  ['bg-origin-content', { 'background-origin': 'content-box' }],
+
+  ['bg-ss', { 'background-position': 'var(--start-start)' }],
+  ['bg-bs', { 'background-position': 'var(--block-start)' }],
+  ['bg-es', { 'background-position': 'var(--end-start)' }],
+  ['bg-is', { 'background-position': 'var(--inline-start)' }],
+  ['bg-center', { 'background-position': 'center' }],
+  ['bg-ie', { 'background-position': 'var(--inline-start)' }],
+  ['bg-se', { 'background-position': 'var(--start-end)' }],
+  ['bg-be', { 'background-position': 'var(--block-end)' }],
+  ['bg-ee', { 'background-position': 'var(--end-end)' }],
+
+  // TODO: check whether these are really logical properties
+  ['bg-repeat', { 'background-repeat': 'repeat' }],
+  ['bg-no-repeat', { 'background-repeat': 'no-repeat' }],
+  ['bg-repeat-x', { 'background-repeat': 'repeat-x' }], // especially these two
+  ['bg-repeat-y', { 'background-repeat': 'repeat-y' }], // especially these two
+  ['bg-repeat-round', { 'background-repeat': 'round' }],
+  ['bg-repeat-space', { 'background-repeat': 'space' }],
+
+  ['bg-auto', { 'background-size': 'auto' }],
+  ['bg-cover', { 'background-size': 'cover' }],
+  ['bg-contain', { 'background-size': 'contain' }],
+
+  ['bg-none', { 'background-image': 'none' }],
+  ...(Object.keys(logical.abbreviations.edges) as Array<keyof typeof logical.abbreviations.edges>).map((edgeKey): Rule<Theme> => [
+    `bg-gradient-to-${edgeKey}`,
+    {
+      '--wb-gradient-stops': 'var(--wb-gradient-from, transparent), var(--wb-gradient-to, transparent)',
+      'background-image': `linear-gradient(to var(--${logical.abbreviations.edges[edgeKey]}), var(--wb-gradient-stops))`
+    }
+  ]),
+  ...(Object.keys(logical.abbreviations.coners) as Array<keyof typeof logical.abbreviations.coners>).map((cornerKey): Rule<Theme> => [
+    `bg-gradient-to-${cornerKey}`,
+    {
+      '--wb-gradient-stops': 'var(--wb-gradient-from, transparent), var(--wb-gradient-to, transparent)',
+      'background-image': `linear-gradient(to var(--${logical.abbreviations.coners[cornerKey]}), var(--wb-gradient-stops))`
+    }
+  ]),
+
+  colorRule('from', '--wb-gradient-from'),
+  colorRule('to', '--wb-gradient-to'),
+
+  // TODO implement 'via'
+  // colorRule('via', '--wb-gradient-stops', (val) => `var(--wb-gradient-from, transparent), ${val}, var(--wb-gradient-to, transparent)`),
+
   // Typography
 
   // we are skipping font-family rule because in UnoCSS it is better that develoeprs set this up themselves
@@ -409,76 +472,13 @@ const rules: Rule<Theme>[] = [
 
   ['content-none', { 'content': 'none' }],
 
-  // Backgrounds
-
-  ['bg-fixed', { 'background-attachment': '' }],
-  ['bg-local', { 'background-attachment': 'local' }],
-  ['bg-scroll', { 'background-attachment': 'scroll' }],
-
-  ['bg-clip-border', { 'background-clip': 'border-box' }],
-  ['bg-clip-padding', { 'background-clip': 'padding-box' }],
-  ['bg-clip-content', { 'background-clip': 'content-box' }],
-  ['bg-clip-text', { 'background-clip': 'text' }],
-
-  colorBgRule('bg'),
-  fgColorRule('bg-fg', 'background'),
-  // TODO: we might need a set-fg rule that is the same as bg but does not actually ahcnge background color
-
-  ['bg-origin-border', { 'background-origin': 'border-box' }],
-  ['bg-origin-padding', { 'background-origin': 'padding-box' }],
-  ['bg-origin-content', { 'background-origin': 'content-box' }],
-
-  ['bg-ss', { 'background-position': 'var(--start-start)' }],
-  ['bg-bs', { 'background-position': 'var(--block-start)' }],
-  ['bg-es', { 'background-position': 'var(--end-start)' }],
-  ['bg-is', { 'background-position': 'var(--inline-start)' }],
-  ['bg-center', { 'background-position': 'center' }],
-  ['bg-ie', { 'background-position': 'var(--inline-start)' }],
-  ['bg-se', { 'background-position': 'var(--start-end)' }],
-  ['bg-be', { 'background-position': 'var(--block-end)' }],
-  ['bg-ee', { 'background-position': 'var(--end-end)' }],
-
-  // TODO: check whether these are really logical properties
-  ['bg-repeat', { 'background-repeat': 'repeat' }],
-  ['bg-no-repeat', { 'background-repeat': 'no-repeat' }],
-  ['bg-repeat-x', { 'background-repeat': 'repeat-x' }], // especially these two
-  ['bg-repeat-y', { 'background-repeat': 'repeat-y' }], // especially these two
-  ['bg-repeat-round', { 'background-repeat': 'round' }],
-  ['bg-repeat-space', { 'background-repeat': 'space' }],
-
-  ['bg-auto', { 'background-size': 'auto' }],
-  ['bg-cover', { 'background-size': 'cover' }],
-  ['bg-contain', { 'background-size': 'contain' }],
-
-  ['bg-none', { 'background-image': 'none' }],
-  ...(Object.keys(logical.abbreviations.edges) as Array<keyof typeof logical.abbreviations.edges>).map((edgeKey): Rule<Theme> => [
-    `bg-gradient-to-${edgeKey}`,
-    {
-      '--wb-gradient-stops': 'var(--wb-gradient-from, transparent), var(--wb-gradient-to, transparent)',
-      'background-image': `linear-gradient(to var(--${logical.abbreviations.edges[edgeKey]}), var(--wb-gradient-stops))`
-    }
-  ]),
-  ...(Object.keys(logical.abbreviations.coners) as Array<keyof typeof logical.abbreviations.coners>).map((cornerKey): Rule<Theme> => [
-    `bg-gradient-to-${cornerKey}`,
-    {
-      '--wb-gradient-stops': 'var(--wb-gradient-from, transparent), var(--wb-gradient-to, transparent)',
-      'background-image': `linear-gradient(to var(--${logical.abbreviations.coners[cornerKey]}), var(--wb-gradient-stops))`
-    }
-  ]),
-
-  colorRule('from', '--wb-gradient-from'),
-  colorRule('to', '--wb-gradient-to'),
-
-  // TODO implement 'via'
-  // colorRule('via', '--wb-gradient-stops', (val) => `var(--wb-gradient-from, transparent), ${val}, var(--wb-gradient-to, transparent)`),
-
   // Borders
 
   ...size.cornerRules('rounded', '', 'border', 'radius'),
   ...logical.cornerRules('rounded', 'full', 'border', 'radius', (pref, prop) => simpleRule(pref, prop, '999999px')),
   ...logical.cornerRules('rounded', 'none', 'border', 'radius', (pref, prop) => simpleRule(pref, prop, 'none')),
 
-  [/^(border)$/, (_, {theme}) => ({
+  [/^(border)$/, (_, { theme }) => ({
     'border-style': 'solid',
     'border-width': '1px',
   })],
@@ -586,32 +586,32 @@ const rules: Rule<Theme>[] = [
   // Transitions & Animations
 
   ['transition-none', { 'transition-property': 'none' }],
-  [/^(transition-all)$/, (_, {theme}) => ({
+  [/^(transition-all)$/, (_, { theme }) => ({
     'transition': 'all',
     'transition-timing-function': theme.windblade.time.functions.default,
     'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
   })],
-  [/^(transition)$/, (_, {theme}) => ({
+  [/^(transition)$/, (_, { theme }) => ({
     'transition': 'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
     'transition-timing-function': theme.windblade.time.functions.default,
     'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
   })],
-  [/^(transition-colors)$/, (_, {theme}) => ({
+  [/^(transition-colors)$/, (_, { theme }) => ({
     'transition': 'color, background-color, border-color, text-decoration-color, fill, stroke    ',
     'transition-timing-function': theme.windblade.time.functions.default,
     'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
   })],
-  [/^(transition-opacity)$/, (_, {theme}) => ({
+  [/^(transition-opacity)$/, (_, { theme }) => ({
     'transition': 'opacity',
     'transition-timing-function': theme.windblade.time.functions.default,
     'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
   })],
-  [/^(transition-shadow)$/, (_, {theme}) => ({
+  [/^(transition-shadow)$/, (_, { theme }) => ({
     'transition': 'box-shadow',
     'transition-timing-function': theme.windblade.time.functions.default,
     'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
   })],
-  [/^(transition-transform)$/, (_, {theme}) => ({
+  [/^(transition-transform)$/, (_, { theme }) => ({
     'transition': 'transform',
     'transition-timing-function': theme.windblade.time.functions.default,
     'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
