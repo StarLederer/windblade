@@ -20,7 +20,10 @@ const rules: Rule<Theme>[] = [
 
   [
     new RegExp(`^(aspect)-(.+)$`),
-    (match) => ({ 'aspect-ratio': match[2] }),
+    (match) => {
+      if (match[2].includes(":")) return undefined;
+      return { 'aspect-ratio': match[2] }
+    },
   ],
 
   // we are skipping container because max-size-i does that already
