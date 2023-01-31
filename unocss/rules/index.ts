@@ -25,7 +25,7 @@ const rules: Rule<Theme>[] = [
 
   // we are skipping container because max-size-i does that already
   [
-    new RegExp(`^(aspect)-(.+)$`),
+    new RegExp(`^(columns)-(.+)$`),
     (match, { theme }) => {
       const values = match[2].split(',');
       const minWidth = size.solve(values[0], theme);
