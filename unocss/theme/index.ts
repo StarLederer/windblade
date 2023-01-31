@@ -101,6 +101,12 @@ const theme: Theme = {
       },
     },
 
+    miscColors: {
+      transparent: "transparent",
+      inherit: "inherit",
+      currentColor: "currentColor",
+    },
+
     proportions: {
       '0.5t': 0.125,
       '1t': 0.25,

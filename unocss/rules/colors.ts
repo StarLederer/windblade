@@ -4,20 +4,27 @@ import Theme, { ThemeColor } from "../theme/Theme";
 const staticColorCss = (color: string) => `hsla(var(--hue), var(--col-${color}-s), var(--col-${color}-l), var(--col-${color}-a));`;
 const interactiveColorCss = (color: string) => `hsl(var(--hue), var(--col-${color}-s), calc(var(--col-${color}-l) + var(--highlight)), var(--col-${color}-a));`;
 
+const tryCompileValue = (value: string, theme: Theme): string | undefined => {
+  const color = theme.windblade.colors[value];
+  if (color !== undefined) {
+    if (color.interactive) {
+      return interactiveColorCss(value);
+    } else {
+      return staticColorCss(value);
+    }
+  }
+
+  return theme.windblade.miscColors[value];
+}
+
 const colorRule = (prefix: string, property: string): DynamicRule<Theme> => {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
       const css: any = {};
-      const color = theme.windblade.colors[match[2]];
-      if (!color) return;
-
-      if (color.interactive) {
-        css[property] = interactiveColorCss(match[2]);
-      } else {
-        css[property] = staticColorCss(match[2]);
-      }
-
+      const color = tryCompileValue(match[2], theme);
+      if (!color) return undefined;
+      css[property] = color;
       return css;
     }
   ];
