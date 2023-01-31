@@ -306,7 +306,7 @@ const rules: Rule<Theme>[] = [
 
   colorBgRule('bg'),
   fgColorRule('bg-fg', 'background'),
-  // TODO: we might need a set-fg rule that is the same as bg but does not actually ahcnge background color
+  // TODO: we might need a set-fg rule that is the same as bg but does not actually change background color
 
   ['bg-origin-border', { 'background-origin': 'border-box' }],
   ['bg-origin-padding', { 'background-origin': 'padding-box' }],
