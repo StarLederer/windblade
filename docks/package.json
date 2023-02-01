@@ -1,0 +1,32 @@
+{
+  "name": "@windblade/website",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@iconify-json/mdi": "^1.1.37",
+    "@iconify-json/simple-icons": "^1.1.40",
+    "@unocss/core": "^0.49.0",
+    "@unocss/preset-icons": "^0.49.0",
+    "@unocss/transformer-directives": "^0.49.1",
+    "@unocss/vite": "^0.49.0",
+    "postcss": "^8.4.21",
+    "postcss-preset-env": "^8.0.1",
+    "ts-extras": "^0.11.0",
+    "typescript": "^4.9.4",
+    "unocss": "^0.45.30",
+    "unocss-preset-mini-variants": "^0.49.0",
+    "vite": "^3.2.5",
+    "vite-plugin-favicons-inject": "^2.1.0",
+    "vite-plugin-solid": "^2.5.0"
+  },
+  "dependencies": {
+    "solid-headless": "^0.13.0",
+    "solid-js": "^1.6.5"
+  }
+}

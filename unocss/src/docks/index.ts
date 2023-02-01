@@ -1,6 +1,6 @@
-import { layout } from "../../unocss/rules/documented";
+import { layout } from "../rules/documented"
 
-const data = [
+export const docs = [
   layout.aspectRatio().docs,
   layout.columns().docs,
   layout.breakAfter().docs,
@@ -13,4 +13,4 @@ const data = [
   layout.clear().docs,
 ];
 
-export default data;
+export default docs;

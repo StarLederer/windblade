@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- NPM package metadata.
+- Bundle scripts using unbuild.
 - Dynamic size calculations using mathematical expressions inside `()` (e.g `m-(-s)`, `inset-(m/2)`).
 - `getCSSProperties` to `core/color` (ex. `external`).
 - `core/variant`.
@@ -28,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Renamed preset to Windblade.
+- Moved source code to `src` directory.
 - Renamed `external` to `core`.
 - `getSLA` and `getHSLA` in `core` (ex. `external`) now return values for all variants.
 - Renamed all size units.

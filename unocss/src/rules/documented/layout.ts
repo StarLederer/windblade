@@ -5,6 +5,8 @@ import * as size from "../sizes";
 import { objectKeys } from "ts-extras";
 
 type DocumentedRuleGroupDocs = {
+  title: string,
+  description: string,
   utilities: string[];
 };
 
@@ -25,8 +27,10 @@ export const aspectRatio = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
+    title: "Aspect ratio",
+    description: "Utilities for controlling the aspect ratio of an element.",
     utilities: [
-      "<ratio>"
+      "aspect-<ratio>"
     ],
   };
 
@@ -43,7 +47,9 @@ export const columns = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    utilities: ["<integer>", "<theme.windblade.proportions>"],
+    title: "Columns",
+    description: "Utilities for controlling the number of columns within an element.",
+    utilities: ["columns-<integer>", "columns-<theme.windblade.proportions>"],
   };
 
   return { rules, docs }
@@ -58,7 +64,9 @@ export const breakAfter = (): DocumentedRuleGroup => {
   ]);
 
   const docs: DocumentedRuleGroupDocs = {
-    utilities: values
+    title: "Break after",
+    description: "Utilities for controlling how a column or page should break after an element.",
+    utilities: values.map((val) => `break-after-${val}`),
   };
 
   return { rules, docs };
@@ -73,7 +81,9 @@ export const breakBefore = (): DocumentedRuleGroup => {
   ]);
 
   const docs: DocumentedRuleGroupDocs = {
-    utilities: values
+    title: "Break before",
+    description: "Utilities for controlling how a column or page should break before an element.",
+    utilities: values.map((val) => `break-before-${val}`),
   };
 
   return { rules, docs };
@@ -88,7 +98,9 @@ export const breakInside = (): DocumentedRuleGroup => {
   ]);
 
   const docs: DocumentedRuleGroupDocs = {
-    utilities: values
+    title: "Break inside",
+    description: "Utilities for controlling how a column or page should break within an element.",
+    utilities: values.map((val) => `break-inside-${val}`),
   };
 
   return { rules, docs };
@@ -103,7 +115,9 @@ export const boxDecorationBreak = (): DocumentedRuleGroup => {
   ]);
 
   const docs: DocumentedRuleGroupDocs = {
-    utilities: values
+    title: "Box decoration break",
+    description: "Utilities for controlling how element fragments should be rendered across multiple lines, columns, or pages.",
+    utilities: values.map((val) => `box-decoration-${val}`),
   };
 
   return { rules, docs };
@@ -118,7 +132,9 @@ export const boxSizing = (): DocumentedRuleGroup => {
   ]);
 
   const docs: DocumentedRuleGroupDocs = {
-    utilities: values
+    title: "Box sizing",
+    description: "Utilities for controlling how the browser should calculate an element's total size.",
+    utilities: values.map((val) => `box-${val}`),
   };
 
   return { rules, docs };
@@ -134,6 +150,8 @@ export const display = (): DocumentedRuleGroup => {
   ]);
 
   const docs: DocumentedRuleGroupDocs = {
+    title: "Display",
+    description: "Utilities for controlling the display box type of an element.",
     utilities: values
   };
 
@@ -150,6 +168,8 @@ export const floats = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
+    title: "Float",
+    description: "Utilities for controlling the wrapping of content around an element.",
     utilities: [
       ...Object.keys(logical.abbreviations.inlineEdges),
       "none"
@@ -174,6 +194,8 @@ export const clear = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
+    title: "Clear",
+    description: "Utilities for controlling the wrapping of content around an element.",
     utilities: [
       ...Object.keys(logical.abbreviations.inlineEdges),
       ...additionalValues

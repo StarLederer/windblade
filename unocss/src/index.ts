@@ -19,5 +19,6 @@ export const presetWindblade = (options: PresetOptions = {}): Preset<Theme> => {
   }
 }
 
+export { docs } from "./docks";
 export default presetWindblade;
 export { theme, core };
