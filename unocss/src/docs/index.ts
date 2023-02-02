@@ -1,1 +1,7 @@
-export * as rules from "../rules/documented";
+import { backgrounds } from "../rules/documented";
+
+export const rules = {
+  ...backgrounds,
+};
+
+export * from "../rules/documented/types";

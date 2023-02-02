@@ -6,7 +6,7 @@ import { colorRule, colorBgRule, fgColorRule } from "./colors";
 import * as size from "./sizes";
 import * as time from "./time";
 import { getThemeCSS } from "../core/variant";
-import { layout } from "./documented";
+import { layout, backgrounds } from "./documented";
 
 const simpleRule = (prefix: string, property: string, value: string): Rule<Theme> => {
   const css: any = {};
@@ -254,10 +254,7 @@ const rules: Rule<Theme>[] = [
   ['bg-clip-content', { 'background-clip': 'content-box' }],
   ['bg-clip-text', { 'background-clip': 'text' }],
 
-  colorRule('bg', 'background-color'),
-  colorBgRule('bg'),
-  fgColorRule('bg-fg', 'background-color'),
-  // TODO: we might need a set-fg rule that is the same as bg but does not actually change background color
+  ...backgrounds.color().rules,
 
   ['bg-origin-border', { 'background-origin': 'border-box' }],
   ['bg-origin-padding', { 'background-origin': 'padding-box' }],
