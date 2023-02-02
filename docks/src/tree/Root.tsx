@@ -11,7 +11,7 @@ import logoBlack from "@windblade/brand/logo-black.svg";
 import Link from "@ui/primitives/Button/Link";
 
 const Main: Component = () => {
-  onMount(() => { addNavigationHandler(`/group/${docs[0].title}`); })
+  onMount(() => { addNavigationHandler('/home'); })
   onCleanup(() => { removeNavigationHandler(); })
 
   return (
@@ -36,26 +36,33 @@ const Main: Component = () => {
           <Link href="https://github.com/StarLederer/windblade"><div class="i-simple-icons-github" /></Link>
         </div>
       </header>
+
       <div class="p-i-m.2 flex gap-m.2 size-b-full">
         <nav class="flex flex-col gap-s.2 p-b-m.2">
-          <For each={docs}>
-            {(ruleGroup) => (
-              <button onClick={() => navigate(`/group/${ruleGroup.title}`)} class={`${router.route().current.startsWith(`/group/${ruleGroup.title}`) ? "bg-srf text-fg-1" : ""} font-semibold p-s rounded-s text-start justify-start text-int transition ease-out hover:highlight hover:bg-int3 active:highlight+`}>
-                {ruleGroup.title}
-              </button>
-            )}
+          <For each={Object.values(docs.rules.layout)}>
+            {(ruleGroup) => {
+              const { rules, docs } = ruleGroup();
+              return (
+                <button onClick={() => navigate(`/group/${docs.title}`)} class={`${router.route().current.startsWith(`/group/${docs.title}`) ? "bg-srf text-fg-1" : ""} font-semibold p-s rounded-s text-start justify-start text-int transition ease-out hover:highlight hover:bg-int3 active:highlight+`}>
+                  {docs.title}
+                </button>
+              )
+            }}
           </For>
         </nav>
 
-        <div class="bg-fg-5 size-i-px"/>
+        <div class="bg-fg-5 size-i-px" />
 
         <main class="relative flex-1">
-          <For each={docs}>
-            {(ruleGroup) => (
-              <Route path={`/group/${ruleGroup.title}`} scroll>
-                <RuleGroup ruleGroup={ruleGroup} />
-              </Route>
-            )}
+          <For each={Object.values(docs.rules.layout)}>
+            {(ruleGroup) => {
+              const group = ruleGroup();
+              return (
+                <Route path={`/group/${group.docs.title}`} scroll>
+                  <RuleGroup ruleGroup={group} />
+                </Route>
+              )
+            }}
           </For>
         </main>
       </div>
