@@ -5,7 +5,7 @@ import type { docs } from "@windblade/unocss";
 import UnilityButton from "./components/UtilityButton";
 
 const Main: Component<{
-  ruleGroup: docs.DocumentedRuleGroup
+  ruleGroup: docs.rules.DocumentedRuleGroup
 }> = (props) => {
   const [selected, setSelected] = createSignal(props.ruleGroup.docs.utilities[0]);
   const [shadowRoot, setShadowRoot] = createSignal<ShadowRoot>();

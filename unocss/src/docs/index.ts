@@ -1,7 +1,1 @@
-import { backgrounds } from "../rules/documented";
-
-export const rules = {
-  ...backgrounds,
-};
-
-export * from "../rules/documented/types";
+export * as rules from "../rules/documented";
