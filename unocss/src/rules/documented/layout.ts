@@ -142,7 +142,19 @@ export const display = (): DocumentedRuleGroup => {
   const docs: DocumentedRuleGroupDocs = {
     title: "Display",
     description: "Utilities for controlling the display box type of an element.",
-    utilities: values
+    utilities: values,
+    preview: (util) => {
+      switch (util) {
+        default:
+          return `
+            <div class="p-s">
+              <div class="bg-accent p-s ${util}">1</div>
+              <div class="bg-accent p-s ${util}">2</div>
+              <div class="bg-accent p-s ${util}">3</div>
+            </div>
+          `;
+      }
+    },
   };
 
   return { rules, docs };
