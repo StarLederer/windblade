@@ -6,7 +6,7 @@ import { colorRule, colorBgRule, fgColorRule } from "./colors";
 import * as size from "./sizes";
 import * as time from "./time";
 import { getThemeCSS } from "../core/variant";
-import { layout, backgrounds } from "./documented";
+import { layout, backgrounds, interactivity } from "./documented";
 
 const simpleRule = (prefix: string, property: string, value: string): Rule<Theme> => {
   const css: any = {};
@@ -18,17 +18,62 @@ const simpleRule = (prefix: string, property: string, value: string): Rule<Theme
 
 const rules: Rule<Theme>[] = [
   // Layout
-  ...layout.aspectRatio().rules,
+
+  [
+    new RegExp(`^(aspect)-(.+)$`),
+    (match) => {
+      if (match[2].includes(":")) return undefined;
+      return { 'aspect-ratio': match[2] }
+    },
+  ],
+
   // we are skipping container because max-size-i does that already
-  ...layout.columns().rules,
+
+  [
+    new RegExp(`^(columns)-(.+)$`),
+    (match, { theme }) => {
+      const values = match[2].split(',');
+      const minWidth = size.solve(values[0], theme, 'rem');
+      const maxNumCols = values[1];
+      return { 'columns': [minWidth, maxNumCols].join(" ") };
+    },
+  ],
+
   ...layout.breakAfter().rules,
+
   ...layout.breakBefore().rules,
-  ...layout.breakInside().rules,
-  ...layout.boxDecorationBreak().rules,
-  ...layout.boxSizing().rules,
+
+  ...["auto", "avoid", "all", "avoid-page", "avoid-column"].map((val): Rule<Theme> => [
+    `break-inside-${val}`,
+    { 'break-inside': val }
+  ]),
+
+  ...["clone", "slice"].map((val): Rule<Theme> => [
+    `box-decoration-${val}`,
+    { 'box-decoration': val }
+  ]),
+
+  ...["border", "content"].map((val): Rule<Theme> => [
+    `box-${val}`,
+    { 'box-sizing': `${val}-box` }
+  ]),
+
   ...layout.display().rules,
-  ...layout.floats().rules,
-  ...layout.clear().rules,
+
+  ...(Object.keys(logical.abbreviations.inlineEdges) as Array<keyof typeof logical.abbreviations.inlineEdges>).map((val): Rule<Theme> => [
+    `float-${val}`,
+    { 'float': logical.abbreviations.inlineEdges[val] }
+  ]),
+  ['float-none', { 'float': 'none' }],
+
+  ...(Object.keys(logical.abbreviations.inlineEdges) as Array<keyof typeof logical.abbreviations.inlineEdges>).map((val): Rule<Theme> => [
+    `clear-${val}`,
+    { 'clear': logical.abbreviations.inlineEdges[val] }
+  ]),
+  ...["both", "none"].map((val): Rule<Theme> => [
+    `clear-${val}`,
+    { 'clear': val }
+  ]),
 
   ['isolate', { 'isolation': 'isolate' }],
   ['isolation-auto', { 'isolation': 'auto' }],
@@ -38,15 +83,7 @@ const rules: Rule<Theme>[] = [
     { 'object-fit': val }
   ]),
 
-  ['object-ss', { 'object-position': 'var(--start-start)' }],
-  ['object-bs', { 'object-position': 'var(--block-start)' }],
-  ['object-es', { 'object-position': 'var(--end-start)' }],
-  ['object-is', { 'object-position': 'var(--inline-start)' }],
-  ['object-center', { 'object-position': 'center' }],
-  ['object-ie', { 'object-position': 'var(--inline-start)' }],
-  ['object-se', { 'object-position': 'var(--start-end)' }],
-  ['object-be', { 'object-position': 'var(--block-end)' }],
-  ['object-ee', { 'object-position': 'var(--end-end)' }],
+  ...layout.objectPosition().rules,
 
   ...["auto", "hidden", "clip", "visible", "scroll"].flatMap((val): Rule<Theme>[] =>
     logical.axisRules('overflow', val, 'overflow', '', (pref, prop) => (simpleRule(pref, prop, val))),
@@ -686,12 +723,9 @@ const rules: Rule<Theme>[] = [
   ['will-change-transform', { 'will-change': 'transform' }],
 
   // Windblade rules for interactive colors
-  [
-    new RegExp(`^(hue)-(.+)$`),
-    (match) => ({
-      '--hue': match[2],
-    })
-  ],
+
+  ...interactivity.hue().rules,
+
   ['highlight', { '--highlight': 'var(--base-highlight)' }],
   ['highlight+', { '--highlight': 'var(--base-highlight-plus)' }],
 

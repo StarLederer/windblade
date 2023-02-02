@@ -17,23 +17,19 @@ export const color = (): DocumentedRuleGroup => {
 
   const docs: DocumentedRuleGroupDocs = {
     title: "Background color",
-    description: "Utilities for controlling an element's background color.",
+    description: "Windblade uses semantic colors.",
     utilities: ["bg-<theme.windblade.colors>", "bg-<theme.windblade.miscColors>", "bg-fg-<integer>"],
     preview: (util) => {
       if (util.startsWith("bg-fg")) {
         return `
-        <div class="p-m.2 flex justify-center items-center">
           <div class="size-i-full aspect-1/1 max-size-i-m max-size-b-m rounded-s p-s bg-accent">
             <div class="size-i-full aspect-1/1 rounded-full ${util}"></div>
           </div>
-        </div>
         `;
       } else {
         return `
-          <div class="p-m.2 flex justify-center items-center">
-            <div class="size-i-full aspect-1/1 max-size-i-m max-size-b-m rounded-s p-s flex items-center justify-center ${util}">
-              Background color: ${util}
-            </div>
+          <div class="size-i-full aspect-1/1 max-size-i-m max-size-b-m rounded-s p-s flex items-center justify-center ${util}">
+            Background color: ${util}
           </div>
         `;
       }
