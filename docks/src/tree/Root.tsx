@@ -16,7 +16,7 @@ const Main: Component = () => {
 
   return (
     <>
-      <header class="p-b-s.4 p-m.2 border border-color-transparent border-be-color-fg-5 m-be-m.2 flex justify-between items-center">
+      <header class="p-b-s.4 p-m.2 border border-color-transparent border-be-color-fg-5 flex justify-between items-center">
         <h1 class="font-bold text-fg-1 flex gap-s items-center">
           <Show
             when={themeStore.scheme() === "dark"}
@@ -36,8 +36,8 @@ const Main: Component = () => {
           <Link href="https://github.com/StarLederer/windblade"><div class="i-simple-icons-github" /></Link>
         </div>
       </header>
-      <div class="p-i-m.2 flex gap-m.2">
-        <nav class="flex flex-col gap-s.2">
+      <div class="p-i-m.2 flex gap-m.2 size-b-full">
+        <nav class="flex flex-col gap-s.2 p-b-m.2">
           <For each={docs}>
             {(ruleGroup) => (
               <button onClick={() => navigate(`/group/${ruleGroup.title}`)} class={`${router.route().current.startsWith(`/group/${ruleGroup.title}`) ? "bg-srf text-fg-1" : ""} font-semibold p-s rounded-s text-start justify-start text-int transition ease-out hover:highlight hover:bg-int3 active:highlight+`}>
@@ -46,6 +46,8 @@ const Main: Component = () => {
             )}
           </For>
         </nav>
+
+        <div class="bg-fg-5 size-i-px"/>
 
         <main class="relative flex-1">
           <For each={docs}>
