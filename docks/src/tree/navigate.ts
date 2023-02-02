@@ -1,4 +1,4 @@
-import router from "@ui/router"
+import router from "@ui/router";
 
 const navigate = (path: string) => {
   router.navigate(path);
