@@ -6,7 +6,7 @@ import { colorRule, colorBgRule, fgColorRule } from "./colors";
 import * as size from "./sizes";
 import * as time from "./time";
 import { getThemeCSS } from "../core/variant";
-import { layout, backgrounds, interactivity } from "./documented";
+import { layout, backgrounds, interactivity, flexboxAndGrid } from "./documented";
 
 const simpleRule = (prefix: string, property: string, value: string): Rule<Theme> => {
   const css: any = {};
@@ -27,7 +27,7 @@ const rules: Rule<Theme>[] = [
     },
   ],
 
-  // we are skipping container because max-size-i does that already
+  ...layout.container().rules,
 
   [
     new RegExp(`^(columns)-(.+)$`),
@@ -158,9 +158,6 @@ const rules: Rule<Theme>[] = [
       new RegExp(`^(grid-${ruleName}s)-(.+)$`),
       (match) => ({ ['grid-template-' + cssName + "s"]: `repeat(${match[2]}, minmax(0, 1fr))` }),
     ],
-    // Tailwind doesn't have rules that do auto fit and auto fill, let's add them
-    size.rule(`grid-fit-${ruleName}s`, `grid-template-${cssName}s`, { postprocess: (size) => (`repeat(auto-fit, minmax(${size}, 1fr))`) }),
-    size.rule(`grid-fill-${ruleName}s`, `grid-template-${cssName}s`, { postprocess: (size) => (`repeat(auto-fill, minmax(${size}, 1fr))`) }),
     [`grid-${ruleName}s-none`, { ['grid-template-' + cssName + "s"]: 'none' }],
     [`${ruleName}-auto`, { ['grid-' + cssName]: 'auto' }],
     [
@@ -179,6 +176,11 @@ const rules: Rule<Theme>[] = [
     ],
     [`${ruleName}-end-auto`, { ['grid-' + cssName + '-end']: 'auto' }]
   ]),
+
+  ...flexboxAndGrid.gridFitCols().rules,
+  ...flexboxAndGrid.gridFillCols().rules,
+  ...flexboxAndGrid.gridFitRows().rules,
+  ...flexboxAndGrid.gridFillRows().rules,
 
   ['grid-flow-row', { 'grid-auto-flow': 'row' }],
   ['grid-flow-col', { 'grid-auto-flow': 'column' }],

@@ -53,6 +53,23 @@ const processWindbladeMiscColor = (utility: string, onClick?: (util: string) => 
   );
 };
 
+const processWindbladeProportion = (utility: string, onClick?: (util: string) => void) => {
+  const prefix = utility.replace("<theme.windblade.proportions>", "");
+  return (
+    <For each={Object.keys(uno.config.theme.windblade.proportions)}>
+      {(color) => (
+        <Button
+          class="p-s rounded-s.2"
+          style="half"
+          onClick={() => { onClick?.(prefix + color) }}
+        >
+          {prefix + color}
+        </Button>
+      )}
+    </For>
+  );
+};
+
 const Main: Component<{
   utility: string;
   onClick?: (color: string) => void;
@@ -63,6 +80,8 @@ const Main: Component<{
     return processWindbladeColor(props.utility, props.onClick);
   } else if (props.utility.endsWith("<theme.windblade.miscColors>")) {
     return processWindbladeMiscColor(props.utility, props.onClick);
+  } else if (props.utility.endsWith("<theme.windblade.proportions>")) {
+    return processWindbladeProportion(props.utility, props.onClick);
   }
 
   return (

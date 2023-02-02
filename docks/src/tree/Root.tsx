@@ -16,11 +16,13 @@ const Main: Component = () => {
 
   const allRules = () => Object.values({
     ...docs.rules.layout,
+    ...docs.rules.flexboxAndGrid,
     ...docs.rules.backgrounds,
+    ...docs.rules.interactivity,
   });
 
   return (
-    <>
+    <div class="flex flex-col size-b-full">
       <header class="p-b-s.4 p-m.2 border border-color-transparent border-be-color-fg-5 flex justify-between items-center">
         <h1 class="font-bold text-fg-1 flex gap-s items-center">
           <Show
@@ -42,8 +44,8 @@ const Main: Component = () => {
         </div>
       </header>
 
-      <div class="p-i-m.2 flex gap-m.2 size-b-full">
-        <nav class="flex flex-col gap-s.2 p-b-m.2">
+      <div class="flex flex-1">
+        <nav class="flex flex-col gap-s.2 p-m.2">
           <For each={allRules()}>
             {(ruleGroup) => {
               const { rules, docs } = ruleGroup();
@@ -63,7 +65,7 @@ const Main: Component = () => {
             {(ruleGroup) => {
               const group = ruleGroup();
               return (
-                <Route path={`/group/${group.docs.title}`} scroll>
+                <Route path={`/group/${group.docs.title}`}>
                   <RuleGroup ruleGroup={group} />
                 </Route>
               )
@@ -71,7 +73,7 @@ const Main: Component = () => {
           </For>
         </main>
       </div>
-    </>
+    </div>
   );
 };
 

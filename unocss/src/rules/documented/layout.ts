@@ -4,6 +4,16 @@ import Theme from "../../theme/Theme";
 import * as logical from "../logicalSet";
 import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "./types";
 
+export const container = (): DocumentedRuleGroup => {
+  const docs: DocumentedRuleGroupDocs = {
+    title: "Container",
+    description: "Windblade does not have container utilities or breakpoints becase it focuses on intrinsic sizing instead.",
+    utilities: [],
+  };
+
+  return { rules: [], docs };
+};
+
 export const breakAfter = (): DocumentedRuleGroup => {
   const values = ["auto", "avoid", "all", "avoid-page", "page", "recto", "verso", "column"];
 
