@@ -6,7 +6,7 @@ import { colorRule, colorBgRule, fgColorRule } from "./colors";
 import * as size from "./sizes";
 import * as time from "./time";
 import { getThemeCSS } from "../core/variant";
-import { layout, backgrounds, interactivity, flexboxAndGrid } from "./documented";
+import { layout, backgrounds, interactivity, flexboxAndGrid, sizing, spacing } from "./documented";
 
 const simpleRule = (prefix: string, property: string, value: string): Rule<Theme> => {
   const css: any = {};
@@ -270,9 +270,9 @@ const rules: Rule<Theme>[] = [
 
   // Spacing
 
-  ...size.edgeRules('p', '', 'padding', ''),
-  ...size.edgeRules('m', '', 'margin', ''),
-  // we are skipping Space Between because we believe users should use flexbox instead
+  ...spacing.padding().rules,
+  ...spacing.margin().rules,
+  ...spacing.spaceBetween().rules,
 
   // Sizing
 

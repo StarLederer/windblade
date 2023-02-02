@@ -14,15 +14,8 @@ const Main: Component = () => {
   onMount(() => { addNavigationHandler('/home'); })
   onCleanup(() => { removeNavigationHandler(); })
 
-  const allRules = () => Object.values({
-    ...docs.rules.layout,
-    ...docs.rules.flexboxAndGrid,
-    ...docs.rules.backgrounds,
-    ...docs.rules.interactivity,
-  });
-
   return (
-    <div class="flex flex-col size-b-full">
+    <div class="size-b-full grid" style="grid-template-rows: auto minmax(0, 1fr);">
       <header class="p-b-s.4 p-m.2 border border-color-transparent border-be-color-fg-5 flex justify-between items-center">
         <h1 class="font-bold text-fg-1 flex gap-s items-center">
           <Show
@@ -44,24 +37,33 @@ const Main: Component = () => {
         </div>
       </header>
 
-      <div class="flex flex-1">
-        <nav class="flex flex-col gap-s.2 p-m.2">
-          <For each={allRules()}>
-            {(ruleGroup) => {
-              const { rules, docs } = ruleGroup();
-              return (
-                <button onClick={() => navigate(`/group/${docs.title}`)} class={`${router.route().current.startsWith(`/group/${docs.title}`) ? "bg-srf text-fg-1" : ""} font-semibold p-s rounded-s text-start justify-start text-int transition ease-out hover:highlight hover:bg-int3 active:highlight+`}>
-                  {docs.title}
-                </button>
-              )
-            }}
+      <div class="flex">
+        <nav class="flex flex-col gap-s p-m.2 overflow-auto">
+          <For each={Object.entries(docs.rules.categories)}>
+            {([category, groups]) => (
+              <div>
+                <div class="font-semibold m-be-s.4">{category}</div>
+                <div class="flex flex-col gap-s.2">
+                  <For each={groups}>
+                    {(ruleGroup) => {
+                      const { rules, docs } = ruleGroup();
+                      return (
+                        <button onClick={() => navigate(`/group/${docs.title}`)} class={`${router.route().current.startsWith(`/group/${docs.title}`) ? "bg-srf text-fg-1" : ""} font-semibold p-s rounded-s text-start justify-start text-int transition ease-out hover:highlight hover:bg-int3 active:highlight+`}>
+                          {docs.title}
+                        </button>
+                      )
+                    }}
+                  </For>
+                </div>
+              </div>
+            )}
           </For>
         </nav>
 
         <div class="bg-fg-5 size-i-px" />
 
         <main class="relative flex-1">
-          <For each={allRules()}>
+          <For each={Object.values(docs.rules.categories).flatMap((val) => val)}>
             {(ruleGroup) => {
               const group = ruleGroup();
               return (

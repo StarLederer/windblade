@@ -64,9 +64,11 @@ export const display = (): DocumentedRuleGroup => {
       switch (util) {
         default:
           return `
-            <div class="bg-accent p-s rounded-s.4 ${util}">1</div>
-            <div class="bg-accent p-s rounded-s.4 ${util}">2</div>
-            <div class="bg-accent p-s rounded-s.4 ${util}">3</div>
+            <div>
+              <div class="bg-accent p-s rounded-s.4 ${util}">1</div>
+              <div class="bg-accent p-s rounded-s.4 ${util}">2</div>
+              <div class="bg-accent p-s rounded-s.4 ${util}">3</div>
+            </div>
           `;
       }
     },
