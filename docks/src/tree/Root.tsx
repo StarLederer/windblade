@@ -39,7 +39,7 @@ const Main: Component = () => {
 
       <div class="p-i-m.2 flex gap-m.2 size-b-full">
         <nav class="flex flex-col gap-s.2 p-b-m.2">
-          <For each={Object.values(docs.rules.layout)}>
+          <For each={Object.values(docs.rules)}>
             {(ruleGroup) => {
               const { rules, docs } = ruleGroup();
               return (
@@ -54,7 +54,7 @@ const Main: Component = () => {
         <div class="bg-fg-5 size-i-px" />
 
         <main class="relative flex-1">
-          <For each={Object.values(docs.rules.layout)}>
+          <For each={Object.values(docs.rules)}>
             {(ruleGroup) => {
               const group = ruleGroup();
               return (

@@ -2,9 +2,10 @@ import Button from "@ui/primitives/Button";
 import { Component, createEffect, createSignal, For, on, Show } from "solid-js";
 import uno from "~/unocss";
 import type { docs } from "@windblade/unocss";
+import UnilityButton from "./components/UtilityButton";
 
 const Main: Component<{
-  ruleGroup: docs.rules.DocumentedRuleGroup
+  ruleGroup: docs.DocumentedRuleGroup
 }> = (props) => {
   const [selected, setSelected] = createSignal(props.ruleGroup.docs.utilities[0]);
   const [shadowRoot, setShadowRoot] = createSignal<ShadowRoot>();
@@ -64,7 +65,7 @@ const Main: Component<{
       <h2 class="text-fg-1 font-bold text-m.2">{docs().title}</h2>
       <p class="text-fg-3 font-semibold">{docs().description}</p>
 
-      <table class="border-collapse">
+      {/* <table class="border-collapse">
         <thead class="font-semibold">
           <tr class={styles.tr}>
             <th class={styles.th}>Class</th>
@@ -81,20 +82,17 @@ const Main: Component<{
             )}
           </For>
         </tbody>
-      </table>
+      </table> */}
 
       {docs().preview && <>
         <h3 class={styles.h3}>Try it</h3>
         <div class="grid grid-fit-cols-m gap-s.2 rounded-s overflow-hidden">
           <For each={docs().utilities}>
             {(utility) => (
-              <Button
-                class="p-s rounded-s.2"
-                style="half"
-                onClick={async () => setSelected(utility)}
-              >
-                {utility}
-              </Button>
+              <UnilityButton
+                utility={utility}
+                onClick={(util) => setSelected(util)}
+              />
             )}
           </For>
         </div>
