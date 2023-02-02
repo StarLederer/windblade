@@ -9,7 +9,7 @@ const Main: Component<{
 }> = (props) => {
   const [selected, setSelected] = createSignal(props.ruleGroup.docs.utilities[0]);
   const [shadowRoot, setShadowRoot] = createSignal<ShadowRoot>();
-  const [preview, setPreview] = createSignal<{ html: string; css: string; }>();
+  const [preview, setPreview] = createSignal<{ html: string; css: string; preflights: string }>();
 
   // Preview container ref
   let previewContainer: HTMLDivElement | undefined;
@@ -32,8 +32,10 @@ const Main: Component<{
   // Keep preview in sync with selected
   createEffect(async () => {
     const html = docs().preview?.(selected()) ?? "";
-    const css = (await uno.generate(html)).css;
-    setPreview({ html, css });
+    const generateResult = await uno.generate(html, { minify: true });
+    const css = generateResult.getLayer("default") ?? "";
+    const preflights = generateResult.getLayer("preflights") ?? "";
+    setPreview({ html, css, preflights, });
   });
 
   // Keep preview dom in sync with preview
@@ -42,8 +44,8 @@ const Main: Component<{
     if (!root) return;
     const p = preview();
     if (!p) return;
-    const { html, css } = p;
-    root.innerHTML = `<div id="root" style="--hue:20"><style>${css.replaceAll(":root", "#root")}</style>${html}</div>`;
+    const { html, css, preflights } = p;
+    root.innerHTML = `<div id="root" style="--hue: 20; display: flex; align-items: center; justify-content: center;"><style>${preflights.replaceAll(":root", "#root")}\n${css}</style>${html}</div>`;
   });
 
   const docs = () => props.ruleGroup.docs;
@@ -61,50 +63,55 @@ const Main: Component<{
   };
 
   return (
-    <div class="flex flex-col gap-s p-b-m.2">
-      <h2 class="text-fg-1 font-bold text-m.2">{docs().title}</h2>
-      <p class="text-fg-3 font-semibold">{docs().description}</p>
+    <div class="size-b-full overflow-auto">
+      <div class="flex flex-col gap-s p-m.2">
+        <h2 class="text-fg-1 font-bold text-m.2">{docs().title}</h2>
+        <p class="text-fg-3 font-semibold">{docs().description}</p>
 
-      {/* <table class="border-collapse">
-        <thead class="font-semibold">
-          <tr class={styles.tr}>
-            <th class={styles.th}>Class</th>
-            <th class={styles.th}>CSS</th>
-          </tr>
-        </thead>
-        <tbody>
-          <For each={docs().utilities}>
-            {(utility, i) => (
-              <tr class={styles.tr}>
-                <td class={`${styles.td} font-semibold text-fg-1`}>{utility}</td>
-                <td class={`${styles.td} text-fg-4`}>{compileUtility(utility)}</td>
-              </tr>
-            )}
-          </For>
-        </tbody>
-      </table> */}
+        {/* <table class="border-collapse">
+          <thead class="font-semibold">
+            <tr class={styles.tr}>
+              <th class={styles.th}>Class</th>
+              <th class={styles.th}>CSS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <For each={docs().utilities}>
+              {(utility, i) => (
+                <tr class={styles.tr}>
+                  <td class={`${styles.td} font-semibold text-fg-1`}>{utility}</td>
+                  <td class={`${styles.td} text-fg-4`}>{compileUtility(utility)}</td>
+                </tr>
+              )}
+            </For>
+          </tbody>
+        </table> */}
 
-      {docs().preview && <>
-        <h3 class={styles.h3}>Try it</h3>
-        <div class="grid grid-fit-cols-m gap-s.2 rounded-s overflow-hidden">
-          <For each={docs().utilities}>
-            {(utility) => (
-              <UnilityButton
-                utility={utility}
-                onClick={(util) => setSelected(util)}
-              />
-            )}
-          </For>
-        </div>
+        {docs().preview && <>
+          <h3 class={styles.h3}>Try it</h3>
+          <div class="grid grid-fit-cols-m gap-s.2 rounded-s overflow-hidden">
+            <For each={docs().utilities}>
+              {(utility) => (
+                <UnilityButton
+                  utility={utility}
+                  onClick={(util) => setSelected(util)}
+                />
+              )}
+            </For>
+          </div>
 
-        <Show when={selected()}>
-          <h4 class={styles.h4}>Preview</h4>
-          <div class="bg-abs rounded-s" ref={previewContainer} />
+          <Show when={selected()}>
+            <h4 class={styles.h4}>Preview</h4>
+            <div class="bg-abs rounded-s p-m.2 overflow-auto" ref={previewContainer} />
 
-          {/* <h4 class={styles.h4}>Generated CSS</h4>
-          <code class="block bg-srf p-s rounded-s">{preview()?.css}</code> */}
-        </Show>
-      </>}
+            <h4 class={styles.h4}>HTML</h4>
+            <code class="block bg-srf p-s rounded-s">{preview()?.html}</code>
+
+            <h4 class={styles.h4}>Generated CSS</h4>
+            <code class="block bg-srf p-s rounded-s">{preview()?.css}</code>
+          </Show>
+        </>}
+      </div>
     </div>
   );
 };
