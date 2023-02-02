@@ -5,6 +5,7 @@ export type DocumentedRuleGroupDocs = {
   title: string;
   description: string;
   utilities: string[];
+  preview?: (utility: string) => string;
 };
 
 export type DocumentedRuleGroup = {
