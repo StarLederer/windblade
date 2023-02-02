@@ -3,17 +3,7 @@ import Theme from "../../theme/Theme";
 import * as logical from "../logicalSet";
 import * as size from "../sizes";
 import { objectKeys } from "ts-extras";
-
-type DocumentedRuleGroupDocs = {
-  title: string,
-  description: string,
-  utilities: string[];
-};
-
-type DocumentedRuleGroup = {
-  rules: Rule<Theme>[],
-  docs: DocumentedRuleGroupDocs;
-};
+import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "./types";
 
 export const aspectRatio = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [
