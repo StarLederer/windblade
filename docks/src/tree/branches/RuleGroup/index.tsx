@@ -102,7 +102,7 @@ const Main: Component<{
 
           <Show when={selected()}>
             <h4 class={styles.h4}>Preview</h4>
-            <div class="bg-abs rounded-s p-m.2 overflow-auto" ref={previewContainer} />
+            <div class="bg-def2 rounded-s p-m.2 overflow-auto" ref={previewContainer} />
 
             <h4 class={styles.h4}>HTML</h4>
             <code class="block bg-srf p-s rounded-s">{preview()?.html}</code>
