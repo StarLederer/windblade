@@ -10,8 +10,7 @@ export default defineBuildConfig({
     'unconfig',
     'magic-string',
     '@unocss/core',
-    '@unocss/config',
-    'ts-extras',
+    '@unocss/config'
   ],
   rollup: {
     emitCJS: true,
