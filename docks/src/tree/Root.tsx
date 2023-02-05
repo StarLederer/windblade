@@ -2,7 +2,7 @@ import { Component, For, onCleanup, onMount, Show } from "solid-js";
 import router, { Route } from "@ui/router";
 import navigate from "./navigate";
 import { addNavigationHandler, removeNavigationHandler } from "./navigate";
-import { docs } from "@windblade/unocss";
+import { docs } from "windblade";
 import RuleGroup from "./branches/RuleGroup";
 import Button from "@ui/primitives/Button";
 import themeStore from "~/stores/themeStore";
