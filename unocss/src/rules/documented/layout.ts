@@ -4,6 +4,27 @@ import Theme from "../../theme/Theme";
 import * as logical from "../logicalSet";
 import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "./types";
 
+export const aspectRatio = (): DocumentedRuleGroup => {
+  const rules: Rule<Theme>[] = [
+    [
+      new RegExp(`^(aspect)-(.+)$`),
+      (match) => {
+        if (match[2].includes(":")) return undefined;
+        return { 'aspect-ratio': match[2] }
+      },
+    ],
+  ];
+
+  const docs: DocumentedRuleGroupDocs = {
+    title: "Aspect ratio",
+    description: "Windblade uses CSS ratios instead of presets.",
+    utilities: ["aspect-<ratio>"],
+    preview: (util) => `TODO`,
+  };
+
+  return { rules, docs };
+};
+
 export const container = (): DocumentedRuleGroup => {
   const docs: DocumentedRuleGroupDocs = {
     title: "Container",
@@ -85,7 +106,7 @@ export const objectPosition = (): DocumentedRuleGroup => {
     ...objectEntries(logical.abbreviations.coners).map(([key, val]): Rule<Theme> => [
       `object-${key}`, {'object-position': `var(--${val})`}
     ]),
-    ['object-position', { 'object-position': 'center' }]
+    ['object-center', { 'object-position': 'center' }]
   ];
 
   const docs: DocumentedRuleGroupDocs = {
@@ -97,7 +118,7 @@ export const objectPosition = (): DocumentedRuleGroup => {
       "center"
     ].map((val) => `object-${val}`),
     preview: (util) => `
-      <img alt="Random demo" src="https://picsum.photos/300/200" class="rounded-s.4 max-size-i-m object-none ${util}">
+      <img alt="Random demo" src="https://picsum.photos/600/400" class="rounded-s.4 max-size-i-l.2 object-none ${util}">
     `,
   };
 

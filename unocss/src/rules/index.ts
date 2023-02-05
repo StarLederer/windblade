@@ -6,9 +6,9 @@ import { colorRule, colorBgRule, fgColorRule } from "./colors";
 import * as size from "./sizes";
 import * as time from "./time";
 import { getThemeCSS } from "../core/variant";
-import { layout, backgrounds, interactivity, flexboxAndGrid, sizing, spacing } from "./documented";
+import { layout, backgrounds, interactivity, flexboxAndGrid, sizing, spacing, effects, filters, tables, transitionsAndAnimation, borders, typography, svg, accessibility, transforms } from "./documented";
 
-const simpleRule = (prefix: string, property: string, value: string): Rule<Theme> => {
+export const simpleRule = (prefix: string, property: string, value: string): Rule<Theme> => {
   const css: any = {};
   css[property] = value;
   return [
@@ -18,15 +18,7 @@ const simpleRule = (prefix: string, property: string, value: string): Rule<Theme
 
 const rules: Rule<Theme>[] = [
   // Layout
-
-  [
-    new RegExp(`^(aspect)-(.+)$`),
-    (match) => {
-      if (match[2].includes(":")) return undefined;
-      return { 'aspect-ratio': match[2] }
-    },
-  ],
-
+  ...layout.aspectRatio().rules,
   ...layout.container().rules,
 
   [
@@ -40,7 +32,6 @@ const rules: Rule<Theme>[] = [
   ],
 
   ...layout.breakAfter().rules,
-
   ...layout.breakBefore().rules,
 
   ...["auto", "avoid", "all", "avoid-page", "avoid-column"].map((val): Rule<Theme> => [
@@ -188,21 +179,8 @@ const rules: Rule<Theme>[] = [
   ['grid-flow-row-dense', { 'grid-auto-flow': 'row dense' }],
   ['grid-flow-col-dense', { 'grid-auto-flow': 'column desne' }],
 
-  ...[
-    {
-      ruleName: 'cols',
-      cssName: 'columns',
-    },
-    {
-      ruleName: 'rows',
-      cssName: 'rows',
-    },
-  ].flatMap(({ cssName, ruleName }): Rule<Theme>[] => [
-    [`auto-${ruleName}-auto`, { ['grid-auto-' + cssName]: 'auto' }],
-    [`auto-${ruleName}-fr`, { ['grid-auto-' + cssName]: 'minmax(0, 1fr)' }],
-    // tailwind doesnt have length values for this rule, let's add them
-    size.rule(`auto-${ruleName}`, `grid-auto-${cssName}`),
-  ]),
+  ...flexboxAndGrid.gridAutoCols().rules,
+  ...flexboxAndGrid.gridAutoRows().rules,
 
   size.rule('gap', 'gap'),
   size.rule('gap-col', 'column-gap'),
@@ -276,11 +254,10 @@ const rules: Rule<Theme>[] = [
 
   // Sizing
 
-  ...size.axisRules('size', '', '', 'size'),
-  ...size.axisRules('min-size', '', 'min', 'size'),
-  ...size.axisRules('max-size', '', 'max', 'size'),
-  // our sizing units do not include 'screen' (100vw / 100vh)
-  // TODO: implement more fractions and unit overides
+  ...sizing.widthHeight().rules,
+  ...sizing.size().rules,
+  ...sizing.minSize().rules,
+  ...sizing.maxSize().rules,
 
   // Backgrounds
 
@@ -299,15 +276,7 @@ const rules: Rule<Theme>[] = [
   ['bg-origin-padding', { 'background-origin': 'padding-box' }],
   ['bg-origin-content', { 'background-origin': 'content-box' }],
 
-  ['bg-ss', { 'background-position': 'var(--start-start)' }],
-  ['bg-bs', { 'background-position': 'var(--block-start)' }],
-  ['bg-es', { 'background-position': 'var(--end-start)' }],
-  ['bg-is', { 'background-position': 'var(--inline-start)' }],
-  ['bg-center', { 'background-position': 'center' }],
-  ['bg-ie', { 'background-position': 'var(--inline-start)' }],
-  ['bg-se', { 'background-position': 'var(--start-end)' }],
-  ['bg-be', { 'background-position': 'var(--block-end)' }],
-  ['bg-ee', { 'background-position': 'var(--end-end)' }],
+  ...backgrounds.backgroundPosition().rules,
 
   // TODO: check whether these are really logical properties
   ['bg-repeat', { 'background-repeat': 'repeat' }],
@@ -321,35 +290,13 @@ const rules: Rule<Theme>[] = [
   ['bg-cover', { 'background-size': 'cover' }],
   ['bg-contain', { 'background-size': 'contain' }],
 
-  ['bg-none', { 'background-image': 'none' }],
-  ...(Object.keys(logical.abbreviations.edges) as Array<keyof typeof logical.abbreviations.edges>).map((edgeKey): Rule<Theme> => [
-    `bg-gradient-to-${edgeKey}`,
-    {
-      '--wb-gradient-stops': 'var(--wb-gradient-from, transparent), var(--wb-gradient-to, transparent)',
-      'background-image': `linear-gradient(to var(--${logical.abbreviations.edges[edgeKey]}), var(--wb-gradient-stops))`
-    }
-  ]),
-  ...(Object.keys(logical.abbreviations.coners) as Array<keyof typeof logical.abbreviations.coners>).map((cornerKey): Rule<Theme> => [
-    `bg-gradient-to-${cornerKey}`,
-    {
-      '--wb-gradient-stops': 'var(--wb-gradient-from, transparent), var(--wb-gradient-to, transparent)',
-      'background-image': `linear-gradient(to var(--${logical.abbreviations.coners[cornerKey]}), var(--wb-gradient-stops))`
-    }
-  ]),
-
-  colorRule('from', '--wb-gradient-from'),
-  colorRule('to', '--wb-gradient-to'),
-
-  // TODO implement 'via'
-  // colorRule('via', '--wb-gradient-stops', (val) => `var(--wb-gradient-from, transparent), ${val}, var(--wb-gradient-to, transparent)`),
+  ...backgrounds.backgroundImage().rules,
+  ...backgrounds.gradientColorStops().rules,
 
   // Typography
-
-  // we are skipping font-family rule because in UnoCSS it is better that develoeprs set this up themselves
-
-  size.rule('text', 'font-size'),
-
-  // we are skipping font smoothing because we set it by default in preflight and it should never be changed
+  ...typography.fontFamily().rules,
+  ...typography.fontSize().rules,
+  ...typography.fontSmoothing().rules,
 
   ['italic', { 'font-style': 'italic' }],
   ['not-italic', { 'font-style': 'normal' }],
@@ -374,11 +321,8 @@ const rules: Rule<Theme>[] = [
   ['diagonal-fractions', { 'font-variant-numeric': 'diagonal-fractions' }],
   ['stacked-fractions', { 'font-variant-numeric': 'stacked-fractions' }],
 
-  // we are substituting Tailwinds contants with size units
-  size.rule('tracking', 'letter-spacing', { defaultUnit: 'em' }),
-
-  // we are substituting Tailwinds contants with size units
-  size.rule('leading', 'line-height', { defaultUnit: '' }),
+  ...typography.tracking().rules,
+  ...typography.leading().rules,
 
   ['list-none', { 'list-style-type': 'none' }],
   ['list-disc', { 'list-style-type': 'disc' }],
@@ -392,9 +336,7 @@ const rules: Rule<Theme>[] = [
   ['text-end', { 'text-align': 'end' }],
   ['text-justify', { 'text-align': 'justify' }],
 
-  // TODO: could use constant CSS colors like transparent, currentColor or inherit
-  colorRule('text', 'color'),
-  fgColorRule('text-fg', 'color'),
+  ...typography.textColor().rules,
 
   ['underline', { 'text-decoration-line': 'underline' }],
   ['overline', { 'text-decoration-line': 'overline' }],
@@ -402,8 +344,7 @@ const rules: Rule<Theme>[] = [
   ['no-underline', { 'text-decoration-line': 'none' }], // this doesnt make sense,
   // ['no-line', { 'text-decoration-line': 'none' }], // this would make sense.
 
-  colorRule('decoration', 'text-decoration-color'),
-  fgColorRule('decoration-fg', 'text-decoration-color'),
+  ...typography.textDecorationColor().rules,
 
   ['decoration-solid', { 'text-decoration-style': 'solid' }],
   ['decoration-double', { 'text-decoration-style': 'double' }],
@@ -411,12 +352,8 @@ const rules: Rule<Theme>[] = [
   ['decoration-dashed', { 'text-decoration-style': 'dashed' }],
   ['decoration-wavy', { 'text-decoration-style': 'wavy' }],
 
-  // we use design tokens instead of preset pixel counts
-  ['decoration-from-font', { 'text-decoration-thickness': 'from-font' }],
-  size.rule('decoration', 'text-decoration-thickness'),
-
-  // we use design tokens instead of preset pixel counts
-  size.rule('underline-offset', 'text-underline-offset'),
+  ...typography.textDecorationThickness().rules,
+  ...typography.textUnderlineOffset().rules,
 
   ['uppercase', { 'text-transform': 'uppercase' }],
   ['lowercase', { 'text-transform': 'lowercase' }],
@@ -459,48 +396,33 @@ const rules: Rule<Theme>[] = [
   ['content-none', { 'content': 'none' }],
 
   // Borders
-
-  ...size.cornerRules('rounded', '', 'border', 'radius'),
-  ...logical.cornerRules('rounded', 'full', 'border', 'radius', (pref, prop) => simpleRule(pref, prop, '999999px')),
-  ...logical.cornerRules('rounded', 'none', 'border', 'radius', (pref, prop) => simpleRule(pref, prop, 'none')),
-
+  ...borders.borderRadius().rules,
   [/^(border)$/, (_, { theme }) => ({
     'border-style': 'solid',
     'border-width': '1px',
   })],
-  ...size.edgeRules('border', '', 'border', 'width'),
-  ...logical.edgeRules('border', 'color', 'border', 'color', colorRule),
-  ...logical.edgeRules('border', 'color-fg', 'border', 'color', fgColorRule),
-
+  ...borders.borderWidth().rules,
+  ...borders.borderColor().rules,
   ['border-solid', { 'border-style': 'solid' }],
   ['border-dashed', { 'border-style': 'dashed' }],
   ['border-dotted', { 'border-style': 'dotted' }],
   ['border-double', { 'border-style': 'double' }],
   ['border-hidden', { 'border-style': 'hidden' }],
   ['border-none', { 'border-style': 'none' }],
-
-  // we are skipping Devides becasue we believe it does not fit with the architecture
-
-  size.rule('outline', 'outline-width'),
-  colorRule('outline', 'outline-color'),
-
+  ...borders.divide().rules,
+  ...borders.outlineWidth().rules,
+  ...borders.outlineColor().rules,
   ['outline-none', { 'outline': '0px solid transparent', 'outline-offset': '0px' }],
   ['outline', { 'outline-style': 'solid' }],
   ['outline-dashed', { 'outline-style': 'dashed' }],
   ['outline-dotted', { 'outline-style': 'dotted' }],
   ['outline-double', { 'outline-style': 'double' }],
-
-  size.rule('outline-offset', 'outline-offset'),
-
-  // we are skipping Rings becasue we believe it does not fit with the architecture
+  ...borders.outlineOffset().rules,
+  ...borders.ring().rules,
 
   // Effects
-
-  // we are skipping box-shadows for now because we cannot make them similar to Tailwind and use theme's size tokens
-
-  // we are using size units (ideall fractions) instead of predefined constants
-  size.rule('opacity', 'opacity', { defaultUnit: '' }),
-
+  ...effects.boxShadow().rules,
+  ...effects.opacity().rules,
   ['mix-blend-normal', { 'mix-blend-mode': 'normal' }],
   ['mix-blend-multiply', { 'mix-blend-mode': 'multiply' }],
   ['mix-blend-screen', { 'mix-blend-mode': 'screen' }],
@@ -518,7 +440,6 @@ const rules: Rule<Theme>[] = [
   ['mix-blend-color', { 'mix-blend-mode': 'color' }],
   ['mix-blend-luminosity', { 'mix-blend-mode': 'luminosity' }],
   ['mix-blend-plus-lighter', { 'mix-blend-mode': 'plus-lighter' }],
-
   ['bg-blend-normal', { 'background-blend-mode': 'normal' }],
   ['bg-blend-multiply', { 'background-blend-mode': 'multiply' }],
   ['bg-blend-screen', { 'background-blend-mode': 'screen' }],
@@ -537,17 +458,15 @@ const rules: Rule<Theme>[] = [
   ['bg-blend-luminosity', { 'background-blend-mode': 'luminosity' }],
 
   // Filters
-
   size.rule('blur', 'filter', { postprocess: (val) => `blur(${val})` }),
   size.rule('brightness', 'filter', { postprocess: (val) => `brightness(${val})` }),
   size.rule('contrast', 'filter', { postprocess: (val) => `contrast(${val})` }),
-  // we are skipping drop shadows for now because we cannot make it similar to Talwind and stick to out size tokens at the same time
+  ...filters.dropShadow().rules,
   size.rule('grayscale', 'filter', { postprocess: (val) => `grayscale(${val})` }),
   size.rule('hue-rotate', 'filter', { postprocess: (val) => `hue-rotate(${Number(val) * 360})`, defaultUnit: 'deg' }),
   size.rule('invert', 'filter', { postprocess: (val) => `invert(${val})` }),
   size.rule('saturate', 'filter', { postprocess: (val) => `saturate(${val})` }),
   size.rule('sepia', 'filter', { postprocess: (val) => `sepia(${val})` }),
-
   size.rule('backdrop-blur', 'backdrop-filter', { postprocess: (val) => `blur(${val})` }),
   size.rule('backdrop-brightness', 'backdrop-filter', { postprocess: (val) => `brightness(${val})` }),
   size.rule('backdrop-contrast', 'backdrop-filter', { postprocess: (val) => `contrast(${val})` }),
@@ -559,18 +478,13 @@ const rules: Rule<Theme>[] = [
   size.rule('backdrop-sepia', 'backdrop-filter', { postprocess: (val) => `sepia(${val})` }),
 
   // Tables
-
   ['border-collapse', { 'border-collapse': 'collapse' }],
   ['border-separate', { 'border-collapse': 'separate' }],
-
-  size.rule('border-spacing', 'border-spacing'),
-  // we are skiping border-spacing-b and borer-spacing-i for now beccause theya re hard to implement
-
+  ...tables.borderSpacing().rules,
   ['table-auto', { 'table-layout': 'auto' }],
   ['table-fixed', { 'table-layout': 'fixed' }],
 
   // Transitions & Animations
-
   ['transition-none', { 'transition-property': 'none' }],
   [/^(transition-all)$/, (_, { theme }) => ({
     'transition': 'all',
@@ -602,27 +516,17 @@ const rules: Rule<Theme>[] = [
     'transition-timing-function': theme.windblade.time.functions.default,
     'transition-duration': `${theme.windblade.time.baseUnitMs}ms`,
   })],
-
-  // we are replacing Tailwind contants with theme's proportions
-  time.durationRule('duration', 'transition-duration'),
-  time.timingFunctionRule('ease', 'transition-timing-function'),
-  time.durationRule('delay', 'transition-delay'),
-
-  // we are replacing Tailwind's animations with simple animation paramters, at least for now
-  time.durationRule('animation-duration', 'animation-duration'),
-  time.timingFunctionRule('animation-ease', 'animation-timing-function'),
-  time.durationRule('animation-delay', 'animation-delay'),
+  ...transitionsAndAnimation.transitionDelayAndDuration().rules,
+  ...transitionsAndAnimation.transitionTimingFunction().rules,
+  ...transitionsAndAnimation.animation().rules,
+  ...transitionsAndAnimation.animationDelayAndDuration().rules,
+  ...transitionsAndAnimation.animationTimingFunction().rules,
 
   // Transforms
-
-  // we are skiping X and Y scales because they are not logical values
-  size.rule('scale', 'transform', {defaultUnit: '', postprocess: (val) => `scale${val}`}),
-  // we are replacting Tailwind's constants with theme's proportions
-  size.rule('rotate', 'transform', {defaultUnit: 'deg', postprocess: (val) => `rotate${Number(val) * 360}`}),
-  // we are skiping X and Y translations because they are not logical values
-  size.rule('translate', 'transform', {postprocess: (val) => `translate${val}`}),
-  // we are replacting Tailwind's constants with theme's proportions
-  size.rule('skew', 'transform', {defaultUnit: 'deg', postprocess: (val) => `skew${Number(val) * 360}`}),
+  ...transforms.scale().rules,
+  ...transforms.rotate().rules,
+  ...transforms.translate().rules,
+  ...transforms.skew().rules,
 
   ['origin-ss', { 'transform-origin': 'var(--start-start)' }],
   ['origin-bs', { 'transform-origin': 'var(--block-start)' }],
@@ -635,8 +539,7 @@ const rules: Rule<Theme>[] = [
   ['origin-ee', { 'transform-origin': 'var(--end-end)' }],
 
   // Interactivity
-
-  colorRule('accent', 'accent-color'),
+  ...interactivity.accentColor().rules,
 
   ['appearance-none', { 'appearance': 'none' }],
 
@@ -677,7 +580,7 @@ const rules: Rule<Theme>[] = [
   ['cursor-zoom-in', { 'cursor': 'zoom-in' }],
   ['cursor-zoom-out', { 'cursor': 'zoom-out' }],
 
-  colorRule('caret', 'caret-color'),
+  ...interactivity.caretColor().rules,
 
   ['pointer-events-none', { 'pointer-events': 'none' }],
   ['pointer-events-auto', { 'pointer-events': 'auto' }],
@@ -690,9 +593,8 @@ const rules: Rule<Theme>[] = [
   ['scroll-auto', { 'scroll-behavior': 'auto' }],
   ['scroll-smooth', { 'scroll-behavior': 'smooth' }],
 
-  ...size.edgeRules('scroll-m', '', 'scroll-margin', ''),
-
-  ...size.edgeRules('scroll-p', '', 'scroll-padding', ''),
+  ...interactivity.scrollMargin().rules,
+  ...interactivity.scrollPadding().rules,
 
   ['snap-start', { 'scroll-snap-align': 'start' }],
   ['snap-end', { 'scroll-snap-align': 'end' }],
@@ -702,17 +604,8 @@ const rules: Rule<Theme>[] = [
   ['snap-normal', { 'scroll-snap-stop': 'normal' }],
   ['snap-always', { 'scroll-snap-stop': 'always' }],
 
-  ['snap-none', { 'scroll-snap-type': 'none' }],
-  // we are skipping snap x and y because they have no logical counterparts yet
-  ['snap-both', { 'scroll-snap-type': 'both var(--wb-scroll-snap-strictness)' }],
-  ['snap-mandatory', { '--wb-scroll-snap-strictness': 'mandatory' }],
-  ['snap-proximity', { '--wb-scroll-snap-strictness': 'proximity' }],
-
-  ['touch-auto', { 'touch-action': 'auto' }],
-  ['touch-none', { 'touch-action': 'none' }],
-  // we are skipping pan touch-actions because they have no logical values
-  ['touch-pinch-zoom', { 'touch-action': 'pinch-zoom' }],
-  ['touch-manipulation', { 'touch-action': 'manipulation' }],
+  ...interactivity.scrollSnapType().rules,
+  ...interactivity.touchAction().rules,
 
   ['select-none', { 'user-select': 'none' }],
   ['select-text', { 'user-select': 'text' }],
@@ -724,23 +617,13 @@ const rules: Rule<Theme>[] = [
   ['will-change-contents', { 'will-change': 'contents' }],
   ['will-change-transform', { 'will-change': 'transform' }],
 
-  // Windblade rules for interactive colors
-
   ...interactivity.hue().rules,
-
-  ['highlight', { '--highlight': 'var(--base-highlight)' }],
-  ['highlight+', { '--highlight': 'var(--base-highlight-plus)' }],
+  ...interactivity.highlight().rules,
 
   // SVG
-
-  colorRule('fill', 'fill'),
-  fgColorRule('fill-fg', 'fill'),
-
-  colorRule('stroke', 'stroke'),
-  fgColorRule('stroke-fg', 'stroke'),
-
-  // we are replacing Tailwind's constants with theme's proportion units
-  size.rule('stroke', 'stroke-width'),
+  ...svg.fill().rules,
+  ...svg.stroke().rules,
+  ...svg.strokeWidth().rules,
 
   // Accessibility
 
@@ -767,18 +650,11 @@ const rules: Rule<Theme>[] = [
     'white-space': 'normal',
   }],
 
-  // Tailwind doesn't have color scheme overrides, let's add them
-  [
-    new RegExp(`^(scheme-dark)$`),
-    (match, { theme }) => (getThemeCSS(theme).dark)
-  ],
-  [
-    new RegExp(`^(scheme-light)$`),
-    (match, { theme }) => (getThemeCSS(theme).light)
-  ],
+  ...accessibility.colorScheme().rules,
 
   // Internationalization
   // Tailwind doesn't have this category
+  // TODO: We don't need this, this can be done using CSS selecteors automatically
 
   ['horizontal-tb', {
     'writing-mode': 'horizontal-tb',

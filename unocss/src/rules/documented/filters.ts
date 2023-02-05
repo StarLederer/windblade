@@ -1,5 +1,11 @@
-import { Rule } from "@unocss/core";
-import { objectEntries } from "ts-extras"
-import Theme from "../../theme/Theme";
-import * as logical from "../logicalSet";
 import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "./types";
+
+export const dropShadow = (): DocumentedRuleGroup => {
+  const docs: DocumentedRuleGroupDocs = {
+    title: "Drop shadow",
+    description: "Drop shadows are removed for now because Tailwinds implementation is too limiting. Discussion in progress.",
+    utilities: [],
+  };
+
+  return { rules: [], docs };
+};
