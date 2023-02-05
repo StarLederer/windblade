@@ -1,7 +1,6 @@
 import { Component, For, onCleanup, onMount, Show } from "solid-js";
-import router, { Route } from "@ui/router";
-import navigate from "./navigate";
-import { addNavigationHandler, removeNavigationHandler } from "./navigate";
+import { navigate, Route, addNavigationHandler, removeNavigationHandler} from "~/lib/rotuer";
+import router from "@ui/router";
 import { docs } from "windblade";
 import RuleGroup from "./branches/RuleGroup";
 import Button from "@ui/primitives/Button";

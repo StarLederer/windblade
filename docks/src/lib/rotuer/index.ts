@@ -1,6 +1,9 @@
 import router from "@ui/router";
+import Route from "./Route";
 
-const navigate = (path: string) => {
+export { Route };
+
+export const navigate = (path: string) => {
   router.navigate(path);
   history.pushState({}, "", `?navigation=${path}`);
 };
@@ -8,7 +11,7 @@ const navigate = (path: string) => {
 const constroller = new AbortController();
 const signal = constroller.signal;
 
-const addNavigationHandler = (fallback: string = "/") => {
+export const addNavigationHandler = (fallback: string = "/") => {
   const navigateAsPerUrl = () => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -20,9 +23,8 @@ const addNavigationHandler = (fallback: string = "/") => {
   navigateAsPerUrl();
 };
 
-const removeNavigationHandler = () => {
+export const removeNavigationHandler = () => {
   constroller.abort();
 };
 
 export default navigate;
-export { addNavigationHandler, removeNavigationHandler };
