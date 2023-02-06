@@ -24,18 +24,18 @@ const getCSSProperties = (name: string, color: ThemeColor): VariantProps => {
   // light variant for almost all the colors
   let propsLight: any = {};
   if (light?.s !== undefined) {
-    propsLight[`--col-${name}-s`] = `${light.s}%;`;
+    propsLight[`--col-${name}-s`] = `${light.s}%`;
   }
 
   if (light?.l !== undefined) {
-    propsLight[`--col-${name}-l`] = `${light.l}%;`;
+    propsLight[`--col-${name}-l`] = `${light.l}%`;
   }
   else {
-    propsLight[`--col-${name}-l`] = `${100 - dark.l}%;`;
+    propsLight[`--col-${name}-l`] = `${100 - dark.l}%`;
   }
 
   if (light?.a !== undefined) {
-    propsLight[`--col-${name}-a`] = `${light.a}%;`;
+    propsLight[`--col-${name}-a`] = `${light.a}%`;
   }
 
   return {

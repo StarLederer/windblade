@@ -1,8 +1,8 @@
 import { DynamicRule } from "@unocss/core";
 import Theme, { ThemeColor } from "../theme/Theme";
 
-const staticColorCss = (color: string) => `hsla(var(--hue), var(--col-${color}-s), var(--col-${color}-l), var(--col-${color}-a));`;
-const interactiveColorCss = (color: string) => `hsl(var(--hue), var(--col-${color}-s), calc(var(--col-${color}-l) + var(--highlight)), var(--col-${color}-a));`;
+const staticColorCss = (color: string) => `hsl(var(--hue), var(--col-${color}-s), var(--col-${color}-l), var(--col-${color}-a))`;
+const interactiveColorCss = (color: string) => `hsl(var(--hue), var(--col-${color}-s), calc(var(--col-${color}-l) + var(--highlight)), var(--col-${color}-a))`;
 
 const tryCompileValue = (value: string, theme: Theme): string | undefined => {
   const color = theme.windblade.colors[value];
