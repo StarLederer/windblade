@@ -22,8 +22,7 @@ export const size = (): DocumentedRuleGroup => {
     title: "Size",
     description: "Utilities for setting the size of an element. Missing from Tailwind.",
     utilities: [
-      ...Object.keys(logical.abbreviations.axis).map((val) => `size-${val}-<theme.windblade.proportions>`),
-      ...Object.keys(logical.abbreviations.axis).map((val) => `size-${val}-<theme.windblade.miscSizes>`)
+      ...Object.keys(logical.abbreviations.axis).map((val) => `size-${val}-<theme.windblade.sizes>`),
     ],
     preview: (util) => `
       <div class="${util} ${util.includes("-i-") ? "min-size-b-m.2" : "min-size-i-m.2"} bg-accent rounded-s"></div>
