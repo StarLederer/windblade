@@ -1,5 +1,10 @@
-import type { Variant } from "@/windblade/unocss/core";
+import type { Variant } from "windblade/core";
 import { createSignal, createMemo, createRoot } from "solid-js";
+
+export const hues: Record<Variant, number> = {
+  dark: 200,
+  light: 220,
+};
 
 function main() {
   // System sceheme
@@ -23,10 +28,11 @@ function main() {
     }
   };
 
-  // Computed scheme
+  // Computed
   const scheme = createMemo(() => enforceScheme() ?? systemSceheme() ?? "dark");
+  const hue = createMemo(() => scheme() === "dark" ? 200 : 220);
 
-  return { scheme, enforceScheme, setEnforceScheme, toggleScheme };
+  return { scheme, hue, enforceScheme, setEnforceScheme, toggleScheme };
 }
 
 export default createRoot(main);
