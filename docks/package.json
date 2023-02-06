@@ -26,6 +26,9 @@
     "vite-plugin-solid": "^2.5.0"
   },
   "dependencies": {
+    "@types/js-beautify": "^1.13.3",
+    "highlight.js": "^11.7.0",
+    "js-beautify": "^1.14.7",
     "solid-headless": "^0.13.0",
     "solid-js": "^1.6.5"
   }

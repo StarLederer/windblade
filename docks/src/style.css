@@ -24,6 +24,35 @@ body {
   animation-name: out;
 }
 
+pre {
+  --app-hue: var(--hue);
+}
+
+pre.css,
+.hljs-tag {
+  @apply text-fg-3;
+}
+
+.hljs-selector-class,
+.hljs-name {
+  @apply text-int;
+}
+
+.hljs-attribute,
+.hljs-attr {
+  @apply text-fg-1;
+}
+
+.hljs-string {
+  --hue: calc(var(--app-hue) + 72);
+  @apply text-int;
+}
+
+.current-utility {
+  --hue: calc(var(--app-hue) + 36);
+  @apply bg-int2 rounded-s.4 p-i-s.2;
+}
+
 @keyframes in {
   from {
     transform: scale(1.025);

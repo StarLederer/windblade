@@ -28,6 +28,10 @@ const uno = createRoot(() => createGenerator({
       };
     }
   ],
+  safelist: [
+    "scheme-dark",
+    "scheme-light",
+  ],
 }));
 
 export default uno;

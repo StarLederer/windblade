@@ -1,16 +1,18 @@
-import Button from "@ui/primitives/Button";
 import { Component, createEffect, createSignal, For, on, Show } from "solid-js";
-import uno from "~/unocss";
+import { html, css } from "js-beautify";
+import hljs from "highlight.js";
 import type { docs } from "@windblade/unocss";
+import themeStore, { hues } from "~/stores/themeStore";
+import uno from "~/unocss";
 import UnilityButton from "./components/UtilityButton";
 
 const Main: Component<{
   ruleGroup: docs.rules.DocumentedRuleGroup
 }> = (props) => {
   const [selectedI, setSelectedI] = createSignal(-1);
-  const [selected, setSelected] = createSignal("");
+  const [selected, setSelected] = createSignal<string | undefined>(undefined);
   const [shadowRoot, setShadowRoot] = createSignal<ShadowRoot>();
-  const [preview, setPreview] = createSignal<{ html: string; css: string; preflights: string }>();
+  const [preview, setPreview] = createSignal<{ html: string; css: string; fullCss: string }>();
 
   // Preview container ref
   let previewContainer: HTMLDivElement | undefined;
@@ -32,11 +34,10 @@ const Main: Component<{
 
   // Keep preview in sync with selected
   createEffect(async () => {
-    const html = docs().preview?.(selected()) ?? "";
-    const generateResult = await uno.generate(html, { minify: true });
-    const css = generateResult.getLayer("default") ?? "";
-    const preflights = generateResult.getLayer("preflights") ?? "";
-    setPreview({ html, css, preflights, });
+    const html = docs().preview?.(selected() ?? "") ?? "";
+    const css = (await uno.generate(html, { safelist: false, preflights: false, minify: true })).css;
+    const fullCss = (await uno.generate(html)).css;
+    setPreview({ html, css, fullCss });
   });
 
   // Keep preview dom in sync with preview
@@ -45,8 +46,16 @@ const Main: Component<{
     if (!root) return;
     const p = preview();
     if (!p) return;
-    const { html, css, preflights } = p;
-    root.innerHTML = `<div id="root" style="--hue: 20; display: flex; align-items: center; justify-content: center;"><style>${preflights.replaceAll(":root", "#root")}\n${css}</style>${html}</div>`;
+    const { html, css, fullCss } = p;
+    root.innerHTML = `
+      <div
+        id="root"
+        class="scheme-${themeStore.scheme()}"
+        style="--hue: ${hues.dark + 180}; display: flex; align-items: center; justify-content: center;"
+      >
+        <style>${fullCss.replaceAll(":root", ":where(#root)")}</style>
+        ${html}
+      </div>`;
   });
 
   const docs = () => props.ruleGroup.docs;
@@ -97,13 +106,20 @@ const Main: Component<{
 
           <Show when={selected()}>
             <h4 class={styles.h4}>Preview</h4>
-            <div class="scheme-dark bg-def2 rounded-s p-m.2 overflow-auto" ref={previewContainer} />
+            <div class="bg-def2 rounded-s p-m.2 overflow-auto" ref={previewContainer} />
 
             <h4 class={styles.h4}>HTML</h4>
-            <code class="block bg-srf p-s rounded-s">{preview()?.html}</code>
+            <pre
+              class="block bg-srf p-s rounded-s leading-(s+s.4)"
+              innerHTML={hljs.highlight(html(preview()?.html ?? ""), { language: "xml" }).value.replaceAll(selected() ?? "", `<span class="current-utility">${selected()}</span>`)}
+            />
 
             <h4 class={styles.h4}>Generated CSS</h4>
-            <code class="block bg-srf p-s rounded-s">{preview()?.css}</code>
+            <pre
+              class="css block bg-srf p-s rounded-s leading-(s+s.4)"
+              innerHTML={hljs.highlight(css(preview()?.css ?? ""), { language: "css" }).value}
+            />
+
           </Show>
         </>}
       </div>
