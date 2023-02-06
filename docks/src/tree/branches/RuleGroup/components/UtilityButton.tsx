@@ -1,5 +1,5 @@
 import Button from "@ui/primitives/Button";
-import { Component, createEffect, createSignal, For, JSXElement } from "solid-js";
+import { Component, createEffect, createSignal, For, JSXElement, on } from "solid-js";
 import uno from "~/unocss";
 
 const isolateTokens = (src: JSXElement[]): JSXElement[] => {
@@ -93,7 +93,7 @@ const Main: Component<{
 
   const activate = () => props.onClick?.(tokens().join(""));
 
-  createEffect(activate);
+  createEffect(on(tokens, activate, { defer: true }));
 
   return (
     <div class="flex gap-s.2 justify-between items-center">
