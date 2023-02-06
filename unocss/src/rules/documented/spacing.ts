@@ -11,12 +11,13 @@ export const padding = (): DocumentedRuleGroup => {
     title: "Padding",
     description: "Replaced physical properties with logical.",
     utilities: [
-      ...Object.keys(logical.abbreviations.axis),
-      ...Object.keys(logical.abbreviations.edges),
-    ].map((val) => `p-${val}-<theme.windblade.proportions>`),
+      "p",
+      ...Object.keys(logical.abbreviations.axis).map((val) => `p-${val}`),
+      ...Object.keys(logical.abbreviations.edges).map((val) => `p-${val}`),
+    ].map((val) => `${val}-<theme.windblade.proportions>`),
     preview: (util) => `
       <div class="${util} rounded-s bg-accent">
-        <div class="border border-dashed rounded-s p-s">${util}</div>
+        <div class="border border-dashed rounded-s.2">${util}</div>
       </div>
     `,
   };
@@ -31,11 +32,12 @@ export const margin = (): DocumentedRuleGroup => {
     title: "Margin",
     description: "Replaced physical properties with logical.",
     utilities: [
-      ...Object.keys(logical.abbreviations.axis),
-      ...Object.keys(logical.abbreviations.edges),
-    ].map((val) => `m-${val}-<theme.windblade.proportions>`),
+      "m",
+      ...Object.keys(logical.abbreviations.axis).map((val) => `m-${val}`),
+      ...Object.keys(logical.abbreviations.edges).map((val) => `m-${val}`),
+    ].map((val) => `${val}-<theme.windblade.proportions>`),
     preview: (util) => `
-      <div class="border border-dashed border-color-accent rounded-s">
+      <div class="border border-dashed border-color-accent rounded-s.2">
         <div class="${util} p-s rounded-s bg-accent">${util}</div>
       </div>
     `,
