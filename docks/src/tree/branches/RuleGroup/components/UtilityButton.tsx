@@ -53,10 +53,10 @@ const Integer: Component<{
 
   createEffect(activate);
 
-  const buttonClasses = "p-i-s.6 rounded-s.4 self-stretch";
+  const buttonClasses = "p-b-s.4 p-i-s.6 rounded-s.4 self-stretch";
 
   return (
-    <div class="self-stretch bg-srf border border-color-srf rounded-s.4 flex items-center">
+    <div class="bg-srf border border-color-srf rounded-s.4 flex items-center">
       <Button class={buttonClasses} onClick={() => setVal(val() - 1)}>-</Button>
       <Button class={buttonClasses} onClick={activate}>{val}</Button>
       <Button class={buttonClasses} onClick={() => setVal(val() + 1)}>+</Button>
