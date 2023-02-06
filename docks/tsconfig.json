@@ -8,8 +8,8 @@
       "@windblade/*": [
         "../*"
       ],
-      "windblade": [
-        "../unocss/src"
+      "windblade/*": [
+        "../unocss/src/*"
       ],
       "@ui/*": [
         "./submodules/ui/*"
