@@ -1,116 +1,125 @@
 import Button from "@ui/primitives/Button";
-import { Component, For } from "solid-js";
+import { Component, createEffect, createSignal, For, JSXElement } from "solid-js";
 import uno from "~/unocss";
 
-const processInteger = (utility: string, onClick?: (util: string) => void) => {
-  const prefix = utility.replace("<integer>", "");
+const isolateTokens = (src: JSXElement[]): JSXElement[] => {
+  const tokens = [
+    "<integer>",
+    "<ratio>",
+    "<theme.windblade.sizes>",
+    "<theme.windblade.proportions>",
+    "<theme.windblade.miscSizes>",
+    "<theme.windblade.colors>",
+    "<theme.windblade.miscColors>",
+    "<theme.windblade.time.functions>",
+  ];
+
+  return src.flatMap((element): JSXElement[] => {
+    if (typeof element !== "string") {
+      return [element];
+    }
+
+    // entire element is a token
+    if (tokens.includes(element)) return [element];
+
+    // element does not include any tokens
+    if (tokens.map((token) => element.includes(token)).filter((element) => Boolean(element)).length <= 0) return [element];
+
+    // loop over known tokens
+    return tokens.flatMap((token): JSXElement[] => {
+      const i = element.indexOf(token);
+
+      // element does not include the current token
+      if (i < 0) return [];
+
+      return [
+        // stuff before discovered token
+        ...isolateTokens([element.substring(0, i)]),
+        // discovered token
+        element.substring(i, i + token.length),
+        // stuiff after discovered token
+        ...isolateTokens([element.substring(i + token.length, element.length)]),
+      ].filter((val) => Boolean(val));
+    })
+  });
+};
+
+const Integer: Component<{
+  onChange: (val: string) => void;
+}> = (props) => {
+  const [val, setVal] = createSignal(1);
+
+  const activate = () => props.onChange("" + val());
+
+  createEffect(activate);
+
+  const buttonClasses = "p-i-s.6 rounded-s.4 self-stretch";
+
   return (
-    <For each={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}>
-      {(integer) => (
-        <Button
-          class="p-s rounded-s.2"
-          style="half"
-          onClick={() => { onClick?.(prefix + integer) }}
-        >
-          {prefix + integer}
-        </Button>
-      )}
-    </For>
+    <div class="self-stretch bg-srf border border-color-srf rounded-s.4 flex items-center">
+      <Button class={buttonClasses} onClick={() => setVal(val() - 1)}>-</Button>
+      <Button class={buttonClasses} onClick={activate}>{val}</Button>
+      <Button class={buttonClasses} onClick={() => setVal(val() + 1)}>+</Button>
+    </div>
   );
 };
 
-const processWindbladeColor = (utility: string, onClick?: (util: string) => void) => {
-  const prefix = utility.replace("<theme.windblade.colors>", "");
-  return (
-    <For each={Object.keys(uno.config.theme.windblade.colors)}>
-      {(color) => (
-        <Button
-          class="p-s rounded-s.2"
-          style="half"
-          onClick={() => { onClick?.(prefix + color) }}
+const List: Component<{
+  values: any[],
+  onChange: (val: string) => void;
+}> = (props) => (
+  <select
+    name="colors"
+    class="block size-b-full bg-srf border border-color-srf rounded-s.4 min-size-i-0 p-i-s.4 hover:highlight active:highlight+"
+  >
+    <option value=""></option>
+    <For each={props.values}>
+      {([name]) => (
+        <option
+          value={name}
+          onClick={() => props.onChange(name)}
         >
-          {prefix + color}
-        </Button>
-      )}
+          {name}
+        </option>)}
     </For>
-  );
-};
-
-const processWindbladeMiscColor = (utility: string, onClick?: (util: string) => void) => {
-  const prefix = utility.replace("<theme.windblade.miscColors>", "");
-  return (
-    <For each={Object.keys(uno.config.theme.windblade.miscColors)}>
-      {(color) => (
-        <Button
-          class="p-s rounded-s.2"
-          style="half"
-          onClick={() => { onClick?.(prefix + color) }}
-        >
-          {prefix + color}
-        </Button>
-      )}
-    </For>
-  );
-};
-
-const processWindbladeProportion = (utility: string, onClick?: (util: string) => void) => {
-  const prefix = utility.replace("<theme.windblade.proportions>", "");
-  return (
-    <For each={Object.keys(uno.config.theme.windblade.proportions)}>
-      {(color) => (
-        <Button
-          class="p-s rounded-s.2"
-          style="half"
-          onClick={() => { onClick?.(prefix + color) }}
-        >
-          {prefix + color}
-        </Button>
-      )}
-    </For>
-  );
-};
-
-const processWindbladeMiscSizes= (utility: string, onClick?: (util: string) => void) => {
-  const prefix = utility.replace("<theme.windblade.miscSizes>", "");
-  return (
-    <For each={Object.keys(uno.config.theme.windblade.miscSizes)}>
-      {(color) => (
-        <Button
-          class="p-s rounded-s.2"
-          style="half"
-          onClick={() => { onClick?.(prefix + color) }}
-        >
-          {prefix + color}
-        </Button>
-      )}
-    </For>
-  );
-};
+  </select>
+);
 
 const Main: Component<{
   utility: string;
-  onClick?: (color: string) => void;
+  onClick?: (util: string) => void;
 }> = (props) => {
-  if (props.utility.endsWith("<integer>")) {
-    return processInteger(props.utility, props.onClick);
-  } else if (props.utility.endsWith("<theme.windblade.colors>")) {
-    return processWindbladeColor(props.utility, props.onClick);
-  } else if (props.utility.endsWith("<theme.windblade.miscColors>")) {
-    return processWindbladeMiscColor(props.utility, props.onClick);
-  } else if (props.utility.endsWith("<theme.windblade.proportions>")) {
-    return processWindbladeProportion(props.utility, props.onClick);
-  } else if (props.utility.endsWith("<theme.windblade.miscSizes>")) {
-    return processWindbladeMiscSizes(props.utility, props.onClick);
-  }
+  const [tokens, setTokens] = createSignal(isolateTokens([props.utility]));
+
+  const activate = () => props.onClick?.(tokens().join(""));
+
+  createEffect(activate);
 
   return (
-    <Button
-      class="p-s rounded-s.2"
-      style="half"
-      onClick={() => props.onClick?.(props.utility)}
-    >
-      {props.utility}
-    </Button>
+    <div class="flex gap-s.2 justify-between items-center">
+      <div class="flex items-center">
+        {isolateTokens([props.utility]).map((token, i) => {
+          switch (token) {
+            case "<integer>":
+              return <Integer onChange={(val) => setTokens((prev) => { prev[i] = val; return [...prev] })} />;
+            case "<theme.windblade.sizes>":
+              return <List values={[...Object.entries(uno.config.theme.windblade.proportions), ...Object.entries(uno.config.theme.windblade.miscSizes)]} onChange={(val) => setTokens((prev) => { prev[i] = val; return [...prev] })} />;
+            case "<theme.windblade.proportions>":
+              return <List values={Object.entries(uno.config.theme.windblade.proportions)} onChange={(val) => setTokens((prev) => { prev[i] = val; return [...prev] })} />;
+            case "<theme.windblade.miscSizes>":
+              return <List values={Object.entries(uno.config.theme.windblade.miscSizes)} onChange={(val) => setTokens((prev) => { prev[i] = val; return [...prev] })} />;
+            case "<theme.windblade.colors>":
+              return <List values={Object.entries(uno.config.theme.windblade.colors)} onChange={(val) => setTokens((prev) => { prev[i] = val; return [...prev] })} />;
+            case "<theme.windblade.miscColors>":
+              return <List values={Object.entries(uno.config.theme.windblade.miscColors)} onChange={(val) => setTokens((prev) => { prev[i] = val; return [...prev] })} />;
+            case "<theme.windblade.time.functions>":
+              return <List values={Object.entries(uno.config.theme.windblade.time.functions)} onChange={(val) => setTokens((prev) => { prev[i] = val; return [...prev] })} />;
+            default:
+              return <button onClick={() => setTokens((prev) => { prev[i] = token; return [...prev] })}>{token}</button>;
+          }
+        })}
+      </div>
+    </div>
   );
 };
 

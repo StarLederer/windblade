@@ -7,7 +7,8 @@ import UnilityButton from "./components/UtilityButton";
 const Main: Component<{
   ruleGroup: docs.rules.DocumentedRuleGroup
 }> = (props) => {
-  const [selected, setSelected] = createSignal(props.ruleGroup.docs.utilities[0]);
+  const [selectedI, setSelectedI] = createSignal(-1);
+  const [selected, setSelected] = createSignal("");
   const [shadowRoot, setShadowRoot] = createSignal<ShadowRoot>();
   const [preview, setPreview] = createSignal<{ html: string; css: string; preflights: string }>();
 
@@ -52,14 +53,9 @@ const Main: Component<{
 
   const styles = {
     tr: "border border-color-transparent border-be-color-fg-5",
-    th: "p-b-s.6 text-start size-i-half",
-    td: "p-b-s.6",
+    th: "p-b-s.6 text-start",
     h3: "font-bold text-(s+s.2)",
     h4: "font-bold",
-  };
-
-  const compileUtility = (utility: string) => {
-    return 'TODO: Generate';
   };
 
   return (
@@ -68,41 +64,40 @@ const Main: Component<{
         <h2 class="text-fg-1 font-bold text-m.2">{docs().title}</h2>
         <p class="text-fg-3 font-semibold">{docs().description}</p>
 
-        {/* <table class="border-collapse">
-          <thead class="font-semibold">
-            <tr class={styles.tr}>
-              <th class={styles.th}>Class</th>
-              <th class={styles.th}>CSS</th>
-            </tr>
-          </thead>
-          <tbody>
-            <For each={docs().utilities}>
-              {(utility, i) => (
-                <tr class={styles.tr}>
-                  <td class={`${styles.td} font-semibold text-fg-1`}>{utility}</td>
-                  <td class={`${styles.td} text-fg-4`}>{compileUtility(utility)}</td>
-                </tr>
-              )}
-            </For>
-          </tbody>
-        </table> */}
-
         {docs().preview && <>
           <h3 class={styles.h3}>Try it</h3>
-          <div class="grid grid-fit-cols-m gap-s.2 rounded-s overflow-hidden">
-            <For each={docs().utilities}>
-              {(utility) => (
-                <UnilityButton
-                  utility={utility}
-                  onClick={(util) => setSelected(util)}
-                />
-              )}
-            </For>
-          </div>
+          <table class="border-collapse">
+            <thead class="font-semibold">
+              <tr class={styles.tr}>
+                <th class={`${styles.th} p-ie-s`}>Selected</th>
+                <th class={`${styles.th} size-i-full`}>Utility</th>
+              </tr>
+            </thead>
+            <tbody>
+              <For each={docs().utilities}>
+                {(utility, i) => (
+                  <tr class={styles.tr} >
+                    <td>
+                      <div class="m-auto i-mdi-check transition ease-linear" style={`opacity: ${selectedI() === i() ? 1 : 0};`} />
+                    </td>
+                    <td class="p-b-s">
+                      <UnilityButton
+                        utility={utility}
+                        onClick={(util) => {
+                          setSelectedI(i);
+                          setSelected(util);
+                        }}
+                      />
+                    </td>
+                  </tr>
+                )}
+              </For>
+            </tbody>
+          </table>
 
           <Show when={selected()}>
             <h4 class={styles.h4}>Preview</h4>
-            <div class="bg-def2 rounded-s p-m.2 overflow-auto" ref={previewContainer} />
+            <div class="scheme-dark bg-def2 rounded-s p-m.2 overflow-auto" ref={previewContainer} />
 
             <h4 class={styles.h4}>HTML</h4>
             <code class="block bg-srf p-s rounded-s">{preview()?.html}</code>
