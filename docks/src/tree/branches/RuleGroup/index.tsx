@@ -54,7 +54,7 @@ const Main: Component<{
       <div
         id="root"
         class="scheme-${themeStore.scheme()}"
-        style="--hue: ${hues.dark + 180}; display: flex; align-items: center; justify-content: center;"
+        style="--hue: ${themeStore.hue() + 180}; display: flex; align-items: center; justify-content: center;"
       >
         <style>${fullCss.replaceAll(":root", ":where(#root)")}</style>
         ${html}
