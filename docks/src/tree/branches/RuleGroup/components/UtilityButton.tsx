@@ -53,13 +53,13 @@ const Integer: Component<{
 
   createEffect(activate);
 
-  const buttonClasses = "p-b-s.4 p-i-s.6 rounded-s.4 self-stretch";
+  const buttonClasses = "size-b-m.2 p-i-s.6 self-stretch";
 
   return (
-    <div class="bg-srf border border-color-srf rounded-s.4 flex items-center">
-      <Button class={buttonClasses} onClick={() => setVal(val() - 1)}>-</Button>
-      <Button class={buttonClasses} onClick={activate}>{val}</Button>
-      <Button class={buttonClasses} onClick={() => setVal(val() + 1)}>+</Button>
+    <div class="rounded-s.4 overflow-hidden flex items-center">
+      <Button style="secondary" class={buttonClasses} onClick={() => setVal(val() - 1)}>-</Button>
+      <Button style="secondary" class={buttonClasses} onClick={activate}>{val}</Button>
+      <Button style="secondary" class={buttonClasses} onClick={() => setVal(val() + 1)}>+</Button>
     </div>
   );
 };
@@ -70,7 +70,7 @@ const List: Component<{
 }> = (props) => (
   <select
     name="colors"
-    class="block size-b-full bg-srf border border-color-srf rounded-s.4 min-size-i-0 p-i-s.4 hover:highlight active:highlight+"
+    class="size-b-full bg-int2 rounded-s.4 min-size-i-0 size-b-m.2 p-i-s.4 leading-s transition ease-out hover:highlight active:highlight+"
   >
     <option value=""></option>
     <For each={props.values}>
@@ -97,7 +97,7 @@ const Main: Component<{
 
   return (
     <div class="flex gap-s.2 justify-between items-center">
-      <div class="flex items-center">
+      <div class="flex items-center font-semibold">
         {isolateTokens([props.utility]).map((token, i) => {
           switch (token) {
             case "<integer>":
@@ -115,7 +115,7 @@ const Main: Component<{
             case "<theme.windblade.time.functions>":
               return <List values={Object.entries(uno.config.theme.windblade.time.functions)} onChange={(val) => setTokens((prev) => { prev[i] = val; return [...prev] })} />;
             default:
-              return <button onClick={() => setTokens((prev) => { prev[i] = token; return [...prev] })}>{token}</button>;
+              return <button class="text-int transition ease-out hover:highlight active:highlight+" onClick={() => setTokens((prev) => { prev[i] = token; return [...prev] })}>{token}</button>;
           }
         })}
       </div>

@@ -46,7 +46,7 @@ const Main: Component<{
     if (!root) return;
     const p = preview();
     if (!p) return;
-    const { html, css, fullCss } = p;
+    const { html, fullCss } = p;
     root.innerHTML = `
       <div
         id="root"
@@ -62,9 +62,10 @@ const Main: Component<{
 
   const styles = {
     tr: "border border-color-transparent border-be-color-fg-5",
-    th: "p-b-s.6 text-start",
+    th: "p-b-s.6 text-start text-fg-3",
     h3: "font-bold text-(s+s.2)",
-    h4: "font-bold",
+    h4: "font-bold m-be-s",
+    pre: "block bg-srf p-s rounded-s leading-(s+s.4) overflow-auto",
   };
 
   return (
@@ -78,7 +79,7 @@ const Main: Component<{
           <table class="border-collapse">
             <thead class="font-semibold">
               <tr class={styles.tr}>
-                <th class={`${styles.th} p-ie-s`}>Selected</th>
+                <th class={`${styles.th} p-i-s`}><div class="i-mdi-minus" /></th>
                 <th class={`${styles.th} size-i-full`}>Utility</th>
               </tr>
             </thead>
@@ -86,8 +87,8 @@ const Main: Component<{
               <For each={docs().utilities}>
                 {(utility, i) => (
                   <tr class={styles.tr} >
-                    <td>
-                      <div class="m-auto i-mdi-check transition ease-linear" style={`opacity: ${selectedI() === i() ? 1 : 0};`} />
+                    <td class="p-i-s">
+                      <div class="m-auto i-mdi-check transition ease-linear text-fg-1" style={`opacity: ${selectedI() === i() ? 1 : 0};`} />
                     </td>
                     <td class="p-b-s">
                       <UnilityButton
@@ -105,21 +106,26 @@ const Main: Component<{
           </table>
 
           <Show when={selected()}>
-            <h4 class={styles.h4}>Preview</h4>
-            <div class="bg-def2 rounded-s p-m.2 overflow-auto" ref={previewContainer} />
+            <section class="break-inside-avoid break-after-column">
+              <h4 class={styles.h4}>Preview</h4>
+              <div class="bg-def2 rounded-s p-m.2 overflow-auto" ref={previewContainer} />
+            </section>
 
-            <h4 class={styles.h4}>HTML</h4>
-            <pre
-              class="block bg-srf p-s rounded-s leading-(s+s.4)"
-              innerHTML={hljs.highlight(html(preview()?.html ?? ""), { language: "xml" }).value.replaceAll(selected() ?? "", `<span class="current-utility">${selected()}</span>`)}
-            />
+            <section class="break-inside-avoid">
+              <h4 class={styles.h4}>HTML</h4>
+              <pre
+                class={styles.pre}
+                innerHTML={hljs.highlight(html(preview()?.html ?? ""), { language: "xml" }).value.replaceAll(selected() ?? "", `<span class="current-utility">${selected()}</span>`)}
+              />
+            </section>
 
-            <h4 class={styles.h4}>Generated CSS</h4>
-            <pre
-              class="css block bg-srf p-s rounded-s leading-(s+s.4)"
-              innerHTML={hljs.highlight(css(preview()?.css ?? ""), { language: "css" }).value}
-            />
-
+            <section class="break-inside-avoid">
+              <h4 class={styles.h4}>Generated CSS</h4>
+              <pre
+                class={`${styles.pre} css`}
+                innerHTML={hljs.highlight(css(preview()?.css ?? ""), { language: "css" }).value}
+              />
+            </section>
           </Show>
         </>}
       </div>
