@@ -15,7 +15,7 @@ const Main: Component<{
 
   const [formatter] = createResource(async () => (await import("js-beautify")).default);
   const [highlighter] = createResource(async () => (await import("highlight.js")).default);
-  const [delay] = createResource(async () => await new Promise(r => setTimeout(r, 100000)));
+  // const [delay] = createResource(async () => await new Promise(r => setTimeout(r, 100000)));
 
   // Preview container ref
   let previewContainer: HTMLDivElement | undefined;
@@ -117,7 +117,7 @@ const Main: Component<{
             <section class="break-inside-avoid">
               <h4 class={styles.h4}>HTML</h4>
               <Suspense fallback={<div class={`${styles.pre} flex gap-s items-center`}>Loading <Progress/></div>}>
-                {delay() + ""}
+                {/* {delay() + ""} */}
                 <pre
                   class={styles.pre}
                   innerHTML={highlighter()?.highlight(formatter()?.html_beautify(preview()?.html ?? "") ?? "", { language: "xml" }).value.replaceAll(selected() ?? "", `<span class="current-utility">${selected()}</span>`)}
