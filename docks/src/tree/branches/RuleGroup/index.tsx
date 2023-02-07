@@ -1,10 +1,9 @@
-import { Component, createEffect, createSignal, For, on, Show } from "solid-js";
-import { html, css } from "js-beautify";
-import hljs from "highlight.js";
+import { Component, createEffect, createResource, createSignal, For, on, Show, Suspense } from "solid-js";
 import type { docs } from "@windblade/unocss";
 import themeStore, { hues } from "~/stores/themeStore";
 import uno from "~/unocss";
 import UnilityButton from "./components/UtilityButton";
+import Progress from "@ui/primitives/Progress";
 
 const Main: Component<{
   ruleGroup: docs.rules.DocumentedRuleGroup
@@ -13,6 +12,10 @@ const Main: Component<{
   const [selected, setSelected] = createSignal<string | undefined>(undefined);
   const [shadowRoot, setShadowRoot] = createSignal<ShadowRoot>();
   const [preview, setPreview] = createSignal<{ html: string; css: string; fullCss: string }>();
+
+  const [formatter] = createResource(async () => (await import("js-beautify")).default);
+  const [highlighter] = createResource(async () => (await import("highlight.js")).default);
+  const [delay] = createResource(async () => await new Promise(r => setTimeout(r, 100000)));
 
   // Preview container ref
   let previewContainer: HTMLDivElement | undefined;
@@ -65,7 +68,7 @@ const Main: Component<{
     th: "p-b-s.6 text-start text-fg-3",
     h3: "font-bold text-(s+s.2)",
     h4: "font-bold m-be-s",
-    pre: "block bg-srf p-s rounded-s leading-(s+s.4) overflow-auto",
+    pre: "bg-srf p-s rounded-s leading-(s+s.4) overflow-auto",
   };
 
   return (
@@ -113,18 +116,23 @@ const Main: Component<{
 
             <section class="break-inside-avoid">
               <h4 class={styles.h4}>HTML</h4>
-              <pre
-                class={styles.pre}
-                innerHTML={hljs.highlight(html(preview()?.html ?? ""), { language: "xml" }).value.replaceAll(selected() ?? "", `<span class="current-utility">${selected()}</span>`)}
-              />
+              <Suspense fallback={<div class={`${styles.pre} flex gap-s items-center`}>Loading <Progress/></div>}>
+                {delay() + ""}
+                <pre
+                  class={styles.pre}
+                  innerHTML={highlighter()?.highlight(formatter()?.html_beautify(preview()?.html ?? "") ?? "", { language: "xml" }).value.replaceAll(selected() ?? "", `<span class="current-utility">${selected()}</span>`)}
+                />
+              </Suspense>
             </section>
 
             <section class="break-inside-avoid">
               <h4 class={styles.h4}>Generated CSS</h4>
-              <pre
-                class={`${styles.pre} css`}
-                innerHTML={hljs.highlight(css(preview()?.css ?? ""), { language: "css" }).value}
-              />
+              <Suspense fallback={<div class={`${styles.pre} flex gap-s items-center`}>Loading <Progress/></div>}>
+                <pre
+                  class={`${styles.pre} css`}
+                  innerHTML={highlighter()?.highlight(formatter()?.css_beautify(preview()?.css ?? "") ?? "", { language: "css" }).value}
+                />
+              </Suspense>
             </section>
           </Show>
         </>}
