@@ -2,6 +2,30 @@
   font-family: 'Assistant', sans-serif;
 }
 
+/* width */
+::-webkit-scrollbar {
+  @apply size-i-s.2 size-b-s.2;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-fg-5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-fg-4 rounded-full;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-fg-3;
+}
+
+:root {
+  @apply accent-int;
+}
+
 button {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
