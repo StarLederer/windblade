@@ -31,7 +31,7 @@ export const fontSize = (): DocumentedRuleGroup => {
 
 export const fontSmoothing = (): DocumentedRuleGroup => {
   const docs: DocumentedRuleGroupDocs = {
-    title: "Font family",
+    title: "Font smoothing",
     description: "Font smoothing has been removed because Windblade sets it by default in preflight and it should never be changed. Plese open an issue if this is wrong.",
     utilities: [],
   };
