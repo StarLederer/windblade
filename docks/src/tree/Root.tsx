@@ -45,13 +45,13 @@ const Main: Component = () => {
                 <div class="font-semibold m-be-s.4">{category}</div>
                 <div class="flex flex-col gap-s.2">
                   <For each={groups}>
-                    {(ruleGroup) => {
+                    {(ruleGroup, i) => {
                       const { rules, docs } = ruleGroup();
                       const current = () => router.route().current.startsWith(`/group/${docs.title}`);
-                      const hue = () => themeStore.hue() + Math.abs(stringToHue(docs.title) % 4 + 1) * 36;
+                      const hue = () => themeStore.hue() + i() * 3.6;// + Math.abs(stringToHue(docs.title) % 4 + 1) * 36;
                       return (
-                        <button onClick={() => navigate(`/group/${docs.title}`)} class={`${current() ? "bg-srf text-fg-1" : "text-int"} relative font-semibold p-s.6 p-i-s rounded-full text-start justify-start transition ease-out overflow-hidden hover:highlight hover:bg-int3 active:highlight+`}>
-                          <div style={`--hue: ${hue()}`} class={`${current() ? "bg-int" : "bg-int2"} size-b-s.4 size-i-s.4 transition absolute rounded-full inset-0 inset-b-0 m-b-auto m-is-((s-s.4)/2)`} />
+                        <button onClick={() => navigate(`/group/${docs.title}`)} class={`${current() ? "bg-srf text-fg-1" : "text-fg-3"} relative p-s.6 p-i-s p-is-m.2 rounded-full text-start justify-start transition ease-out overflow-hidden hover:highlight hover:bg-int3 hover:text-fg-1 active:highlight+`}>
+                          <div style={`--hue: ${hue()}`} class={`${current() ? "bg-int" : "bg-int2"} size-b-s.4 size-i-s.4 transition absolute rounded-full inset-0 inset-b-0 m-b-auto m-is-((m.2-s.4)/2)`} />
                           <div style={`--hue: ${hue()}`} class={`${current() ? "bg-int2" : "bg-transparent"} blur-s transition absolute size-b-m.2 size-i-m.2 rounded-full inset-0 inset-b-0 m-b-auto`} />
                           <span class="relative">{docs.title}</span>
                         </button>
