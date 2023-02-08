@@ -71,6 +71,7 @@ const List: Component<{
   <select
     name="colors"
     class="size-b-full bg-int2 rounded-s.4 min-size-i-0 size-b-m.2 p-i-s.4 leading-s transition ease-out hover:highlight active:highlight+"
+    onChange={({target}) => props.onChange((target as HTMLSelectElement).value)}
   >
     <option value=""></option>
     <For each={props.values}>
