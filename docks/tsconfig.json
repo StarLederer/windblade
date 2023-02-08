@@ -5,11 +5,14 @@
     "module": "ESNext",
     "baseUrl": ".",
     "paths": {
-      "@windblade/*": [
-        "../*"
+      "windblade": [
+        "../unocss/src"
       ],
       "windblade/*": [
         "../unocss/src/*"
+      ],
+      "@windblade/*": [
+        "../*"
       ],
       "@ui/*": [
         "./submodules/ui/*"
