@@ -53,7 +53,7 @@ const Main: Component = () => {
                         <button onClick={() => navigate(`/group/${docs.title}`)} class={`${current() ? "bg-srf text-fg-1" : "text-int"} relative font-semibold p-s.6 p-i-s rounded-full text-start justify-start transition ease-out overflow-hidden hover:highlight hover:bg-int3 active:highlight+`}>
                           <div style={`--hue: ${hue()}`} class={`${current() ? "bg-int" : "bg-int2"} size-b-s.4 size-i-s.4 transition absolute rounded-full inset-0 inset-b-0 m-b-auto m-is-((s-s.4)/2)`} />
                           <div style={`--hue: ${hue()}`} class={`${current() ? "bg-int2" : "bg-transparent"} blur-s transition absolute size-b-m.2 size-i-m.2 rounded-full inset-0 inset-b-0 m-b-auto`} />
-                          {docs.title}
+                          <span class="relative">{docs.title}</span>
                         </button>
                       )
                     }}
