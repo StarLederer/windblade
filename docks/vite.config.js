@@ -85,7 +85,7 @@ export default defineConfig({
                 { dark: { s: 20, l: 80 } },
                 { dark: { s: 20, l: 60 } },
                 { dark: { s: 20, l: 40 } },
-                { dark: { s: 10, l: 10 }, light: { l: 80 } },
+                { dark: { s: 10, l: 10 }, light: { l: 85 } },
               ]
             },
 
