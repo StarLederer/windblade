@@ -23,7 +23,7 @@
 }
 
 :root {
-  @apply accent-int;
+  @apply accent-accent;
 }
 
 button {
@@ -48,10 +48,6 @@ body {
   animation-name: out;
 }
 
-pre {
-  --app-hue: var(--hue);
-}
-
 pre.css,
 .hljs-tag {
   @apply text-fg-3;
@@ -59,7 +55,7 @@ pre.css,
 
 .hljs-selector-class,
 .hljs-name {
-  @apply text-int;
+  @apply text-accent;
 }
 
 .hljs-attribute,
@@ -68,13 +64,7 @@ pre.css,
 }
 
 .hljs-string {
-  --hue: calc(var(--app-hue) + 72);
-  @apply text-int;
-}
-
-.current-utility {
-  --hue: calc(var(--app-hue) + 36);
-  @apply bg-int2 rounded-s.4 p-i-s.2;
+  @apply text-accent hue-rotate-s.2;
 }
 
 @keyframes in {

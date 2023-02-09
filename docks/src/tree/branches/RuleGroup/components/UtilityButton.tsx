@@ -70,7 +70,7 @@ const List: Component<{
 }> = (props) => (
   <select
     name="colors"
-    class="size-b-full bg-int2 rounded-s.4 min-size-i-0 size-b-m.2 p-i-s.4 leading-s transition ease-out hover:highlight active:highlight+"
+    class="size-b-full bg-accent-2 rounded-s.4 min-size-i-0 size-b-m.2 p-i-s.4 leading-s transition ease-out hover:highlight active:highlight+"
     onChange={({target}) => props.onChange((target as HTMLSelectElement).value)}
   >
     <option value=""></option>
@@ -116,7 +116,7 @@ const Main: Component<{
             case "<theme.windblade.time.functions>":
               return <List values={Object.entries(uno.config.theme.windblade.time.functions)} onChange={(val) => setTokens((prev) => { prev[i] = val; return [...prev] })} />;
             default:
-              return <button class="text-int transition ease-out hover:highlight active:highlight+" onClick={() => setTokens((prev) => { prev[i] = token; return [...prev] })}>{token}</button>;
+              return <button class="text-accent transition ease-out hover:highlight active:highlight+" onClick={() => setTokens((prev) => { prev[i] = token; return [...prev] })}>{token}</button>;
           }
         })}
       </div>

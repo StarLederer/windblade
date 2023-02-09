@@ -1,6 +1,6 @@
 import { Component, createEffect, createResource, createSignal, For, on, Show, Suspense } from "solid-js";
 import type { docs } from "@windblade/unocss";
-import themeStore, { hues } from "~/stores/themeStore";
+import themeStore from "~/stores/themeStore";
 import uno from "~/unocss";
 import UnilityButton from "./components/UtilityButton";
 import Progress from "@ui/primitives/Progress";
@@ -53,8 +53,8 @@ const Main: Component<{
     root.innerHTML = `
       <div
         id="root"
-        class="scheme-${themeStore.scheme()}"
-        style="--hue: ${themeStore.hue() + 180}; display: flex; align-items: center; justify-content: center;"
+        class="${themeStore.scheme() === "dark" ? "scheme-dark-60" : "scheme-light-40"}"
+        style="display: flex; align-items: center; justify-content: center;"
       >
         <style>${fullCss.replaceAll(":root", ":where(#root)")}</style>
         ${html}
@@ -68,7 +68,7 @@ const Main: Component<{
     th: "p-b-s.6 text-start text-fg-3",
     h3: "font-bold text-(s+s.2)",
     h4: "font-bold m-be-s",
-    pre: "bg-srf p-s rounded-s leading-(s+s.4) overflow-auto",
+    pre: "bg-surface p-s rounded-s leading-(s+s.4) overflow-auto",
   };
 
   return (
@@ -111,7 +111,7 @@ const Main: Component<{
           <Show when={selected()}>
             <section class="break-inside-avoid break-after-column">
               <h4 class={styles.h4}>Preview</h4>
-              <div class="bg-def2 rounded-s p-m.2 overflow-auto" ref={previewContainer} />
+              <div class="bg-normal-2 rounded-s p-m.2 overflow-auto" ref={previewContainer} />
             </section>
 
             <section class="break-inside-avoid">
@@ -120,7 +120,7 @@ const Main: Component<{
                 {/* {delay() + ""} */}
                 <pre
                   class={styles.pre}
-                  innerHTML={highlighter()?.highlight(formatter()?.html_beautify(preview()?.html ?? "") ?? "", { language: "xml" }).value.replaceAll(selected() ?? "", `<span class="current-utility">${selected()}</span>`)}
+                  innerHTML={highlighter()?.highlight(formatter()?.html_beautify(preview()?.html ?? "") ?? "", { language: "xml" }).value.replaceAll(selected() ?? "", `<span class="bg-accent-2 rounded-s.4 p-i-s.2">${selected()}</span>`)}
                 />
               </Suspense>
             </section>

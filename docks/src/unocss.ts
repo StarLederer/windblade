@@ -29,8 +29,8 @@ const uno = createRoot(() => createGenerator({
     }
   ],
   safelist: [
-    "scheme-dark",
-    "scheme-light",
+    "scheme-dark-60",
+    "scheme-light-40",
   ],
 }));
 

@@ -1,5 +1,5 @@
 import { Component, For, onCleanup, onMount, Show } from "solid-js";
-import { navigate, Route, addNavigationHandler, removeNavigationHandler} from "~/lib/rotuer";
+import { navigate, Route, addNavigationHandler, removeNavigationHandler } from "~/lib/rotuer";
 import router from "@ui/router";
 import Button from "@ui/primitives/Button";
 import Link from "@ui/primitives/Button/Link";
@@ -8,7 +8,6 @@ import logoWhite from "@windblade/brand/logo-white.svg";
 import logoBlack from "@windblade/brand/logo-black.svg";
 import themeStore from "~/stores/themeStore";
 import RuleGroup from "./branches/RuleGroup";
-import { stringToHue } from "~/lib/visuals";
 
 const Main: Component = () => {
   onMount(() => { addNavigationHandler('/home'); })
@@ -46,13 +45,15 @@ const Main: Component = () => {
                 <div class="flex flex-col gap-s.2">
                   <For each={groups}>
                     {(ruleGroup, i) => {
-                      const { rules, docs } = ruleGroup();
+                      const { docs } = ruleGroup();
                       const current = () => router.route().current.startsWith(`/group/${docs.title}`);
-                      const hue = () => themeStore.hue() + i() * 3.6;// + Math.abs(stringToHue(docs.title) % 4 + 1) * 36;
+                      const style = `filter: hue-rotate(${3.6 * i()}deg);`;
                       return (
-                        <button onClick={() => navigate(`/group/${docs.title}`)} class={`${current() ? "bg-srf text-fg-1" : "text-fg-3"} relative p-s.6 p-i-s p-is-m.2 rounded-full text-start justify-start transition ease-out overflow-hidden hover:highlight hover:bg-int3 hover:text-fg-1 active:highlight+`}>
-                          <div style={`--hue: ${hue()}`} class={`${current() ? "bg-int" : "bg-int2"} size-b-s.4 size-i-s.4 transition absolute rounded-full inset-0 inset-b-0 m-b-auto m-is-((m.2-s.4)/2)`} />
-                          <div style={`--hue: ${hue()}`} class={`${current() ? "bg-int2" : "bg-transparent"} blur-s transition absolute size-b-m.2 size-i-m.2 rounded-full inset-0 inset-b-0 m-b-auto`} />
+                        <button onClick={() => navigate(`/group/${docs.title}`)} class={`${current() ? "bg-surface text-fg-1" : "text-fg-3"} relative p-s.6 p-i-s p-is-m.2 rounded-full text-start justify-start transition ease-out overflow-hidden hover:highlight hover:bg-accent-3 hover:text-fg-1 active:highlight+`}>
+                          <div class="absolute inset-0" style={style}>
+                            <div class={`${current() ? "bg-accent" : "bg-accent-2"} size-b-s.4 size-i-s.4 transition absolute rounded-full inset-0 inset-b-0 m-b-auto m-is-((m.2-s.4)/2)`} />
+                            <div class={`${current() ? "bg-accent-2" : "bg-transparent"} blur-s transition absolute size-b-m.2 size-i-m.2 rounded-full inset-0 inset-b-0 m-b-auto`} />
+                          </div>
                           <span class="relative">{docs.title}</span>
                         </button>
                       )

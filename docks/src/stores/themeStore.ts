@@ -1,20 +1,20 @@
-import type { Variant } from "windblade/core";
+import type { ColorScheme } from "windblade/core";
 import { createSignal, createMemo, createRoot } from "solid-js";
 
-export const hues: Record<Variant, number> = {
-  dark: 200,
-  light: 220,
+export const hues: Record<ColorScheme, number> = {
+  dark: 240,
+  light: 260,
 };
 
 function main() {
   // System sceheme
-  const [systemSceheme, setSystemScheme] = createSignal<Variant | undefined>(window.matchMedia('(prefers-color-scheme: light)').matches ? "light" : "dark");
+  const [systemSceheme, setSystemScheme] = createSignal<ColorScheme | undefined>(window.matchMedia('(prefers-color-scheme: light)').matches ? "light" : "dark");
   window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', event => {
     setSystemScheme(event.matches ? "light" : "dark");
   });
 
   // Manually selected scheme
-  const [enforceScheme, setEnforceScheme] = createSignal<Variant | undefined>(undefined);
+  const [enforceScheme, setEnforceScheme] = createSignal<ColorScheme | undefined>(undefined);
   const toggleScheme = () => {
     switch (enforceScheme()) {
       case "dark":
@@ -30,7 +30,7 @@ function main() {
 
   // Computed
   const scheme = createMemo(() => enforceScheme() ?? systemSceheme() ?? "dark");
-  const hue = createMemo(() => scheme() === "dark" ? 200 : 220);
+  const hue = createMemo(() => scheme() === "dark" ? hues.dark : hues.light);
 
   return { scheme, hue, enforceScheme, setEnforceScheme, toggleScheme };
 }
