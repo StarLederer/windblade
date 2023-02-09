@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- .
+
+### Fixed
+
+- .
+
+### Changed
+
+- .
+
+### Removed
+
+- .
+
+## 2.0.0-alpha - 2023-02-06
+
+### Added
+
 - NPM package metadata.
 - Bundle scripts using unbuild.
 - Dynamic size calculations using mathematical expressions inside `()` (e.g `m-(-s)`, `inset-(m/2)`).
