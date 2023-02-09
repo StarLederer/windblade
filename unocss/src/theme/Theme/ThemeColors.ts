@@ -1,12 +1,12 @@
 type ThemeColor = {
   dark: {
-    s: number;
     l: number;
+    c: number;
     a?: number;
   };
   light?: {
-    s?: number;
     l?: number;
+    c?: number;
     a?: number;
   }
 };
@@ -14,7 +14,6 @@ type ThemeColor = {
 type ThemeColorCombo = {
   base: ThemeColor;
   on: ThemeColor[];
-  interactive?: boolean;
 };
 
 export type { ThemeColor, ThemeColorCombo };

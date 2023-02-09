@@ -8,4 +8,3 @@ const objToCSS = (obj: Record<string, string>) => {
 
 export { objToCSS };
 export * from "./color";
-export * from "./variant";

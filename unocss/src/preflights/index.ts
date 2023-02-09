@@ -1,8 +1,6 @@
 import { Preflight } from "@unocss/core";
 import Theme from "../theme/Theme";
 
-import getColorCSS from "./colors"
-
 const preflights: Preflight<Theme>[] = [
   // Setup
   {
@@ -64,11 +62,6 @@ const preflights: Preflight<Theme>[] = [
     }
     `
   },
-
-  // Color properties
-  {
-    getCSS: getColorCSS
-  }
 ]
 
 export default preflights;

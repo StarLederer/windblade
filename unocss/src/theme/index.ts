@@ -4,100 +4,96 @@ const theme: Theme = {
   windblade: {
     colors: {
       'clear': {
-        base: { dark: { s: 0, l: 0 } },
+        base: { dark: { l: 0, c: 0 } },
         on: [
-          { dark: { s: 0, l: 100 } },
+          { dark: { l: 100, c: 0 } },
         ]
       },
 
       'normal': {
-        base: { dark: { s: 0, l: 0 } },
+        base: { dark: { l: 0, c: 0 } },
         on: [
-          { dark: { s: 10, l: 90 } },
-          { dark: { s: 20, l: 80 } },
-          { dark: { s: 20, l: 60 } },
-          { dark: { s: 20, l: 40 } },
-          { dark: { s: 10, l: 10 }, light: { l: 80 } },
+          { dark: { l: 0.96, c: 0.01 } },
+          { dark: { l: 0.90, c: 0.02 } },
+          { dark: { l: 0.60, c: 0.04 } },
+          { dark: { l: 0.40, c: 0.02 } },
+          { dark: { l: 0.20, c: 0.01 } },
         ]
       },
 
       'normal-2': {
-        base: { dark: { s: 1, l: 2 } },
+        base: { dark: { l: 0.11, c: 0.001 }, light: { l: 0.98 } },
         on: [
-          { dark: { s: 10, l: 90 } },
-          { dark: { s: 20, l: 80 } },
-          { dark: { s: 20, l: 60 } },
-          { dark: { s: 20, l: 40 } },
-          { dark: { s: 10, l: 10 }, light: { l: 80 } },
+          { dark: { l: 0.96, c: 0.01 } },
+          { dark: { l: 0.90, c: 0.02 } },
+          { dark: { l: 0.60, c: 0.04 } },
+          { dark: { l: 0.40, c: 0.02 } },
+          { dark: { l: 0.20, c: 0.01 } },
         ]
       },
 
       'normal-3': {
-        base: { dark: { s: 10, l: 5 }, light: { l: 90 } },
+        base: { dark: { l: 0.15, c: 0.004 }, light: { l: 0.94 } },
         on: [
-          { dark: { s: 10, l: 90 } },
-          { dark: { s: 20, l: 80 } },
-          { dark: { s: 20, l: 60 } },
-          { dark: { s: 20, l: 40 } },
-          { dark: { s: 10, l: 10 }, light: { l: 80 } },
+          { dark: { l: 0.96, c: 0.01 } },
+          { dark: { l: 0.90, c: 0.02 } },
+          { dark: { l: 0.60, c: 0.04 } },
+          { dark: { l: 0.40, c: 0.02 }, light: { l: 0.8 } },
+          { dark: { l: 0.20, c: 0.01 }, light: { l: 0.9 } },
         ]
       },
 
       'normal-4': {
-        base: { dark: { s: 10, l: 10 }, light: { l: 80 } },
+        base: { dark: { l: 0.20, c: 0.006 } },
         on: [
-          { dark: { s: 10, l: 90 } },
-          { dark: { s: 20, l: 80 } },
-          { dark: { s: 20, l: 60 } },
-          { dark: { s: 10, l: 40 } },
-          { dark: { s: 10, l: 40, a: 60 } },
-          { dark: { s: 10, l: 40, a: 10 } },
+          { dark: { l: 0.96, c: 0.01 } },
+          { dark: { l: 0.90, c: 0.02 } },
+          { dark: { l: 0.60, c: 0.04 } },
+          { dark: { l: 0.40, c: 0.02 } },
+          { dark: { l: 0.20, c: 0.01 } },
         ]
       },
 
       'surface': {
-        base: { dark: { s: 40, l: 20, a: 10 }, light: { a: 40 } },
+        base: { dark: { l: 0.4, c: 0.04, a: 0.1 }, light: { c: 0.1 } },
         on: [
-          { dark: { s: 100, l: 80 } },
-          { dark: { s: 40, l: 60 } },
-          { dark: { s: 20, l: 40 } },
+          { dark: { l: 0.9, c: 0.06 } },
+          { dark: { l: 0.6, c: 0.06 } },
+          { dark: { l: 0.4, c: 0.04 } },
+          { dark: { l: 0.2, c: 0.02 } },
         ]
       },
 
       'accent': {
-        base: { dark: { s: 100, l: 60 }, light: { l: 60 } },
+        base: { dark: { l: 0.7, c: 0.2 }, light: { l: 0.6 } },
         on: [
-          { dark: { s: 100, l: 10 }, light: { l: 10 } },
-          { dark: { s: 100, l: 20 }, light: { l: 20 } },
-          { dark: { s: 100, l: 40 }, light: { l: 40 } },
-          { dark: { s: 100, l: 40 }, light: { l: 40 } },
+          { dark: { l: 0.1, c: 0.2 }, light: { l: 10 } },
+          { dark: { l: 0.2, c: 0.2 }, light: { l: 20 } },
+          { dark: { l: 0.4, c: 0.2 }, light: { l: 40 } },
+          { dark: { l: 0.4, c: 0.2 }, light: { l: 40 } },
         ],
-        interactive: true,
       },
 
       'accent-2': {
-        base: { dark: { s: 80, l: 40, a: 40 }, light: { s: 90 } },
+        base: { dark: { l: 0.7, c: 0.2, a: 0.4 }, light: { l: 0.6 } },
         on: [
-          { dark: { s: 100, l: 80 } },
-          { dark: { s: 100, l: 60 } },
+          { dark: { l: 0.9, c: 0.2 }, light: { l: 0.2 } },
+          { dark: { l: 0.6, c: 0.2 }, light: { l: 0.5 } },
         ],
-        interactive: true,
       },
 
       'accent-3': {
-        base: { dark: { s: 60, l: 60, a: 10 } },
+        base: { dark: { l: 0.6, c: 0.06, a: 0.1 } },
         on: [
-          { dark: { s: 10, l: 80 } },
+          { dark: { l: 0.9, c: 0.2 }, light: { l: 0.2 } },
         ],
-        interactive: true,
       },
 
       'accent-4': {
-        base: { dark: { s: 20, l: 20, a: 20 } },
+        base: { dark: { l: 0.4, c: 0.04, a: 0.2 } },
         on: [
-          { dark: { s: 10, l: 80 } },
+          { dark: { l: 0.9, c: 0.2 }, light: { l: 0.2 } },
         ],
-        interactive: true,
       },
     },
 

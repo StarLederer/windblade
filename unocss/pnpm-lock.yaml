@@ -4,6 +4,7 @@ specifiers:
   '@types/node': ^18.11.18
   '@unocss/config': ^0.49.0
   '@unocss/core': ^0.49.0
+  culori: ^2.0.4
   ts-extras: ^0.11.0
   typescript: ^4.9.4
   unbuild: ^1.1.1
@@ -12,6 +13,7 @@ specifiers:
 dependencies:
   '@unocss/config': 0.49.1
   '@unocss/core': 0.49.1
+  culori: 2.0.4
   ts-extras: 0.11.0
 
 devDependencies:
@@ -691,6 +693,11 @@ packages:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
     dev: true
 
+  /culori/2.0.4:
+    resolution: {integrity: sha512-wYQcZOH8auJWxpGOyXxcftYOzsIlfphlohE9/Obo3nNoylyVYduzX+BZgsZXK/OPPAK/4cc5MKiCrIUITkF5ug==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dev: false
+
   /debug/4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
     engines: {node: '>=6.0'}
@@ -1200,6 +1207,7 @@ packages:
   /type-fest/2.19.0:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
+    dev: false
 
   /typescript/4.9.5:
     resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}

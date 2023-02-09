@@ -9,19 +9,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- .
+- LCH functions to `core/color`.
+- `getColorSchemeCSSProps` to `core/color`.
 
 ### Fixed
 
-- .
+- `getLCA` & `getLCHA` (ex. `getSLA` & `getHSLA`) now return correct lightness values in light mode.
 
 ### Changed
 
-- .
+- Semantic colors are now defined with OkLCH.
+- Merged `core/variant` into `core/color`.
+- `getSLA` & `getHSLA` were replaced with `getLCA` & `getLCHA`.
+- `getThemeCSS` now behaves different and is renamed to `getColorSchemeCSSProps`.
+- `scheme-(light|dark)` rule now also excepts `...-<number>` at the end and sets hue (will likely change back).
 
 ### Removed
 
-- .
+- HSL functions from `core/color`.
+- `getCSSProperties` from `core/color`.
+- Highlight rules and interactive colors.
+- Hue rules (will likely make a comeback).
 
 ## 2.0.0-alpha - 2023-02-06
 

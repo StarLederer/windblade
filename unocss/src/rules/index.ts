@@ -2,10 +2,7 @@ import type { Rule } from "@unocss/core";
 
 import Theme from "../theme/Theme";
 import * as logical from "./logicalSet";
-import { colorRule, colorBgRule, fgColorRule } from "./colors";
 import * as size from "./sizes";
-import * as time from "./time";
-import { getThemeCSS } from "../core/variant";
 import { layout, backgrounds, interactivity, flexboxAndGrid, sizing, spacing, effects, filters, tables, transitionsAndAnimation, borders, typography, svg, accessibility, transforms } from "./documented";
 
 export const simpleRule = (prefix: string, property: string, value: string): Rule<Theme> => {
@@ -463,7 +460,7 @@ const rules: Rule<Theme>[] = [
   size.rule('contrast', 'filter', { postprocess: (val) => `contrast(${val})` }),
   ...filters.dropShadow().rules,
   size.rule('grayscale', 'filter', { postprocess: (val) => `grayscale(${val})` }),
-  size.rule('hue-rotate', 'filter', { postprocess: (val) => `hue-rotate(${Number(val) * 360})`, defaultUnit: 'deg' }),
+  size.rule('hue-rotate', 'filter', { postprocess: (val) => `hue-rotate(${Number(val) * 360}deg)`, defaultUnit: '' }),
   size.rule('invert', 'filter', { postprocess: (val) => `invert(${val})` }),
   size.rule('saturate', 'filter', { postprocess: (val) => `saturate(${val})` }),
   size.rule('sepia', 'filter', { postprocess: (val) => `sepia(${val})` }),
@@ -471,7 +468,7 @@ const rules: Rule<Theme>[] = [
   size.rule('backdrop-brightness', 'backdrop-filter', { postprocess: (val) => `brightness(${val})` }),
   size.rule('backdrop-contrast', 'backdrop-filter', { postprocess: (val) => `contrast(${val})` }),
   size.rule('backdrop-grayscale', 'backdrop-filter', { postprocess: (val) => `grayscale(${val})` }),
-  size.rule('backdrop-hue-rotate', 'backdrop-filter', { postprocess: (val) => `hue-rotate(${Number(val) * 360})`, defaultUnit: 'deg' }),
+  size.rule('backdrop-hue-rotate', 'backdrop-filter', { postprocess: (val) => `hue-rotate(${Number(val) * 360}deg)`, defaultUnit: '' }),
   size.rule('backdrop-invert', 'backdrop-filter', { postprocess: (val) => `invert(${val})` }),
   size.rule('backdrop-opacity', 'backdrop-filter', { postprocess: (val) => `opacity(${val})` }),
   size.rule('backdrop-saturate', 'backdrop-filter', { postprocess: (val) => `saturate(${val})` }),
@@ -616,9 +613,6 @@ const rules: Rule<Theme>[] = [
   ['will-change-scroll', { 'will-change': 'scroll-position' }],
   ['will-change-contents', { 'will-change': 'contents' }],
   ['will-change-transform', { 'will-change': 'transform' }],
-
-  ...interactivity.hue().rules,
-  ...interactivity.highlight().rules,
 
   // SVG
   ...svg.fill().rules,

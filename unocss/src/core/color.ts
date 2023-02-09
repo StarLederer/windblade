@@ -1,76 +1,77 @@
-import type { ThemeColor } from "../theme/Theme"
-import type { VariantProps, Variant } from "./variant";
+import Theme, { ThemeColor } from "../theme/Theme";
+import { formatHex8, clampChroma } from "culori";
 
-/**
- * Turns IThemeColor into CSS string
- *
- * @param name custom CSS property name partial (--col-NAME)
- * @param dark
- * @param light
- * @returns a tuple of (s)aturation, (l)ightness and (a)lpha custom CSS properties for dark (default) and light modes
- */
-const getCSSProperties = (name: string, color: ThemeColor): VariantProps => {
-  const { dark, light } = color;
+export type ColorScheme = "dark" | "light";
 
-  const propsDark: any = {};
-  propsDark[`--col-${name}-s`] = `${dark.s}%`;
-  propsDark[`--col-${name}-l`] = `${dark.l}%`;
-  propsDark[`--col-${name}-a`] = `${dark.a ?? 100}%`;
-
-  // We could generate this the same as propsDark
-  // but we can optimize if we don't add light variatns
-  // when they are the same as dark.
-  // This at least removes the need for --col-NAME-s
-  // light variant for almost all the colors
-  let propsLight: any = {};
-  if (light?.s !== undefined) {
-    propsLight[`--col-${name}-s`] = `${light.s}%`;
-  }
-
-  if (light?.l !== undefined) {
-    propsLight[`--col-${name}-l`] = `${light.l}%`;
-  }
-  else {
-    propsLight[`--col-${name}-l`] = `${100 - dark.l}%`;
-  }
-
-  if (light?.a !== undefined) {
-    propsLight[`--col-${name}-a`] = `${light.a}%`;
-  }
-
-  return {
-    dark: propsDark,
-    light: propsLight,
-  };
-};
-
-const getSLA = (color: ThemeColor): Record<Variant, {s: number, l: number, a: number}> => {
-  const s = color.dark.s;
+export const getLCA = (color: ThemeColor): Record<ColorScheme, { l: number, c: number, a: number }> => {
   const l = color.dark.l;
-  const a = color.dark.a ?? 100;
+  const c = color.dark.c;
+  const a = color.dark.a ?? 1;
 
   return {
-    dark: {s, l, a},
+    dark: { l, c, a },
     light: {
-      s: color.light?.s ?? s,
-      l: color.light?.l ?? l,
+      l: color.light?.l ?? 1 - l,
+      c: color.light?.c ?? c,
       a: color.light?.a ?? a,
     },
   }
 };
 
-const getHSLA = (hue: number, color: ThemeColor): Record<Variant, {h: number, s: number, l: number, a: number}> => {
-  let sla: any = getSLA(color);
+export const getLCHA = (hue: number, color: ThemeColor): Record<ColorScheme, { l: number, c: number, h: number, a: number }> => {
+  let sla: any = getLCA(color);
   Object.assign(sla, {
-    dark: {h: hue},
-    light: {h: hue},
+    dark: { h: hue },
+    light: { h: hue },
   });
 
   return sla;
 };
 
-export {
-  getCSSProperties,
-  getSLA,
-  getHSLA,
-}
+export type ColorSchemeProps = Record<ColorScheme, Record<string, string>>;
+
+export const getColorSchemeCSSProps = (theme: Theme, hue: number): ColorSchemeProps => {
+  const { windblade } = theme;
+  const { colors: colorCombos } = windblade;
+
+  const colorSchemeProps: ColorSchemeProps = {
+    light: {},
+    dark: {},
+  };
+
+  // Iterate over color combos
+  Object.entries(colorCombos).forEach(([colorComboName, colorCombo]) => {
+    // Collect 'base' and 'on' colors into single array
+    const colors = [
+      colorCombo.base,
+      ...colorCombo.on
+    ];
+
+    // Iterate over collected colors
+    colors.forEach((color, i) => {
+      // --NAME-0 is base
+      // --NAME-1..inf is on
+      const propName = `--${colorComboName}-${i}`;
+
+      const { dark: lcaDark, light: lcaLight } = getLCA(color);
+
+      colorSchemeProps.dark[propName] = formatHex8(clampChroma({
+        mode: 'oklch',
+        l: lcaDark.l,
+        c: lcaDark.c,
+        h: hue,
+        alpha: lcaDark.a
+      }));
+
+      colorSchemeProps.light[propName] = formatHex8(clampChroma({
+        mode: 'oklch',
+        l: lcaLight.l,
+        c: lcaLight.c,
+        h: hue,
+        alpha: lcaLight.a
+      }));
+    });
+  });
+
+  return colorSchemeProps;
+};
