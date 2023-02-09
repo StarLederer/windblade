@@ -57,7 +57,7 @@ const theme: Theme = {
       'surface': {
         base: { dark: { l: 0.4, c: 0.04, a: 0.1 }, light: { c: 0.1 } },
         on: [
-          { dark: { l: 0.9, c: 0.06 } },
+          { dark: { l: 0.8, c: 0.1 } },
           { dark: { l: 0.6, c: 0.06 } },
           { dark: { l: 0.4, c: 0.04 } },
           { dark: { l: 0.2, c: 0.02 } },
