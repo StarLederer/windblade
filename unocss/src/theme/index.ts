@@ -67,17 +67,17 @@ const theme: Theme = {
       'accent': {
         base: { dark: { l: 0.7, c: 0.2 }, light: { l: 0.6 } },
         on: [
-          { dark: { l: 0.1, c: 0.2 }, light: { l: 10 } },
-          { dark: { l: 0.2, c: 0.2 }, light: { l: 20 } },
-          { dark: { l: 0.4, c: 0.2 }, light: { l: 40 } },
-          { dark: { l: 0.4, c: 0.2 }, light: { l: 40 } },
+          { dark: { l: 0.1, c: 0.2 }, light: { l: 1 } },
+          { dark: { l: 0.2, c: 0.23 }, light: { l: 0.9 } },
+          { dark: { l: 0.4, c: 0.26 }, light: { l: 0.8 } },
+          { dark: { l: 0.6, c: 0.3 }, light: { l: 0.7 } },
         ],
       },
 
       'accent-2': {
         base: { dark: { l: 0.7, c: 0.2, a: 0.4 }, light: { l: 0.6 } },
         on: [
-          { dark: { l: 0.9, c: 0.2 }, light: { l: 0.2 } },
+          { dark: { l: 0.8, c: 0.2 } },
           { dark: { l: 0.6, c: 0.2 }, light: { l: 0.5 } },
         ],
       },
@@ -85,14 +85,14 @@ const theme: Theme = {
       'accent-3': {
         base: { dark: { l: 0.6, c: 0.06, a: 0.1 } },
         on: [
-          { dark: { l: 0.9, c: 0.2 }, light: { l: 0.2 } },
+          { dark: { l: 0.9, c: 0.2 } },
         ],
       },
 
       'accent-4': {
-        base: { dark: { l: 0.4, c: 0.04, a: 0.2 } },
+        base: { dark: { l: 0.4, c: 0.01, a: 0.1 } },
         on: [
-          { dark: { l: 0.9, c: 0.2 }, light: { l: 0.2 } },
+          { dark: { l: 0.9, c: 0.2 } },
         ],
       },
     },
