@@ -72,8 +72,8 @@ export default defineConfig({
         ...["scheme-light", "scheme-dark"].flatMap((v1) => [240, 260].map((v2) => `${v1}-${v2}`)),
       ],
       rules: [
-        ['highlight', { filter: 'brightness(1.2)' }],
-        ['highlight+', { filter: 'brightness(1.4)' }]
+        ['highlight', { filter: 'brightness(1.2) saturate(0.6)' }],
+        ['highlight+', { filter: 'brightness(1.6) saturate(0.4)' }]
       ],
     }),
   ],
