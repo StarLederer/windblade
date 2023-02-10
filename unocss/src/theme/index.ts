@@ -57,6 +57,7 @@ const theme: Theme = {
       'surface': {
         base: { dark: { l: 0.4, c: 0.04, a: 0.1 }, light: { c: 0.1 } },
         on: [
+          { dark: { l: 0.9, c: 0.1 } },
           { dark: { l: 0.8, c: 0.1 } },
           { dark: { l: 0.6, c: 0.06 } },
           { dark: { l: 0.4, c: 0.04 } },
@@ -68,16 +69,17 @@ const theme: Theme = {
         base: { dark: { l: 0.7, c: 0.2 }, light: { l: 0.6 } },
         on: [
           { dark: { l: 0.1, c: 0.2 }, light: { l: 1 } },
-          { dark: { l: 0.2, c: 0.23 }, light: { l: 0.9 } },
-          { dark: { l: 0.4, c: 0.26 }, light: { l: 0.8 } },
-          { dark: { l: 0.6, c: 0.3 }, light: { l: 0.7 } },
+          { dark: { l: 0.2, c: 0.23 }, light: { l: 0.98 } },
+          { dark: { l: 0.4, c: 0.26 }, light: { l: 0.9 } },
+          { dark: { l: 0.6, c: 0.3 }, light: { l: 0.8 } },
         ],
       },
 
       'accent-2': {
         base: { dark: { l: 0.7, c: 0.2, a: 0.4 }, light: { l: 0.6 } },
         on: [
-          { dark: { l: 0.8, c: 0.2 } },
+          { dark: { l: 0.9, c: 0.1 }, light: { l: 0.2 } },
+          { dark: { l: 0.8, c: 0.15 }, light: { l: 0.3 } },
           { dark: { l: 0.6, c: 0.2 }, light: { l: 0.5 } },
         ],
       },
