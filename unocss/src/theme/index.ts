@@ -36,8 +36,8 @@ const theme: Theme = {
         base: { dark: { l: 0.15, c: 0.004 }, light: { l: 0.94 } },
         on: [
           { dark: { l: 0.96, c: 0.01 } },
-          { dark: { l: 0.90, c: 0.02 } },
-          { dark: { l: 0.60, c: 0.04 } },
+          { dark: { l: 0.90, c: 0.04 }, light: { l: 0.3 } },
+          { dark: { l: 0.60, c: 0.06 }, light: { l: 0.4 } },
           { dark: { l: 0.40, c: 0.02 }, light: { l: 0.8 } },
           { dark: { l: 0.20, c: 0.01 }, light: { l: 0.9 } },
         ]
@@ -57,9 +57,9 @@ const theme: Theme = {
       'surface': {
         base: { dark: { l: 0.4, c: 0.04, a: 0.1 }, light: { c: 0.1 } },
         on: [
-          { dark: { l: 0.9, c: 0.1 } },
-          { dark: { l: 0.8, c: 0.1 } },
-          { dark: { l: 0.6, c: 0.06 } },
+          { dark: { l: 0.9, c: 0.1 }, light: { l: 0.3 } },
+          { dark: { l: 0.8, c: 0.1 }, light: { l: 0.4 } },
+          { dark: { l: 0.6, c: 0.06 }, light: { l: 0.5 } },
           { dark: { l: 0.4, c: 0.04 } },
           { dark: { l: 0.2, c: 0.02 } },
         ]
