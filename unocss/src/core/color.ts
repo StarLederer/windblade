@@ -51,7 +51,7 @@ export const getColorSchemeCSSProps = (theme: Theme, hue: number): ColorSchemePr
     colors.forEach((color, i) => {
       // --NAME-0 is base
       // --NAME-1..inf is on
-      const propName = `--${colorComboName}-${i}`;
+      const propName = `--${colorComboName}-${i === 0 ? "base" : "fg-" + i}`;
 
       const { dark: lcaDark, light: lcaLight } = getLCA(color);
 
