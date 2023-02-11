@@ -1,4 +1,4 @@
-type ThemeColor = {
+export type ThemeColor = {
   dark: {
     l: number;
     c: number;
@@ -11,9 +11,7 @@ type ThemeColor = {
   }
 };
 
-type ThemeColorCombo = {
+export type ThemeColorCombo = {
   base: ThemeColor;
   on: ThemeColor[];
 };
-
-export type { ThemeColor, ThemeColorCombo };

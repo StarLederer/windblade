@@ -43,6 +43,7 @@
     "@unocss/config": "^0.49.0",
     "@unocss/core": "^0.49.0",
     "culori": "^2.0.4",
+    "ts-deepmerge": "^6.0.2",
     "ts-extras": "^0.11.0"
   },
   "devDependencies": {
