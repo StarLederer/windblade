@@ -5,62 +5,19 @@ import uno from "~/unocss";
 import UnilityButton from "./RuleGroup/components/UtilityButton";
 import Progress from "@ui/primitives/Progress";
 import syntax from "~/lib/syntax";
+import ShadowDomUnoCSS from "~/lib/ShadowDomUnoCSS";
 
 const Main: Component<{
   ruleGroup: docs.rules.DocumentedRuleGroup
 }> = (props) => {
   const [selectedI, setSelectedI] = createSignal(-1);
   const [selected, setSelected] = createSignal<string | undefined>(undefined);
-  const [shadowRoot, setShadowRoot] = createSignal<ShadowRoot>();
-  const [preview, setPreview] = createSignal<{ html: string; css: string; fullCss: string }>();
+  const [css, setCss] = createSignal<string>("");
 
-  const {formatter, highlighter} = syntax;
+  const { formatter, highlighter } = syntax;
   // const [delay] = createResource(async () => await new Promise(r => setTimeout(r, 100000)));
 
-  // Preview container ref
-  let previewContainer: HTMLDivElement | undefined;
-
-  // Keep shadowRoot in sync with container ref
-  createEffect(on(
-    () => selected(),
-    () => {
-      if (!previewContainer) {
-        setShadowRoot(undefined);
-        return;
-      }
-
-      if (shadowRoot()) return;
-
-      setShadowRoot(previewContainer.attachShadow({ mode: "open" }));
-    }
-  ));
-
-  // Keep preview in sync with selected
-  createEffect(async () => {
-    const html = docs().preview?.(selected() ?? "") ?? "";
-    const css = (await uno.generate(html, { safelist: false, preflights: false, minify: true })).css;
-    const fullCss = (await uno.generate(html)).css;
-    setPreview({ html, css, fullCss });
-  });
-
-  // Keep preview dom in sync with preview
-  createEffect(() => {
-    const root = shadowRoot();
-    if (!root) return;
-    const p = preview();
-    if (!p) return;
-    const { html, fullCss } = p;
-    root.innerHTML = `
-      <div
-        id="root"
-        class="${themeStore.scheme() === "dark" ? "scheme-dark-60" : "scheme-light-40"}"
-        style="display: flex; align-items: center; justify-content: center;"
-      >
-        <style>${fullCss.replaceAll(":root", ":where(#root)")}</style>
-        ${html}
-      </div>`;
-  });
-
+  const html = () => docs().preview?.(selected() ?? "") ?? "";
   const docs = () => props.ruleGroup.docs;
 
   const styles = {
@@ -111,26 +68,31 @@ const Main: Component<{
           <Show when={selected()}>
             <section class="break-inside-avoid break-after-column">
               <h4 class={styles.h4}>Preview</h4>
-              <div class="bg-normal-2 rounded-s p-m.2 overflow-auto" ref={previewContainer} />
+              <ShadowDomUnoCSS
+                html={html()}
+                class="bg-normal-2 rounded-s p-m.2 overflow-auto"
+                rootStyle="display: flex; align-items: center; justify-content: center;"
+                onChange={setCss}
+              />
             </section>
 
             <section class="break-inside-avoid">
               <h4 class={styles.h4}>HTML</h4>
-              <Suspense fallback={<div class={`${styles.pre} flex gap-s items-center`}>Loading <Progress/></div>}>
+              <Suspense fallback={<div class={`${styles.pre} flex gap-s items-center`}>Loading <Progress /></div>}>
                 {/* {delay() + ""} */}
                 <pre
                   class={styles.pre}
-                  innerHTML={highlighter()?.highlight(formatter()?.html_beautify(preview()?.html ?? "") ?? "", { language: "xml" }).value.replaceAll(selected() ?? "", `<span class="bg-accent-2 rounded-s.4 p-i-s.2">${selected()}</span>`)}
+                  innerHTML={highlighter()?.highlight(formatter()?.html_beautify(html()) ?? "", { language: "xml" }).value.replaceAll(selected() ?? "", `<span class="bg-accent-2 rounded-s.4 p-i-s.2">${selected()}</span>`)}
                 />
               </Suspense>
             </section>
 
             <section class="break-inside-avoid">
               <h4 class={styles.h4}>Generated CSS</h4>
-              <Suspense fallback={<div class={`${styles.pre} flex gap-s items-center`}>Loading <Progress/></div>}>
+              <Suspense fallback={<div class={`${styles.pre} flex gap-s items-center`}>Loading <Progress /></div>}>
                 <pre
                   class={`${styles.pre} css`}
-                  innerHTML={highlighter()?.highlight(formatter()?.css_beautify(preview()?.css ?? "") ?? "", { language: "css" }).value}
+                  innerHTML={highlighter()?.highlight(formatter()?.css_beautify(css()) ?? "", { language: "css" }).value}
                 />
               </Suspense>
             </section>
