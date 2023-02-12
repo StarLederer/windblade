@@ -144,7 +144,7 @@ It is a good idea to override the default hue at the root of your app.
 Sometimes you might need to set a color with JavaScript and you might be unable to use a class (e.g. drawing to a canvas). In those situations, you can use Windblade's `core` module.
 
 ```js
-import { getLCA, lchToRgb } from "unocss-preset-windblade/core";
+import { getLCA, LCHToCSSColor } from "unocss-preset-windblade/core";
 import { theme } from "unocss-preset-windblade"; // this is just a source file and it does not know about your theme customizations. If you are using your own colors you should import them instead
 
 const brandHue = 80;
@@ -159,7 +159,7 @@ getBrandColor((light?: boolean) => {
     lca = colors.dark;
   }
 
-  let rgb = lchToRgb(lca.l, lca.c, brandHue);
+  let rgb = LCHToCSSColor(lca.l, lca.c, brandHue);
 
   return `rgb(${rgb.r}, ${rgb.g}%, ${rgb.b}%, ${lca.a}%)`;
 });

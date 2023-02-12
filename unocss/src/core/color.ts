@@ -28,6 +28,8 @@ export const getLCHA = (hue: number, color: ThemeColor): Record<ColorScheme, { l
   return sla;
 };
 
+export const LCHToCSSColor = (l: number, c: number, h: number, a: number = 1) => convert.from(`oklch(${l} ${c}, ${h}, ${a})`);
+
 export type ColorSchemeProps = Record<ColorScheme, Record<string, string>>;
 
 export const getColorSchemeCSSProps = (theme: Theme, hue: number): ColorSchemeProps => {
