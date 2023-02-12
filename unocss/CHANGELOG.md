@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - LCH functions to `core/color`.
 - `getColorSchemeCSSProps` to `core/color`.
-- Brackets to size rules (e.g. `max-size-i[48ch]`, `max-size-[$lpx]`).
+- Brackets to size rules (e.g. `max-size-i-[48ch]`, `max-size-[$lpx]`).
 - Multiple selectable default themes `presetWindbldade({ theme: 'tailwind' })`.
 
 ### Fixed
