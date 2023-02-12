@@ -5,13 +5,7 @@ import * as logical from "./logicalSet";
 import * as size from "./sizes";
 import { layout, backgrounds, interactivity, flexboxAndGrid, sizing, spacing, effects, filters, tables, transitionsAndAnimation, borders, typography, svg, accessibility, transforms } from "./documented";
 
-export const simpleRule = (prefix: string, property: string, value: string): Rule<Theme> => {
-  const css: any = {};
-  css[property] = value;
-  return [
-    prefix, css,
-  ]
-};
+export const simpleRule = (prefix: string, property: string, value: string): Rule<Theme> => [prefix, { [property]: value }];
 
 const rules: Rule<Theme>[] = [
   // Layout
