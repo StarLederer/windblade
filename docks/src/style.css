@@ -49,7 +49,7 @@ body {
 }
 
 pre {
-  @apply leading-(s+s.2);
+  @apply leading-$($s+$s.2);
 }
 
 pre.css,

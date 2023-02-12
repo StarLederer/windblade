@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - LCH functions to `core/color`.
 - `getColorSchemeCSSProps` to `core/color`.
+- Brackets to size rules (e.g. `max-size-i[48ch]`, `max-size-[$lpx]`).
+- Multiple selectable default themes `presetWindbldade({ theme: 'tailwind' })`.
 
 ### Fixed
 
@@ -23,13 +25,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `getSLA` & `getHSLA` were replaced with `getLCA` & `getLCHA`.
 - `getThemeCSS` now behaves different and is renamed to `getColorSchemeCSSProps`.
 - `scheme-(light|dark)` rule now also excepts `...-<number>` at the end and sets hue (will likely change back).
+- Expressions now have to be prefixed with `$` (e.g. `leading-$(1+2)`).
+- Theme tokens in expressions and now have to be prefixed with `$` (e.g. `text-($s+$s.2)`).
+- Windblade now uses it's own proportions by default.
+- Tailwind proprtions do not have `t` appended to them anymore.
 
 ### Removed
 
 - HSL functions from `core/color`.
 - `getCSSProperties` from `core/color`.
 - Highlight rules and interactive colors.
-- Hue rules (will likely make a comeback).
 
 ## 2.0.0-alpha - 2023-02-06
 

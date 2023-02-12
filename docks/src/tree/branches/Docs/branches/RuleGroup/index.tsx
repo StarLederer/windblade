@@ -66,9 +66,9 @@ const Main: Component<{
   const styles = {
     tr: "border border-color-transparent border-be-color-fg-5",
     th: "p-b-s.6 text-start text-fg-3",
-    h3: "font-bold text-(s+s.2)",
+    h3: "font-bold text-$($s+$s.2)",
     h4: "font-bold m-be-s",
-    pre: "bg-surface p-s rounded-s leading-(s+s.4) overflow-auto",
+    pre: "bg-surface p-s rounded-s leading-$($s+$s.4) overflow-auto",
   };
 
   return (

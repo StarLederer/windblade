@@ -1,28 +1,58 @@
 import { DynamicRule } from "@unocss/core";
+import { handler as h, variantGetParameter } from '@unocss/preset-mini/utils';
 import Theme from "../theme/Theme";
 import * as logical from "./logicalSet";
 
 const solve = (expr: string, theme: Theme, defaultUnit: string): string | undefined => {
-  if (expr.startsWith("(")) {
-    let resolved = expr;
 
-    // Resolve
-    Object.entries(theme.windblade.proportions).forEach(([name, value]) => {
-      resolved = resolved.replaceAll(name, value.toString());
-    });
+  // Try to resolve proportion
+  let token = theme.windblade.proportions[expr];
+  if (token !== undefined) return `${token}${defaultUnit}`;
 
-    // Evaluate
-    resolved = Function(`'use strict'; return (${resolved})`)()
+  // Try to resolve miscSize
+  let misc = theme.windblade.miscSizes?.[expr];
+  if (misc !== undefined) return `${misc}`;
 
-    return `${resolved}${defaultUnit}`;
-  } else {
-    let token = theme.windblade.proportions[expr];
-    let misc = theme.windblade.miscSizes[expr];
-    if (token !== undefined) return `${token}${defaultUnit}`;
-    else if (misc !== undefined) return `${misc}`;
+  // Filter invalid characters
+  if (expr.includes(':')) return undefined;
+
+  // Resolve
+
+  let resolved = expr;
+
+  // Resolve variables
+  Object.entries(theme.windblade.proportions).forEach(([name, value]) => {
+    resolved = resolved.replaceAll(`$${name}`, value.toString());
+  });
+
+  // Resolve expressions
+  while (resolved.includes('$(')) {
+    let start = resolved.indexOf('$') + 1;
+    let rest = resolved.substring(start);
+
+    // Isolate expression
+    let parenStart = 0;
+    let parenEnd = parenStart;
+    let open = 0;
+    for (let i = 0; i < rest.length; ++i) {
+      if (rest[i] === '(') ++open;
+      if (rest[i] === ')') --open;
+
+      if (open === 0) {
+        parenEnd = i + 1;
+        break;
+      }
+    }
+    const parenExpr = rest.substring(parenStart, parenEnd);
+
+    // Evaluate and resolve
+    resolved = resolved.replace(`$${parenExpr}`, Function(`'use strict'; return (${parenExpr})`)());
   }
 
-  return undefined;
+  const unbracket = (h.bracket(resolved));
+  if (unbracket !== undefined) return unbracket;
+
+  return `${resolved ?? 0}${defaultUnit}`;
 };
 
 const rule = (
@@ -34,18 +64,16 @@ const rule = (
   },
 ): DynamicRule<Theme> => {
   return [
-    new RegExp(`^(${prefix})-(.+)$`),
+    new RegExp(`^${prefix}-(.+)$`),
     (match, { theme }) => {
-      const css: any = {};
-      let value = solve(match[2], theme, options?.defaultUnit ?? "rem");
+      let value = solve(match[1], theme, options?.defaultUnit ?? "rem");
       if (value === undefined) return undefined;
 
       if (options?.postprocess) {
         value = options.postprocess(value);
       }
 
-      css[property] = value;
-      return css;
+      return { [property]: value };
     }
   ];
 };

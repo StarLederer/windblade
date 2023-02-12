@@ -19,14 +19,12 @@ import jsTw from "./content/js/tw.js.txt?raw";
 import jsWb from "./content/js/wb.js.txt?raw";
 
 const styles = {
-  h3: "font-extrabold text-(m.2+s) text-fg-1",
+  h3: "font-extrabold text-$($m.2+$s) text-fg-1",
   h4: "font-bold text-m.2 text-fg-2",
   h5: "font-semibold text-fg-2 p-s",
-  p: "leading-(s+s.2) max-size-i-[128ch]",
+  p: "leading-$($s+$s.2) max-size-i-[128ch]",
   pre: "p-s overflow-auto last:flex-1",
 };
-
-const styleP = "max-width: 128ch;"
 
 const Comparison: Component<{
   code: {
@@ -99,7 +97,7 @@ const Main: Component = () => {
               <li>Has Javascript core.</li>
             </ul>
           </div>
-          <p class={`${styles.p} text-fg-3 m-be-s`} style={styleP}>
+          <p class={`${styles.p} text-fg-3 m-be-s`}>
             Windblade is a Tailwind-inspired UnoCSS preset that does multiple things better than Tailwind. First, Windblade uses semantic hue-less colors that automatically adapt to the browser color scheme. Second, it uses logical properties instead of right-to-left, top-to-bottom ones and polyfills logical values which have not been implemented in CSS yet. Third, it has a much simpler theme that is faster to customize and fit your design language. And finally, it has a Javascript core that gives access to design tokens at runtime (e.g. for drawing to canvas).
           </p>
           <CTA />
@@ -114,7 +112,7 @@ const Main: Component = () => {
             <div class="flex flex-col gap-m.4">
               <section class="flex flex-col gap-s">
                 <h4 class={styles.h4}>Tailwind has too many colors</h4>
-                <p class={styles.p} style={styleP}>
+                <p class={styles.p}>
                   Tailwind has an incomprehensible amount of colors which is very hard to customize. Windblade's semantic colors solve this by using color "meanings" like 'background' or 'surface' instead of actual color values like 'red', 'green', 'blue' or 'desaturated blue' and generating both background and foreground colors. HSL is used in the background to power this so you can use any hue you need with the hue-number or --hue CSS variable
                 </p>
                 <Comparison code={{
@@ -131,7 +129,7 @@ const Main: Component = () => {
 
               <section class="flex flex-col gap-s">
                 <h4 class={styles.h4}>Foreground colors in Tailwind are too much manual work</h4>
-                <p class={styles.p} style={styleP}>
+                <p class={styles.p}>
                   Tailwind provides a color framework but does not help you use it. Windblade's semantic colors solve this by automatically applying foreground colors and giving you semantic variations of them.
                 </p>
                 <Comparison code={{
@@ -146,7 +144,7 @@ const Main: Component = () => {
 
               <section class="flex flex-col gap-s">
                 <h4 class={styles.h4}>Color-scheme adaptation with Tailwind is a nightmare</h4>
-                <p class={styles.p} style={styleP}>
+                <p class={styles.p}>
                   Because Tailwind defines static color values you have to manually set light and dark colors every time which is twice as much code as it could be. Windblade's semantic colors solve this by flipping the lightness value so you only declare what the color means, and Windblade figures out exactly what it should look like in different color schemes.
                 </p>
                 <Comparison code={{
@@ -163,7 +161,7 @@ const Main: Component = () => {
 
           <section class="flex flex-col gap-s">
             <h3 class={styles.h3}>Logical properties</h3>
-            <p class={styles.p} style={styleP}>
+            <p class={styles.p}>
               Tailwind is very hard to use for multilanguage applications because layout reorientation has to be done manually. Windblade solves this by replacing all physical properties with logical counterparts even where CSS doesn't support it yet.
             </p>
 
@@ -179,7 +177,7 @@ const Main: Component = () => {
 
           <section class="flex flex-col gap-s">
             <h3 class={styles.h3}>Simpler theme</h3>
-            <p class={styles.p} style={styleP}>
+            <p class={styles.p}>
               Tailwind configures a lot of things separately which takes a long time to customize and could just be automated. Windblade has a simpler theme that you can bend completely to your design language and rhythm very quickly.
             </p>
 
@@ -195,7 +193,7 @@ const Main: Component = () => {
 
           <section class="flex flex-col gap-s">
             <h3 class={styles.h3}>Javascript core</h3>
-            <p class={styles.p} style={styleP}>
+            <p class={styles.p}>
               Windblade has a Javascript core that can be used in your front-end to process your design tokens. This mostly useful in sitations when you need to draw to an HTML canvas with Windblade colors.
             </p>
 
@@ -211,7 +209,7 @@ const Main: Component = () => {
 
           <section class="flex flex-col gap-s">
             <h3 class={styles.h3}>Bonus: calculations</h3>
-            <p class={styles.p} style={styleP}>
+            <p class={styles.p}>
               Tailwind allows you to use custom values when your design specification does not fit with their design language. Windblade does not allow that to help you stay within your design language but allows you to do calculations with your proportions right inside CSS.
             </p>
 
