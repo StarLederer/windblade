@@ -3,12 +3,12 @@ unocss({
     windblade: {
       colors: {
         'surface': {
-        base: { dark: { s: 60, l: 80 } },
-        on: [
-          { dark: { s: 20, l: 20 } },
-          { dark: { s: 10, l: 20 } },
-        ]
-      },
+          base: { dark: { l: 0.4, c: 0.04, a: 0.1 }} },
+          on: [
+            { dark: { l: 0.9, c: 0.1 } },
+            { dark: { l: 0.8, c: 0.1 } },
+          ]
+        },
       },
     },
   },
