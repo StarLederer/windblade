@@ -1,5 +1,5 @@
 import Theme, { ThemeColor } from "../theme/Theme";
-import { formatHex8, clampChroma } from "culori";
+import convert from 'better-color-tools';
 
 export type ColorScheme = "dark" | "light";
 
@@ -55,21 +55,8 @@ export const getColorSchemeCSSProps = (theme: Theme, hue: number): ColorSchemePr
 
       const { dark: lcaDark, light: lcaLight } = getLCA(color);
 
-      colorSchemeProps.dark[propName] = formatHex8(clampChroma({
-        mode: 'oklch',
-        l: lcaDark.l,
-        c: lcaDark.c,
-        h: hue,
-        alpha: lcaDark.a
-      }));
-
-      colorSchemeProps.light[propName] = formatHex8(clampChroma({
-        mode: 'oklch',
-        l: lcaLight.l,
-        c: lcaLight.c,
-        h: hue,
-        alpha: lcaLight.a
-      }));
+      colorSchemeProps.dark[propName] = convert.from(`oklch(${lcaDark.l} ${lcaDark.c}, ${hue}, ${lcaDark.a})`).rgba;
+      colorSchemeProps.light[propName] = convert.from(`oklch(${lcaLight.l} ${lcaLight.c}, ${hue}, ${lcaLight.a})`).rgba;
     });
   });
 

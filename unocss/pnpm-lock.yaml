@@ -4,7 +4,7 @@ specifiers:
   '@types/node': ^18.11.18
   '@unocss/config': ^0.49.0
   '@unocss/core': ^0.49.0
-  culori: ^2.0.4
+  better-color-tools: ^0.10.0
   ts-deepmerge: ^6.0.2
   ts-extras: ^0.11.0
   typescript: ^4.9.4
@@ -14,7 +14,7 @@ specifiers:
 dependencies:
   '@unocss/config': 0.49.1
   '@unocss/core': 0.49.1
-  culori: 2.0.4
+  better-color-tools: 0.10.0
   ts-deepmerge: 6.0.2
   ts-extras: 0.11.0
 
@@ -626,6 +626,10 @@ packages:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
 
+  /better-color-tools/0.10.0:
+    resolution: {integrity: sha512-Val/kKqyKK43YYZuMxSPG2lgJL7P7kTm/wSrxPz3y/wXAbx4zrTTBR4A8pi10H9KFPCNcNyLBGsgZPIrnP9Yig==}
+    dev: false
+
   /brace-expansion/2.0.1:
     resolution: {integrity: sha512-XnAIvQ8eM+kC6aULx6wuQiwVsnzsi9d3WxzV3FpWTGA19F621kwdbsAcFKXgKUHZWsy+mY6iL1sHTxWEFCytDA==}
     dependencies:
@@ -694,11 +698,6 @@ packages:
   /convert-source-map/1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
     dev: true
-
-  /culori/2.0.4:
-    resolution: {integrity: sha512-wYQcZOH8auJWxpGOyXxcftYOzsIlfphlohE9/Obo3nNoylyVYduzX+BZgsZXK/OPPAK/4cc5MKiCrIUITkF5ug==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-    dev: false
 
   /debug/4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
