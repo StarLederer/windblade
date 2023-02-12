@@ -1,4 +1,4 @@
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "./types";
+import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const dropShadow = (): DocumentedRuleGroup => {
   const docs: DocumentedRuleGroupDocs = {

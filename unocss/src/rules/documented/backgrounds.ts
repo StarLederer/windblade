@@ -4,7 +4,7 @@ import * as logical from "../logicalSet";
 import { colorRule, colorBgRule, fgColorRule } from "../colors";
 import * as size from "../sizes";
 import { objectEntries, objectKeys } from "ts-extras";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "./types";
+import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const color = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [

@@ -1,5 +1,5 @@
 import { Rule } from "@unocss/core";
-import Theme from "../../theme/Theme";
+import Theme from "../theme/Theme";
 
 export type DocumentedRuleGroupDocs = {
   title: string;

@@ -3,7 +3,7 @@ import { objectEntries } from "ts-extras"
 import Theme from "../../theme/Theme";
 import * as logical from "../logicalSet";
 import * as sizes from "../sizes";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "./types";
+import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const widthHeight = (): DocumentedRuleGroup => {
   const docs: DocumentedRuleGroupDocs = {

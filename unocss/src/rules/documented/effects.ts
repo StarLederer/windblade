@@ -1,7 +1,7 @@
 import { Rule } from "@unocss/core";
 import Theme from "../../theme/Theme";
 import * as size from "../sizes";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "./types";
+import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const boxShadow = (): DocumentedRuleGroup => {
   const docs: DocumentedRuleGroupDocs = {

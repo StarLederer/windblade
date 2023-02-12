@@ -3,7 +3,7 @@ import { objectEntries } from "ts-extras"
 import Theme from "../../theme/Theme";
 import * as logical from "../logicalSet";
 import * as time from "../time";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "./types";
+import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const transitionDelayAndDuration = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [

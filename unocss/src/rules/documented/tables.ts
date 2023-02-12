@@ -3,7 +3,7 @@ import { objectEntries } from "ts-extras"
 import Theme from "../../theme/Theme";
 import * as logical from "../logicalSet";
 import * as size from "../sizes";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "./types";
+import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const borderSpacing = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [

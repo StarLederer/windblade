@@ -1,7 +1,7 @@
 import { Rule, escapeSelector as e } from "@unocss/core";
 import { getColorSchemeCSSProps, objToCSS } from "../../core";
 import Theme from "../../theme/Theme";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "./types";
+import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const colorScheme = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [

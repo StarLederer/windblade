@@ -4,7 +4,7 @@ import Theme from "../../theme/Theme";
 import { colorRule, fgColorRule } from "../colors";
 import * as logical from "../logicalSet";
 import * as size from "../sizes";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "./types";
+import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const fontFamily = (): DocumentedRuleGroup => {
   const docs: DocumentedRuleGroupDocs = {

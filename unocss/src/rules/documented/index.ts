@@ -33,7 +33,7 @@ export const categories = {
 
 };
 
-export * from "./types";
+export * from "../../docs/types";
 export {
   layout,
   flexboxAndGrid,

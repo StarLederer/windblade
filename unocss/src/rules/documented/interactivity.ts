@@ -3,7 +3,7 @@ import Theme from "../../theme/Theme";
 import * as logical from "../logicalSet";
 import { colorRule, fgColorRule } from "../colors";
 import * as size from "../sizes";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "./types";
+import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const accentColor = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [colorRule('accent', 'accent-color')];

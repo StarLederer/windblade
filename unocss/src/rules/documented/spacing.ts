@@ -2,7 +2,7 @@ import { Rule } from "@unocss/core";
 import Theme from "../../theme/Theme";
 import * as logical from "../logicalSet";
 import * as size from "../sizes";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "./types";
+import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const padding = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = size.edgeRules('p', '', 'padding', '');
