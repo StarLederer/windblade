@@ -7,7 +7,11 @@
 </h1>
 
 <p align="center">
-  Tailwind-inspired UnoCSS preset with logical properties and a better color system.
+  Tailwind-inspired UnoCSS preset with a better color system, logical properties, and simpler customization.
+</p>
+
+<p align="center">
+  <a href="https://starlederer.github.io/windblade">Homepage</a> | <a href="https://starlederer.github.io/windblade?navigation=/docs">Documentation</a> (WIP) | <a href="https://github.com/unocss/unocss">UnoCSS</a> | <a href="https://tailwindcss.com/">Tailwind</a>
 </p>
 
 ## Progress
@@ -18,10 +22,9 @@
 - [x] Automatic color system.
 - [x] Javascript access to the automatic color system.
 - [x] Detailed README.
+- [ ] Documentation with demos.
 - [ ] Published to NPM.
-- [ ] Cool demo.
 - [ ] Listed on [UnoCSS](https://github.com/unocss/unocss) readme.
-- [ ] Documentation.
 - [ ] Become UnoCSS default preset 🤷🫣
 
 ## Installation
@@ -36,7 +39,7 @@ pnpm add unocss-preset-windblade unocss -D
 
 ## Usage
 
-There are no docks at the moment but you should be able to follow [Tailwind's docks](https://tailwindcss.com/docs/aspect-ratio) without major problems. Please see the following sections for intentional differences with Tailwind.
+[Documentation](https://starlederer.github.io/windblade?navigation=/docs) is in development. Until it is complete please follow [Tailwind's docs](https://tailwindcss.com/docs/aspect-ratio) and refer to our documentation for differences. *You will not have to refer to Tilwind's docs once our own docuentation is complete.*
 
 ### Configuring with UnoCSS
 
@@ -122,35 +125,17 @@ All colors have one or more foreground colors. The first foreground color is set
 </div>
 ```
 
-Change color hue by applying `bg-{color name}` together with `hue-{number}` or together with `style="--hue: {number}"` (we recommend using the utility, but the CSS variable can be useful if you need to control hue with JavaScript).
+Change color hue by applying `bg-{color name}` together with `sheme-(auto|dark|light)-{number}` or together with `style="--hue: {number}"` (we recommend using the utility, but the CSS variable can be useful if you need to control hue with JavaScript).
 
 ```html
-<div class="hue-45 bg-normal"></div>
+<div class="scheme-auto-80 bg-normal"></div>
 ```
 
 It is a good idea to override the default hue at the root of your app.
 
 ```html
-<body class="hue-45 bg-normal">
+<body class="scheme-auto-80 bg-normal">
   ...
-</body>
-```
-
-Windblade can make colors interactive which uses a `calc` and a css varaible to boost color lightness when `highlight` or `highlight+` utilities are applied.
-
-```html
-<button class="bg-interactive hover:highlight active:highlight+"></button>
-```
-
-Windblade uses `@media (prefers-color-scheme: light)` to determine which color scheme to use but you can override it with `scheme-dark` and `scheme-light` utilities or use `scheme-initial` to reset.
-
-```html
-<body class="hue-45 bg-normal scheme-light">
-  This website is always light
-  <section class="scheme-dark bg-normal">
-    But this section is always dark.
-  </section>
-  It's a panda! 🐼
 </body>
 ```
 
@@ -159,26 +144,27 @@ Windblade uses `@media (prefers-color-scheme: light)` to determine which color s
 Sometimes you might need to set a color with JavaScript and you might be unable to use a class (e.g. drawing to a canvas). In those situations, you can use Windblade's `core` module.
 
 ```js
-import { getSLA } from "unocss-preset-windblade/core";
+import { getLCA, lchToRgb } from "unocss-preset-windblade/core";
 import { theme } from "unocss-preset-windblade"; // this is just a source file and it does not know about your theme customizations. If you are using your own colors you should import them instead
 
-const brandHue = 45;
+const brandHue = 80;
 
 getBrandColor((light?: boolean) => {
-  const colors = getSLA(theme.windblade.colors['brand'].base); // returns light and dark variants with all values calculated
+  const colors = getLCA(theme.windblade.colors['brand'].base); // returns light and dark variants with all values calculated
 
-  let sla;
+  let lca;
   if (light) {
-    sla = colors.light;
+    lca = colors.light;
   } else {
-    sla = colors.dark;
+    lca = colors.dark;
   }
 
-  return `hsla(${brandHue}, ${sla.s}%, ${sla.l}%, ${sla.a}%)`;
+  let rgb = lchToRgb(lca.l, lca.c, brandHue);
+
+  return `rgb(${rgb.r}, ${rgb.g}%, ${rgb.b}%, ${lca.a}%)`;
 });
 
 export default getBrandColor;
-
 ```
 
 ### Using logical properties
@@ -305,273 +291,3 @@ Tailwind allows you to use custom values when your design specification does not
 ### Hover, focus and other states
 
 Windblade does not come with functionality like hover or focus states. Please use Windblade together with [unocss-preset-mini-variants](https://www.npmjs.com/package/unocss-preset-mini-variants) if you need this functionality.
-
-## About Windblade
-
-Windblade is a Tailwind-inspired UnoCSS preset that does three things better than Tailwind. First, Windblade uses semantic hue-independent colors that automatically adapt to the browser color scheme. Second, it uses logical properties instead of right-to-left, top-to-bottom ones and polyfills logical values which have not been implemented in CSS yet. And finally, it has a much simpler theme that is faster to customize and fit your design language.
-
-### Semantic colors
-
-#### Tailwind has too many colors
-
-Tailwind has an incomprehensible amount of colors which is very hard to customize. Windblade's semantic colors solve this by using color "meanings" like 'background' or 'surface' instead of actual color values like 'red', 'green', 'blue' or 'desaturated blue' and generating both background and foreground colors. HSL is used in the background to power this so you can use any hue you need with the `hue-{number}` or `--hue` CSS variable
-
-T🤮ilwind:
-```js
-module.exports = {
-  theme: {
-    colors: {
-      'red': {
-        100: 'hsl(0, 60%, 10%)',
-        200: 'hsl(0, 60%, 20%)',
-        300: 'hsl(0, 60%, 30%)',
-        400: 'hsl(0, 60%, 40%)',
-        500: 'hsl(0, 60%, 50%)',
-        600: 'hsl(0, 60%, 60%)',
-        700: 'hsl(0, 60%, 70%)',
-        800: 'hsl(0, 60%, 80%)',
-        900: 'hsl(0, 60%, 90%)',
-      },
-      'desaturated-red': {
-        100: 'hsl(0, 20%, 10%)',
-        200: 'hsl(0, 20%, 20%)',
-        300: 'hsl(0, 20%, 30%)',
-        400: 'hsl(0, 20%, 40%)',
-        500: 'hsl(0, 20%, 50%)',
-        600: 'hsl(0, 20%, 60%)',
-        700: 'hsl(0, 20%, 70%)',
-        800: 'hsl(0, 20%, 80%)',
-        900: 'hsl(0, 20%, 90%)',
-      },
-      'green': {
-        100: 'hsl(120, 60%, 10%)',
-        200: 'hsl(120, 60%, 20%)',
-        300: 'hsl(120, 60%, 30%)',
-        400: 'hsl(120, 60%, 40%)',
-        500: 'hsl(120, 60%, 50%)',
-        600: 'hsl(120, 60%, 60%)',
-        700: 'hsl(120, 60%, 70%)',
-        800: 'hsl(120, 60%, 80%)',
-        900: 'hsl(120, 60%, 90%)',
-      },
-      'desaturated-green': {
-        100: 'hsl(120, 20%, 10%)',
-        200: 'hsl(120, 20%, 20%)',
-        300: 'hsl(120, 20%, 30%)',
-        400: 'hsl(120, 20%, 40%)',
-        500: 'hsl(120, 20%, 50%)',
-        600: 'hsl(120, 20%, 60%)',
-        700: 'hsl(120, 20%, 70%)',
-        800: 'hsl(120, 20%, 80%)',
-        900: 'hsl(120, 20%, 90%)',
-      },
-      'blue': {
-        100: 'hsl(240, 60%, 10%)',
-        200: 'hsl(240, 60%, 20%)',
-        300: 'hsl(240, 60%, 30%)',
-        400: 'hsl(240, 60%, 40%)',
-        500: 'hsl(240, 60%, 50%)',
-        600: 'hsl(240, 60%, 60%)',
-        700: 'hsl(240, 60%, 70%)',
-        800: 'hsl(240, 60%, 80%)',
-        900: 'hsl(240, 60%, 90%)',
-      },
-      'desaturated-blue': {
-        100: 'hsl(240, 20%, 10%)',
-        200: 'hsl(240, 20%, 20%)',
-        300: 'hsl(240, 20%, 30%)',
-        400: 'hsl(240, 20%, 40%)',
-        500: 'hsl(240, 20%, 50%)',
-        600: 'hsl(240, 20%, 60%)',
-        700: 'hsl(240, 20%, 70%)',
-        800: 'hsl(240, 20%, 80%)',
-        900: 'hsl(240, 20%, 90%)',
-      },
-    },
-  },
-}
-```
-```html
-<div class="bg-red-600 text-red-200"> Red </div>
-<div class="bg-green-600 text-green-200"> Green </div>
-<div class="bg-blue-600 text-blue-200"> Blue </div>
-<div class="bg-blue-600 text-desaturated-blue-200"> Blue but text is desaturated </div>
-```
-
-Windblade ⚡:
-```js
-unocss({
-  theme: {
-    windblade: {
-      colors: {
-        'surface': {
-        base: { dark: { s: 60, l: 80 } },
-        on: [
-          { dark: { s: 20, l: 20 } },
-          { dark: { s: 10, l: 20 } },
-        ]
-      },
-      },
-    },
-  },
-}),
-```
-```html
-<div class="hue-0 bg-surface"> Red </div>
-<div class="hue-120 bg-surface"> Green </div>
-<div class="hue-240 bg-surface"> Blue </div>
-<div class="hue-240 bg-surface text-fg-2"> Blue but text is desaturated </div>
-```
-
-#### Foreground colors in Tailwind are too much manual work
-
-Tailwind provides a color framework but does not help you use it. Windblade's semantic colors solve this by automatically applying foreground colors and giving you semantic variations of them.
-
-T🤮ilwind:
-```html
-<div class="bg-blue-100 text-blue-900"> Primary </div>
-<div class="bg-blue-100 text-blue-800"> Secondary </div>
-<div class="bg-blue-100 text-blue-600"> Tertiary </div>
-```
-
-Windblade ⚡:
-```html
-<div class="bg-blue"> Primary (text-fg-1 is applied by default) </div>
-<div class="bg-blue text-fg-2"> Secondary </div>
-<div class="bg-blue text-fg-3"> Tertiary </div>
-```
-
-#### Color-scheme adaptation with Tailwind is a nightmare
-
-Because Tailwind defines static color values you have to manually set light and dark colors every time which is twice as much code as it could be. Windblade's semantic colors solve this by flipping the lightness value so you only declare what the color means, and Windblade figures out exactly what it should look like in different color schemes.
-
-T🤮ilwind:
-```html
-<div class="bg-blue-100 text-blue-900 dark:bg-blue-900 dark:text-blue-100"> Hello </div>
-```
-
-Windblade ⚡:
-```html
-<div class="bg-blue"> Hello </div>
-```
-
-### Logical properties
-
-Tailwind is very hard to use for multilanguage applications because layout reorientation has to be done manually. Windblade solves this by replacing all physical properties with logical counterparts even where CSS doesn't support it yet.
-
-T🤮ilwind:
-```html
-<div class="rtl:m-right-l ltr:m-left-l"></div>
-<div>Horizontal writing modes are not supported at all =(</div>
-```
-
-Windblade ⚡:
-```html
-<div class="m-ie-l"></div>
-<div class="size-i-l"> Size in the direction of writing (width if horizontal, height if vertical) </div>
-```
-
-### Simpler theme
-
-Tailwind configures a lot of things separately which takes a long time to customize and could just be automated. Windblade has a simpler theme that you can bend completely to your design language and rhythm very quickly.
-
-
-T🤮ilwind:
-```js
-module.exports = {
-  theme: {
-    spacing: {
-      '0': '0',
-      '0.25': '0.25rem',
-      '0.5': '0.5rem',
-      '0.75': '0.75rem',
-      '1': '1rem',
-      '2.5': '2.5rem',
-      '5': '5rem',
-      '7.5': '7.5rem',
-      '10': '10rem',
-    },
-    borderRadius: ({ theme }) => ({
-      DEFAULT: '0.5rem',
-      ...theme('spacing')
-    }),
-    opacity: ({ theme }) => ({
-      ...theme('spacing')
-    }),
-    width: ({ theme }) => ({
-      ...theme('spacing')
-    }),
-    height: ({ theme }) => ({
-      ...theme('spacing')
-    }),
-    margin: ({ theme }) => ({
-      ...theme('spacing')
-    }),
-    borderWidth: ({ theme }) => ({
-      ...theme('spacing')
-    }),
-    // ...
-    // ...
-    // ...
-    // ...
-    // ...
-    // ...
-    // ...
-    // ...
-    // ...
-    // ...
-    // ...
-  }
-}
-```
-
-Windblade ⚡:
-```js
-unocss({
-  theme: {
-    windblade: {
-      proportions: {
-        '0.25': 0.25,
-        '0.5': 0.5,
-        '0.75': 0.75,
-        '1': 1,
-        '2.5': 2,
-        '5': 5,
-        '7.5': 7.5,
-        '10': 10,
-      },
-
-      time: {
-        baseUnitMs: 150, // you can use duration-0.25, duration-5, etc. where duration-1 is 150ms and the rest follows proportions
-      },
-    },
-  },
-}),
-```
-
-### Bonus: calculations
-
-Tailwind allows you to use custom values when your design specification does not fit with their design language. Windblade does not allow that to help you stay within the design language but allows you to do calculations with your proportions right inside CSS.
-
-T🤮ilwind:
-```html
-<div class="p-4">
-  Label
-  <!-- Custom underline -->
-  <div class="absolute width-full height-1 inset-bottom-[0.375rem]"></div>
-  <!-- (4-1) / 2 -->
-  <!-- (1rem - 0.25rem) / 2 -->
-  <!-- was hard to calculate and will break if the theme changes -->
-</div>
-```
-
-Windblade ⚡:
-```html
-<div class="p-4t">
-  Label
-  <!-- Custom underline -->
-  <div class="absolute size-i-full size-b-1t inset-bottom-((4t - 1t) / 2)"></div>
-  <!-- We did not need to calculate anything and this will not break if proportions change -->
-  <!-- One downside, we cannot name proportions with valid numbers if we want to use this -->
-</div>
-```

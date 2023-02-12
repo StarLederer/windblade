@@ -1,0 +1,4 @@
+<div class="bg-red-600 text-red-200"> Red </div>
+<div class="bg-green-600 text-green-200"> Green </div>
+<div class="bg-blue-600 text-blue-200"> Blue </div>
+<div class="bg-blue-600 text-desaturated-blue-200"> Blue but text is desaturated </div>

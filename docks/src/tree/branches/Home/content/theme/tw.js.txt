@@ -1,0 +1,45 @@
+module.exports = {
+  theme: {
+    spacing: {
+      '0': '0',
+      '0.25': '0.25rem',
+      '0.5': '0.5rem',
+      '0.75': '0.75rem',
+      '1': '1rem',
+      '2.5': '2.5rem',
+      '5': '5rem',
+      '7.5': '7.5rem',
+      '10': '10rem',
+    },
+    borderRadius: ({ theme }) => ({
+      DEFAULT: '0.5rem',
+      ...theme('spacing')
+    }),
+    opacity: ({ theme }) => ({
+      ...theme('spacing')
+    }),
+    width: ({ theme }) => ({
+      ...theme('spacing')
+    }),
+    height: ({ theme }) => ({
+      ...theme('spacing')
+    }),
+    margin: ({ theme }) => ({
+      ...theme('spacing')
+    }),
+    borderWidth: ({ theme }) => ({
+      ...theme('spacing')
+    }),
+    // ...
+    // ...
+    // ...
+    // ...
+    // ...
+    // ...
+    // ...
+    // ...
+    // ...
+    // ...
+    // ...
+  },
+};

@@ -1,0 +1,20 @@
+unocss({
+  theme: {
+    windblade: {
+      proportions: {
+        '0.25': 0.25,
+        '0.5': 0.5,
+        '0.75': 0.75,
+        '1': 1,
+        '2.5': 2,
+        '5': 5,
+        '7.5': 7.5,
+        '10': 10,
+      },
+
+      time: {
+        baseUnitMs: 150, // you can use duration-0.25, duration-5, etc. where duration-1 is 150ms and the rest follows proportions
+      },
+    },
+  },
+});

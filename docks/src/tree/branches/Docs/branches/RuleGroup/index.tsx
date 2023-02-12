@@ -4,6 +4,7 @@ import themeStore from "~/stores/themeStore";
 import uno from "~/unocss";
 import UnilityButton from "./components/UtilityButton";
 import Progress from "@ui/primitives/Progress";
+import syntax from "~/lib/syntax";
 
 const Main: Component<{
   ruleGroup: docs.rules.DocumentedRuleGroup
@@ -13,8 +14,7 @@ const Main: Component<{
   const [shadowRoot, setShadowRoot] = createSignal<ShadowRoot>();
   const [preview, setPreview] = createSignal<{ html: string; css: string; fullCss: string }>();
 
-  const [formatter] = createResource(async () => (await import("js-beautify")).default);
-  const [highlighter] = createResource(async () => (await import("highlight.js")).default);
+  const {formatter, highlighter} = syntax;
   // const [delay] = createResource(async () => await new Promise(r => setTimeout(r, 100000)));
 
   // Preview container ref

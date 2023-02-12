@@ -1,0 +1,8 @@
+<div class="p-4">
+  Label
+  <!-- Custom underline -->
+  <div class="absolute width-full height-1 inset-bottom-[0.375rem]"></div>
+  <!-- (4-1) / 2 -->
+  <!-- (1rem - 0.25rem) / 2 -->
+  <!-- was hard to calculate and will break if the theme changes -->
+</div>

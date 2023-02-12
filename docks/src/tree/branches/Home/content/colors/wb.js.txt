@@ -1,0 +1,15 @@
+unocss({
+  theme: {
+    windblade: {
+      colors: {
+        'surface': {
+        base: { dark: { s: 60, l: 80 } },
+        on: [
+          { dark: { s: 20, l: 20 } },
+          { dark: { s: 10, l: 20 } },
+        ]
+      },
+      },
+    },
+  },
+});

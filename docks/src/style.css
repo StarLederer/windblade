@@ -48,16 +48,26 @@ body {
   animation-name: out;
 }
 
-pre.css,
-.hljs-tag {
-  @apply text-fg-3;
+pre {
+  @apply leading-(s+s.2);
 }
 
+pre.css,
+pre.js,
+.hljs-comment,
+.hljs-tag {
+  @apply text-fg-2;
+}
+
+.hljs-keyword,
+.hljs-variable,
+.hljs-title,
 .hljs-selector-class,
 .hljs-name {
   @apply text-accent;
 }
 
+.hljs-property,
 .hljs-attribute,
 .hljs-attr {
   @apply text-fg-1;
@@ -66,6 +76,15 @@ pre.css,
 .hljs-string {
   @apply text-accent hue-rotate-s.2;
 }
+
+.hljs-number {
+  @apply text-accent;
+}
+
+.hljs-comment {
+  @apply text-fg-3;
+}
+
 
 @keyframes in {
   from {

@@ -1,0 +1,4 @@
+<div class="scheme-auto-0 bg-surface"> Red </div>
+<div class="scheme-auto-120 bg-surface"> Green </div>
+<div class="scheme-auto-240 bg-surface"> Blue </div>
+<div class="scheme-auto-240 bg-surface text-fg-2"> Blue but text is desaturated </div>

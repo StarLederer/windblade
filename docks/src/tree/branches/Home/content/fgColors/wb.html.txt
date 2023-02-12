@@ -1,0 +1,3 @@
+<div class="bg-blue"> Primary (text-fg-1 is applied by default) </div>
+<div class="bg-blue text-fg-2"> Secondary </div>
+<div class="bg-blue text-fg-3"> Tertiary </div>
