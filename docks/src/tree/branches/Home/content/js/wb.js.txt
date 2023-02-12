@@ -13,9 +13,7 @@ getBrandColor((light?: boolean) => {
     lca = colors.dark;
   }
 
-  let rgb = LCHToCSSColor(lca.l, lca.c, brandHue);
-
-  return `rgb(${rgb.r}, ${rgb.g}%, ${rgb.b}%, ${lca.a}%)`;
+  return LCHToCSSColor(lca.l, lca.c, brandHue, lca.a).rgba;
 });
 
 export default getBrandColor;
