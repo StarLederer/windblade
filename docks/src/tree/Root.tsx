@@ -7,7 +7,6 @@ import logoBlack from "@windblade/brand/logo-black.svg";
 import themeStore from "~/stores/themeStore";
 import Home from "./branches/Home";
 import Docs from "./branches/Docs";
-import router from "@ui/router";
 
 const Main: Component = () => {
   onMount(() => { addNavigationHandler('/home'); })

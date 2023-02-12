@@ -5,18 +5,18 @@ import Link from "@ui/primitives/Button/Link";
 import Container from "~/lib/Container";
 import syntax from "~/lib/syntax";
 
-import colorsTwJs from "./content/colors/tw.js.txt?raw";
-import colorsTwHtml from "./content/colors/tw.html.txt?raw";
-import colorsWbJs from "./content/colors/wb.js.txt?raw";
-import colorsWbHtml from "./content/colors/wb.html.txt?raw";
-import fgColorsTw from "./content/fgColors/tw.html.txt?raw";
-import fgColorsWb from "./content/fgColors/wb.html.txt?raw";
-import themeTw from "./content/theme/tw.js.txt?raw";
-import themeWb from "./content/theme/wb.js.txt?raw";
-import calculationsTw from "./content/calculations/tw.html.txt?raw";
-import calculationsWb from "./content/calculations/wb.html.txt?raw";
-import jsTw from "./content/js/tw.js.txt?raw";
-import jsWb from "./content/js/wb.js.txt?raw";
+import colorsTwJs from "./Home/content/colors/tw.js.txt?raw";
+import colorsTwHtml from "./Home/content/colors/tw.html.txt?raw";
+import colorsWbJs from "./Home/content/colors/wb.js.txt?raw";
+import colorsWbHtml from "./Home/content/colors/wb.html.txt?raw";
+import fgColorsTw from "./Home/content/fgColors/tw.html.txt?raw";
+import fgColorsWb from "./Home/content/fgColors/wb.html.txt?raw";
+import themeTw from "./Home/content/theme/tw.js.txt?raw";
+import themeWb from "./Home/content/theme/wb.js.txt?raw";
+import calculationsTw from "./Home/content/calculations/tw.html.txt?raw";
+import calculationsWb from "./Home/content/calculations/wb.html.txt?raw";
+import jsTw from "./Home/content/js/tw.js.txt?raw";
+import jsWb from "./Home/content/js/wb.js.txt?raw";
 
 const styles = {
   h3: "font-extrabold text-$($m.2+$s) text-fg-1",

@@ -2,7 +2,7 @@ import { Component, createEffect, createResource, createSignal, For, on, Show, S
 import type { docs } from "@windblade/unocss";
 import themeStore from "~/stores/themeStore";
 import uno from "~/unocss";
-import UnilityButton from "./components/UtilityButton";
+import UnilityButton from "./RuleGroup/components/UtilityButton";
 import Progress from "@ui/primitives/Progress";
 import syntax from "~/lib/syntax";
 

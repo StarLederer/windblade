@@ -2,7 +2,7 @@ import { Component, For } from "solid-js";
 import { navigate, Route } from "~/lib/rotuer";
 import router from "@ui/router";
 import { docs } from "windblade";
-import RuleGroup from "./branches/RuleGroup";
+import RuleGroup from "./Docs/branches/RuleGroup";
 
 const Main: Component = () => {
   return (
