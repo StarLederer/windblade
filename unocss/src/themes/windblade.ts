@@ -44,7 +44,7 @@ const theme: Theme = {
       },
 
       'normal-4': {
-        base: { dark: { l: 0.20, c: 0.006 } },
+        base: { dark: { l: 0.19, c: 0.006 }, light: { l: 0.9} },
         on: [
           { dark: { l: 0.96, c: 0.01 } },
           { dark: { l: 0.90, c: 0.02 } },
@@ -85,7 +85,7 @@ const theme: Theme = {
       },
 
       'accent-3': {
-        base: { dark: { l: 0.6, c: 0.06, a: 0.1 } },
+        base: { dark: { l: 0.6, c: 0.06, a: 0.1 }, light: { c: 0.18 } },
         on: [
           { dark: { l: 0.9, c: 0.2 } },
         ],
