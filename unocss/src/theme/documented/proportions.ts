@@ -21,7 +21,7 @@ const main: DocumentedThemeObject = (theme: any, { h1, h2, p, pre, example }) =>
   p("Proportions are used throughout the whole preset for size, duration, opacity, etc."),
   p("Since windblade uses the same proportions for everything it is very easy to customize and is highly recommended that you change them to match your design system."),
   h2("Default proportions"),
-  p("By default Windblade is configured with 10-unit-based proportions, however, Windblade also includes an option to use Tailwind and Material Design v3 proportions. "),
+  p("By default Windblade is configured with 10-unit-based proportions, however, Windblade also includes an option to use Tailwind and Material Design v3 proportions."),
   example(`
     <table class="border-collapse">
       <tr class="${styles.tr}">

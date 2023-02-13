@@ -186,19 +186,7 @@ Please note that `width` and `height` are completely removed in favor of `size-{
 
 ### Customizing theme
 
-This section explains the options specific to Windblade, for a general guide on how to customize UnoCSS themes see [UnoCSS reamde](https://github.com/unocss/unocss#extend-theme).
-
-#### Colors
-
-View [Docs](https://starlederer.github.io/windblade?navigation=/docs/Theme-Semantic%20Colors).
-
-#### Proportions
-
-View [Docs](https://starlederer.github.io/windblade?navigation=/docs/Theme-Proportions).
-
-#### Other customizations
-
-See the [default theme](https://github.com/StarLederer/windblade/blob/master/unocss/theme/index.ts) for other values you can customize.
+For Windblade specific theme customization see the [Docs](https://starlederer.github.io/windblade?navigation=/docs/Theme-Semantic%20Colors). For for a general guide on how to customize UnoCSS themes see [UnoCSS reamde](https://github.com/unocss/unocss#extend-theme).
 
 ### WIP: Using calculations
 
