@@ -18,7 +18,7 @@ const Main: Component<{
 }> = (props) => (
   <div class="size-b-full overflow-auto">
     <div class="p-m.2 flex flex-col gap-s">
-      {props.themeObject(uno.config.theme.windblade.colors, components)}
+      {props.themeObject(uno.config.theme, components)}
     </div>
   </div>
 );

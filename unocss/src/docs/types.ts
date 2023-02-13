@@ -15,7 +15,7 @@ export type Components = {
 // Theme
 
 export type DocumentedThemeObject = (
-  themeObject: unknown,
+  theme: unknown,
   markupComponents: Components,
 ) => any[];
 

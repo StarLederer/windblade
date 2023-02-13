@@ -194,21 +194,7 @@ View [Docs](https://starlederer.github.io/windblade?navigation=/docs/Theme-Seman
 
 #### Proportions
 
-Proportions are used throughout the whole preset for size, duration, opacity, etc.
-
-Proportions are simple numbers that are converted to relevant units automatically (rem is used for sizing).
-
-```js
-const theme: Theme = {
-  windblade: {
-    proportions: {
-      'half': 0.5,
-      'full': 1,
-      'double': 2,
-    },
-  },
-};
-```
+View [Docs](https://starlederer.github.io/windblade?navigation=/docs/Theme-Proportions).
 
 #### Other customizations
 

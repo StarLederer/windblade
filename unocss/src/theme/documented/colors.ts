@@ -33,7 +33,7 @@ const lightColor = `const theme: Theme = {
   },
 };`;
 
-const colors: DocumentedThemeObject = (themeObject, { h1, h2, p, pre, example }) => [
+const colors: DocumentedThemeObject = (theme: any, { h1, h2, p, pre, example }) => [
   h1("Customizing semantic colors"),
   p("Colors in Windblade are based on the OkLCH model and have a base (background) and one or more 'on' (foreground) colors."),
   h2("Default colors"),
@@ -41,22 +41,23 @@ const colors: DocumentedThemeObject = (themeObject, { h1, h2, p, pre, example })
   example(`
     <div class="grid grid-fit-cols-m gap-s.4">
     ${((): string => {
-      if (typeof themeObject === "object") {
-        return Object.entries(themeObject as Record<string, ThemeColorCombo>).map(([name, colorCombo]) => `
-            <div class="bg-${name} flex flex-col border border-color-surface rounded-s overflow-hidden font-bold">
-              <h1 class="p-s">${name}</h1>
-              <div class="size-b-px shrink-0 bg-fg-1 opacity-[0.1]"></div>
-              <div class="size-b-full flex flex-col gap-s p-s">
-                ${colorCombo.on.map((_, i) => `<div class="text-fg-${i + 1}">Fg-${i + 1}</div>`).join('')}
-              </div>
+      const colors = theme?.windblade?.colors;
+      if (typeof colors === "object") {
+        return Object.entries(colors as Record<string, ThemeColorCombo>).map(([name, colorCombo]) => `
+          <div class="bg-${name} flex flex-col border border-color-surface rounded-s overflow-hidden font-bold">
+            <h1 class="p-s">${name}</h1>
+            <div class="size-b-px shrink-0 bg-fg-1 opacity-[0.1]"></div>
+            <div class="size-b-full flex flex-col gap-s p-s">
+              ${colorCombo.on.map((_, i) => `<div class="text-fg-${i + 1}">Fg-${i + 1}</div>`).join('')}
             </div>
-          `).join('');
+          </div>
+        `).join('');
       }
       return '<div class="theme-auto-20 font-bold">Error</div>';
     })()}
     </div>
   `),
-  h2("Your colors"),
+  h2("Custom colors"),
   p("Add a color by specifying an object like the following:"),
   pre(newColor, 'ts'),
   p("Dark scheme is the default. Lightness is flipped when light color scheme is used."),
