@@ -190,69 +190,7 @@ This section explains the options specific to Windblade, for a general guide on 
 
 #### Colors
 
-Colors in windblade are based on the [HSL](https://en.wikipedia.org/wiki/HSL_and_HSV) model and have a base (background) and one or more 'on' (foreground) colors.
-
-Add a color by specifying an object like the following:
-
-```js
-const theme: Theme = {
-  windblade: {
-    colors: {
-      'mycolor': {
-        base: { dark: { s: 0, l: 0 } },
-        on: [
-          { dark: { s: 0, l: 100 } },
-        ],
-      },
-    },
-  },
-};
-```
-
-Dark scheme is the default. Lightness is flipped when light color scheme is used.
-
-The HSL color space is not perfect and different hues can look darker or brighter than others. Windblade will switch to a much better [OkLCH](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch) model when browser support improves. For now, Windblade allows you to customize the light mode appearance if your colors need it. This is especially useful with brand and accent colors that should not adapt to color schemes.
-
-It is highly recommended to avoid doing this!
-
-```js
-const theme: Theme = {
-  windblade: {
-    colors: {
-      'myColor': {
-        base: { dark: { s: 0, l: 0 }, light: { s: 10, l: 90 } }, // slightly more saturated and darker than it would be otherwise in light mode (100 - 0 = 100, we tell it to be 90)
-        on: [
-          { dark: { s: 0, l: 100 }, light: { a: 80 } }, // more transparent in light mode (80%)
-        ],
-      },
-      'brandColor': {
-        base: { dark: { s: 100, l: 60 }, light: { l: 60 } }, // has lightness 60 in both color schemes
-        on: [
-          { dark: { s: 0, l: 0 } },
-        ],
-      },
-    },
-  },
-};
-```
-
-Colors can be marked as `interactive`, it will make them respect `highlight` and `highlight+` utilities. This is not always on to avoid extra `calc`s.
-
-```js
-const theme: Theme = {
-  windblade: {
-    colors: {
-      'my-interactive-color': {
-        base: { dark: { s: 0, l: 0 } },
-        on: [
-          { dark: { s: 0, l: 100 } },
-        ],
-        interactive: true,
-      },
-    },
-  },
-};
-```
+View [Docs](https://starlederer.github.io/windblade?navigation=/docs/Theme-Semantic%20Colors).
 
 #### Proportions
 

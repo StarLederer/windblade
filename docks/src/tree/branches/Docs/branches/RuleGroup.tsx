@@ -1,14 +1,13 @@
-import { Component, createEffect, createResource, createSignal, For, on, Show, Suspense } from "solid-js";
-import type { docs } from "@windblade/unocss";
-import themeStore from "~/stores/themeStore";
-import uno from "~/unocss";
+import { Component, createSignal, For, Show, Suspense } from "solid-js";
+import { docs } from "windblade";
 import UnilityButton from "./RuleGroup/components/UtilityButton";
 import Progress from "@ui/primitives/Progress";
 import syntax from "~/lib/syntax";
 import ShadowDomUnoCSS from "~/lib/ShadowDomUnoCSS";
 
 const Main: Component<{
-  ruleGroup: docs.rules.DocumentedRuleGroup
+  title: string,
+  ruleGroup: docs.DocumentedRuleGroup
 }> = (props) => {
   const [selectedI, setSelectedI] = createSignal(-1);
   const [selected, setSelected] = createSignal<string | undefined>(undefined);
@@ -31,7 +30,7 @@ const Main: Component<{
   return (
     <div class="size-b-full overflow-auto">
       <div class="flex flex-col gap-s p-m.2">
-        <h2 class="text-fg-1 font-bold text-m.2">{docs().title}</h2>
+        <h2 class="text-fg-1 font-bold text-m.2">{props.title}</h2>
         <p class="text-fg-3 font-semibold">{docs().description}</p>
 
         {docs().preview && <>

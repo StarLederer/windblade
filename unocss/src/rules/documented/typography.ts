@@ -4,11 +4,10 @@ import Theme from "../../theme/Theme";
 import { colorRule, fgColorRule } from "../colors";
 import * as logical from "../logicalSet";
 import * as size from "../sizes";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
+import { DocumentationCategory, DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const fontFamily = (): DocumentedRuleGroup => {
   const docs: DocumentedRuleGroupDocs = {
-    title: "Font family",
     description: "Font family utilities have been removed.",
     utilities: [],
   };
@@ -20,7 +19,6 @@ export const fontSize = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [size.rule('text', 'font-size')];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Font size",
     description: "Windblade proportions are used instead of separate size values.",
     utilities: ["text-<theme.windblade.proportions>"],
     preview: (util) => `<div class="${util}">Lorem ipsum<div>`,
@@ -31,7 +29,6 @@ export const fontSize = (): DocumentedRuleGroup => {
 
 export const fontSmoothing = (): DocumentedRuleGroup => {
   const docs: DocumentedRuleGroupDocs = {
-    title: "Font smoothing",
     description: "Font smoothing has been removed because Windblade sets it by default in preflight and it should never be changed. Plese open an issue if this is wrong.",
     utilities: [],
   };
@@ -43,7 +40,6 @@ export const tracking = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [size.rule('tracking', 'letter-spacing', { defaultUnit: 'em' })];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Letter spacing",
     description: "Windblade proportions are used instead of separate size values.",
     utilities: ["tracking-<theme.windblade.proportions>"],
     preview: (util) => `<div class="${util}">Lorem ipsum<div>`,
@@ -56,7 +52,6 @@ export const leading = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [size.rule('leading', 'line-height', { defaultUnit: '' })];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Line height",
     description: "Windblade proportions are used instead of separate size values. Setting line height in rem units is not possible at the moment.",
     utilities: ["leading-<theme.windblade.proportions>"],
     preview: (util) => `<div class="${util} text-center" style="max-inline-size: 36ch;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<div>`,
@@ -72,7 +67,6 @@ export const textColor = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Text color",
     description: "Windblade uses semantic colors.",
     utilities: [
       "text-<theme.windblade.colors>",
@@ -92,7 +86,6 @@ export const textDecorationColor = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Text decoration color",
     description: "Windblade uses semantic colors.",
     utilities: [
       "decoration-<theme.windblade.colors>",
@@ -112,7 +105,6 @@ export const textDecorationThickness = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Text decoration thickness",
     description: "Windblade proportions are used instead of separate thickness values.",
     utilities: [
       "decoration-from-font",
@@ -129,7 +121,6 @@ export const textUnderlineOffset = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [size.rule('underline-offset', 'text-underline-offset')];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Tect underline offset",
     description: "Windblade proportions are used instead of separate ofset values.",
     utilities: [
       "underline-offset-<theme.windblade.proportions>",
@@ -140,3 +131,17 @@ export const textUnderlineOffset = (): DocumentedRuleGroup => {
 
   return { rules, docs };
 };
+
+const category: DocumentationCategory = new Map([
+  ["Font Family", fontFamily()],
+  ["Font Size", fontSize()],
+  ["Font Smoothing", fontSmoothing()],
+  ["Letter Spacing", tracking()],
+  ["Line Height", leading()],
+  ["Text Color", textColor()],
+  ["Text Decoration Color", textDecorationColor()],
+  ["Text Decoration Thickness", textDecorationThickness()],
+  ["Text Underline Offset", textUnderlineOffset()],
+]);
+
+export default category;

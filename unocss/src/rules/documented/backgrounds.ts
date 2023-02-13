@@ -4,7 +4,7 @@ import * as logical from "../logicalSet";
 import { colorRule, colorBgRule, fgColorRule } from "../colors";
 import * as size from "../sizes";
 import { objectEntries, objectKeys } from "ts-extras";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
+import { DocumentationCategory, DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const color = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [
@@ -15,7 +15,6 @@ export const color = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Background color",
     description: "Windblade uses semantic colors.",
     utilities: ["bg-<theme.windblade.colors>", "bg-<theme.windblade.miscColors>", "bg-fg-<integer>"],
     preview: (util) => {
@@ -50,7 +49,6 @@ export const backgroundPosition = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Background position",
     description: "Physical properties replaced with logocal.",
     utilities: [
       ...Object.keys(logical.abbreviations.edges),
@@ -85,7 +83,6 @@ export const backgroundImage = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Background image",
     description: "Repalced static colors with sematic colors.",
     utilities: [
       "bg-none",
@@ -109,7 +106,6 @@ export const gradientColorStops = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Gradient color stops",
     description: "Repalced static colors with sematic colors. Temporarily missing the 'via' utilities.",
     utilities: ["from-<theme.windblade.colors>", "from-<theme.windblade.miscColors>", "to-<theme.windblade.colors>", "to-<theme.windblade.miscColors>"],
     preview: (util) => `
@@ -119,3 +115,12 @@ export const gradientColorStops = (): DocumentedRuleGroup => {
 
   return { rules, docs };
 };
+
+const category: DocumentationCategory = new Map([
+  ["Color", color()],
+  ["Background Position", backgroundPosition()],
+  ["Background Image", backgroundImage()],
+  ["Gradient Color Stops", gradientColorStops()],
+]);
+
+export default category;

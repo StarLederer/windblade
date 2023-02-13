@@ -1,21 +1,18 @@
 import { Rule } from "@unocss/core";
-import { objectEntries } from "ts-extras"
-import { simpleRule } from "..";
 import Theme from "../../theme/Theme";
 import { colorRule, fgColorRule } from "../colors";
 import * as logical from "../logicalSet";
 import * as size from "../sizes";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
+import { DocumentationCategory, DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const borderRadius = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [
     ...size.cornerRules('rounded', '', 'border', 'radius'),
-    ...logical.cornerRules('rounded', 'full', 'border', 'radius', (pref, prop) => simpleRule(pref, prop, '999999px')),
-    ...logical.cornerRules('rounded', 'none', 'border', 'radius', (pref, prop) => simpleRule(pref, prop, 'none')),
+    ...logical.cornerRules('rounded', 'full', 'border', 'radius', (pref, prop) => [pref, { [prop]: '99999px' }]),
+    ...logical.cornerRules('rounded', 'none', 'border', 'radius', (pref, prop) => [pref, { [prop]: 'none' }]),
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Border radius",
     description: "Windblade proportions are used instead of separate size values, and physical properties are replaced with logical.",
     utilities: [
       "rounded",
@@ -33,7 +30,6 @@ export const borderWidth = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = size.edgeRules('border', '', 'border', 'width');
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Border width",
     description: "Windblade proportions are used instead of separate size values, and physical properties are replaced with logical.",
     utilities: [
       "border",
@@ -55,7 +51,6 @@ export const borderColor = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Border color",
     description: "Windblade uses semantic colors.",
     utilities: [
       "border-color",
@@ -74,7 +69,6 @@ export const outlineWidth = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [size.rule('outline', 'outline-width')];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Outline width",
     description: "Windblade proportions are used instead of separate size values.",
     utilities: [
       "outline-<theme.windblade.proportions>",
@@ -93,7 +87,6 @@ export const outlineColor = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Outline color",
     description: "Windblade uses semantic colors.",
     utilities: [
       "outline-color-<theme.windblade.colors>",
@@ -110,7 +103,6 @@ export const outlineOffset = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [size.rule('outline-offset', 'outline-offset')];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Outline offset",
     description: "Windblade proportions are used instead of separate offset values.",
     utilities: [
       "outline-offset-<theme.windblade.proportions>",
@@ -124,7 +116,6 @@ export const outlineOffset = (): DocumentedRuleGroup => {
 
 export const divide = (): DocumentedRuleGroup => {
   const docs: DocumentedRuleGroupDocs = {
-    title: "Divide",
     description: "Divides have been removed.",
     utilities: [],
   };
@@ -134,10 +125,21 @@ export const divide = (): DocumentedRuleGroup => {
 
 export const ring = (): DocumentedRuleGroup => {
   const docs: DocumentedRuleGroupDocs = {
-    title: "Ring",
     description: "Rings have been removed.",
     utilities: [],
   };
 
   return { rules: [], docs };
 };
+
+const category: DocumentationCategory = new Map([
+  ["Border Radius", borderRadius()],
+  ["Border Width", borderWidth()],
+  ["Border Color", borderColor()],
+  ["Outline Width", outlineWidth()],
+  ["Outline Offset", outlineOffset()],
+  ["Divide", divide()],
+  ["Ring", ring()],
+]);
+
+export default category;

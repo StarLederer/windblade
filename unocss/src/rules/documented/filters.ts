@@ -1,11 +1,16 @@
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
+import { DocumentationCategory, DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const dropShadow = (): DocumentedRuleGroup => {
   const docs: DocumentedRuleGroupDocs = {
-    title: "Drop shadow",
-    description: "Drop shadows are removed for now because Tailwinds implementation is too limiting. Discussion in progress.",
+    description: "Drop shadows are removed for now because Tailwind's implementation is too limiting. Discussion in progress.",
     utilities: [],
   };
 
   return { rules: [], docs };
 };
+
+const category: DocumentationCategory = new Map([
+  ["Drop Shadow", dropShadow()],
+]);
+
+export default category;

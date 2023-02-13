@@ -5,7 +5,7 @@ const colorRule = (prefix: string, property: string): DynamicRule<Theme> => {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
-      if (theme.windblade.miscColors[match[2]]) return {
+      if (theme.windblade.miscColors?.[match[2]]) return {
         [property]: match[2]
       }
 
@@ -49,7 +49,7 @@ const fgColorRule = (prefix: string, property: string): DynamicRule<Theme> => {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
-      if (theme.windblade.miscColors[match[2]]) return {
+      if (theme.windblade.miscColors?.[match[2]]) return {
         [property]: match[2],
       }
 

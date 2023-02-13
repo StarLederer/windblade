@@ -4,7 +4,7 @@ import Theme from "../../theme/Theme";
 import { colorRule, fgColorRule } from "../colors";
 import * as logical from "../logicalSet";
 import * as size from "../sizes";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
+import { DocumentationCategory, DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const fill = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [
@@ -13,7 +13,6 @@ export const fill = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Fill",
     description: "Windblade uses semantic colors.",
     utilities: [
       "fill-<theme.windblade.colors>",
@@ -33,7 +32,6 @@ export const stroke = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Stroke color",
     description: "Windblade uses semantic colors.",
     utilities: [
       "stroke-<theme.windblade.colors>",
@@ -50,7 +48,6 @@ export const strokeWidth = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [size.rule('stroke', 'stroke-width')];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Stroke width",
     description: "Windblade proportions are used instead of separate size values.",
     utilities: ["stroke-<theme.windblade.proportions>"],
     preview: (util) => `TODO`,
@@ -58,3 +55,11 @@ export const strokeWidth = (): DocumentedRuleGroup => {
 
   return { rules, docs };
 };
+
+const category: DocumentationCategory = new Map([
+  ["Fill", fill()],
+  ["Stroke Color", stroke()],
+  ["Stroke Width", strokeWidth()],
+]);
+
+export default category;

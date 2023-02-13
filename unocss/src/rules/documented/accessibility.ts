@@ -1,7 +1,7 @@
 import { Rule, escapeSelector as e } from "@unocss/core";
 import { getColorSchemeCSSProps, objToCSS } from "../../core";
 import Theme from "../../theme/Theme";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
+import { DocumentationCategory, DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const colorScheme = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [
@@ -53,7 +53,6 @@ export const colorScheme = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Color scheme",
     description: "Utilities for switching color scheme. Missing from Tailwind.",
     utilities: ["scheme-dark", "scheme-light"],
     preview: (util) => `TODO`,
@@ -61,3 +60,9 @@ export const colorScheme = (): DocumentedRuleGroup => {
 
   return { rules, docs };
 };
+
+const category: DocumentationCategory = new Map([
+  ["Color Scheme", colorScheme()],
+]);
+
+export default category;

@@ -2,7 +2,7 @@ import { Rule } from "@unocss/core";
 import { objectEntries } from "ts-extras"
 import Theme from "../../theme/Theme";
 import * as logical from "../logicalSet";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
+import { DocumentationCategory, DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const aspectRatio = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [
@@ -16,7 +16,6 @@ export const aspectRatio = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Aspect ratio",
     description: "Windblade uses CSS ratios instead of presets.",
     utilities: ["aspect-<ratio>"],
     preview: (util) => `TODO`,
@@ -27,7 +26,6 @@ export const aspectRatio = (): DocumentedRuleGroup => {
 
 export const container = (): DocumentedRuleGroup => {
   const docs: DocumentedRuleGroupDocs = {
-    title: "Container",
     description: "Windblade does not have container utilities or breakpoints becase it focuses on intrinsic sizing instead.",
     utilities: [],
   };
@@ -44,7 +42,6 @@ export const breakAfter = (): DocumentedRuleGroup => {
   ]);
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Break after",
     description: "Physical properties replaced with logocal.",
     utilities: values.map((val) => `break-after-${val}`),
   };
@@ -61,7 +58,6 @@ export const breakBefore = (): DocumentedRuleGroup => {
   ]);
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Break before",
     description: "Physical properties replaced with logocal.",
     utilities: values.map((val) => `break-before-${val}`),
   };
@@ -78,7 +74,6 @@ export const display = (): DocumentedRuleGroup => {
   ]);
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Display",
     description: "Windblade removes some utilities from this group that cannot be sued semantically.",
     utilities: values,
     preview: (util) => {
@@ -101,16 +96,15 @@ export const display = (): DocumentedRuleGroup => {
 export const objectPosition = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [
     ...objectEntries(logical.abbreviations.edges).map(([key, val]): Rule<Theme> => [
-      `object-${key}`, {'object-position': `var(--${val})`}
+      `object-${key}`, { 'object-position': `var(--${val})` }
     ]),
     ...objectEntries(logical.abbreviations.coners).map(([key, val]): Rule<Theme> => [
-      `object-${key}`, {'object-position': `var(--${val})`}
+      `object-${key}`, { 'object-position': `var(--${val})` }
     ]),
     ['object-center', { 'object-position': 'center' }]
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Object position",
     description: "Physical properties replaced with logocal.",
     utilities: [
       ...Object.keys(logical.abbreviations.edges),
@@ -124,3 +118,14 @@ export const objectPosition = (): DocumentedRuleGroup => {
 
   return { rules, docs };
 };
+
+const category: DocumentationCategory = new Map([
+  ["Aspect Ratio", aspectRatio()],
+  ["Container", container()],
+  ["Break After", breakAfter()],
+  ["Break Before", breakBefore()],
+  ["Disaply", display()],
+  ["Object Position", objectPosition()],
+]);
+
+export default category;

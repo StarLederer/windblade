@@ -5,8 +5,6 @@ import * as logical from "./logicalSet";
 import * as size from "./sizes";
 import { layout, backgrounds, interactivity, flexboxAndGrid, sizing, spacing, effects, filters, tables, transitionsAndAnimation, borders, typography, svg, accessibility, transforms } from "./documented";
 
-export const simpleRule = (prefix: string, property: string, value: string): Rule<Theme> => [prefix, { [property]: value }];
-
 const rules: Rule<Theme>[] = [
   // Layout
   ...layout.aspectRatio().rules,
@@ -68,11 +66,11 @@ const rules: Rule<Theme>[] = [
   ...layout.objectPosition().rules,
 
   ...["auto", "hidden", "clip", "visible", "scroll"].flatMap((val): Rule<Theme>[] =>
-    logical.axisRules('overflow', val, 'overflow', '', (pref, prop) => (simpleRule(pref, prop, val))),
+    logical.axisRules('overflow', val, 'overflow', '', (pref, prop) => [pref, { [prop]: val }]),
   ),
 
   ...["auto", "contain", "none"].flatMap((val): Rule<Theme>[] =>
-    logical.axisRules('overscroll', val, 'overscroll-behavior', '', (pref, prop) => (simpleRule(pref, prop, val))),
+    logical.axisRules('overscroll', val, 'overscroll-behavior', '', (pref, prop) => [pref, { [prop]: val }]),
   ),
 
   ...["static", "fixed", "absolute", "relative", "sticky"].map((val): Rule<Theme> => [

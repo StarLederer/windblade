@@ -1,3 +1,5 @@
+import { DocumentationCategories } from "../../docs/types";
+
 import * as layout from "./layout";
 import * as flexboxAndGrid from "./flexboxAndGrid";
 import * as spacing from "./spacing";
@@ -14,26 +16,24 @@ import * as interactivity from "./interactivity";
 import * as svg from "./svg";
 import * as accessibility from "./accessibility";
 
-export const categories = {
-  "Layout": Object.values(layout),
-  "Flexbox & grid": Object.values(flexboxAndGrid),
-  "Spacing": Object.values(spacing),
-  "Sizing": Object.values(sizing),
-  "Typography": Object.values(typography),
-  "Backgrounds": Object.values(backgrounds),
-  "Borders": Object.values(borders),
-  "Effects": Object.values(effects),
-  "Filters": Object.values(filters),
-  "Tables": Object.values(tables),
-  "Transitions & Animation": Object.values(transitionsAndAnimation),
-  "Transforms": Object.values(transforms),
-  "Interactivity": Object.values(interactivity),
-  "SVG": Object.values(svg),
-  "Accessibility": Object.values(accessibility),
+export const categories: DocumentationCategories = new Map([
+  ["Layout", layout.default],
+  ["Flexbox & Grid", flexboxAndGrid.default],
+  ["Spacing", spacing.default],
+  ["Sizing", sizing.default],
+  ["Background", backgrounds.default],
+  ["Typography", typography.default],
+  ["Borders", borders.default],
+  ["Effects", effects.default],
+  ["Filters", filters.default],
+  ["Tables", tables.default],
+  ["Transitions & Animation", transitionsAndAnimation.default],
+  ["Transforms", transforms.default],
+  ["Interactivity", interactivity.default],
+  ["SVG", svg.default],
+  ["Accessibility", accessibility.default],
+]);
 
-};
-
-export * from "../../docs/types";
 export {
   layout,
   flexboxAndGrid,

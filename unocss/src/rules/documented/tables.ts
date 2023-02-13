@@ -3,7 +3,7 @@ import { objectEntries } from "ts-extras"
 import Theme from "../../theme/Theme";
 import * as logical from "../logicalSet";
 import * as size from "../sizes";
-import { DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
+import { DocumentationCategory, DocumentedRuleGroup, DocumentedRuleGroupDocs } from "../../docs/types";
 
 export const borderSpacing = (): DocumentedRuleGroup => {
   const rules: Rule<Theme>[] = [
@@ -12,7 +12,6 @@ export const borderSpacing = (): DocumentedRuleGroup => {
   ];
 
   const docs: DocumentedRuleGroupDocs = {
-    title: "Border spacing",
     description: "Changing border-spacing for individual axis is not possible at the moment.",
     utilities: ["border-spacing-<theme.windblade.proportions>"],
     preview: (util) => `TODO`,
@@ -20,3 +19,9 @@ export const borderSpacing = (): DocumentedRuleGroup => {
 
   return { rules, docs };
 };
+
+const category: DocumentationCategory = new Map([
+  ["Border spacing", borderSpacing()],
+]);
+
+export default category;
