@@ -39,7 +39,7 @@ pnpm add unocss-preset-windblade unocss -D
 
 ## Usage
 
-[Documentation](https://starlederer.github.io/windblade?navigation=/docs) is in development. Until it is complete please follow [Tailwind's docs](https://tailwindcss.com/docs/aspect-ratio) and refer to our documentation for differences. *You will not have to refer to Tilwind's docs once our own docuentation is complete.*
+[Documentation](https://starlederer.github.io/windblade?navigation=/docs) is in development. Until it is complete please follow [Tailwind's docs](https://tailwindcss.com/docs/aspect-ratio) and refer to our documentation and this readme for differences. *You will not have to refer to Tilwind's docs or this readme once our own docuentation is complete.*
 
 ### Configuring with UnoCSS
 
@@ -56,50 +56,6 @@ export default defineConfig({
       // config
     }),
     presetVariants(), // optional
-  ],
-})
-```
-
-### Using proportions
-
-Windblade uses Tailwind's 'spacing' with 't' appended to them + 'screen' units as proportions by default.
-
-```html
-<main class="max-size-i-xl">
-  <div class="m-10t p-2t"></div>
-</main>
-```
-
-Since Windblade is so easily customizable it is highly recommended that you change the units to match your design system (please avoid using valid JavaScript numbers as names).
-
-```js
-import { defineConfig } from 'unocss'
-
-export default defineConfig({
-  extendTheme: [
-    ({ windblade }) => {
-      // These are the proportions Star uses
-      windblade.proportions = {
-        's.2': 0.2,
-        's.4': 0.4,
-        's.5': 0.5,
-        's.6': 0.6,
-        's.8': 0.8,
-        's': 1,
-        'm.2': 2,
-        'm.4': 4,
-        'm.5': 5,
-        'm.6': 6,
-        'm.8': 8,
-        'm': 10,
-        'l.2': 20,
-        'l.4': 40,
-        'l.5': 50,
-        'l.6': 60,
-        'l.8': 80,
-        'l': 100,
-      };
-    }
   ],
 })
 ```
