@@ -1,7 +1,7 @@
-<div class="p-4t">
+<div class="p-4">
   Label
   <!-- Custom underline -->
-  <div class="absolute size-i-full size-b-1t inset-bottom-((4t - 1t) / 2)"></div>
+  <div class="absolute size-i-full size-b-1 inset-bottom-$(($4-$1)/2)"></div>
   <!-- We did not need to calculate anything and this will not break if proportions change -->
   <!-- One downside, we cannot name proportions with valid numbers if we want to use this -->
 </div>

@@ -7,7 +7,7 @@ const newColor = `const theme: Theme = {
       'mycolor': {
         base: { dark: { l: 0, c: 0 } },
         on: [
-          { dark: { l: 100, c: 0 } },
+          { dark: { l: 1, c: 0 } },
         ],
       },
     },

@@ -113,7 +113,7 @@ const Main: Component = () => {
               <section class="flex flex-col gap-s">
                 <h4 class={styles.h4}>Tailwind has too many colors</h4>
                 <p class={styles.p}>
-                  Tailwind has an incomprehensible amount of colors which is very hard to customize. Windblade's semantic colors solve this by using color "meanings" like 'background' or 'surface' instead of actual color values like 'red', 'green', 'blue' or 'desaturated blue' and generating both background and foreground colors. HSL is used in the background to power this so you can use any hue you need with the hue-number or --hue CSS variable
+                  Tailwind has an incomprehensible amount of colors which is very hard to customize. Windblade's semantic colors solve this by using color "meanings" like 'background' or 'surface' instead of actual color values like 'red', 'green', 'blue' or 'desaturated blue' and generating both background and foreground colors. OkLCH model is used in the background to power this so you can use any hue you need by changing color scheme.
                 </p>
                 <Comparison code={{
                   tw: {
@@ -167,7 +167,7 @@ const Main: Component = () => {
 
             <Comparison code={{
               tw: {
-                html: '<div class="rtl:m-right-l ltr:m-left-l"></div>\n<div>Horizontal writing modes are not supported at all =(</div>',
+                html: '<div class="rtl:m-right-l ltr:m-left-l"></div>\n<div>Horizontal writing modes are not supported at all 🙁</div>',
               },
               wb: {
                 html: '<div class="m-ie-l"></div>\n<div class="size-i-l"> Size in the direction of writing (width if horizontal, height if vertical) </div>',
@@ -194,7 +194,7 @@ const Main: Component = () => {
           <section class="flex flex-col gap-s">
             <h3 class={styles.h3}>Javascript core</h3>
             <p class={styles.p}>
-              Windblade has a Javascript core that can be used in your front-end to process your design tokens. This mostly useful in sitations when you need to draw to an HTML canvas with Windblade colors.
+              Windblade has a Javascript core that can be used in your front-end to process your design tokens. This is mostly useful in sitations when you need to draw to an HTML canvas with Windblade colors.
             </p>
 
             <Comparison code={{
@@ -210,7 +210,20 @@ const Main: Component = () => {
           <section class="flex flex-col gap-s">
             <h3 class={styles.h3}>Bonus: calculations</h3>
             <p class={styles.p}>
-              Tailwind allows you to use custom values when your design specification does not fit with their design language. Windblade does not allow that to help you stay within your design language but allows you to do calculations with your proportions right inside CSS.
+              Both Windblade and Tailwind allow you to set custom values suing the backet syntax, however only in Tailwind that means that you lose access to the design tokens. Windblade allows you to grab relevant to the rule values from your theme by presixing them with <code>$</code>.
+            </p>
+
+            <Comparison code={{
+              tw: {
+                html: `<div class="grid grid-template-cols-[auto_208px_auto]"></div>`,
+              },
+              wb: {
+                html: `<div class="grid grid-template-cols-[auto_$52_auto]"></div>`,
+              }
+            }} />
+
+            <p class={styles.p}>
+              You can also use the <code>$</code> syntax conveniently perform operations with your design tokens without breaking out of your design system or using <code>calc()</code>.
             </p>
 
             <Comparison code={{
