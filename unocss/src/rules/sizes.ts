@@ -4,7 +4,6 @@ import Theme from "../theme/Theme";
 import * as logical from "./logicalSet";
 
 const solve = (expr: string, theme: Theme, defaultUnit: string): string | undefined => {
-
   // Try to resolve proportion
   let token = theme.windblade.proportions[expr];
   if (token !== undefined) return `${token}${defaultUnit}`;
@@ -12,9 +11,6 @@ const solve = (expr: string, theme: Theme, defaultUnit: string): string | undefi
   // Try to resolve miscSize
   let misc = theme.windblade.miscSizes?.[expr];
   if (misc !== undefined) return `${misc}`;
-
-  // Filter invalid characters
-  if (expr.includes(':')) return undefined;
 
   // Resolve
 
@@ -52,7 +48,9 @@ const solve = (expr: string, theme: Theme, defaultUnit: string): string | undefi
   const unbracket = (h.bracket(resolved));
   if (unbracket !== undefined) return unbracket;
 
-  return `${resolved ?? 0}${defaultUnit}`;
+  if (!Number.isNaN(Number(resolved))) `${resolved ?? 0}${defaultUnit}`;
+
+  return undefined;
 };
 
 const rule = (
