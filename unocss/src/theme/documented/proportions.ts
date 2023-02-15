@@ -45,7 +45,7 @@ const main: DocumentedThemeObject = (theme: any, { h1, h2, p, pre, example }) =>
     </table>
   `),
   h2("Custom proportions"),
-  p("Add custom proportions by adding numbers liek the following:"),
+  p("Add custom proportions by adding numbers like the following:"),
   pre(customProportions, 'ts'),
   p("Proportions are converted to relevant units automatically. Rem is used for sizing, ms for timing, raw number for oapcity, etc."),
 ];
