@@ -48,7 +48,7 @@ const solve = (expr: string, theme: Theme, defaultUnit: string): string | undefi
   const unbracket = (h.bracket(resolved));
   if (unbracket !== undefined) return unbracket;
 
-  if (!Number.isNaN(Number(resolved))) `${resolved ?? 0}${defaultUnit}`;
+  if (!Number.isNaN(Number(resolved))) return `${resolved}${defaultUnit}`;
 
   return undefined;
 };
