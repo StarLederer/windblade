@@ -35,69 +35,6 @@ Please see the [Docs](https://starlederer.github.io/windblade?navigation=/docs/U
 
 [Documentation](https://starlederer.github.io/windblade?navigation=/docs) is in development. Until it is complete please follow [Tailwind's docs](https://tailwindcss.com/docs/aspect-ratio) and refer to our documentation and this readme for differences. *You will not have to refer to Tilwind's docs or this readme once our own docuentation is complete.*
 
-### Using colors
-
-Windblade comes with a semantic color system. Refer to colors by their names as defined [here](https://github.com/StarLederer/windblade/blob/master/unocss/theme/index.ts) or in your theme.
-
-```html
-<div class="bg-normal">
-  This will have the 'normal' background
-  <div class="bg-accent"> And this will have the 'accent' background </div>
-</div>
-```
-
-All colors have one or more foreground colors. The first foreground color is set as CSS `color` automatically but you can override it with others or use it for other properties. The foreground colors are updated whenever the `bg` utility is applied.
-
-```html
-<div class="bg-normal">
-  This will have the 'normal' background and default foreground color.
-  <span class="text-fg-2"> And this will have the secondary foreground color </span>
-  <div class="bg-fg-2"> <!-- This div has secondary foreground color as background --> </div>
-</div>
-```
-
-Change color hue by applying `bg-{color name}` together with `sheme-(auto|dark|light)-{number}` or together with `style="--hue: {number}"` (we recommend using the utility, but the CSS variable can be useful if you need to control hue with JavaScript).
-
-```html
-<div class="scheme-auto-80 bg-normal"></div>
-```
-
-It is a good idea to override the default hue at the root of your app.
-
-```html
-<body class="scheme-auto-80 bg-normal">
-  ...
-</body>
-```
-
-### Using Windblade colors in JavaScrtipt
-
-Sometimes you might need to set a color with JavaScript and you might be unable to use a class (e.g. drawing to a canvas). In those situations, you can use Windblade's `core` module.
-
-```js
-import { getLCA, LCHToCSSColor } from "unocss-preset-windblade/core";
-import { theme } from "unocss-preset-windblade"; // this is just a source file and it does not know about your theme customizations. If you are using your own colors you should import them instead
-
-const brandHue = 80;
-
-getBrandColor((light?: boolean) => {
-  const colors = getLCA(theme.windblade.colors['brand'].base); // returns light and dark variants with all values calculated
-
-  let lca;
-  if (light) {
-    lca = colors.light;
-  } else {
-    lca = colors.dark;
-  }
-
-  let rgb = LCHToCSSColor(lca.l, lca.c, brandHue);
-
-  return `rgb(${rgb.r}, ${rgb.g}%, ${rgb.b}%, ${lca.a}%)`;
-});
-
-export default getBrandColor;
-```
-
 ### Using logical properties
 
 Windblade uses logical properties and values only.
