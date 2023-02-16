@@ -8,6 +8,7 @@ export type Components = {
   h2: (text: string) => any;
   h3: (text: string) => any;
   p: (text: string) => any;
+  ul: (items: string[]) => any;
   pre: (code: string, lang: string) => any;
   example: (html: string) => any;
 };
