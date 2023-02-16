@@ -73,7 +73,7 @@ const Comparison: Component<{
 );
 
 const CTA: Component = () => (
-  <Button style="solid" onClick={() => navigate("/docs/installation")}>
+  <Button style="solid" onClick={() => navigate("/docs/Usage-Installation")}>
     Get started
     <div class="i-mdi-arrow-right" />
   </Button>
