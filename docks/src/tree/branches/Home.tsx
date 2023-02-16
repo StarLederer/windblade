@@ -210,7 +210,7 @@ const Main: Component = () => {
           <section class="flex flex-col gap-s">
             <h3 class={styles.h3}>Bonus: calculations</h3>
             <p class={styles.p}>
-              Both Windblade and Tailwind allow you to set custom values suing the backet syntax, however only in Tailwind that means that you lose access to the design tokens. Windblade allows you to grab relevant to the rule values from your theme by presixing them with <code>$</code>.
+              Both Windblade and Tailwind allow you to set custom values suing the backet syntax, however only in Tailwind that means that you lose access to the design tokens. Windblade allows you to grab relevant to the rule values from your theme by prefixing them with <code>$</code>.
             </p>
 
             <Comparison code={{
@@ -223,7 +223,7 @@ const Main: Component = () => {
             }} />
 
             <p class={styles.p}>
-              You can also use the <code>$</code> syntax conveniently perform operations with your design tokens without breaking out of your design system or using <code>calc()</code>.
+              You can also use the <code>$</code> syntax to conveniently perform operations with your design tokens without breaking out of your design system or using <code>calc()</code>.
             </p>
 
             <Comparison code={{
