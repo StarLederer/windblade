@@ -3,5 +3,4 @@
   <!-- Custom underline -->
   <div class="absolute size-i-full size-b-1 inset-bottom-$(($4-$1)/2)"></div>
   <!-- We did not need to calculate anything and this will not break if proportions change -->
-  <!-- One downside, we cannot name proportions with valid numbers if we want to use this -->
 </div>
