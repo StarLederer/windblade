@@ -8,7 +8,7 @@ const main = `<div class="p-s">
 `;
 
 const colors: DocumentedThemeObject = (_, { h1, p, pre }) => [
-  h1("Using the $ syntact"),
+  h1("Using the $ syntax"),
   p("You can grab relevant to the rule theme values prefixing them with $. This is especially useful inside brackets when you want to set custom values."),
   pre(`<div class="grid grid-template-cols-[auto_$l_auto]"></div>`, 'xml'),
   p("You can also use the $ syntax to conveniently perform operations with your design tokens without breaking out of your design system or using calc()."),
