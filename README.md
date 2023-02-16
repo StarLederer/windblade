@@ -29,36 +29,11 @@
 
 ## Installation
 
-```sh
-npm i unocss-preset-windblade unocss --save-dev
-# or
-yarn add unocss-preset-windblade unocss -D
-# or
-pnpm add unocss-preset-windblade unocss -D
-```
+Please see the [Docs](https://starlederer.github.io/windblade?navigation=/docs/Usage-Installation) for installation instrucions.
 
 ## Usage
 
 [Documentation](https://starlederer.github.io/windblade?navigation=/docs) is in development. Until it is complete please follow [Tailwind's docs](https://tailwindcss.com/docs/aspect-ratio) and refer to our documentation and this readme for differences. *You will not have to refer to Tilwind's docs or this readme once our own docuentation is complete.*
-
-### Configuring with UnoCSS
-
-Windblade is an UnoCSS preset, please follow its own [guide](https://github.com/unocss/unocss#installation) to install it.
-
-```js
-import { defineConfig } from 'unocss'
-import presetWindblade from 'unocss-preset-windblade'
-import presetVariants from 'unocss-preset-mini-variants' // optional
-
-export default defineConfig({
-  presets: [
-    presetWindblade({
-      // config
-    }),
-    presetVariants(), // optional
-  ],
-})
-```
 
 ### Using colors
 
