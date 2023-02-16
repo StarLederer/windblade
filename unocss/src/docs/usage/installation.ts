@@ -36,7 +36,7 @@ export default defineConfig({
 const colors: DocumentedThemeObject = (_, { h1, h2, h3, p, pre, example }) => [
   h1("Installation"),
   p("Windblade is an UnoCSS preset, please follow its own guide to install it."),
-  p("Once UnoCSS is installed in your proejct simply get Windblade from npm and add it to the presets array."),
+  p("Once UnoCSS is installed in your project simply get Windblade from npm and add it to the presets array."),
   pre("npm install unocss-preset-windblade", 'sh'),
   pre(main, 'ts'),
   h2("Recommended additions"),
@@ -46,7 +46,7 @@ const colors: DocumentedThemeObject = (_, { h1, h2, h3, p, pre, example }) => [
   pre("npm install unocss-preset-mini-variants", 'sh'),
   pre(withVariants, 'ts'),
   h3("Getting @apply"),
-  p("UnoCSS offers an official solution for getting @apply in your proejcts. We recommend to use that if you need this functionality."),
+  p("UnoCSS offers an official solution for getting @apply in your projects. We recommend to use that if you need this functionality."),
   pre("npm i -D @unocss/transformer-directives", 'sh'),
   pre(withApply, 'ts'),
 ];
