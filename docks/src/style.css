@@ -1,5 +1,15 @@
 * {
   font-family: 'Assistant', sans-serif;
+  cursor: inherit;
+}
+
+:root {
+  cursor: default;
+}
+
+a,
+button {
+  cursor: pointer;
 }
 
 /* width */
@@ -49,6 +59,7 @@ body {
 }
 
 pre {
+  cursor: text;
   @apply leading-$($s+$s.2);
 }
 
