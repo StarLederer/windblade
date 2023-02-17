@@ -18,7 +18,6 @@ const preflights: Preflight<Theme>[] = [
 
         color-scheme: light dark;
         box-sizing: border-box;
-        cursor: inherit;
       }
 
       :root {
@@ -31,16 +30,6 @@ const preflights: Preflight<Theme>[] = [
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         -webkit-text-size-adjust: 100%;
-
-        cursor: default;
-
-        user-select: none;
-        -webkit-user-select: none;
-      }
-
-      a,
-      button {
-        cursor: pointer;
       }
     `
   },
