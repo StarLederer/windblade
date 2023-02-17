@@ -19,6 +19,9 @@ import jsTw from "./Home/content/js/tw.js.txt?raw";
 import jsWb from "./Home/content/js/wb.js.txt?raw";
 
 const styles = {
+  header: {
+    li: "bg-normal-4 text-fg-2 p-s p-b-s.6 rounded-full border border-color-surface",
+  },
   h3: "font-extrabold text-$($m.2+$s) text-fg-1",
   h4: "font-bold text-m.2 text-fg-2",
   h5: "font-semibold text-fg-2 p-s",
@@ -89,12 +92,12 @@ const Main: Component = () => {
               Essentailly Tailwind&nbsp;
               <span class="text-fg-1 text-m.2 font-extrabold">but:</span>
             </h2>
-            <ul class="list-none m-be-s">
-              <li>UnoCSS preset,</li>
-              <li>Better color system,</li>
-              <li>Logical properties,</li>
-              <li>Easier to customize,</li>
-              <li>Has Javascript core.</li>
+            <ul class="list-none m-be-s flex flex-wrap gap-s.4 max-size-i-[$l.8%]">
+              <li class={styles.header.li}>UnoCSS preset,</li>
+              <li class={styles.header.li}>Better color system,</li>
+              <li class={styles.header.li}>Logical properties,</li>
+              <li class={styles.header.li}>Easier to customize,</li>
+              <li class={styles.header.li}>Has Javascript core.</li>
             </ul>
           </div>
           <p class={`${styles.p} text-fg-3 m-be-s`}>
