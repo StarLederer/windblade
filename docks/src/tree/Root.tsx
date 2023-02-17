@@ -1,4 +1,4 @@
-import { Component, For, onCleanup, onMount, Show } from "solid-js";
+import { Component, onCleanup, onMount, Show } from "solid-js";
 import { navigate, Route, addNavigationHandler, removeNavigationHandler } from "~/lib/rotuer";
 import Button from "@ui/primitives/Button";
 import Link from "@ui/primitives/Button/Link";
@@ -15,14 +15,16 @@ const Main: Component = () => {
   return (
     <div class="size-b-full grid" style="grid-template-rows: auto minmax(0, 1fr);">
       <header class="p-b-s.4 p-m.2 border border-color-transparent border-be-color-fg-5 flex justify-between items-center">
-        <h1 class="font-bold text-fg-1 flex gap-s items-center">
-          <Show
-            when={themeStore.scheme() === "dark"}
-            fallback={<img src={logoBlack} alt="Logo" class="size-b-m.2" />}
-          >
-            <img src={logoWhite} alt="Logo" class="size-b-m.2" />
-          </Show>
-          Windblade
+        <h1 class="font-bold text-fg-1 ">
+          <button onClick={() => navigate("/home")} class="flex gap-s.4 items-center -m-i-s.8 p-s.4 p-ie-s rounded-full transition-all hover:bg-accent-4 hover:highlight">
+            <Show
+              when={themeStore.scheme() === "dark"}
+              fallback={<img src={logoBlack} alt="Logo" class="size-b-m.2" />}
+            >
+              <img src={logoWhite} alt="Logo" class="size-b-m.2" />
+            </Show>
+            Windblade
+          </button>
         </h1>
 
         <div class="flex gap-s.4">
