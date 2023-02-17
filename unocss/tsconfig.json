@@ -13,7 +13,6 @@
     "jsx": "preserve",
     "types": [
       "node",
-      "vite/client"
     ],
   },
   "exclude": [
