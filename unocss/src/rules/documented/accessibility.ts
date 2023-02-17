@@ -39,8 +39,14 @@ export const colorScheme = (): DocumentedRuleGroup => {
           //   `;
           default:
             return `
-              ${selector} {
+              .${selector},
+              .scheme-dark.${selector},
+              .scheme-dark .${selector} {
                 ${objToCSS(dark)}
+              }
+              .scheme-light.${selector},
+              .scheme-light .${selector} {
+                ${objToCSS(light)}
               }
               @media (prefers-color-scheme: light) { .${selector} {
                   ${objToCSS(light)}
@@ -54,7 +60,7 @@ export const colorScheme = (): DocumentedRuleGroup => {
 
   const docs: DocumentedRuleGroupDocs = {
     description: "Utilities for switching color scheme. Missing from Tailwind.",
-    utilities: ["scheme-dark", "scheme-light"],
+    utilities: ["scheme-dark", "scheme-light", "scheme-auto-<integer>", "scheme-dark-<integer>", "scheme-light-<integer>"],
     preview: (util) => `TODO`,
   };
 
