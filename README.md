@@ -31,7 +31,7 @@ Documentation is in development. Until it is complete please follow [Tailwind's 
 - [x] Javascript access to the automatic color system.
 - [x] Detailed README.
 - [x] Basic documentation with demos.
-- [ ] Published to NPM.
+- [x] Published to NPM.
 - [ ] Listed on [UnoCSS](https://github.com/unocss/unocss) readme.
 - [ ] Documentation search.
 - [ ] Better bracket (`...-[...]`) implementation.
