@@ -20,7 +20,7 @@ import jsWb from "./Home/content/js/wb.js.txt?raw";
 
 const styles = {
   header: {
-    li: "bg-normal-4 text-fg-2 p-s p-b-s.6 rounded-full border border-color-surface",
+    li: "bg-normal-4 p-s p-b-s.6 rounded-full border border-color-surface",
   },
   h3: "font-extrabold text-$($m.2+$s) text-fg-1",
   h4: "font-bold text-m.2 text-fg-2",
