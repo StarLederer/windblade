@@ -1,5 +1,5 @@
 {
-  "name": "windblade",
+  "name": "unocss-preset-windblade",
   "version": "2.0.0-beta",
   "description": "Tailwind-inspired UnoCSS preset with considerable improvements",
   "author": "Star Lederer <germans.lederers@gmail.com>",
