@@ -5,7 +5,7 @@ const colors: DocumentedThemeObject = (_, { h1, h2, p, ul, pre }) => [
   p("Windblade uses logical properties and values only."),
   p("All properties that can be customized on multiple axis/edges/corenrs can be appended with:"),
   ul([
-    "-b for block axis (e.g. size-b).-b for block axis (e.g. size-b).",
+    "-b for block axis (e.g. size-b).",
     "-i for inline axis (e.g. size-i).",
     "-bs and -be for block start and end edges.",
     "-is and -ie for inline start and end edges.",
