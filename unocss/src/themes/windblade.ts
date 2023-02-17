@@ -47,10 +47,10 @@ const theme: Theme = {
         base: { dark: { l: 0.19, c: 0.006 }, light: { l: 0.9} },
         on: [
           { dark: { l: 0.96, c: 0.01 } },
-          { dark: { l: 0.90, c: 0.02 } },
-          { dark: { l: 0.60, c: 0.04 } },
-          { dark: { l: 0.40, c: 0.02 } },
-          { dark: { l: 0.20, c: 0.01 } },
+          { dark: { l: 0.90, c: 0.04 }, light: { l: 0.3 } },
+          { dark: { l: 0.60, c: 0.06 }, light: { l: 0.4 } },
+          { dark: { l: 0.40, c: 0.02 }, light: { l: 0.8 } },
+          { dark: { l: 0.20, c: 0.01 }, light: { l: 0.9 } },
         ]
       },
 
