@@ -12,8 +12,7 @@ const preflights: Preflight<Theme>[] = [
         color: inherit;
         background: none;
         border: none;
-        font-size: inherit;
-        font-weight: inherit;
+        font: inherit;
         line-height: 1;
 
         color-scheme: light dark;
