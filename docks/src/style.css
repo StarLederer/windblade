@@ -68,7 +68,7 @@ pre,
 
 pre {
   cursor: text;
-  @apply leading-$($s+$s.2) text-s.8;
+  @apply leading-[$($s)rem] text-s.8;
 }
 
 pre.css,
