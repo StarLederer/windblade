@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- .
+
+### Fixed
+
+- .
+
+### Changed
+
+- Strictened default font properties.
+
+### Removed
+
+- .
+
+## 2.0.0-beta - 2023-02-17
+
+### Added
+
 - LCH functions to `core/color`.
 - `getColorSchemeCSSProps` to `core/color`.
 - Brackets to size rules (e.g. `max-size-i-[48ch]`, `max-size-[$lpx]`).
