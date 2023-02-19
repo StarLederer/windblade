@@ -38,3 +38,11 @@ Documentation is in development. Until it is complete please follow [Tailwind's 
 - [ ] Markdown documentation support.
 - [ ] Complete documentation.
 - [ ] Become UnoCSS default preset 🤷🫣
+
+## Sponsors
+
+<p align="center">
+  <a href="https://starlederer.github.io/sponsors/sponsors.svg">
+    <img src="https://starlederer.github.io/sponsors/sponsors.svg"/>
+  </a>
+</p>
