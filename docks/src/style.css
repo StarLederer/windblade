@@ -1,9 +1,9 @@
 * {
-  font-family: 'Assistant', sans-serif;
   cursor: inherit;
 }
 
 :root {
+  font-family: 'Assistant', sans-serif;
   cursor: default;
 }
 
@@ -60,9 +60,15 @@ body {
   animation-name: out;
 }
 
+code,
+pre,
+.font-mono {
+  font-family: 'Cascadia Mono', monospace;
+}
+
 pre {
   cursor: text;
-  @apply leading-$($s+$s.2);
+  @apply leading-$($s+$s.2) text-s.8;
 }
 
 pre.css,
