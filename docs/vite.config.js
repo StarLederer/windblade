@@ -22,7 +22,7 @@ export default defineConfig({
 
   plugins: [
     favicon(
-      '../brand/logo.svg',
+      resolve('../brand/logo.svg'),
       {
         icons: {
           favicons: true,
