@@ -21,19 +21,20 @@ export default defineConfig({
   },
 
   plugins: [
-    favicon(
-      resolve('../brand/logo.svg'),
-      {
-        icons: {
-          favicons: true,
-          android: false,
-          appleIcon: false,
-          appleStartup: false,
-          yandex: false,
-          windows: false,
-        },
-      }
-    ),
+    // Breaks on GitHub actions for some reason
+    // favicon(
+    //   resolve('../brand/logo.svg'),
+    //   {
+    //     icons: {
+    //       favicons: true,
+    //       android: false,
+    //       appleIcon: false,
+    //       appleStartup: false,
+    //       yandex: false,
+    //       windows: false,
+    //     },
+    //   }
+    // ),
     solidPlugin(),
     unocss({
       presets: [
