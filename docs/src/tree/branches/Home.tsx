@@ -3,7 +3,7 @@ import { navigate, } from "~/lib/rotuer";
 import Button from "@ui/primitives/Button";
 import Link from "@ui/primitives/Button/Link";
 import Container from "~/lib/Container";
-import syntax from "~/lib/syntax";
+import libs from "~/lib/external";
 
 import colorsTwJs from "./Home/content/colors/tw.js.txt?raw";
 import colorsTwHtml from "./Home/content/colors/tw.html.txt?raw";
@@ -47,13 +47,13 @@ const Comparison: Component<{
       <Show when={props.code.tw.js} keyed>
         {(code) => <>
           <div class="size-b-px bg-surface" />
-          <pre class={`${styles.pre} js`} innerHTML={syntax.highlighter()?.highlight(code, { language: "js" }).value} />
+          <pre class={`${styles.pre} js`} innerHTML={libs.highlighter()?.highlight(code, { language: "js" }).value} />
         </>}
       </Show>
       <Show when={props.code.tw.html} keyed>
         {(code) => <>
           <div class="size-b-px bg-surface" />
-          <pre class={styles.pre} innerHTML={syntax.highlighter()?.highlight(code, { language: "xml" }).value} />
+          <pre class={styles.pre} innerHTML={libs.highlighter()?.highlight(code, { language: "xml" }).value} />
         </>}
       </Show>
     </div>
@@ -62,13 +62,13 @@ const Comparison: Component<{
       <Show when={props.code.wb.js} keyed>
         {(code) => <>
           <div class="size-b-px bg-surface" />
-          <pre class={`${styles.pre} js`} innerHTML={syntax.highlighter()?.highlight(code, { language: "js" }).value} />
+          <pre class={`${styles.pre} js`} innerHTML={libs.highlighter()?.highlight(code, { language: "js" }).value} />
         </>}
       </Show>
       <Show when={props.code.wb.html} keyed>
         {(code) => <>
           <div class="size-b-px bg-surface" />
-          <pre class={styles.pre} innerHTML={syntax.highlighter()?.highlight(code, { language: "xml" }).value} />
+          <pre class={styles.pre} innerHTML={libs.highlighter()?.highlight(code, { language: "xml" }).value} />
         </>}
       </Show>
     </div>

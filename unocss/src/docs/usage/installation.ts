@@ -1,7 +1,7 @@
 import { DocumentedThemeObject } from "../../docs/types";
 
 const colors: DocumentedThemeObject<{}> = () =>
-`#Installation
+`# Installation
 
 Windblade is an UnoCSS preset, please follow its own [guide](https://github.com/unocss/unocss#installation) to install it.
 

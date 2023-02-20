@@ -2,7 +2,7 @@ import { Component, createSignal, For, Show, Suspense } from "solid-js";
 import { docs } from "windblade";
 import UnilityButton from "./RuleGroup/components/UtilityButton";
 import Progress from "@ui/primitives/Progress";
-import syntax from "~/lib/syntax";
+import syntax from "~/lib/external";
 import ShadowDomUnoCSS from "~/lib/ShadowDomUnoCSS";
 
 const Main: Component<{
