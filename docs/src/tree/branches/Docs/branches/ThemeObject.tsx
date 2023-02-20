@@ -43,13 +43,20 @@ const mdToJsx = (tree: Content | Root): JSXElement => {
       if (tree.lang === "uno-html") {
         return <ShadowDomUnoCSS html={tree.value} class="overflow-auto" />
       } else {
-        let highlighted = undefined;
+        const style = `bg-surface p-s rounded-s leading-$($s+$s.4) overflow-auto ${tree.lang ?? ''}`;
+
+        if (!tree.lang) {
+          return <pre class={style}>{tree.value}</pre>
+        }
+
+        let highlighted = tree.value;
         try {
-          highlighted = libs.highlighter()?.highlight(tree.value, { language: tree.lang ?? "txt" }).value;
+          highlighted = libs.highlighter()?.highlight(tree.value, { language: tree.lang }).value ?? '';
         } catch (err: any) {
           return <Error>Failed highlighting code. {err.message}</Error>
         }
-        return <pre class={`bg-surface p-s rounded-s leading-$($s+$s.4) overflow-auto ${tree.lang ?? ''}`} innerHTML={highlighted} />
+
+        return <pre class={style} innerHTML={highlighted} />
       }
     case "inlineCode":
       return <span class="bg-surface p-i-s.4 rounded-s.4">{tree.value}</span>
