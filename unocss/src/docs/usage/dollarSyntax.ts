@@ -12,7 +12,7 @@ You can grab relevant to the rule theme values prefixing them with \`$\`. This i
 
 You can also use \`$\` to conveniently perform operations with your design tokens without breaking out of your design system or using \`calc()\`.
 
-\`\`\`
+\`\`\`html
 <div class="p-s">
   Label
   <!-- Custom underline -->
