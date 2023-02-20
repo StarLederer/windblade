@@ -1,6 +1,14 @@
 import { DocumentedThemeObject } from "../../docs/types";
 
-const themeTypes = `type ThemeColor = {
+const main: DocumentedThemeObject<{}> = () =>
+`# Other theme objects
+
+See the theme type below for other values you can customize.
+
+## Theme type
+
+\`\`\`ts
+type ThemeColor = {
   dark: {
     l: number;
     c: number;
@@ -31,13 +39,8 @@ type Theme = {
       };
     };
   };
-};`;
-
-const main: DocumentedThemeObject = (theme: any, { h1, h2, p, pre, example }) => [
-  h1("Other theme objects"),
-  p("See the theme type below for other values you can customize."),
-  h2("Theme type"),
-  pre(themeTypes, 'ts'),
-];
+};
+\`\`\`
+`;
 
 export default main;
