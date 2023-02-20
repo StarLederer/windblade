@@ -1,24 +1,9 @@
 import { Rule } from "@unocss/core";
 import Theme from "../theme/Theme";
 
-// Rednering
-
-export type Components = {
-  h1: (text: string) => any;
-  h2: (text: string) => any;
-  h3: (text: string) => any;
-  p: (text: string) => any;
-  ul: (items: string[]) => any;
-  pre: (code: string, lang: string) => any;
-  example: (html: string) => any;
-};
-
 // Theme
 
-export type DocumentedThemeObject = (
-  theme: unknown,
-  markupComponents: Components,
-) => any[];
+export type DocumentedThemeObject<T> = (theme: T) => string;
 
 // Rules
 
@@ -35,6 +20,6 @@ export type DocumentedRuleGroup = {
 
 // Categories
 
-export type DocumentationCategory = Map<string, DocumentedThemeObject | DocumentedRuleGroup>;
+export type DocumentationCategory<T> = Map<string, DocumentedThemeObject<T> | DocumentedRuleGroup>;
 
-export type DocumentationCategories =  Map<string, DocumentationCategory>
+export type DocumentationCategories<T> =  Map<string, DocumentationCategory<T>>
