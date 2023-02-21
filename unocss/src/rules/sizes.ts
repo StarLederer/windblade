@@ -3,17 +3,7 @@ import { handler as h, variantGetParameter } from '@unocss/preset-mini/utils';
 import Theme from "../theme/Theme";
 import * as logical from "./logicalSet";
 
-const solve = (expr: string, theme: Theme, defaultUnit: string): string | undefined => {
-  // Try to resolve proportion
-  let token = theme.windblade.proportions[expr];
-  if (token !== undefined) return `${token}${defaultUnit}`;
-
-  // Try to resolve miscSize
-  let misc = theme.windblade.miscSizes?.[expr];
-  if (misc !== undefined) return `${misc}`;
-
-  // Resolve
-
+export const resolveDollars = (expr: string, theme: Theme): string => {
   let resolved = expr;
 
   // Resolve variables
@@ -44,6 +34,21 @@ const solve = (expr: string, theme: Theme, defaultUnit: string): string | undefi
     // Evaluate and resolve
     resolved = resolved.replace(`$${parenExpr}`, Function(`'use strict'; return (${parenExpr})`)());
   }
+
+  return resolved;
+};
+
+const solve = (expr: string, theme: Theme, defaultUnit: string): string | undefined => {
+  // Try to resolve proportion
+  let token = theme.windblade.proportions[expr];
+  if (token !== undefined) return `${token}${defaultUnit}`;
+
+  // Try to resolve miscSize
+  let misc = theme.windblade.miscSizes?.[expr];
+  if (misc !== undefined) return `${misc}`;
+
+  // Resolve
+  const resolved = resolveDollars(expr, theme);
 
   const unbracket = (h.bracket(resolved));
   if (unbracket !== undefined) return unbracket;
