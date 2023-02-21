@@ -45,7 +45,7 @@ const Main: Component = () => {
   const drawerVisible = () => drawerOpen() || drawerFlat();
 
   const nav = (
-    <nav class="flex flex-col gap-s p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 size-i-max" ref={drawer}>
+    <nav class="flex flex-col gap-s p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 size-i-max size-b-full" ref={drawer}>
       {(() => {
         const navDom: JSXElement[] = [];
 
@@ -108,7 +108,7 @@ const Main: Component = () => {
         </div>
       </Show>
 
-      <div class={`flex-1 flex relative ${drawerFlat() ? "flex-row" : "flex-col"}`}>
+      <div class={`size-b-full flex relative ${drawerFlat() ? "flex-row" : "flex-col"}`}>
         <Show
           when={!drawerFlat()}
           fallback={<aside>{nav}</aside>}
