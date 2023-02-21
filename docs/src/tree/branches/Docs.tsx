@@ -44,6 +44,51 @@ const Main: Component = () => {
 
   const drawerVisible = () => drawerOpen() || drawerFlat();
 
+  const nav = (
+    <nav class="flex flex-col gap-s p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 size-i-max" ref={drawer}>
+      {(() => {
+        const navDom: JSXElement[] = [];
+
+        docs.default.forEach((category, categoryName) => {
+          navDom.push(<>
+            <div class="font-semibold m-be-s.4">{categoryName}</div>
+            <div class="flex flex-col gap-s.2">
+              {(() => {
+                const pages: JSXElement[] = [];
+                let i = 0;
+
+                category.forEach((page, pageName) => {
+                  const current = () => router.route().current.startsWith(`/docs/${categoryName}-${pageName}`);
+                  const style = `filter: hue-rotate(${3.6 * i++}deg);`;
+
+                  pages.push(
+                    <button
+                      onClick={() => {
+                        navigate(`/docs/${categoryName}-${pageName}`);
+                        setDrawerOpen(false);
+                      }}
+                      class={`${current() ? "bg-surface text-fg-1" : "text-fg-3"} relative p-s.6 p-i-s p-is-m.2 rounded-full text-start justify-start transition ease-out overflow-hidden hover:highlight hover:bg-accent-3 hover:text-fg-1 active:highlight+`}
+                    >
+                      <div class="absolute inset-0" style={style}>
+                        <div class={`${current() ? "bg-accent-2" : "bg-transparent"} blur-s transition absolute size-b-m.2 size-i-m.2 rounded-full inset-0 inset-b-0 m-b-auto`} />
+                        <div class={`${current() ? "bg-accent" : "bg-accent-2"} size-b-s.4 size-i-s.4 transition absolute rounded-full inset-0 inset-b-0 m-b-auto m-is-$(($m.2-$s.4)/2)`} />
+                      </div>
+                      <span class="relative">{pageName}</span>
+                    </button>
+                  );
+                });
+
+                return pages;
+              })()}
+            </div>
+          </>);
+        });
+
+        return navDom;
+      })()}
+    </nav>
+  );
+
   return (
     <div class="flex flex-col size-b-full" ref={container}>
       <Show when={!drawerFlat()}>
@@ -64,55 +109,19 @@ const Main: Component = () => {
       </Show>
 
       <div class={`flex-1 flex relative ${drawerFlat() ? "flex-row" : "flex-col"}`}>
-        <Dialog isOpen={drawerVisible()} onClose={() => setDrawerOpen(false)} style="z-index: 1;" unmount={false} title="Navigation drawer">
-          <Show when={drawerOpen() && !drawerFlat()}>
-            <DialogOverlay class="absolute inset-0" />
-          </Show>
-          <DialogPanel>
-            <nav class={`flex flex-col gap-s p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 bg-normal-3 size-i-max transition-transform ease-out ${drawerFlat() ? "relative" : "absolute inset-b-0 inset-is-0"}`} style={`transform: translateX(${drawerVisible() ? "0" : "-100%"})`} ref={drawer}>
-              {(() => {
-                const navDom: JSXElement[] = [];
-
-                docs.default.forEach((category, categoryName) => {
-                  navDom.push(<>
-                    <div class="font-semibold m-be-s.4">{categoryName}</div>
-                    <div class="flex flex-col gap-s.2">
-                      {(() => {
-                        const pages: JSXElement[] = [];
-                        let i = 0;
-
-                        category.forEach((page, pageName) => {
-                          const current = () => router.route().current.startsWith(`/docs/${categoryName}-${pageName}`);
-                          const style = `filter: hue-rotate(${3.6 * i++}deg);`;
-
-                          pages.push(
-                            <button
-                              onClick={() => {
-                                navigate(`/docs/${categoryName}-${pageName}`);
-                                setDrawerOpen(false);
-                              }}
-                              class={`${current() ? "bg-surface text-fg-1" : "text-fg-3"} relative p-s.6 p-i-s p-is-m.2 rounded-full text-start justify-start transition ease-out overflow-hidden hover:highlight hover:bg-accent-3 hover:text-fg-1 active:highlight+`}
-                            >
-                              <div class="absolute inset-0" style={style}>
-                                <div class={`${current() ? "bg-accent-2" : "bg-transparent"} blur-s transition absolute size-b-m.2 size-i-m.2 rounded-full inset-0 inset-b-0 m-b-auto`} />
-                                <div class={`${current() ? "bg-accent" : "bg-accent-2"} size-b-s.4 size-i-s.4 transition absolute rounded-full inset-0 inset-b-0 m-b-auto m-is-$(($m.2-$s.4)/2)`} />
-                              </div>
-                              <span class="relative">{pageName}</span>
-                            </button>
-                          );
-                        });
-
-                        return pages;
-                      })()}
-                    </div>
-                  </>);
-                });
-
-                return navDom;
-              })()}
-            </nav>
-          </DialogPanel>
-        </Dialog>
+        <Show
+          when={!drawerFlat()}
+          fallback={<aside>{nav}</aside>}
+        >
+          <Dialog isOpen={drawerVisible()} onClose={() => setDrawerOpen(false)} style="z-index: 1;" unmount={false} title="Navigation drawer">
+            <Show when={drawerOpen() && !drawerFlat()}>
+              <DialogOverlay class="absolute inset-0" />
+            </Show>
+            <DialogPanel class={`bg-normal-3 transition-transform ease-out ${drawerFlat() ? "relative" : "absolute inset-b-0 inset-is-0"}`} style={`transform: translateX(${drawerVisible() ? "0" : "-100%"})`}>
+              {nav}
+            </DialogPanel>
+          </Dialog>
+        </Show>
 
         <main class={`relative flex-1 transition-all ${drawerOpen() && !drawerFlat() ? "blur-s.2 opacity-s.4" : ""}`} onClick={() => setDrawerOpen(false)}>
           {(() => {
