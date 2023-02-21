@@ -86,7 +86,13 @@ const Main: Component = () => {
                           const style = `filter: hue-rotate(${3.6 * i++}deg);`;
 
                           pages.push(
-                            <button onClick={() => navigate(`/docs/${categoryName}-${pageName}`)} class={`${current() ? "bg-surface text-fg-1" : "text-fg-3"} relative p-s.6 p-i-s p-is-m.2 rounded-full text-start justify-start transition ease-out overflow-hidden hover:highlight hover:bg-accent-3 hover:text-fg-1 active:highlight+`}>
+                            <button
+                              onClick={() => {
+                                navigate(`/docs/${categoryName}-${pageName}`);
+                                setDrawerOpen(false);
+                              }}
+                              class={`${current() ? "bg-surface text-fg-1" : "text-fg-3"} relative p-s.6 p-i-s p-is-m.2 rounded-full text-start justify-start transition ease-out overflow-hidden hover:highlight hover:bg-accent-3 hover:text-fg-1 active:highlight+`}
+                            >
                               <div class="absolute inset-0" style={style}>
                                 <div class={`${current() ? "bg-accent-2" : "bg-transparent"} blur-s transition absolute size-b-m.2 size-i-m.2 rounded-full inset-0 inset-b-0 m-b-auto`} />
                                 <div class={`${current() ? "bg-accent" : "bg-accent-2"} size-b-s.4 size-i-s.4 transition absolute rounded-full inset-0 inset-b-0 m-b-auto m-is-$(($m.2-$s.4)/2)`} />
