@@ -63,7 +63,7 @@ const Main: Component = () => {
     <div class="size-b-full grid" style="grid-template-rows: auto minmax(0, 1fr);">
       <header class="p-b-s.4 p-m.2 border border-color-transparent border-be-color-fg-5 flex items-center">
         <h1 class="font-bold text-fg-1 ">
-          <button onClick={() => navigate("/home")} class="flex gap-s.4 items-center -m-i-s.8 p-s.4 p-ie-s rounded-full transition-all hover:bg-accent-4 hover:highlight active:highlight+">
+          <button onClick={() => navigate("/home")} class="flex gap-s.4 items-center -m-i-s.4 p-s.4 p-ie-s rounded-full transition-all hover:bg-accent-4 hover:highlight active:highlight+">
             <Show
               when={themeStore.scheme() === "dark"}
               fallback={<img src={logoBlack} alt="Logo" class="size-b-m.2" />}
