@@ -40,15 +40,15 @@
     "stub": "unbuild --stub"
   },
   "dependencies": {
-    "@unocss/config": "^0.49.6",
-    "@unocss/core": "^0.49.6",
-    "@unocss/preset-mini": "^0.49.6",
+    "@unocss/config": "^0.49.7",
+    "@unocss/core": "^0.49.7",
+    "@unocss/preset-mini": "^0.49.7",
     "better-color-tools": "^0.10.0",
     "ts-deepmerge": "^6.0.2",
     "ts-extras": "^0.11.0"
   },
   "devDependencies": {
-    "@types/node": "^18.13.0",
+    "@types/node": "^18.14.0",
     "typescript": "^4.9.5",
     "unbuild": "^1.1.2"
   }
