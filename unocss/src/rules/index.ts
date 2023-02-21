@@ -82,7 +82,7 @@ const rules: Rule<Theme>[] = [
 
   ...["visible", "invisible", "collapse"].map((val): Rule<Theme> => [
     val,
-    { 'visibility': val }
+    { 'visibility': val.replace("invisible", "hidden") }
   ]),
 
   [
