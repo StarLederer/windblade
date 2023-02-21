@@ -1,6 +1,12 @@
-import { Component, onCleanup, onMount, Show } from "solid-js";
+import { Component, createEffect, createSignal, onCleanup, onMount, Show } from "solid-js";
+import {
+  Popover,
+  PopoverButton,
+  PopoverPanel,
+} from 'solid-headless';
 import { navigate, Route, addNavigationHandler, removeNavigationHandler } from "~/lib/rotuer";
 import Button from "@ui/primitives/Button";
+import ButtonBase from "@ui/primitives/Button/Base";
 import Link from "@ui/primitives/Button/Link";
 import logoWhite from "@windblade/brand/logo-white.svg";
 import logoBlack from "@windblade/brand/logo-black.svg";
@@ -12,9 +18,50 @@ const Main: Component = () => {
   onMount(() => { addNavigationHandler('/home'); })
   onCleanup(() => { removeNavigationHandler(); })
 
+  const [containerSize, setContainerSize] = createSignal(0);
+  const [menuSize, setMenuSize] = createSignal(0);
+  const [menuFlat, setMenuFlat] = createSignal(false);
+
+  let container: HTMLElement | undefined = undefined;
+  let menu: HTMLElement | undefined = undefined;
+
+  const containerResizeObserver = new ResizeObserver(([entry]) => {
+    setContainerSize(entry.borderBoxSize[0].inlineSize);
+  });
+  const menuResizeObserver = new ResizeObserver(([entry]) => {
+    setMenuSize(entry.borderBoxSize[0].inlineSize);
+  });
+
+  createEffect(async () => {
+    containerResizeObserver.disconnect();
+    if (!container) return;
+    containerResizeObserver.observe(container);
+  });
+  createEffect(async () => {
+    menuFlat();
+    menuResizeObserver.disconnect();
+    if (!menu) return;
+    menuResizeObserver.observe(menu);
+  });
+
+  createEffect(() => {
+    setMenuFlat(containerSize() >= menuSize() * 1.2);
+  });
+
+  const menuItems = () => <>
+    <Button onClick={() => navigate("/home")}>Home</Button>
+    <Button onClick={() => navigate("/docs/Usage-Installation")}>Docs</Button>
+    <Button onClick={themeStore.toggleScheme} class="p-s rounded-s relative">
+      <div class="i-mdi-brightness-4 transition" style={`opacity: ${themeStore.enforceScheme() === undefined ? 1 : 0}`} />
+      <div class="absolute i-mdi-brightness-7 transition" style={`opacity: ${themeStore.enforceScheme() === "light" ? 1 : 0}`} />
+      <div class="absolute i-mdi-brightness-2 transition" style={`opacity: ${themeStore.enforceScheme() === "dark" ? 1 : 0}`} />
+    </Button>
+    <Link href="https://github.com/StarLederer/windblade"><div class="i-simple-icons-github" /></Link>
+  </>;
+
   return (
     <div class="size-b-full grid" style="grid-template-rows: auto minmax(0, 1fr);">
-      <header class="p-b-s.4 p-m.2 border border-color-transparent border-be-color-fg-5 flex justify-between items-center">
+      <header class="p-b-s.4 p-m.2 border border-color-transparent border-be-color-fg-5 flex items-center">
         <h1 class="font-bold text-fg-1 ">
           <button onClick={() => navigate("/home")} class="flex gap-s.4 items-center -m-i-s.8 p-s.4 p-ie-s rounded-full transition-all hover:bg-accent-4 hover:highlight active:highlight+">
             <Show
@@ -27,15 +74,25 @@ const Main: Component = () => {
           </button>
         </h1>
 
-        <div class="flex gap-s.4">
-          <Button onClick={() => navigate("/home")}>Home</Button>
-          <Button onClick={() => navigate("/docs")}>Docs</Button>
-          <Button onClick={themeStore.toggleScheme} class="p-s rounded-s relative">
-            <div class="i-mdi-brightness-4 transition" style={`opacity: ${themeStore.enforceScheme() === undefined ? 1 : 0}`} />
-            <div class="absolute i-mdi-brightness-7 transition" style={`opacity: ${themeStore.enforceScheme() === "light" ? 1 : 0}`} />
-            <div class="absolute i-mdi-brightness-2 transition" style={`opacity: ${themeStore.enforceScheme() === "dark" ? 1 : 0}`} />
-          </Button>
-          <Link href="https://github.com/StarLederer/windblade"><div class="i-simple-icons-github" /></Link>
+        <div ref={container} class="flex-1 flex justify-end">
+          <div class={`flex gap-s.4 ${!menuFlat() ? "invisible fixed" : ""}`} ref={menu} aria-hidden={!menuFlat()}>
+            {menuItems}
+          </div>
+
+          <Popover defaultOpen={false} class={`${menuFlat() ? "hidden" : ""}`} >
+            {({ isOpen }) => <>
+              <ButtonBase style="half" class="rounded-full p-s" as={(baseProps) => (
+                <PopoverButton {...baseProps} />
+              )}>
+                <div class="i-mdi-dots-vertical" />
+              </ButtonBase>
+              <PopoverPanel unmount={false} class={`relative ${isOpen() ? "" : "invisible"}`}>
+                <div class={`flex flex-col gap-s.2 absolute inset-ie-0 inset-bs-0 bg-surface rounded-s m-b-s.8 p-s.2 border border-color-surface animation-duration-s animation-ease-linear backdrop-blur-s ${isOpen() ? "animate-in" : "animate-out"}`} style={"z-index: 1"}>
+                  {menuItems}
+                </div>
+              </PopoverPanel>
+            </>}
+          </Popover>
         </div>
       </header>
 
