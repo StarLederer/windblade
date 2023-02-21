@@ -38,9 +38,9 @@ export default defineConfig({
     solidPlugin(),
     unocss({
       presets: [
+        unocssPresetWindblade(),
         presetVariants(),
         presetIcons(),
-        unocssPresetWindblade(),
       ],
       transformers: [
         transformerDirective(),
