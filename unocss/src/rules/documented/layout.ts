@@ -66,16 +66,19 @@ export const breakBefore = (): DocumentedRuleGroup => {
 };
 
 export const display = (): DocumentedRuleGroup => {
-  const values = ["block", "inline-block", "inline", "flex", "inline-flex", "flow-root", "grid", "inline-grid", "contents", "hidden"];
+  const values = ["block", "inline-block", "inline", "flex", "inline-flex", "flow-root", "grid", "inline-grid", "contents", "hidden"] as const;
+  const overrides: Partial<Record<typeof values[number], string>> = {
+    hidden: "none",
+  }
 
   const rules: Rule<Theme>[] = values.map((val): Rule<Theme> => [
     `${val}`,
-    { 'display': val }
+    { 'display': Object.keys(overrides).includes(val) ? overrides[val] : val }
   ]);
 
   const docs: DocumentedRuleGroupDocs = {
     description: "Windblade removes some utilities from this group that cannot be sued semantically.",
-    utilities: values,
+    utilities: values as unknown as string[],
     preview: (util) => {
       switch (util) {
         default:
@@ -119,7 +122,7 @@ export const objectPosition = (): DocumentedRuleGroup => {
   return { rules, docs };
 };
 
-const category: DocumentationCategory = new Map([
+const category: DocumentationCategory<Theme> = new Map([
   ["Aspect Ratio", aspectRatio()],
   ["Container", container()],
   ["Break After", breakAfter()],
