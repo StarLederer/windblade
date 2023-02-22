@@ -19,7 +19,7 @@ export default defineConfig({
   presets: [
     presetWindblade(),
   ],
-})
+});
 \`\`\`
 
 ## Recommended additions
@@ -44,7 +44,7 @@ export default defineConfig({
     presetWindblade(),
     presetVariants(),
   ],
-})
+});
 \`\`\`
 
 ### Getting @apply
@@ -67,7 +67,7 @@ export default defineConfig({
   transformers: [
     transformerDirectives(),
   ],
-})
+});
 \`\`\`
 `;
 
