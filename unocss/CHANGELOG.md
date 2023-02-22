@@ -17,6 +17,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- .
+
+### Removed
+
+- .
+
+## 2.0.0-beta.3
+
+### Added
+
+- .
+
+### Fixed
+
+- `hidden` now correctly sets `display` to `none`.
+- `invisible` now correctly sets `visibility` to `hidden`.
+
+### Changed
+
 - Strictened default font properties.
 
 ### Removed
