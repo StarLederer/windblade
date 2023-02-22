@@ -86,8 +86,8 @@ const Main: Component = () => {
               )}>
                 <div class="i-mdi-dots-vertical" />
               </ButtonBase>
-              <PopoverPanel unmount={false} class={`relative ${isOpen() ? "" : "invisible"}`}>
-                <div class={`flex flex-col gap-s.2 absolute inset-ie-0 inset-bs-0 bg-surface rounded-s m-b-s.8 p-s.2 border border-color-surface animation-duration-s animation-ease-linear backdrop-blur-s ${isOpen() ? "animate-in" : "animate-out"}`} style={"z-index: 1"}>
+              <PopoverPanel unmount={false} class="relative">
+                <div class={`flex flex-col gap-s.2 absolute inset-ie-0 inset-bs-0 bg-surface rounded-s m-b-s.8 p-s.2 border border-color-surface animation-duration-s animation-ease-linear backdrop-blur-s delay-m.2 ${isOpen() ? "delay-zero animate-in" : "animate-out invisible"}`} style={"z-index: 1"}>
                   {menuItems}
                 </div>
               </PopoverPanel>
