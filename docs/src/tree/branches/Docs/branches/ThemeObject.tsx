@@ -60,6 +60,8 @@ const mdToJsx = (tree: Content | Root): JSXElement => {
       }
     case "inlineCode":
       return <span class="bg-surface p-i-s.4 rounded-s.4">{tree.value}</span>
+    case "strong":
+      return <strong class="font-bold">{tree.children.map((child) => mdToJsx(child))}</strong>
     case "list":
       return <ul class="p-is-s flex flex-col gap-s.4">{tree.children.map((child) => mdToJsx(child))}</ul>
     case "listItem":
