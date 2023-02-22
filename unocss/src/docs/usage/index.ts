@@ -1,13 +1,15 @@
 import { DocumentationCategory } from "../../docs/types";
+import { Theme } from "../../theme";
 import installation from "./installation";
+import options from "./options";
 import semanticColors from "./semanticColors";
 import logicalProperties from "./logicalProperties";
 import dollarSyntax from "./dollarSyntax";
 import variants from "./variants";
-import { Theme } from "../../theme";
 
 export const categoy: DocumentationCategory<Theme> = new Map([
   ["Installation", installation],
+  ["Options", options],
   ["Semantic colors", semanticColors],
   ["Logical properties", logicalProperties],
   ["$ syntax", dollarSyntax],
@@ -16,7 +18,11 @@ export const categoy: DocumentationCategory<Theme> = new Map([
 
 export {
   installation,
-  semanticColors
+  semanticColors,
+  logicalProperties,
+  dollarSyntax,
+  variants,
+  options,
 };
 
 export default categoy
