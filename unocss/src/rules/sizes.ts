@@ -3,24 +3,22 @@ import { handler as h } from '@unocss/preset-mini/utils';
 import Theme from "../theme/Theme";
 import * as logical from "./logicalSet";
 
-const resolve = (expr: string, theme: Theme, defaultUnit: string): string | undefined => {
+export const resolve = (value: string, theme: Theme, unit: string) => {
   // Try to resolve proportion
-  let token = theme.windblade.proportions[expr];
-  if (token !== undefined) return `${token}${defaultUnit}`;
+  let token = theme.windblade.proportions[value];
+  if (token !== undefined) return `${token}${unit}`;
 
   // Try to resolve miscSize
-  let misc = theme.windblade.miscSizes?.[expr];
+  let misc = theme.windblade.miscSizes?.[value];
   if (misc !== undefined) return `${misc}`;
 
-  const unbracket = (h.bracket(expr));
-  if (unbracket !== undefined) return unbracket;
+  // Try resolving value as a number
+  if (!Number.isNaN(Number(value))) return `${value}${unit}`;
 
-  if (!Number.isNaN(Number(expr))) return `${expr}${defaultUnit}`;
-
-  return undefined;
+  return undefined
 };
 
-const rule = (
+export const rule = (
   prefix: string,
   property: string,
   options?: {
@@ -30,29 +28,42 @@ const rule = (
 ): DynamicRule<Theme> => {
   return [
     new RegExp(`^${prefix}-(.+)$`),
-    (match, { theme }) => {
-      let value = resolve(match[1], theme, options?.defaultUnit ?? "rem");
-      if (value === undefined) return undefined;
+    ([match, value], { theme }) => {
+      const unit = options?.defaultUnit ?? 'rem';
 
-      if (options?.postprocess) {
-        value = options.postprocess(value);
+      // Try bracket
+      const unbracket = (h.bracket(value));
+      if (unbracket !== undefined) {
+        // return early
+        // we do not apply postprocess to brackets
+        return { [property]: unbracket };
       }
 
-      return { [property]: value };
+      // Not a bracket, let's try to resolve
+      let resolvedValue = resolve(value, theme, unit);
+
+      // Failed to resolve
+      if (resolvedValue === undefined) return undefined;
+
+      // If we got here resolution must have succeeded,
+      // let's apply the postprocess now
+      if (options?.postprocess) {
+        resolvedValue = options.postprocess(resolvedValue);
+      }
+
+      return { [property]: resolvedValue };
     }
   ];
 };
 
-const axisRules = (prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) => (
+export const axisRules = (prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) => (
   logical.axisRules(prefix, postfix, propertyPrefix, propertyPostfix, rule)
 );
 
-const edgeRules = (prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) => (
+export const edgeRules = (prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) => (
   logical.edgeRules(prefix, postfix, propertyPrefix, propertyPostfix, rule)
 );
 
-const cornerRules = (prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) => (
+export const cornerRules = (prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) => (
   logical.cornerRules(prefix, postfix, propertyPrefix, propertyPostfix, rule)
 );
-
-export { resolve, rule, axisRules, edgeRules, cornerRules };
