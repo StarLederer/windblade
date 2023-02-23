@@ -1,44 +1,9 @@
 import { DynamicRule } from "@unocss/core";
-import { handler as h, variantGetParameter } from '@unocss/preset-mini/utils';
+import { handler as h } from '@unocss/preset-mini/utils';
 import Theme from "../theme/Theme";
 import * as logical from "./logicalSet";
 
-export const resolveDollars = (expr: string, theme: Theme): string => {
-  let resolved = expr;
-
-  // Resolve variables
-  Object.entries(theme.windblade.proportions).forEach(([name, value]) => {
-    resolved = resolved.replaceAll(`$${name}`, value.toString());
-  });
-
-  // Resolve expressions
-  while (resolved.includes('$(')) {
-    let start = resolved.indexOf('$') + 1;
-    let rest = resolved.substring(start);
-
-    // Isolate expression
-    let parenStart = 0;
-    let parenEnd = parenStart;
-    let open = 0;
-    for (let i = 0; i < rest.length; ++i) {
-      if (rest[i] === '(') ++open;
-      if (rest[i] === ')') --open;
-
-      if (open === 0) {
-        parenEnd = i + 1;
-        break;
-      }
-    }
-    const parenExpr = rest.substring(parenStart, parenEnd);
-
-    // Evaluate and resolve
-    resolved = resolved.replace(`$${parenExpr}`, Function(`'use strict'; return (${parenExpr})`)());
-  }
-
-  return resolved;
-};
-
-const solve = (expr: string, theme: Theme, defaultUnit: string): string | undefined => {
+const resolve = (expr: string, theme: Theme, defaultUnit: string): string | undefined => {
   // Try to resolve proportion
   let token = theme.windblade.proportions[expr];
   if (token !== undefined) return `${token}${defaultUnit}`;
@@ -47,13 +12,10 @@ const solve = (expr: string, theme: Theme, defaultUnit: string): string | undefi
   let misc = theme.windblade.miscSizes?.[expr];
   if (misc !== undefined) return `${misc}`;
 
-  // Resolve
-  const resolved = resolveDollars(expr, theme);
-
-  const unbracket = (h.bracket(resolved));
+  const unbracket = (h.bracket(expr));
   if (unbracket !== undefined) return unbracket;
 
-  if (!Number.isNaN(Number(resolved))) return `${resolved}${defaultUnit}`;
+  if (!Number.isNaN(Number(expr))) return `${expr}${defaultUnit}`;
 
   return undefined;
 };
@@ -69,7 +31,7 @@ const rule = (
   return [
     new RegExp(`^${prefix}-(.+)$`),
     (match, { theme }) => {
-      let value = solve(match[1], theme, options?.defaultUnit ?? "rem");
+      let value = resolve(match[1], theme, options?.defaultUnit ?? "rem");
       if (value === undefined) return undefined;
 
       if (options?.postprocess) {
@@ -93,4 +55,4 @@ const cornerRules = (prefix: string, postfix: string, propertyPrefix: string, pr
   logical.cornerRules(prefix, postfix, propertyPrefix, propertyPostfix, rule)
 );
 
-export { solve, rule, axisRules, edgeRules, cornerRules };
+export { resolve, rule, axisRules, edgeRules, cornerRules };

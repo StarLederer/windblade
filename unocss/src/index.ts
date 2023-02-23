@@ -1,6 +1,7 @@
 import type { Preset, PresetOptions } from '@unocss/core'
 import baseTheme from "./theme";
 import rules from "./rules";
+import variants from "./variants";
 import preflights from "./preflights";
 import Theme from './theme/Theme';
 import themes, { WindbladeTheme } from "./themes";
@@ -19,7 +20,7 @@ export const presetWindblade = (options: WindbladeOptions = {}): Preset<Theme> =
     name: 'Windblade',
     theme,
     rules,
-    variants: [],
+    variants,
     options,
     postprocess: [],
     preflights,
