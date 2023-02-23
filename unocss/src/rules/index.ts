@@ -1,4 +1,5 @@
 import type { Rule } from "@unocss/core";
+import { grids } from "@unocss/preset-mini/rules"
 
 import Theme from "../theme/Theme";
 import * as logical from "./logicalSet";
@@ -14,7 +15,7 @@ const rules: Rule<Theme>[] = [
     new RegExp(`^(columns)-(.+)$`),
     (match, { theme }) => {
       const values = match[2].split(',');
-      const minWidth = size.solve(values[0], theme, 'rem');
+      const minWidth = size.resolve(values[0], theme, 'rem');
       const maxNumCols = values[1];
       return { 'columns': [minWidth, maxNumCols].join(" ") };
     },
@@ -124,49 +125,50 @@ const rules: Rule<Theme>[] = [
   ],
   ['order-none', { 'order': '0' }],
 
-  ...[
-    {
-      ruleName: 'col',
-      cssName: 'column',
-    },
-    {
-      ruleName: 'row',
-      cssName: 'row',
-    },
-  ].flatMap(({ cssName, ruleName }): Rule<Theme>[] => [
-    [
-      new RegExp(`^(grid-${ruleName}s)-(.+)$`),
-      (match) => ({ ['grid-template-' + cssName + "s"]: `repeat(${match[2]}, minmax(0, 1fr))` }),
-    ],
-    [`grid-${ruleName}s-none`, { ['grid-template-' + cssName + "s"]: 'none' }],
-    [`${ruleName}-auto`, { ['grid-' + cssName]: 'auto' }],
-    [
-      new RegExp(`^(${ruleName}-span)-(.+)$`),
-      (match) => ({ ['grid-' + cssName]: `span ${match[2]} / span ${match[2]}` }),
-    ],
-    [`${ruleName}-span-full`, { ['grid-' + cssName]: '1 / -1' }],
-    [
-      new RegExp(`^(${ruleName}-start)-(.+)$`),
-      (match) => ({ ['grid-' + cssName + '-start']: match[2] }),
-    ],
-    [`${ruleName}-start-auto`, { ['grid-' + cssName + '-start']: 'auto' }],
-    [
-      new RegExp(`^(${ruleName}-end)-(.+)$`),
-      (match) => ({ ['grid-' + cssName + '-end']: match[2] }),
-    ],
-    [`${ruleName}-end-auto`, { ['grid-' + cssName + '-end']: 'auto' }]
-  ]),
+  // ...[
+  //   {
+  //     ruleName: 'col',
+  //     cssName: 'column',
+  //   },
+  //   {
+  //     ruleName: 'row',
+  //     cssName: 'row',
+  //   },
+  // ].flatMap(({ cssName, ruleName }): Rule<Theme>[] => [
+  //   [
+  //     new RegExp(`^(grid-${ruleName}s)-(.+)$`),
+  //     (match) => ({ ['grid-template-' + cssName + "s"]: `repeat(${match[2]}, minmax(0, 1fr))` }),
+  //   ],
+  //   [`grid-${ruleName}s-none`, { ['grid-template-' + cssName + "s"]: 'none' }],
+  //   [`${ruleName}-auto`, { ['grid-' + cssName]: 'auto' }],
+  //   [
+  //     new RegExp(`^(${ruleName}-span)-(.+)$`),
+  //     (match) => ({ ['grid-' + cssName]: `span ${match[2]} / span ${match[2]}` }),
+  //   ],
+  //   [`${ruleName}-span-full`, { ['grid-' + cssName]: '1 / -1' }],
+  //   [
+  //     new RegExp(`^(${ruleName}-start)-(.+)$`),
+  //     (match) => ({ ['grid-' + cssName + '-start']: match[2] }),
+  //   ],
+  //   [`${ruleName}-start-auto`, { ['grid-' + cssName + '-start']: 'auto' }],
+  //   [
+  //     new RegExp(`^(${ruleName}-end)-(.+)$`),
+  //     (match) => ({ ['grid-' + cssName + '-end']: match[2] }),
+  //   ],
+  //   [`${ruleName}-end-auto`, { ['grid-' + cssName + '-end']: 'auto' }]
+  // ]),
+  ...(grids as Rule<Theme>[]),
 
   ...flexboxAndGrid.gridFitCols().rules,
   ...flexboxAndGrid.gridFillCols().rules,
   ...flexboxAndGrid.gridFitRows().rules,
   ...flexboxAndGrid.gridFillRows().rules,
 
-  ['grid-flow-row', { 'grid-auto-flow': 'row' }],
-  ['grid-flow-col', { 'grid-auto-flow': 'column' }],
-  ['grid-flow-dense', { 'grid-auto-flow': 'dense' }],
-  ['grid-flow-row-dense', { 'grid-auto-flow': 'row dense' }],
-  ['grid-flow-col-dense', { 'grid-auto-flow': 'column desne' }],
+  // ['grid-flow-row', { 'grid-auto-flow': 'row' }],
+  // ['grid-flow-col', { 'grid-auto-flow': 'column' }],
+  // ['grid-flow-dense', { 'grid-auto-flow': 'dense' }],
+  // ['grid-flow-row-dense', { 'grid-auto-flow': 'row dense' }],
+  // ['grid-flow-col-dense', { 'grid-auto-flow': 'column desne' }],
 
   ...flexboxAndGrid.gridAutoCols().rules,
   ...flexboxAndGrid.gridAutoRows().rules,
