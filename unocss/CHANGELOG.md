@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- .
+- Brakets in grid rules now work much better.
 
 ### Changed
 
