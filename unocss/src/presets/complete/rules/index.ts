@@ -343,7 +343,7 @@ const rules: Rule<Theme>[] = [
   ['text-end', { 'text-align': 'end' }],
   ['text-justify', { 'text-align': 'justify' }],
 
-  ...typography.textColor().rules,
+  // text color is in /src/presets/color
 
   ['underline', { 'text-decoration-line': 'underline' }],
   ['overline', { 'text-decoration-line': 'overline' }],
@@ -351,7 +351,7 @@ const rules: Rule<Theme>[] = [
   ['no-underline', { 'text-decoration-line': 'none' }], // this doesnt make sense,
   // ['no-line', { 'text-decoration-line': 'none' }], // this would make sense.
 
-  ...typography.textDecorationColor().rules,
+  // text decoration color is in /src/presets/color
 
   ['decoration-solid', { 'text-decoration-style': 'solid' }],
   ['decoration-double', { 'text-decoration-style': 'double' }],
@@ -625,8 +625,8 @@ const rules: Rule<Theme>[] = [
   ['will-change-transform', { 'will-change': 'transform' }],
 
   // SVG
-  ...svg.fill().rules,
-  ...svg.stroke().rules,
+  // fill is in /src/presets/color
+  // stroke is in /src/presets/color
   ...svg.strokeWidth().rules,
 
   // Accessibility
