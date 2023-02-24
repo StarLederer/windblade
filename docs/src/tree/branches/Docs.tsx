@@ -1,4 +1,4 @@
-import { Component, createEffect, createSignal, For, JSXElement, onCleanup, onMount, Show } from "solid-js";
+import { Component, createEffect, createSignal, For, JSXElement, Show } from "solid-js";
 import {
   Dialog,
   DialogPanel,
@@ -6,7 +6,7 @@ import {
 } from 'solid-headless';
 import { navigate, Route } from "~/lib/rotuer";
 import router from "@ui/router";
-import { docs } from "windblade";
+import { docs } from "windblade/presets/complete";
 import ThemeObject from "./Docs/branches/ThemeObject";
 import RuleGroup from "./Docs/branches/RuleGroup";
 import Button from "@ui/primitives/Button";

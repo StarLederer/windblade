@@ -1,9 +1,9 @@
-import { resolve } from 'path'
-import { defineConfig } from 'vite'
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
 import favicon from 'vite-plugin-favicons-inject';
 import solidPlugin from 'vite-plugin-solid';
 import unocss from '@unocss/vite';
-import transformerDirective from '@unocss/transformer-directives'
+import transformerDirective from '@unocss/transformer-directives';
 import presetIcons from '@unocss/preset-icons';
 import presetVariants from 'unocss-preset-mini-variants';
 import unocssPresetWindblade from "../unocss/src";
@@ -50,7 +50,7 @@ export default defineConfig({
       ],
       rules: [
         ['highlight', { filter: 'brightness(1.2) saturate(0.6)' }],
-        ['highlight+', { filter: 'brightness(1.6) saturate(0.4)' }]
+        ['highlight+', { filter: 'brightness(1.6) saturate(0.4)' }],
       ],
     }),
   ],
