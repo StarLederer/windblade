@@ -6,7 +6,7 @@ import unocss from '@unocss/vite';
 import transformerDirective from '@unocss/transformer-directives';
 import presetIcons from '@unocss/preset-icons';
 import presetVariants from 'unocss-preset-mini-variants';
-import unocssPresetWindblade from "../unocss/src";
+import presetWindblade from "../unocss/src";
 
 export default defineConfig({
   base: "./",
@@ -38,7 +38,7 @@ export default defineConfig({
     solidPlugin(),
     unocss({
       presets: [
-        unocssPresetWindblade(),
+        presetWindblade(),
         presetVariants(),
         presetIcons(),
       ],
