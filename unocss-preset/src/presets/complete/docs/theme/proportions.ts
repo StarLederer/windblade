@@ -1,5 +1,5 @@
-import { DocumentedThemeObject } from "../../docs/types";
-import Theme from "../Theme";
+import { DocumentedThemeObject } from "unocss-docs";
+import { theme } from "../../../core";
 
 const styles = {
   tr: "border border-0 border-b-px border-color-surface",
@@ -7,7 +7,7 @@ const styles = {
   td: "p-b-s.4 p-ie-s text-fg-3",
 };
 
-const main: DocumentedThemeObject<Theme> = (theme) =>
+const main: DocumentedThemeObject<theme.Theme> = (theme) =>
 `# Proportions
 
 Proportions are used throughout the whole preset for size, duration, opacity, etc.

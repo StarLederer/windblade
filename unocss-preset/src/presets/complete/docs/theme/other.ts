@@ -1,4 +1,4 @@
-import { DocumentedThemeObject } from "../../docs/types";
+import { DocumentedThemeObject } from "unocss-docs";
 
 const main: DocumentedThemeObject<{}> = () =>
 `# Other theme objects

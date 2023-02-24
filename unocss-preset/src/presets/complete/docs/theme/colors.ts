@@ -1,7 +1,7 @@
-import { DocumentedThemeObject } from "../../docs/types";
-import Theme, { ThemeColorCombo } from "../Theme";
+import { DocumentedThemeObject } from "unocss-docs";
+import { theme } from "../../../core";
 
-const colors: DocumentedThemeObject<Theme> = (theme) =>
+const colors: DocumentedThemeObject<theme.Theme> = (theme) =>
 `# Semantic colors
 
 Colors in Windblade are based on the [OkLCH](https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl) model and have a 'base' and one or more 'on' colors.
@@ -15,7 +15,7 @@ It is highly encouraged that you use your own colors, however, Windblade does co
   ${((): string => {
     const colors = theme.windblade.colors;
     if (typeof colors === "object") {
-      return Object.entries(colors as Record<string, ThemeColorCombo>).map(([name, colorCombo]) => `
+      return Object.entries(colors as Record<string, theme.ThemeColorCombo>).map(([name, colorCombo]) => `
         <div class="bg-${name} flex flex-col border border-color-surface rounded-s overflow-hidden font-bold">
           <h1 class="p-s">${name}</h1>
           <div class="size-b-px shrink-0 bg-fg-1 opacity-[0.1]"></div>

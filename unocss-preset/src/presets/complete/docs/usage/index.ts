@@ -1,5 +1,5 @@
-import { DocumentationCategory } from "../../docs/types";
-import { Theme } from "../../theme";
+import { DocumentationCategory } from "unocss-docs";
+import { theme } from "../../../core";
 import installation from "./installation";
 import options from "./options";
 import semanticColors from "./semanticColors";
@@ -7,7 +7,7 @@ import logicalProperties from "./logicalProperties";
 import dollarSyntax from "./dollarSyntax";
 import variants from "./variants";
 
-export const categoy: DocumentationCategory<Theme> = new Map([
+export const categoy: DocumentationCategory<theme.Theme> = new Map([
   ["Installation", installation],
   ["Options", options],
   ["Semantic colors", semanticColors],

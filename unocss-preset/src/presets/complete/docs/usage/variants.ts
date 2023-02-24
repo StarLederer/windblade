@@ -1,4 +1,4 @@
-import { DocumentedThemeObject } from "../../docs/types";
+import { DocumentedThemeObject } from "unocss-docs";
 
 const colors: DocumentedThemeObject<{}> = () =>
 `# Hover, focus and other states

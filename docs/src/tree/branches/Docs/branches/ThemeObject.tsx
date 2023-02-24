@@ -1,7 +1,7 @@
 import { Component, JSXElement, ParentComponent, Suspense } from "solid-js";
 import { Content, Root } from "mdast-util-from-markdown/lib";
-import { DocumentedThemeObject } from "windblade/docs/types";
-import { theme } from "windblade";
+import { DocumentedThemeObject } from "unocss-docs";
+import { theme } from "windblade/presets/core";
 import uno from "~/unocss";
 import libs from "~/lib/external";
 import ShadowDomUnoCSS from "~/lib/ShadowDomUnoCSS";

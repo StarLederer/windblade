@@ -1,4 +1,4 @@
-import { DocumentedThemeObject } from "../../docs/types";
+import { DocumentedThemeObject } from "unocss-docs";
 
 const colors: DocumentedThemeObject<{}> = () =>
 `# Using semantic colors

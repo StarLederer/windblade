@@ -1,4 +1,4 @@
-import { DocumentedThemeObject } from "../../docs/types";
+import { DocumentedThemeObject } from "unocss-docs";
 
 const styles = {
   block: "bg-surface p-s transition text-center rounded-s.4",

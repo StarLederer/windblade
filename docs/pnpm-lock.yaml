@@ -18,6 +18,7 @@ specifiers:
   ts-extras: ^0.11.0
   typescript: ^4.9.5
   unocss: ^0.45.30
+  unocss-docs: link:../unocss-docs
   unocss-preset-mini-variants: ^0.49.7
   vite: ^3.2.5
   vite-plugin-favicons-inject: ^2.2.0
@@ -30,6 +31,7 @@ dependencies:
   mdast-util-from-markdown: 1.3.0
   solid-headless: 0.13.1_solid-js@1.6.11
   solid-js: 1.6.11
+  unocss-docs: link:../unocss-docs
 
 devDependencies:
   '@iconify-json/mdi': 1.1.47
