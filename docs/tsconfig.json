@@ -6,10 +6,10 @@
     "baseUrl": ".",
     "paths": {
       "windblade": [
-        "../unocss/src"
+        "../unocss-preset/src"
       ],
       "windblade/*": [
-        "../unocss/src/*"
+        "../unocss-preset/src/*"
       ],
       "@windblade/*": [
         "../*"

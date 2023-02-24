@@ -6,14 +6,14 @@ import unocss from '@unocss/vite';
 import transformerDirective from '@unocss/transformer-directives';
 import presetIcons from '@unocss/preset-icons';
 import presetVariants from 'unocss-preset-mini-variants';
-import presetWindblade from "../unocss/src";
+import presetWindblade from "../unocss-preset/src";
 
 export default defineConfig({
   base: "./",
 
   resolve: {
     alias: {
-      'windblade': resolve('../unocss/src'),
+      'windblade': resolve('../unocss-preset/src'),
       '@windblade': resolve('..'),
       '@ui': resolve('./submodules/ui'),
       '~': resolve('./src'),

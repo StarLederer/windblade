@@ -1,5 +1,5 @@
 import { createGenerator } from "@unocss/core";
-import windblade from "@windblade/unocss";
+import windblade from "@windblade/unocss-preset";
 import { createRoot } from "solid-js";
 
 const uno = createRoot(() => createGenerator({
