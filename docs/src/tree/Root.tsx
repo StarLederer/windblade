@@ -4,7 +4,7 @@ import {
   PopoverButton,
   PopoverPanel,
 } from 'solid-headless';
-import { navigate, Route, addNavigationHandler, removeNavigationHandler } from "~/lib/rotuer";
+import { LocalLink, Route, addNavigationHandler, removeNavigationHandler } from "~/lib/rotuer";
 import Button from "@ui/primitives/Button";
 import ButtonBase from "@ui/primitives/Button/Base";
 import Link from "@ui/primitives/Button/Link";
@@ -49,8 +49,8 @@ const Main: Component = () => {
   });
 
   const menuItems = () => <>
-    <Button onClick={() => navigate("/home")}>Home</Button>
-    <Button onClick={() => navigate("/docs/Usage-Installation")}>Docs</Button>
+    <LocalLink href="/home" >Home</LocalLink>
+    <LocalLink href="/docs/Usage-Installation" >Docs</LocalLink>
     <Button onClick={themeStore.toggleScheme} class="p-s rounded-s relative">
       <div class="i-mdi-brightness-4 transition" style={`opacity: ${themeStore.enforceScheme() === undefined ? 1 : 0}`} />
       <div class="absolute i-mdi-brightness-7 transition" style={`opacity: ${themeStore.enforceScheme() === "light" ? 1 : 0}`} />
@@ -63,7 +63,7 @@ const Main: Component = () => {
     <div class="size-b-full grid" style="grid-template-rows: auto minmax(0, 1fr);">
       <header class="p-b-s.4 p-m.2 border border-color-transparent border-be-color-fg-5 flex items-center">
         <h1 class="font-bold text-fg-1 ">
-          <button onClick={() => navigate("/home")} class="flex gap-s.4 items-center -m-i-s.4 p-s.4 p-ie-s rounded-full transition-all hover:bg-accent-4 hover:highlight active:highlight+">
+          <LocalLink style="none" href="/home" class="flex gap-s.4 items-center -m-i-s.4 p-s.4 p-ie-s rounded-full transition-all hover:bg-accent-4">
             <Show
               when={themeStore.scheme() === "dark"}
               fallback={<img src={logoBlack} alt="Logo" class="size-b-m.2" />}
@@ -71,7 +71,7 @@ const Main: Component = () => {
               <img src={logoWhite} alt="Logo" class="size-b-m.2" />
             </Show>
             Windblade
-          </button>
+          </LocalLink>
         </h1>
 
         <div ref={container} class="flex-1 flex justify-end">

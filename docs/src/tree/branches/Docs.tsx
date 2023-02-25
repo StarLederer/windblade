@@ -4,7 +4,7 @@ import {
   DialogPanel,
   DialogOverlay,
 } from 'solid-headless';
-import { navigate, Route } from "~/lib/rotuer";
+import { LocalLink, Route } from "~/lib/rotuer";
 import router, { pathStartsWith } from "@ui/router";
 // import { docs } from "windblade/presets/color";
 import { docs } from "windblade/presets/complete";
@@ -63,19 +63,18 @@ const Main: Component = () => {
                   const style = `filter: hue-rotate(${3.6 * i++}deg);`;
 
                   pages.push(
-                    <button
-                      onClick={() => {
-                        navigate(`/docs/${categoryName}-${pageName}`);
-                        setDrawerOpen(false);
-                      }}
-                      class={`${current() ? "bg-surface text-fg-1" : "text-fg-3"} relative p-s.6 p-i-s p-is-m.2 rounded-full text-start justify-start transition ease-out overflow-hidden hover:highlight hover:bg-accent-3 hover:text-fg-1 active:highlight+`}
+                    <LocalLink
+                      style="none"
+                      href={`/docs/${categoryName}-${pageName}`}
+                      onClick={() => setDrawerOpen(false)}
+                      class={`${current() ? "bg-surface text-fg-1" : "text-fg-3"} relative p-s.6 p-i-s p-is-m.2 rounded-full text-start justify-start transition ease-out overflow-hidden hover:bg-accent-3 hover:text-fg-1`}
                     >
                       <div class="absolute inset-0" style={style}>
                         <div class={`${current() ? "bg-accent-2" : "bg-transparent"} blur-s transition absolute size-b-m.2 size-i-m.2 rounded-full inset-0 inset-b-0 m-b-auto`} />
                         <div class={`${current() ? "bg-accent" : "bg-accent-2"} size-b-s.4 size-i-s.4 transition absolute rounded-full inset-0 inset-b-0 m-b-auto m-is-$(($m.2-$s.4)/2)`} />
                       </div>
                       <span class="relative">{pageName}</span>
-                    </button>
+                    </LocalLink>
                   );
                 });
 

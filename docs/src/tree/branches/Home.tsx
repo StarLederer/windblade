@@ -1,6 +1,5 @@
 import { Component, Show } from "solid-js";
-import { navigate, } from "~/lib/rotuer";
-import Button from "@ui/primitives/Button";
+import { LocalLink } from "~/lib/rotuer";
 import Link from "@ui/primitives/Button/Link";
 import Container from "~/lib/Container";
 import libs from "~/lib/external";
@@ -76,17 +75,17 @@ const Comparison: Component<{
 );
 
 const CTA: Component = () => (
-  <Button style="solid" onClick={() => navigate("/docs/Usage-Installation")}>
+  <LocalLink style="solid" href="/docs/Usage-Installation">
     Get started
     <div class="i-mdi-arrow-right" />
-  </Button>
+  </LocalLink>
 );
 
 const Main: Component = () => {
   return (
     <div class="size-b-full overflow-auto">
       <section class="p--bm.2 p-b-m font-semibold bg-gradient-to-ss from-surface">
-        <Container>
+        <Container class="flex flex-col items-start">
           <div class="font-bold text-m.2">
             <h2 class="text-fg-1 text-m.4 font-extrabold m-be-s">
               Essentailly Tailwind&nbsp;

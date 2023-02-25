@@ -4,8 +4,12 @@ import Route from "./Route";
 export { Route };
 
 export const navigate = (path: string) => {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  urlParams.set("navigation", path);
+
   router.navigate(path.split("/").filter(Boolean));
-  history.pushState({}, "", `?navigation=${path}`);
+  history.pushState({}, "", `?${urlParams}`);
 };
 
 const constroller = new AbortController();
@@ -28,3 +32,4 @@ export const removeNavigationHandler = () => {
 };
 
 export default navigate;
+export { default as LocalLink } from "./LocalLink";
