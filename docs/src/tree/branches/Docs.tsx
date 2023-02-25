@@ -5,7 +5,8 @@ import {
   DialogOverlay,
 } from 'solid-headless';
 import { navigate, Route } from "~/lib/rotuer";
-import router from "@ui/router";
+import router, { pathStartsWith } from "@ui/router";
+// import { docs } from "windblade/presets/color";
 import { docs } from "windblade/presets/complete";
 import ThemeObject from "./Docs/branches/ThemeObject";
 import RuleGroup from "./Docs/branches/RuleGroup";
@@ -58,7 +59,7 @@ const Main: Component = () => {
                 let i = 0;
 
                 category.forEach((page, pageName) => {
-                  const current = () => router.route().current.startsWith(`/docs/${categoryName}-${pageName}`);
+                  const current = () => pathStartsWith(router.route().current, ["docs", `${categoryName}-${pageName}`]);
                   const style = `filter: hue-rotate(${3.6 * i++}deg);`;
 
                   pages.push(
@@ -98,7 +99,7 @@ const Main: Component = () => {
             <div class={`i-mdi-backburger ${drawerOpen() ? "opacity-s" : "opacity-zero"} transition absolute`} />
           </Button>
           <div class="flex flex-wrap gap-s.4 text-fg-3">
-            <For each={router.route().current.split("/").pop()?.split("-")}>
+            <For each={router.route().current.at(-1)?.split("-")}>
               {(crumb, i) => <>
                 <div class={`${i() === 0 ? "" : "text-fg-1 font-semibold"}`}>{crumb}</div>
                 {i() === 0 && <div class="i-mdi-chevron-right" />}

@@ -4,7 +4,7 @@ import Route from "./Route";
 export { Route };
 
 export const navigate = (path: string) => {
-  router.navigate(path);
+  router.navigate(path.split("/").filter(Boolean));
   history.pushState({}, "", `?navigation=${path}`);
 };
 
@@ -16,7 +16,7 @@ export const addNavigationHandler = (fallback: string = "/") => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const urlNav = urlParams.get("navigation") ?? fallback;
-    router.navigate(urlNav);
+    router.navigate(urlNav.split("/").filter(Boolean));
   };
 
   window.addEventListener('popstate', navigateAsPerUrl, { signal });
