@@ -6,11 +6,11 @@ import {
 } from 'solid-headless';
 import { LocalLink, Route } from "~/lib/rotuer";
 import router, { pathStartsWith } from "@ui/router";
-// import { docs } from "windblade/presets/color";
-import { docs } from "windblade/presets/complete";
 import ThemeObject from "./Docs/branches/ThemeObject";
 import RuleGroup from "./Docs/branches/RuleGroup";
 import Button from "@ui/primitives/Button";
+import docsStore from "~/stores/docsStore";
+import { DocumentationCategories } from "@windblade/unocss-docs";
 
 const Main: Component = () => {
   const [containerSize, setContainerSize] = createSignal(0);
@@ -45,12 +45,14 @@ const Main: Component = () => {
 
   const drawerVisible = () => drawerOpen() || drawerFlat();
 
+  const docs = (): DocumentationCategories<any> => docsStore.docs() ?? new Map();
+
   const nav = (
     <nav class="flex flex-col gap-s p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 size-i-max size-b-full" ref={drawer}>
       {(() => {
         const navDom: JSXElement[] = [];
 
-        docs.default.forEach((category, categoryName) => {
+        docs().forEach((category, categoryName) => {
           navDom.push(<>
             <div class="font-semibold m-be-s.4">{categoryName}</div>
             <div class="flex flex-col gap-s.2">
@@ -126,7 +128,7 @@ const Main: Component = () => {
         <main class={`relative flex-1 transition-all ${drawerOpen() && !drawerFlat() ? "blur-s.2 opacity-s.4" : ""}`} onClick={() => setDrawerOpen(false)}>
           {(() => {
             const routes: JSXElement[] = [];
-            docs.default.forEach((category, categoryName) => {
+            docs().forEach((category, categoryName) => {
               category.forEach((page, pageName) => {
                 if (typeof page === "function") {
                   routes.push(
