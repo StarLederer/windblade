@@ -1,4 +1,4 @@
-import type { ColorScheme } from "windblade/core";
+import type { ColorScheme } from "windblade/presets/core/utils";
 import { createSignal, createMemo, createRoot } from "solid-js";
 
 export const hues: Record<ColorScheme, number> = {
