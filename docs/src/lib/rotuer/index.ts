@@ -19,7 +19,7 @@ export const addNavigationHandler = (fallback: string = "/") => {
   const navigateAsPerUrl = () => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const urlNav = urlParams.get("navigation") ?? fallback;
+    const urlNav = decodeURIComponent(urlParams.get("navigation") ?? fallback);
     router.navigate(urlNav.split("/").filter(Boolean));
   };
 
