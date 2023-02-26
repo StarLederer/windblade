@@ -26,6 +26,13 @@ const modules: {
   loadDocs: () => Promise<DocumentationCategories<any>>,
 }[] = [
     {
+      icon: <div class="i-mdi-package" />,
+      name: "Complete",
+      description: "Normal Wiondblade. This is a temporary entry so we can switch back to it.",
+      official: true,
+      loadDocs: async () => (await import("@windblade/unocss-preset/src/presets/complete/docs")).default,
+    },
+    {
       icon: <div class="i-mdi-palette" />,
       name: "Color",
       description: "Semantic color utils from Windblade.",
