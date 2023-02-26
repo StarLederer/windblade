@@ -9,24 +9,27 @@ import * as svg from "../rules/documented/svg";
 import * as accessibility from "../rules/documented/accessibility";
 
 const main: DocumentationCategories<theme.Theme> = new Map([
-  ["Windblade Color", new Map([
+  ["Background", new Map([
     ["Background Color", backgrounds.bgColor()],
     ["Background Gradient", backgrounds.backgroundImage()],
     ["Background Gradient Stops", backgrounds.gradientColorStops()],
-
+  ])],
+  ["Text", new Map([
+    ["Text Color", typography.textColor()],
+    ["Text Decoration Color", typography.textDecorationColor()],
+  ])],
+  ["Border", new Map([
     ["Border Color", borders.borderColor()],
     ["Outline Color", borders.outlineColor()],
+  ])],
+  ["Other", new Map([
+    ["Color Scheme", accessibility.colorScheme()],
 
     ["Accent color", interactivity.accentColor()],
     ["Caret color", interactivity.caretColor()],
 
     ["Fill", svg.fill()],
     ["Stroke Color", svg.stroke()],
-
-    ["Text Color", typography.textColor()],
-    ["Text Decoration Color", typography.textDecorationColor()],
-
-    ["Color Scheme", accessibility.colorScheme()],
   ])],
 ]);
 
