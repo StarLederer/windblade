@@ -11,8 +11,10 @@ import Link from "@ui/primitives/Button/Link";
 import logoWhite from "@windblade/brand/logo-white.svg";
 import logoBlack from "@windblade/brand/logo-black.svg";
 import themeStore from "~/stores/themeStore";
+
 import Home from "./branches/Home";
 import Docs from "./branches/Docs";
+import Modules from "./branches/Modules";
 
 const Main: Component = () => {
   onMount(() => { addNavigationHandler('/home'); })
@@ -51,6 +53,7 @@ const Main: Component = () => {
   const menuItems = () => <>
     <LocalLink href="/home" >Home</LocalLink>
     <LocalLink href="/docs/Usage-Installation" >Docs</LocalLink>
+    <LocalLink href="/modules" >Modules</LocalLink>
     <Button onClick={themeStore.toggleScheme} class="p-s rounded-s relative">
       <div class="i-mdi-brightness-4 transition" style={`opacity: ${themeStore.enforceScheme() === undefined ? 1 : 0}`} />
       <div class="absolute i-mdi-brightness-7 transition" style={`opacity: ${themeStore.enforceScheme() === "light" ? 1 : 0}`} />
@@ -103,6 +106,10 @@ const Main: Component = () => {
 
         <Route path="/docs">
           <Docs />
+        </Route>
+
+        <Route path="/modules">
+          <Modules />
         </Route>
       </div>
     </div>
