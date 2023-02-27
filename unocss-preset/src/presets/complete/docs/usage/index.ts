@@ -1,11 +1,13 @@
 import { DocumentationCategory } from "unocss-docs";
 import { theme } from "../../../core";
+import {docs as dollarsDocs } from "../../../dollars";
 import installation from "./installation";
 import options from "./options";
 import semanticColors from "./semanticColors";
 import logicalProperties from "./logicalProperties";
-import dollarSyntax from "./dollarSyntax";
 import variants from "./variants";
+
+const dollarSyntax = dollarsDocs.dollarSyntax.default;
 
 export const categoy: DocumentationCategory<theme.Theme> = new Map([
   ["Installation", installation],

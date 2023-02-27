@@ -1,9 +1,9 @@
 import { Variant } from "@unocss/core";
-import { Theme } from "../theme";
+import { theme } from "../../core";
 
 import dollars from "./dollars"
 
-const main: Variant<Theme>[] = [
+const main: Variant<theme.Theme>[] = [
   dollars
 ];
 

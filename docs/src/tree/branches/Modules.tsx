@@ -28,7 +28,7 @@ const modules: {
     {
       icon: <div class="i-mdi-package" />,
       name: "Complete",
-      description: "Normal Wiondblade. This is a temporary entry so we can switch back to it.",
+      description: "Normal Windblade. This is a temporary entry so we can switch back to it.",
       official: true,
       loadDocs: async () => (await import("@windblade/unocss-preset/src/presets/complete/docs")).default,
     },
@@ -44,7 +44,7 @@ const modules: {
       name: "Dollars",
       description: "$ syntax from Windblade.",
       official: true,
-      loadDocs: async () => (await import("@windblade/unocss-preset/src/presets/color/docs")).default,
+      loadDocs: async () => (await import("@windblade/unocss-preset/src/presets/dollars/docs")).default,
     },
     {
       icon: <div class="i-mdi-palette-swatch" />,
