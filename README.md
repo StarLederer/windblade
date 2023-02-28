@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://starlederer.github.io/windblade" target="_blank">
-    <img alt="Windblade" src="https://raw.githubusercontent.com/starlederer/windblade/HEAD/brand/logo.svg" width="64" height="64" style="max-inline-size: 100%;">
+    <img alt="Windblade" src="https://raw.githubusercontent.com/starlederer/windblade/HEAD/packages/brand/logo.svg" width="64" height="64" style="max-inline-size: 100%;">
   </a>
 
   Windblade
