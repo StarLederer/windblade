@@ -35,7 +35,7 @@ Documentation is in development. Until it is complete please follow [Tailwind's 
 - [ ] Listed on [UnoCSS](https://github.com/unocss/unocss) readme.
 - [ ] Documentation search.
 - [ ] Better bracket (`...-[...]`) implementation.
-- [ ] Markdown documentation support.
+- [ ] Markdown documentation format.
 - [ ] Complete documentation.
 - [ ] Become UnoCSS default preset 🤷🫣
 
