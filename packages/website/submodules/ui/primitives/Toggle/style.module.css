@@ -1,0 +1,45 @@
+.switch {
+  height: 2rem;
+  min-width: 4rem;
+  border: solid 1px;
+  cursor: pointer;
+
+  @apply bg-accent-3
+    border-color-accent-3
+    transition
+    transition-all
+    rounded-s
+    p-s.2;
+
+  &:hover {
+    @apply highlight;
+  }
+
+  &:active {
+    @apply p-s.4 highlight+;
+  }
+
+  & .text {
+    display: none;
+  }
+
+  & .toggle {
+    height: 100%;
+    width: 50%;
+
+    position: relative;
+    inset-inline-start: 0;
+    transition: inherit;
+
+    @apply rounded-s bg-accent-2;
+  }
+
+  &:is(.on) {
+    @apply border-color-accent-2;
+
+    & .toggle {
+      @apply bg-accent;
+      inset-inline-start: 50%;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "esnext",
+    "lib": ["esnext"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "types": [
+      "node",
+      "vite/client"
+    ],
+    "paths": {
+      "@windblade/core": ["./packages/core/src/index.ts"],
+      "@windblade/docs": ["./packages/docs/src/index.ts"],
+      "@windblade/unocss-preset-color": ["./packages/unocss-preset-color/src/index.ts"],
+      "@windblade/unocss-preset-dollars": ["./packages/unocss-preset-dollars/src/index.ts"],
+      "unocss-docs": ["./packages/unocss-docs/src/index.ts"],
+      "unocss-preset-windblade": ["./packages/unocss-preset/src/index.ts"],
+    }
+  },
+  "exclude": [
+    "**/dist/**",
+    "**/node_modules/**",
+    "**/client/**",
+    "**/playground/**",
+    "**/examples/**",
+    "**/fixtures/**",
+    "**/interactive/**",
+    "**/test/dts/**"
+  ]
+}

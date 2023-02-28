@@ -1,0 +1,48 @@
+.bg {
+  @apply
+    relative
+    flex-1
+    size-b-m.2
+    bg-accent-4
+    rounded-s
+    transition;
+
+  overflow: hidden;
+
+  &:hover {
+    @apply
+      highlight;
+  }
+
+  &:active {
+    @apply
+      highlight+;
+  }
+}
+
+.fill {
+  @apply
+    absolute
+    size-b-full
+    bg-accent
+    transition;
+
+  transition-property: background;
+}
+
+.slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb,
+  &::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background: none;
+  }
+}

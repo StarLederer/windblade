@@ -1,0 +1,48 @@
+.button {
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      @apply ease-out highlight;
+    }
+
+    &:active {
+      @apply highlight+;
+    }
+  }
+}
+
+.isGhost {
+  @apply flex
+    items-stretch
+    int-text
+    transition
+    bg-transparent
+    text-accent
+    border-none
+    font-semibold;
+
+  &:not(:disabled) {
+    &:hover,
+    &:active {
+      @apply bg-accent-4;
+    }
+  }
+}
+
+.isHalf {
+  @apply bg-accent-4;
+}
+
+.isSecondary {
+  @apply bg-accent-2;
+}
+
+.isSolid {
+  @apply bg-accent;
+}

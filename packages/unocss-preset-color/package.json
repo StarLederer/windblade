@@ -1,0 +1,29 @@
+{
+  "name": "@windblade/unocss-preset-color",
+  "version": "2.0.0-beta.3",
+  "description": "",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "*.css"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "stub": "unbuild --stub"
+  },
+  "dependencies": {
+    "@windblade/core": "workspace:*",
+    "ts-extras": "^0.11.0",
+    "unocss-docs": "workspace:*"
+  }
+}
