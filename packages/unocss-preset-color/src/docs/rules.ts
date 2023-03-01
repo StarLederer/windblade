@@ -1,5 +1,4 @@
-import type { DocumentationCategories } from 'unocss-docs'
-import type { theme } from '@windblade/core'
+import type { DocumentationTree } from 'unocss-docs'
 
 import * as backgrounds from '../rules/documented/backgrounds'
 import * as typography from '../rules/documented/typography'
@@ -8,7 +7,7 @@ import * as interactivity from '../rules/documented/interactivity'
 import * as svg from '../rules/documented/svg'
 import * as accessibility from '../rules/documented/accessibility'
 
-const main: DocumentationCategories<theme.Theme> = new Map([
+const main: DocumentationTree = new Map([
   ['Background', new Map([
     ['Background Color', backgrounds.bgColor()],
     ['Background Gradient', backgrounds.backgroundImage()],
