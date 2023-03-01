@@ -1,7 +1,7 @@
-import type { DocumentedThemeObject } from 'unocss-docs'
+import type { DocumentationPage } from 'unocss-docs'
 
-const colors: DocumentedThemeObject<{}> = () =>
-`# Using the $ syntax
+const colors: DocumentationPage
+= `# Using the $ syntax
 
 You can grab proportions from your theme by prefixing their names with \`$\`. This is mainly useful inside brackets when you want to set custom values.
 

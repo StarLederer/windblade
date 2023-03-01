@@ -1,8 +1,7 @@
-import type { DocumentationCategories } from 'unocss-docs'
-import type { theme } from '@windblade/core'
+import type { DocumentationTree } from 'unocss-docs'
 import dollarSyntax from './dollarSyntax'
 
-const main: DocumentationCategories<theme.Theme> = new Map([
+const main: DocumentationTree = new Map([
   ['Usage', new Map([
     ['$ syntax', dollarSyntax],
   ])],
