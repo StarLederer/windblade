@@ -1,5 +1,5 @@
 import type { Rule } from '@unocss/core'
-import { grids } from '@unocss/preset-mini/rules'
+import { contents, grids } from '@unocss/preset-mini/rules'
 
 import { ruleUtils } from '@windblade/core'
 import type { theme } from '@windblade/core'
@@ -401,7 +401,7 @@ const rules: Rule<Theme>[] = [
   ['break-all', { 'word-break': 'break-all' }],
   ['break-keep', { 'word-break': 'keep-all' }],
 
-  ['content-none', { content: 'none' }],
+  ...contents,
 
   // Borders
   ...borders.borderRadius().rules,
