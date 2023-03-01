@@ -1,17 +1,34 @@
-import type { Component, JSXElement } from 'solid-js'
+import type { Component } from 'solid-js'
 import { For, Show, createEffect, createSignal } from 'solid-js'
 import {
   Dialog,
   DialogOverlay,
   DialogPanel,
 } from 'solid-headless'
-import router, { pathStartsWith } from '@ui/router'
+import type { Path } from '@ui/router'
+import router from '@ui/router'
 import Button from '@ui/primitives/Button'
-import type { DocumentationCategories } from '@windblade/unocss-docs'
-import RuleGroup from './Docs/branches/RuleGroup'
+import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
 import ThemeObject from './Docs/branches/ThemeObject'
+import Nav from './Docs/components/Nav'
 import docsStore from '~/stores/docsStore'
-import { LocalLink, Route } from '~/lib/rotuer'
+import { Route } from '~/lib/rotuer'
+
+const DocumentationRoutes: Component<{
+  prefix: Path
+  tree: CompiledDocumentationTree
+}> = props => (
+  <For each={props.tree}>
+    {({ name, value }) => (
+      <Route path={[...props.prefix, name].join('/')}>
+        {typeof value === 'string'
+          ? <ThemeObject page={value} />
+          : <DocumentationRoutes prefix={[...props.prefix, name]} tree={value} />
+        }
+      </Route>
+    )}
+  </For>
+)
 
 const Main: Component = () => {
   const [containerSize, setContainerSize] = createSignal(0)
@@ -48,49 +65,11 @@ const Main: Component = () => {
 
   const drawerVisible = () => drawerOpen() || drawerFlat()
 
-  const docs = (): DocumentationCategories<any> => docsStore.docs() ?? new Map()
+  const docs = (): CompiledDocumentationTree => docsStore.docs() ?? []
 
   const nav = (
     <nav class="flex flex-col gap-s p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 size-i-max size-b-full" ref={drawer}>
-      {(() => {
-        const navDom: JSXElement[] = []
-
-        docs().forEach((category, categoryName) => {
-          navDom.push(<>
-            <div class="font-semibold m-be-s.4">{categoryName}</div>
-            <div class="flex flex-col gap-s.2">
-              {(() => {
-                const pages: JSXElement[] = []
-                let i = 0
-
-                category.forEach((page, pageName) => {
-                  const current = () => pathStartsWith(router.route().current, ['docs', `${categoryName}-${pageName}`])
-                  const style = `filter: hue-rotate(${3.6 * i++}deg);`
-
-                  pages.push(
-                    <LocalLink
-                      style="none"
-                      href={`/docs/${categoryName}-${pageName}`}
-                      onClick={() => setDrawerOpen(false)}
-                      class={`${current() ? 'bg-surface text-fg-1' : 'text-fg-3'} relative p-s.6 p-i-s p-is-m.2 rounded-full text-start justify-start transition ease-out overflow-hidden hover:bg-accent-3 hover:text-fg-1`}
-                    >
-                      <div class="absolute inset-0" style={style}>
-                        <div class={`${current() ? 'bg-accent-2' : 'bg-transparent'} blur-s transition absolute size-b-m.2 size-i-m.2 rounded-full inset-0 inset-b-0 m-b-auto`} />
-                        <div class={`${current() ? 'bg-accent' : 'bg-accent-2'} size-b-s.4 size-i-s.4 transition absolute rounded-full inset-0 inset-b-0 m-b-auto m-is-$(($m.2-$s.4)/2)`} />
-                      </div>
-                      <span class="relative">{pageName}</span>
-                    </LocalLink>,
-                  )
-                })
-
-                return pages
-              })()}
-            </div>
-          </>)
-        })
-
-        return navDom
-      })()}
+      <Nav prefix={['docs']} tree={docs()} />
     </nav>
   )
 
@@ -129,28 +108,7 @@ const Main: Component = () => {
         </Show>
 
         <main class={`relative flex-1 transition-all ${(drawerOpen() && !drawerFlat()) ? 'blur-s.2 opacity-s.4' : ''}`} onClick={() => setDrawerOpen(false)}>
-          {(() => {
-            const routes: JSXElement[] = []
-            docs().forEach((category, categoryName) => {
-              category.forEach((page, pageName) => {
-                if (typeof page === 'function') {
-                  routes.push(
-                    <Route path={`/docs/${categoryName}-${pageName}`}>
-                      <ThemeObject themeObject={page} />
-                    </Route>,
-                  )
-                }
-                else {
-                  routes.push(
-                    <Route path={`/docs/${categoryName}-${pageName}`}>
-                      <RuleGroup title={pageName} ruleGroup={page} />
-                    </Route>,
-                  )
-                }
-              })
-            })
-            return routes
-          })()}
+          <DocumentationRoutes prefix={['docs']} tree={docs()} />
         </main>
       </div>
     </div>

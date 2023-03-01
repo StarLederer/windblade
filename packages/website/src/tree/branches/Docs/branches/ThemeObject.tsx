@@ -1,9 +1,7 @@
 import type { Component, JSXElement, ParentComponent } from 'solid-js'
 import { Suspense } from 'solid-js'
 import type { Content, Root } from 'mdast-util-from-markdown/lib'
-import type { DocumentedThemeObject } from 'unocss-docs'
-import type { theme } from '@windblade/core'
-import uno from '~/unocss'
+import type { DocumentationPage } from 'unocss-docs'
 import libs from '~/lib/external'
 import ShadowDomUnoCSS from '~/lib/ShadowDomUnoCSS'
 
@@ -78,13 +76,13 @@ const mdToJsx = (tree: Content | Root): JSXElement => {
 }
 
 const Main: Component<{
-  themeObject: DocumentedThemeObject<theme.Theme>
+  page: DocumentationPage
 }> = props => (
   <div class="size-b-full overflow-auto">
     <div class="p-m.2 flex flex-col gap-s">
       <Suspense fallback="Loading...">
         {(() => {
-          const md = libs.md()?.fromMarkdown(props.themeObject(uno.config.theme))
+          const md = libs.md()?.fromMarkdown(props.page)
           if (!md)
             return 'Error: Failed to parse this page\'s markdown'
           return mdToJsx(md)

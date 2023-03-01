@@ -70,6 +70,10 @@ pre {
   @apply leading-[$($s)rem] text-s.8;
 }
 
+ul::before {
+  content: attr(title)
+}
+
 pre.css,
 pre.js,
 .hljs-comment,
