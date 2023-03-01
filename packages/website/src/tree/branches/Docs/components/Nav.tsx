@@ -39,7 +39,7 @@ const Main: Component<{
   const depth = () => props.depth ?? 0
 
   return (<>
-    <ul class={`list-none flex flex-col gap-s.2 ${depth() > 0 ? 'before:font-semibold before:m-be-s' : ''}`} title={depth() > 0 ? props.prefix.at(-1) : undefined}>
+    <ul class={`list-none flex flex-col ${depth() > 0 ? 'before:font-semibold before:m-be-s before:block gap-s.2' : 'gap-s'}`} title={depth() > 0 ? props.prefix.at(-1) : undefined}>
       <For each={props.tree}>
         {({ name, value }) => (
           <li>

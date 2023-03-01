@@ -70,7 +70,7 @@ pre {
   @apply leading-[$($s)rem] text-s.8;
 }
 
-ul::before {
+ul[title]::before {
   content: attr(title)
 }
 

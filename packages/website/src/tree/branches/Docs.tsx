@@ -68,7 +68,7 @@ const Main: Component = () => {
   const docs = (): CompiledDocumentationTree => docsStore.docs() ?? []
 
   const nav = (
-    <nav class="flex flex-col gap-s p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 size-i-max size-b-full" ref={drawer}>
+    <nav class="p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 size-i-max size-b-full" ref={drawer}>
       <Nav prefix={['docs']} tree={docs()} />
     </nav>
   )
