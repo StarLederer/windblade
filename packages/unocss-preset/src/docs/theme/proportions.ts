@@ -1,5 +1,7 @@
-import type { DocumentedThemeObject } from 'unocss-docs'
-import type { theme } from '@windblade/core'
+import type { DocumentationPage } from 'unocss-docs'
+import { themes } from '../../themes'
+
+const wb = themes.windblade.windblade
 
 const styles = {
   tr: 'border border-0 border-b-px border-color-surface',
@@ -7,8 +9,8 @@ const styles = {
   td: 'p-b-s.4 p-ie-s text-fg-3',
 }
 
-const main: DocumentedThemeObject<theme.Theme> = theme =>
-`# Proportions
+const main: DocumentationPage
+= `# Proportions
 
 Proportions are used throughout the whole preset for size, duration, opacity, etc.
 
@@ -26,7 +28,7 @@ By default Windblade is configured with 10-unit-based proportions, however, Wind
     <th class="${styles.th}"></th>
   </tr>
   ${((): string => {
-    const proportions = theme.windblade.proportions
+    const proportions = wb.proportions
     if (typeof proportions === 'object') {
       return Object.entries(proportions as Record<string, number>).map(([name, value]) => `
         <tr class="${styles.tr}">

@@ -1,11 +1,11 @@
-import type { DocumentedThemeObject } from 'unocss-docs'
+import type { DocumentationPage } from 'unocss-docs'
 
 const styles = {
   block: 'bg-surface p-s transition text-center rounded-s.4',
 }
 
-const colors: DocumentedThemeObject<{}> = () =>
-`# Using logical properties
+const colors: DocumentationPage
+= `# Using logical properties
 
 Windblade uses logical properties and values only.
 

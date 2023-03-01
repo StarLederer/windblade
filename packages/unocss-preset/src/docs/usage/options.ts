@@ -1,8 +1,8 @@
-import type { DocumentedThemeObject } from 'unocss-docs'
+import type { DocumentationPage } from 'unocss-docs'
 import themes from '../../themes'
 
-const colors: DocumentedThemeObject<{}> = () =>
-`# Options
+const colors: DocumentationPage
+= `# Options
 
 At the moment Windblade only exposes one option which configures which theme preset is used.
 

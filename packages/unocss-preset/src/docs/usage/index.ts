@@ -1,5 +1,4 @@
-import type { DocumentationCategory } from 'unocss-docs'
-import type { theme } from '@windblade/core'
+import type { DocumentationTree } from 'unocss-docs'
 import { docs as dollarsDocs } from '@windblade/unocss-preset-dollars'
 import installation from './installation'
 import options from './options'
@@ -9,7 +8,7 @@ import variants from './variants'
 
 const dollarSyntax = dollarsDocs.dollarSyntax.default
 
-export const categoy: DocumentationCategory<theme.Theme> = new Map([
+export const categoy: DocumentationTree = new Map([
   ['Installation', installation],
   ['Options', options],
   ['Semantic colors', semanticColors],

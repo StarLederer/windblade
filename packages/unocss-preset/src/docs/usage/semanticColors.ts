@@ -1,7 +1,7 @@
-import type { DocumentedThemeObject } from 'unocss-docs'
+import type { DocumentationPage } from 'unocss-docs'
 
-const colors: DocumentedThemeObject<{}> = () =>
-`# Using semantic colors
+const colors: DocumentationPage
+= `# Using semantic colors
 
 Windblade comes with a semantic color system. Refer to colors by their names.
 

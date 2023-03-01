@@ -1,7 +1,7 @@
-import type { DocumentedThemeObject } from 'unocss-docs'
+import type { DocumentationPage } from 'unocss-docs'
 
-const main: DocumentedThemeObject<{}> = () =>
-`# Other theme objects
+const main: DocumentationPage
+= `# Other theme objects
 
 See the theme type below for other values you can customize.
 

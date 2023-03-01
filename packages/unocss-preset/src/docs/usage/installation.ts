@@ -1,7 +1,7 @@
-import type { DocumentedThemeObject } from 'unocss-docs'
+import type { DocumentationPage } from 'unocss-docs'
 
-const colors: DocumentedThemeObject<{}> = () =>
-`# Installation
+const colors: DocumentationPage
+= `# Installation
 
 Windblade is an UnoCSS preset, please follow its own [guide](https://github.com/unocss/unocss#installation) to install it.
 

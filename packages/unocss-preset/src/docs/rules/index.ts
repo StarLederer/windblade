@@ -1,5 +1,4 @@
-import type { DocumentationCategories } from 'unocss-docs'
-import type { theme } from '@windblade/core'
+import type { DocumentationTree } from 'unocss-docs'
 import { docs } from '@windblade/unocss-preset-color'
 
 import * as layout from '../../rules/documented/layout'
@@ -17,7 +16,7 @@ import * as transforms from '../../rules/documented/transforms'
 import * as interactivity from '../../rules/documented/interactivity'
 import * as svg from '../../rules/documented/svg'
 
-const main: DocumentationCategories<theme.Theme> = new Map([
+const main: DocumentationTree = new Map([
   ['Layout', new Map([
     ['Aspect Ratio', layout.aspectRatio()],
     ['Container', layout.container()],
