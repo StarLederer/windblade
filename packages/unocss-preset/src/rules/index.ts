@@ -174,7 +174,7 @@ const rules: Rule<Theme>[] = [
   //   ],
   //   [`${ruleName}-end-auto`, { ['grid-' + cssName + '-end']: 'auto' }]
   // ]),
-  ...(grids as Rule<Theme>[]),
+  ...grids,
 
   ...flexboxAndGrid.gridFitCols().rules,
   ...flexboxAndGrid.gridFillCols().rules,
