@@ -1,6 +1,4 @@
-export type Md = string
-
-export type DocumentationPage = Md
+export type DocumentationPage = (root: HTMLElement) => void
 
 export type DocumentationTree = Map<string, DocumentationPage | DocumentationTree>
 
