@@ -1,6 +1,6 @@
 import type { Rule } from '@unocss/core'
 import { objectKeys } from 'ts-extras'
-import type { DocumentedRuleGroup, DocumentedRuleGroupDocs } from 'unocss-docs'
+import type { DocumentationPage, DocumentedRuleGroup, DocumentedRuleGroupDocs } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
 import type { theme } from '@windblade/core'
 
@@ -14,26 +14,33 @@ export const bgColor = (): DocumentedRuleGroup<theme.Theme> => {
     // TODO: we might need a set-fg rule that is the same as bg but does not actually change background color
   ]
 
-  const docs: DocumentedRuleGroupDocs = {
-    description: 'Windblade uses semantic colors.',
-    utilities: ['bg-<theme.windblade.colors>', 'bg-<theme.windblade.miscColors>', 'bg-fg-<integer>'],
-    preview: (util) => {
-      if (util.startsWith('bg-fg')) {
-        return `
-          <div class="size-i-full aspect-1/1 max-size-i-m max-size-b-m rounded-s p-s bg-accent">
-            <div class="size-i-full aspect-1/1 rounded-full ${util}"></div>
-          </div>
-        `
-      }
-      else {
-        return `
-          <div class="${util} size-i-full aspect-1/1 max-size-i-m max-size-b-m rounded-s p-s flex items-center justify-center text-center">
-            ${util}
-          </div>
-        `
-      }
-    },
-  }
+  const docs: DocumentationPage = `# :title
+Windblade uses semantic colors.
+
+## Try it
+::try-it-controls{c=bg-<theme.windblade.colors> mc=bg-<theme.windblade.miscColors> fg=bg-fg-<integer>}
+### Preview
+:::try-it-preview{for=fg}
+\`\`\`
+  <div class="size-i-full aspect-1/1 max-size-i-m max-size-b-m rounded-s p-s bg-accent">
+    <div class="size-i-full aspect-1/1 rounded-full :util"></div>
+  </div>
+\`\`\`
+:::
+
+:::try-it-preview{for=c,mc}
+\`\`\`
+<div class=":selected size-i-full aspect-1/1 max-size-i-m max-size-b-m rounded-s p-s flex items-center justify-center text-center">
+  Background color
+</div>
+\`\`\`
+:::
+
+### HTML
+::try-it-html
+
+### Generated CSS
+::try-it-css`
 
   return { rules, docs }
 }

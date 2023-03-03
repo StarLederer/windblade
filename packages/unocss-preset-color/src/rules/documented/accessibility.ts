@@ -1,12 +1,12 @@
 import type { Rule } from '@unocss/core'
 import { escapeSelector as e } from '@unocss/core'
-import type { DocumentedRuleGroup, DocumentedRuleGroupDocs } from 'unocss-docs'
+import type { DocumentationPage } from 'unocss-docs'
 import type { theme } from '@windblade/core'
 import { utils } from '@windblade/core'
 
 const { getColorSchemeCSSProps, objToCSS } = utils
 
-export const colorScheme = (): DocumentedRuleGroup<theme.Theme> => {
+export const colorScheme = () => {
   const rules: Rule<theme.Theme>[] = [
     [
       /^scheme-(dark|light|inverse|auto)-(\d+)$/,
@@ -62,11 +62,17 @@ export const colorScheme = (): DocumentedRuleGroup<theme.Theme> => {
     ],
   ]
 
-  const docs: DocumentedRuleGroupDocs = {
-    description: 'Utilities for switching color scheme. Missing from Tailwind.',
-    utilities: ['scheme-dark', 'scheme-light', 'scheme-auto-<integer>', 'scheme-dark-<integer>', 'scheme-light-<integer>'],
-    preview: util => 'TODO',
-  }
+  const docs: DocumentationPage = `# Color scheme
+Utilities for switching color scheme. Missing from Tailwind.
+
+## Try it
+::try-it-controls{d=scheme-dark l=scheme-light hue=scheme-auto-$integer hue-dark=scheme-dark-$integer hue-light=scheme-light-$integer}
+### Preview
+::try-it-preview{html=TODO}
+### HTML
+::try-it-html
+### Generated CSS
+::try-it-css`
 
   return { rules, docs }
 }

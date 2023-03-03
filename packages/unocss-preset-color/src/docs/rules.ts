@@ -9,7 +9,7 @@ import * as accessibility from '../rules/documented/accessibility'
 
 const main: DocumentationTree = new Map([
   ['Background', new Map([
-    ['Background Color', backgrounds.bgColor()],
+    ['Background Color', backgrounds.bgColor().docs],
     ['Background Gradient', backgrounds.backgroundImage()],
     ['Background Gradient Stops', backgrounds.gradientColorStops()],
   ])],
@@ -22,7 +22,7 @@ const main: DocumentationTree = new Map([
     ['Outline Color', borders.outlineColor()],
   ])],
   ['Other', new Map([
-    ['Color Scheme', accessibility.colorScheme()],
+    ['Color Scheme', accessibility.colorScheme().docs],
 
     ['Accent color', interactivity.accentColor()],
     ['Caret color', interactivity.caretColor()],
