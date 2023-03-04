@@ -22,8 +22,8 @@ const Main: Component<{
             try {
               xml = parser.fromXml(props.page)
             }
-            catch (err) {
-              return <Error>Error parsing this page</Error>
+            catch (err: unknown) {
+              return <Error>Error parsing this page: {err as string}</Error>
             }
 
             if (xml)
