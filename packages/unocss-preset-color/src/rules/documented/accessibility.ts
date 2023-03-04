@@ -89,8 +89,10 @@ export const colorScheme = () => {
           </util>
         </utils>
 
+        <renderer html="TODO"/>
+
         <h3>Preview</h3>
-        <preview html="TODO" />
+        <preview />
 
         <h3>HTML</h3>
         <html />
