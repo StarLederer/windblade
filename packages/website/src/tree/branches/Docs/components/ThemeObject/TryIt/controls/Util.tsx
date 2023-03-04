@@ -1,6 +1,7 @@
 import { For } from 'solid-js'
 import type { AddonXmlComponent } from '../../XmlComponent'
 import Select from './Select'
+import Input from './Input'
 import type { Props } from '.'
 
 const Xml: AddonXmlComponent<Props> = (props) => {
@@ -24,6 +25,8 @@ const Xml: AddonXmlComponent<Props> = (props) => {
           switch (node.name) {
             case 'select':
               return <Select fallback={Fallback} onChange={select}>{node.children}</Select>
+            case 'input':
+              return <Input onChange={select}/>
           }
       }
 
@@ -38,7 +41,7 @@ const main: AddonXmlComponent<Props> = (props) => {
       <td>
         <div class="i-mdi-check m-auto" />
       </td>
-      <td class="p-b-s.6 font-semibold">
+      <td class="p-b-s.6 font-semibold flex flex-wrap">
         <Xml {...props} />
       </td>
     </tr>
