@@ -15,11 +15,11 @@ const main: XmlComponent = (props) => {
   const Fallback = props.fallback ?? (() => undefined)
 
   return (
-    <tr>
+    <tr class="border border-color-transparent border-be-color-fg-5">
       <td>
         <div class="i-mdi-check m-auto"/>
       </td>
-      <td><Xml fallback={Fallback}>{props.children}</Xml></td>
+      <td class="p-b-s.6"><Xml fallback={Fallback}>{props.children}</Xml></td>
     </tr>
   )
 }
