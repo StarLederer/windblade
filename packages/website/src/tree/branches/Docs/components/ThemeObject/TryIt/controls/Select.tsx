@@ -11,7 +11,9 @@ const Xml: AddonXmlComponent<Props> = (props) => {
         case 'element':
           switch (node.name) {
             case 'option':
-              return <option value={node.attributes?.value ?? ''}>{node.attributes?.value}</option>
+              return <option value={node.attributes?.value ?? ''}>
+                {node.attributes?.title ?? node.attributes?.value ?? ''}
+              </option>
           }
       }
 
