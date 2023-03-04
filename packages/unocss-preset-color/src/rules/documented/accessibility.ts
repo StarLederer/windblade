@@ -62,19 +62,44 @@ export const colorScheme = () => {
     ],
   ]
 
-  const docs: DocumentationPage = `# Color scheme
-Utilities for switching color scheme. Missing from Tailwind.
+  const docs: DocumentationPage = `
+    <page>
+      <h1><title /></h1>
+      <p>Utilities for switching color scheme. Missing from Tailwind.</p>
 
-## Try it
-::try-it-controls{d=scheme-dark l=scheme-light hue=scheme-auto-$integer hue-dark=scheme-dark-$integer hue-light=scheme-light-$integer}
-### Preview
-:::try-it-preview
-<div>TODO</div>
-:::
-### HTML
-::try-it-html
-### Generated CSS
-::try-it-css`
+      <h2>Try it</h2>
+      <try-it>
+        <utils>
+          <util>
+            scheme-
+            <select>
+              <option>dark</option>
+              <option>light</option>
+            </select>
+          </util>
+          <util>
+            scheme-
+            <select>
+              <option>auto</option>
+              <option>dark</option>
+              <option>light</option>
+            </select>
+            -
+            <input type="integer" />
+          </util>
+        </utils>
+
+        <h3>Preview</h3>
+        <preview />
+
+        <h3>HTML</h3>
+        <html />
+
+        <h3>Generated CSS</h3>
+        <css />
+      </try-it>
+    </page>
+  `
 
   return { rules, docs }
 }

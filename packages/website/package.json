@@ -25,6 +25,7 @@
     "solid-headless": "^0.13.1",
     "solid-js": "^1.6.11",
     "unocss-docs": "workspace:*",
-    "unocss-preset-windblade": "workspace:*"
+    "unocss-preset-windblade": "workspace:*",
+    "xast-util-from-xml": "^3.0.0"
   }
 }
