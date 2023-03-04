@@ -1,5 +1,5 @@
 import { For, Show, createSignal } from 'solid-js'
-import type { XmlComponent } from '../XmlComponent'
+import type { AddonXmlComponent } from '../XmlComponent'
 import Controls from './controls'
 import ShadowDomUnoCSS from '~/lib/ShadowDomUnoCSS'
 import libs from '~/lib/external'
@@ -17,7 +17,7 @@ const NothingSelected = () => (
   </div>
 )
 
-const Xml: XmlComponent = (props) => {
+const Xml: AddonXmlComponent = (props) => {
   const [selectedI, setSelectedI] = createSignal(-1)
   const [selectedId, setSelectedId] = createSignal<string | undefined>(undefined)
   const [selected, setSelected] = createSignal<string | undefined>(undefined)
@@ -63,6 +63,6 @@ const Xml: XmlComponent = (props) => {
   </For>
 }
 
-const main: XmlComponent = props => <Xml fallback={props.fallback}>{props.children}</Xml>
+const main: AddonXmlComponent = props => <Xml fallback={props.fallback}>{props.children}</Xml>
 
 export default main

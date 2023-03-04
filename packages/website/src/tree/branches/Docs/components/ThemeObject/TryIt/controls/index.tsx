@@ -1,5 +1,5 @@
 import { For } from 'solid-js'
-import type { XmlComponent } from '../../XmlComponent'
+import type { AddonXmlComponent } from '../../XmlComponent'
 import Util from './Util'
 
 const styles = {
@@ -7,7 +7,7 @@ const styles = {
   th: 'p-b-s.6 text-start text-fg-3',
 }
 
-const Xml: XmlComponent = (props) => {
+const Xml: AddonXmlComponent = (props) => {
   const Fallback = props.fallback ?? (() => undefined)
 
   return <For each={props.children}>
@@ -24,7 +24,7 @@ const Xml: XmlComponent = (props) => {
   </For>
 }
 
-const main: XmlComponent = props => (
+const main: AddonXmlComponent = props => (
   <table class="border-collapse">
     <thead class="font-semibold">
       <tr class={styles.tr}>
