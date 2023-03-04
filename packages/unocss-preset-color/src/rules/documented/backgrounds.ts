@@ -1,6 +1,7 @@
 import type { Rule } from '@unocss/core'
 import { objectKeys } from 'ts-extras'
 import type { DocumentationPage } from 'unocss-docs'
+import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
 import type { theme } from '@windblade/core'
 
@@ -14,30 +15,47 @@ export const bgColor = () => {
     // TODO: we might need a set-fg rule that is the same as bg but does not actually change background color
   ]
 
-  const docs: DocumentationPage = `# :title
-Windblade uses semantic colors.
+  const docs: DocumentationPage = `
+    <page>
+      <h1><title /></h1>
+      <p>Windblade uses semantic colors.</p>
 
-## Try it
-::try-it-controls{c=bg-$theme.windblade.colors mc=bg-$theme.windblade.miscColors fg=bg-fg-$integer}
+      <h2>Try it</h2>
+      <try-it>
+        <utils>
+          <util>
+            bg-
+            <select>
+              <option value="c">bg-$theme.windblade.colors</option>
+              <option value="mc">bg-$theme.windblade.miscColors</option>
+              <option value="fg">bg-fg-$integer</option>
+            </select>
+          </util>
+        </utils>
 
-### Preview
-:::try-it-preview{for=fg}
-<div class="size-i-full aspect-1/1 max-size-i-m max-size-b-m rounded-s p-s bg-accent">
-  <div class="size-i-full aspect-1/1 rounded-full $util"></div>
-</div>
-:::
+        <renderer for="fg" html="${encodeString(`
+          <div class="size-i-full aspect-1/1 max-size-i-m max-size-b-m rounded-s p-s bg-accent">
+            <div class="size-i-full aspect-1/1 rounded-full $util"></div>
+          </div>
+        `)}" />
 
-:::try-it-preview{for=c,mc}
-<div class="$util size-i-full aspect-1/1 max-size-i-m max-size-b-m rounded-s p-s flex items-center justify-center text-center">
-  Background color
-</div>
-:::
+        <renderer html="${encodeString(`
+          <div class="$util size-i-full aspect-1/1 max-size-i-m max-size-b-m rounded-s p-s flex items-center justify-center text-center">
+            Background color
+          </div>
+        `)}" />
 
-### HTML
-::try-it-html
+        <h3>Preview</h3>
+        <viewport />
 
-### Generated CSS
-::try-it-css`
+        <h3>HTML</h3>
+        <html />
+
+        <h3>Generated CSS</h3>
+        <css />
+      </try-it>
+    </page>
+  `
 
   return { rules, docs }
 }
