@@ -21,8 +21,6 @@ const Xml: AddonXmlComponent<Props> = (props) => {
 }
 
 const main: AddonXmlComponent<Props> = (props) => {
-  const select = () => props.onChange({ util: 'test', id: 'tests' })
-
   return (
     <select
       name="colors"
