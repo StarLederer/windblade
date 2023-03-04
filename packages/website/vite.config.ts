@@ -52,7 +52,7 @@ export default defineConfig({
         transformerDirective(),
       ],
       safelist: [
-        ...['scheme-light', 'scheme-dark'].flatMap(v1 => [240, 260].map(v2 => `${v1}-${v2}`)),
+        ...[240, 260].map(v => `scheme-auto-${v}`),
       ],
       rules: [
         ['highlight', { filter: 'brightness(1.2) saturate(0.6)' }],
