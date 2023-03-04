@@ -7,7 +7,11 @@ const styles = {
   th: 'p-b-s.6 text-start text-fg-3',
 }
 
-const Xml: AddonXmlComponent = (props) => {
+export interface Props {
+  onChange: (val: { util: string; id: string }) => void
+}
+
+const Xml: AddonXmlComponent<Props> = (props) => {
   const Fallback = props.fallback ?? (() => undefined)
 
   return <For each={props.children}>
@@ -15,7 +19,7 @@ const Xml: AddonXmlComponent = (props) => {
       if (node.type === 'element') {
         switch (node.name) {
           case 'util':
-            return <Util fallback={props.fallback}>{node.children}</Util>
+            return <Util onChange={props.onChange} fallback={props.fallback}>{node.children}</Util>
         }
       }
 
@@ -24,7 +28,7 @@ const Xml: AddonXmlComponent = (props) => {
   </For>
 }
 
-const main: AddonXmlComponent = props => (
+const main: AddonXmlComponent<Props> = props => (
   <table class="border-collapse">
     <thead class="font-semibold">
       <tr class={styles.tr}>
@@ -33,7 +37,7 @@ const main: AddonXmlComponent = props => (
       </tr>
     </thead>
     <tbody>
-      <Xml fallback={props.fallback}>{props.children}</Xml>
+      <Xml {...props}></Xml>
     </tbody>
   </table>
 )
