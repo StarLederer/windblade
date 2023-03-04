@@ -1,4 +1,5 @@
 import { For } from 'solid-js'
+import Button from '@ui/primitives/Button'
 import type { AddonXmlComponent } from '../../XmlComponent'
 import Select from './Select'
 import Input from './Input'
@@ -14,12 +15,13 @@ const Xml: AddonXmlComponent<Props> = (props) => {
       switch (node.type) {
         case 'text':
           return (
-            <button
-              class="text-accent transition ease-out hover:highlight active:highlight+"
+            <Button
+              style="none"
+              class="text-accent transition ease-in"
               onClick={select}
             >
               {node.value}
-            </button>
+            </Button>
           )
         case 'element':
           switch (node.name) {
