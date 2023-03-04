@@ -2,8 +2,8 @@ import { compiler } from 'unocss-docs'
 import type { CompiledDocumentationTree } from 'unocss-docs'
 import { createRoot, createSignal } from 'solid-js'
 
-import { docs as presetCompleteDocs } from 'unocss-preset-windblade'
-// import { docs as presetCompleteDocs } from '@windblade/unocss-preset-color'
+// import { docs as presetCompleteDocs } from 'unocss-preset-windblade'
+import { docs as presetCompleteDocs } from '@windblade/unocss-preset-color'
 
 function main() {
   // System sceheme

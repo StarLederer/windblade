@@ -68,7 +68,9 @@ Utilities for switching color scheme. Missing from Tailwind.
 ## Try it
 ::try-it-controls{d=scheme-dark l=scheme-light hue=scheme-auto-$integer hue-dark=scheme-dark-$integer hue-light=scheme-light-$integer}
 ### Preview
-::try-it-preview{html=TODO}
+:::try-it-preview
+<div>TODO</div>
+:::
 ### HTML
 ::try-it-html
 ### Generated CSS

@@ -1,12 +1,12 @@
 import type { Rule } from '@unocss/core'
 import { objectKeys } from 'ts-extras'
-import type { DocumentationPage, DocumentedRuleGroup, DocumentedRuleGroupDocs } from 'unocss-docs'
+import type { DocumentationPage } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
 import type { theme } from '@windblade/core'
 
 const { color, logical } = ruleUtils
 
-export const bgColor = (): DocumentedRuleGroup<theme.Theme> => {
+export const bgColor = () => {
   const rules: Rule<theme.Theme>[] = [
     color.colorRule('bg', 'background-color'),
     color.colorBgRule('bg'),
@@ -18,22 +18,19 @@ export const bgColor = (): DocumentedRuleGroup<theme.Theme> => {
 Windblade uses semantic colors.
 
 ## Try it
-::try-it-controls{c=bg-<theme.windblade.colors> mc=bg-<theme.windblade.miscColors> fg=bg-fg-<integer>}
+::try-it-controls{c=bg-$theme.windblade.colors mc=bg-$theme.windblade.miscColors fg=bg-fg-$integer}
+
 ### Preview
 :::try-it-preview{for=fg}
-\`\`\`
-  <div class="size-i-full aspect-1/1 max-size-i-m max-size-b-m rounded-s p-s bg-accent">
-    <div class="size-i-full aspect-1/1 rounded-full :util"></div>
-  </div>
-\`\`\`
+<div class="size-i-full aspect-1/1 max-size-i-m max-size-b-m rounded-s p-s bg-accent">
+  <div class="size-i-full aspect-1/1 rounded-full $util"></div>
+</div>
 :::
 
 :::try-it-preview{for=c,mc}
-\`\`\`
-<div class=":selected size-i-full aspect-1/1 max-size-i-m max-size-b-m rounded-s p-s flex items-center justify-center text-center">
+<div class="$util size-i-full aspect-1/1 max-size-i-m max-size-b-m rounded-s p-s flex items-center justify-center text-center">
   Background color
 </div>
-\`\`\`
 :::
 
 ### HTML
@@ -45,7 +42,7 @@ Windblade uses semantic colors.
   return { rules, docs }
 }
 
-export const backgroundImage = (): DocumentedRuleGroup<theme.Theme> => {
+export const backgroundImage = () => {
   const rules: Rule<theme.Theme>[] = [
     ['bg-none', { 'background-image': 'none' }],
     ...objectKeys(logical.abbreviations.edges).map((edgeKey): Rule<theme.Theme> => [
@@ -64,22 +61,30 @@ export const backgroundImage = (): DocumentedRuleGroup<theme.Theme> => {
     ]),
   ]
 
-  const docs: DocumentedRuleGroupDocs = {
-    description: 'Repalced static colors with sematic colors.',
-    utilities: [
-      'bg-none',
-      ...Object.keys(logical.abbreviations.edges).map(val => `bg-gradient-to-${val}`),
-      ...Object.keys(logical.abbreviations.coners).map(val => `bg-gradient-to-${val}`),
-    ],
-    preview: util => `
-      <div class="${util} from-accent size-i-full size-b-l.2 rounded-s"></div>
-    `,
-  }
+  const docs: DocumentationPage = `# :title
+Repalced static colors with sematic colors.
+
+## Try it
+::try-it-controls{${[
+  'none=bg-none',
+  ...Object.keys(logical.abbreviations.edges).map(val => `to-${val}=bg-gradient-to-${val}`),
+  ...Object.keys(logical.abbreviations.coners).map(val => `to-${val}=bg-gradient-to-${val}`),
+].join(' ')}}
+
+:::try-it-preview
+<div class="$util from-accent size-i-full size-b-l.2 rounded-s"></div>
+:::
+
+### HTML
+::try-it-html
+
+### Generated CSS
+::try-it-css`
 
   return { rules, docs }
 }
 
-export const gradientColorStops = (): DocumentedRuleGroup<theme.Theme> => {
+export const gradientColorStops = () => {
   const rules: Rule<theme.Theme>[] = [
     color.colorRule('from', '--wb-gradient-from'),
     color.colorRule('to', '--wb-gradient-to'),
@@ -87,13 +92,31 @@ export const gradientColorStops = (): DocumentedRuleGroup<theme.Theme> => {
     // colorRule('via', '--wb-gradient-stops', (val) => `var(--wb-gradient-from, transparent), ${val}, var(--wb-gradient-to, transparent)`),
   ]
 
-  const docs: DocumentedRuleGroupDocs = {
-    description: 'Repalced static colors with sematic colors. Temporarily missing the \'via\' utilities.',
-    utilities: ['from-<theme.windblade.colors>', 'from-<theme.windblade.miscColors>', 'to-<theme.windblade.colors>', 'to-<theme.windblade.miscColors>'],
-    preview: util => `
-      <div class="bg-gradient-to-ie ${util} ${util.startsWith('from') ? 'to-accent-2' : 'from-accent-2'} size-i-full size-b-l.2 rounded-s"></div>
-    `,
-  }
+  const docs: DocumentationPage = `# :title
+Repalced static colors with sematic colors. Temporarily missing the \'via\' utilities.
+
+## Try it
+::try-it-controls{${[
+  'fc=from-$theme.windblade.colors',
+  'fmc=from-$theme.windblade.miscColors',
+  'tc=to-$theme.windblade.colors',
+  'tmc=to-$theme.windblade.miscColors',
+].join(' ')}}
+
+### Preview
+:::try-it-preview{for=fc,fmc}
+<div class="bg-gradient-to-ie $util to-accent-2 size-i-full size-b-l.2 rounded-s"></div>
+:::
+
+:::try-it-preview{for=tc,tmc}
+<div class="bg-gradient-to-ie $util from-accent-2 size-i-full size-b-l.2 rounded-s"></div>
+:::
+
+### HTML
+::try-it-html
+
+### Generated CSS
+::try-it-css`
 
   return { rules, docs }
 }

@@ -10,8 +10,8 @@ import * as accessibility from '../rules/documented/accessibility'
 const main: DocumentationTree = new Map([
   ['Background', new Map([
     ['Background Color', backgrounds.bgColor().docs],
-    ['Background Gradient', backgrounds.backgroundImage()],
-    ['Background Gradient Stops', backgrounds.gradientColorStops()],
+    ['Background Gradient', backgrounds.backgroundImage().docs],
+    ['Background Gradient Stops', backgrounds.gradientColorStops().docs],
   ])],
   ['Text', new Map([
     ['Text Color', typography.textColor()],

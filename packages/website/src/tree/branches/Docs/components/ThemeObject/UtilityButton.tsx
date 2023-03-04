@@ -5,14 +5,14 @@ import uno from '~/unocss'
 
 const isolateTokens = (src: JSXElement[]): JSXElement[] => {
   const tokens = [
-    '<integer>',
-    '<ratio>',
-    '<theme.windblade.sizes>',
-    '<theme.windblade.proportions>',
-    '<theme.windblade.miscSizes>',
-    '<theme.windblade.colors>',
-    '<theme.windblade.miscColors>',
-    '<theme.windblade.time.functions>',
+    '$integer',
+    '$ratio',
+    '$theme.windblade.sizes',
+    '$theme.windblade.proportions',
+    '$theme.windblade.miscSizes',
+    '$theme.windblade.colors',
+    '$theme.windblade.miscColors',
+    '$theme.windblade.time.functions',
   ]
 
   return src.flatMap((element): JSXElement[] => {
@@ -104,19 +104,19 @@ const Main: Component<{
       <div class="flex items-center font-semibold">
         {isolateTokens([props.utility]).map((token, i) => {
           switch (token) {
-            case '<integer>':
+            case '$integer':
               return <Integer onChange={val => setTokens((prev) => { prev[i] = val; return [...prev] })} />
-            case '<theme.windblade.sizes>':
+            case '$theme.windblade.sizes':
               return <List values={[...Object.entries(uno.config.theme.windblade.proportions), ...Object.entries(uno.config.theme.windblade.miscSizes ?? {})]} onChange={val => setTokens((prev) => { prev[i] = val; return [...prev] })} />
-            case '<theme.windblade.proportions>':
+            case '$theme.windblade.proportions':
               return <List values={Object.entries(uno.config.theme.windblade.proportions)} onChange={val => setTokens((prev) => { prev[i] = val; return [...prev] })} />
-            case '<theme.windblade.miscSizes>':
+            case '$theme.windblade.miscSizes':
               return <List values={Object.entries(uno.config.theme.windblade.miscSizes ?? {})} onChange={val => setTokens((prev) => { prev[i] = val; return [...prev] })} />
-            case '<theme.windblade.colors>':
+            case '$theme.windblade.colors':
               return <List values={Object.entries(uno.config.theme.windblade.colors)} onChange={val => setTokens((prev) => { prev[i] = val; return [...prev] })} />
-            case '<theme.windblade.miscColors>':
+            case '$theme.windblade.miscColors':
               return <List values={Object.entries(uno.config.theme.windblade.miscColors ?? {})} onChange={val => setTokens((prev) => { prev[i] = val; return [...prev] })} />
-            case '<theme.windblade.time.functions>':
+            case '$theme.windblade.time.functions':
               return <List values={Object.entries(uno.config.theme.windblade.time.functions)} onChange={val => setTokens((prev) => { prev[i] = val; return [...prev] })} />
             default:
               return <button class="text-accent transition ease-out hover:highlight active:highlight+" onClick={() => setTokens((prev) => { prev[i] = token; return [...prev] })}>{token}</button>
