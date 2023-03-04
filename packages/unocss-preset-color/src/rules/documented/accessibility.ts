@@ -73,16 +73,16 @@ export const colorScheme = () => {
           <util>
             scheme-
             <select>
-              <option value="dark">dark</option>
-              <option value="light">light</option>
+              <option value="dark" />
+              <option value="light" />
             </select>
           </util>
           <util>
             scheme-
             <select>
-              <option value="auto">auto</option>
-              <option value="dark">dark</option>
-              <option value="light">light</option>
+              <option value="auto" />
+              <option value="dark" />
+              <option value="light" />
             </select>
             -
             <input type="integer" />

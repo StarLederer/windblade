@@ -26,10 +26,13 @@ export const bgColor = () => {
           <util>
             bg-
             <select>
-              <option value="c">bg-$theme.windblade.colors</option>
-              <option value="mc">bg-$theme.windblade.miscColors</option>
-              <option value="fg">bg-fg-$integer</option>
+              <option value="c" title="theme.windblade.colors"/>
+              <option value="mc" title="theme.windblade.miscColors" />
             </select>
+          </util>
+          <util>
+            bg-fg-
+            <input type="integer" />
           </util>
         </utils>
 
