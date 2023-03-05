@@ -68,11 +68,13 @@ const Xml: AddonXmlComponent<Props> = (props) => {
   </For>
 }
 
-const main: AddonXmlComponent<Props> = (props) => {
+const main: AddonXmlComponent<Props & {
+  selected: boolean
+}> = (props) => {
   return (
     <tr class="border border-color-transparent border-be-color-fg-5">
       <td>
-        <div class="i-mdi-check m-auto" />
+        <div class={`i-mdi-check m-auto transition opacity-${props.selected ? 's' : 'zero'}`} />
       </td>
       <td class="p-b-s.6 font-semibold flex flex-wrap">
         <Xml {...props} />
