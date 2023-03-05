@@ -57,7 +57,7 @@ const Xml: AddonXmlComponent<Props> = (props) => {
         case 'element':
           switch (node.name) {
             case 'select':
-              return <Select fallback={Fallback} onChange={select}>{node.children}</Select>
+              return <Select fallback={Fallback} onChange={val => setPart(i(), val)}>{node.children}</Select>
             case 'input':
               return <Input onChange={val => setPart(i(), val)}/>
           }

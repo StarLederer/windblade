@@ -1,8 +1,7 @@
 import { For } from 'solid-js'
 import type { AddonXmlComponent } from '../../XmlComponent'
-import type { Props } from '../Utils'
 
-const Xml: AddonXmlComponent<Props> = (props) => {
+const Xml: AddonXmlComponent = (props) => {
   const Fallback = props.fallback ?? (() => undefined)
 
   return <For each={props.children}>
@@ -22,12 +21,14 @@ const Xml: AddonXmlComponent<Props> = (props) => {
   </For>
 }
 
-const main: AddonXmlComponent<Props> = (props) => {
+const main: AddonXmlComponent<{
+  onChange: (value: string) => void
+}> = (props) => {
   return (
     <select
       name="colors"
       class="size-b-full bg-accent-2 rounded-s.4 min-size-i-0 size-b-m.2 p-i-s.4 leading-s transition ease-out hover:highlight active:highlight+"
-      // onChange={({ target }) => props.onChange((target as HTMLSelectElement).value)}
+      onChange={({ target }) => props.onChange((target as HTMLSelectElement).value)}
     >
       <option value=""></option>
       <Xml {...props} />
