@@ -30,7 +30,7 @@ export const bgColor = () => {
               <option value="mc" title="theme.windblade.miscColors" />
             </select>
           </util>
-          <util>
+          <util renderer="fg">
             bg-fg-
             <input type="integer" />
           </util>
