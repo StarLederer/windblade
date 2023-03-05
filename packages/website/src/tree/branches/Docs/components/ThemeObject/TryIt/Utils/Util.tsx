@@ -3,7 +3,7 @@ import Button from '@ui/primitives/Button'
 import type { AddonXmlComponent } from '../../XmlComponent'
 import Select from './Select'
 import Input from './Input'
-import type { Props } from '.'
+import type { Props } from '../Utils'
 
 const Xml: AddonXmlComponent<Props> = (props) => {
   const Fallback = props.fallback ?? (() => undefined)

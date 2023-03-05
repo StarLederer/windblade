@@ -1,6 +1,6 @@
 import { For } from 'solid-js'
 import type { AddonXmlComponent } from '../../XmlComponent'
-import type { Props } from '.'
+import type { Props } from '../Utils'
 
 const Xml: AddonXmlComponent<Props> = (props) => {
   const Fallback = props.fallback ?? (() => undefined)

@@ -1,6 +1,6 @@
 import { For } from 'solid-js'
-import type { AddonXmlComponent } from '../../XmlComponent'
-import Util from './Util'
+import type { AddonXmlComponent } from '../XmlComponent'
+import Util from './Utils/Util'
 
 const styles = {
   tr: 'border border-color-transparent border-be-color-fg-5',

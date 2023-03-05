@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 import { createEffect, createSignal } from 'solid-js'
 import Button from '@ui/primitives/Button'
-import type { Props } from '..'
+import type { Props } from '../../Utils'
 
 const main: Component<Props> = (props) => {
   const [val, setVal] = createSignal(1)
