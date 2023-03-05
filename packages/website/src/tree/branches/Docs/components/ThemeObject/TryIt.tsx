@@ -82,9 +82,8 @@ const main: AddonXmlComponent = (props) => {
   const [css, setCss] = createSignal<{ shortCss: string; fullCss: string }>()
 
   createEffect(async () => {
-    const h = html()
-    const shortCss = (await uno.generate(h, { safelist: false, preflights: false, minify: true })).css
-    const fullCss = (await uno.generate(h)).css
+    const shortCss = (await uno.generate(selected()?.util ?? '', { safelist: false, preflights: false, minify: true })).css
+    const fullCss = (await uno.generate(html())).css
     setCss({ shortCss, fullCss })
   })
 
