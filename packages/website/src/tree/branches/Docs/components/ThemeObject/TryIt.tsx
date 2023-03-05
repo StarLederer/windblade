@@ -58,7 +58,6 @@ const Xml: AddonXmlComponent<Props & {
                 class={styles.pre}
                 innerHTML={highlighter()?.highlight(formatter()?.html_beautify(props.html) ?? '', { language: 'xml' }).value.replaceAll(util, `<span class="bg-accent-2 rounded-s.4 p-i-s.2">${util}</span>`)}
               />}
-
             </Show>
           case 'css':
             return <Show when={props.selected} fallback={<NothingSelected />}>
