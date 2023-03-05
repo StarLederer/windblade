@@ -119,7 +119,7 @@ const main: AddonXmlComponent = (props) => {
   return (
     <Xml
       onChange={selectUtil}
-      html={html()}
+      html={html().replaceAll('$util', selected()?.util ?? '')}
       shortCss={css()?.shortCss ?? ''}
       fullCss={css()?.fullCss ?? ''}
       fallback={props.fallback}
