@@ -109,7 +109,7 @@ const main: AddonXmlComponent = (props) => {
     for (let i = 0; i < renderers().length; ++i) {
       const [matcher, output] = renderers()[i]
       if (matcher.test(val.renderer)) {
-        setHtml(output)
+        setHtml(output.replaceAll('$util', val.util))
         return
       }
     }
@@ -118,7 +118,7 @@ const main: AddonXmlComponent = (props) => {
   return (
     <Xml
       onChange={selectUtil}
-      html={html().replaceAll('$util', selected()?.util ?? '')}
+      html={html()}
       shortCss={css()?.shortCss ?? ''}
       fullCss={css()?.fullCss ?? ''}
       fallback={props.fallback}
