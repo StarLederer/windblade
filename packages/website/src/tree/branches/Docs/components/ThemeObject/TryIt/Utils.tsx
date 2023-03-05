@@ -1,14 +1,13 @@
 import { For } from 'solid-js'
+import type { Props as ParentProps } from '../TryIt'
 import type { AddonXmlComponent } from '../XmlComponent'
 import Util from './Utils/Util'
+
+export interface Props extends ParentProps {}
 
 const styles = {
   tr: 'border border-color-transparent border-be-color-fg-5',
   th: 'p-b-s.6 text-start text-fg-3',
-}
-
-export interface Props {
-  onChange: (val: { util: string; id: string }) => void
 }
 
 const Xml: AddonXmlComponent<Props> = (props) => {
@@ -19,7 +18,15 @@ const Xml: AddonXmlComponent<Props> = (props) => {
       if (node.type === 'element') {
         switch (node.name) {
           case 'util':
-            return <Util onChange={props.onChange} fallback={props.fallback}>{node.children}</Util>
+            return (
+              <Util
+                renderer={node.attributes?.renderer ?? ''}
+                onChange={props.onChange}
+                fallback={props.fallback}
+              >
+                {node.children}
+              </Util>
+            )
         }
       }
 

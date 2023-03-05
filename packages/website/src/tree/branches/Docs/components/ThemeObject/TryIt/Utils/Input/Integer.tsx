@@ -1,14 +1,13 @@
 import type { Component } from 'solid-js'
 import { createEffect, createSignal } from 'solid-js'
 import Button from '@ui/primitives/Button'
-import type { Props } from '../../Utils'
 
-const main: Component<Props> = (props) => {
+const main: Component<{
+  onChange: (value: string) => void
+}> = (props) => {
   const [val, setVal] = createSignal(1)
 
-  const activate = () => {
-    // props.onChange(`${val()}`)
-  }
+  const activate = () => props.onChange(`${val()}`)
 
   createEffect(activate)
 

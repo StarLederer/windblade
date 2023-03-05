@@ -1,17 +1,48 @@
-import { For } from 'solid-js'
+import { For, createEffect, createSignal } from 'solid-js'
 import Button from '@ui/primitives/Button'
 import type { AddonXmlComponent } from '../../XmlComponent'
-import type { Props } from '../Utils'
+import type { Props as ParentProps } from '../Utils'
 import Select from './Select'
 import Input from './Input'
+
+interface Props extends ParentProps {
+  renderer: string
+}
 
 const Xml: AddonXmlComponent<Props> = (props) => {
   const Fallback = props.fallback ?? (() => undefined)
 
-  const select = () => props.onChange({ util: '', id: '' }) // TODO
+  const [parts, setParts] = createSignal<string[]>([])
+
+  const setPart = (i: number, val: string) => {
+    setParts((prev) => {
+      prev[i] = val
+      return [...prev]
+    })
+  }
+
+  // Keep parts in sync with inner text nodes
+  createEffect(() => {
+    props.children.forEach((node, i) => {
+      switch (node.type) {
+        case 'text':
+          setPart(i, node.value)
+          break
+      }
+    })
+  })
+
+  const util = () => {
+    const s = parts().join('').match(/\S+/g)
+    return s ? s.join('') : ''
+  }
+
+  const select = () => props.onChange({ util: util(), renderer: props.renderer })
+
+  createEffect(select)
 
   return <For each={props.children}>
-    {(node) => {
+    {(node, i) => {
       switch (node.type) {
         case 'text':
           return (
@@ -28,7 +59,7 @@ const Xml: AddonXmlComponent<Props> = (props) => {
             case 'select':
               return <Select fallback={Fallback} onChange={select}>{node.children}</Select>
             case 'input':
-              return <Input onChange={select}/>
+              return <Input onChange={val => setPart(i(), val)}/>
           }
       }
 
