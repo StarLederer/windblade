@@ -1,6 +1,6 @@
 import { For, Show, createEffect, createSignal } from 'solid-js'
 import type { AddonXmlComponent } from '../XmlComponent'
-import Controls from './controls'
+import Controls from './Utils'
 import Viewport from './Viewport'
 import libs from '~/lib/external'
 import uno from '~/unocss'
