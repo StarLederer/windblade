@@ -26,8 +26,8 @@ export const bgColor = () => {
           <util>
             bg-
             <select>
-              <option value="c" title="theme.windblade.colors"/>
-              <option value="mc" title="theme.windblade.miscColors" />
+              <option value="theme.windblade.colors" />
+              <option value="theme.windblade.miscColors" />
             </select>
           </util>
           <util renderer="fg">
