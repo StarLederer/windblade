@@ -1,6 +1,6 @@
 import { For, Show, createEffect, createSignal } from 'solid-js'
 import type { AddonXmlComponent } from './XmlComponent'
-import Controls from './TryIt/Utils'
+import Utils from './TryIt/Utils'
 import Viewport from './TryIt/Viewport'
 import libs from '~/lib/external'
 import uno from '~/unocss'
@@ -40,7 +40,7 @@ const Xml: AddonXmlComponent<Props & {
       if (node.type === 'element') {
         switch (node.name) {
           case 'utils':
-            return <Controls fallback={props.fallback} onChange={props.onChange}>{node.children}</Controls>
+            return <Utils fallback={props.fallback} onChange={props.onChange}>{node.children}</Utils>
           case 'renderer':
             return undefined
           case 'viewport':
