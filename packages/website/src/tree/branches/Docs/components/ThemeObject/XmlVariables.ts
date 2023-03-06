@@ -8,7 +8,7 @@ export const applyVars = (input: string): string => {
   Object.entries(context).forEach(([key, value]) => {
     output = output.replaceAll(key, value)
   })
-  return input
+  return output
 }
 
 export default main
