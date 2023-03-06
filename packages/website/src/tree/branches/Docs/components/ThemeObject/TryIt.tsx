@@ -32,10 +32,8 @@ const Xml: AddonXmlComponent<Props & {
   html: string
   shortCss: string
   fullCss: string
-}> = (props) => {
-  const Fallback = props.fallback ?? (() => undefined)
-
-  return <For each={props.children}>
+}> = props => (
+  <For each={props.children}>
     {(node) => {
       if (node.type === 'element') {
         switch (node.name) {
@@ -69,10 +67,10 @@ const Xml: AddonXmlComponent<Props & {
         }
       }
 
-      return <Fallback>{[node]}</Fallback>
+      return <props.fallback>{[node]}</props.fallback>
     }}
   </For>
-}
+)
 
 const main: AddonXmlComponent = (props) => {
   const [selected, setSelected] = createSignal<SelectedUtil>()

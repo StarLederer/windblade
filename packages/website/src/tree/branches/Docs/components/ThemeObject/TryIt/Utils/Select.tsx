@@ -1,10 +1,8 @@
 import { For } from 'solid-js'
 import type { AddonXmlComponent } from '../../XmlComponent'
 
-const Xml: AddonXmlComponent = (props) => {
-  const Fallback = props.fallback ?? (() => undefined)
-
-  return <For each={props.children}>
+const Xml: AddonXmlComponent = props => (
+  <For each={props.children}>
     {(node) => {
       switch (node.type) {
         case 'element':
@@ -16,10 +14,10 @@ const Xml: AddonXmlComponent = (props) => {
           }
       }
 
-      return <Fallback>{[node]}</Fallback>
+      return <props.fallback>{[node]}</props.fallback>
     }}
   </For>
-}
+)
 
 const main: AddonXmlComponent<{
   onChange: (value: string) => void

@@ -4,7 +4,7 @@ import type { Props as ParentProps } from '../TryIt'
 import type { AddonXmlComponent } from '../XmlComponent'
 import Util from './Utils/Util'
 
-export interface Props extends ParentProps {}
+export interface Props extends ParentProps { }
 
 const styles = {
   tr: 'border border-color-transparent border-be-color-fg-5',
@@ -14,10 +14,8 @@ const styles = {
 const Xml: AddonXmlComponent<Props & {
   selected: Accessor<number>
   setSelected: Setter<number>
-}> = (props) => {
-  const Fallback = props.fallback ?? (() => undefined)
-
-  return <For each={props.children}>
+}> = props => (
+  <For each={props.children}>
     {(node, i) => {
       if (node.type === 'element') {
         switch (node.name) {
@@ -38,10 +36,10 @@ const Xml: AddonXmlComponent<Props & {
         }
       }
 
-      return <Fallback>{[node]}</Fallback>
+      return <props.fallback>{[node]}</props.fallback>
     }}
   </For>
-}
+)
 
 const main: AddonXmlComponent<Props> = (props) => {
   const [selected, setSelected] = createSignal(-1)
