@@ -4,6 +4,7 @@ import { For, Show } from 'solid-js'
 import type { XmlComponent } from './XmlComponent'
 import Error from './Error'
 import TryIt from './TryIt'
+import ForUno from './For'
 import Sample from './Sample'
 
 const XmlElement: XmlComponent<{
@@ -29,6 +30,33 @@ const XmlElement: XmlComponent<{
       )
     case 'try-it':
       return <TryIt fallback={Xml}>{props.children}</TryIt>
+    case 'for':
+      return <>{(() => {
+        const noAttrs = '\'for\' requires an \'array\' or \'object\' attribute'
+        const noValue = '\'for\' requires a \'value-as\' attribute'
+        const noKey = '\'for\' with an \'object\' attribute requires a \'key-as\' attribute'
+
+        if (!props.attrs)
+          return <Error>{noAttrs}</Error>
+
+        if (props.attrs.array) {
+          if (!props.attrs['value-as'])
+            return <Error>{noValue}</Error>
+
+          return <ForUno type="array" array={props.attrs.array} as={props.attrs['value-as']} fallback={Xml}>{props.children}</ForUno>
+        }
+        else if (props.attrs.object) {
+          if (!props.attrs['value-as'])
+            return <Error>{noValue}</Error>
+
+          if (!props.attrs['key-as'])
+            return <Error>{noKey}</Error>
+
+          return <ForUno type="object" object={props.attrs.object} keyAs={props.attrs['key-as']} valueAs={props.attrs['value-as']} fallback={Xml}>{props.children}</ForUno>
+        }
+
+        return <Error>{noAttrs}</Error>
+      })()}</>
     case 'sample':
       return (
         <Show when={props.attrs?.var} keyed>
