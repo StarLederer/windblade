@@ -1,6 +1,6 @@
 import { For } from 'solid-js'
 import type { AddonXmlComponent } from './XmlComponent'
-import VariableContext from './XmlVariables'
+import VariableContext, { applyVars } from './XmlVariables'
 import uno from '~/unocss'
 
 const navigateUnoConfig = (path: string) => {
@@ -28,7 +28,7 @@ const main: AddonXmlComponent<Props> = props => <>{(() => {
   switch (props.type) {
     case 'array':
       return (
-        <For each={navigateUnoConfig(props.array)}>
+        <For each={navigateUnoConfig(applyVars(props.array))}>
           {value => (
             <VariableContext.Provider value={{ value }}>
               <props.fallback>
@@ -40,11 +40,11 @@ const main: AddonXmlComponent<Props> = props => <>{(() => {
       )
     case 'object':
       return (
-        <For each={Object.entries(navigateUnoConfig(props.object))}>
+        <For each={Object.entries(navigateUnoConfig(applyVars(props.object)) ?? {})}>
           {([key, value]) => (
             <VariableContext.Provider value={{
               [props.keyAs]: key,
-              [props.valueAs]: value,
+              [props.valueAs]: `${value}`,
             }}>
               <props.fallback>
                 {props.children}
