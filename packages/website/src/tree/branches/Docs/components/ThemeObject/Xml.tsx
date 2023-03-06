@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 
-import { For } from 'solid-js'
+import { For, Show } from 'solid-js'
 import type { XmlComponent } from './XmlComponent'
 import Error from './Error'
 import TryIt from './TryIt'
+import Sample from './Sample'
 
 const XmlElement: XmlComponent<{
   name: string
+  attrs?: Record<string, string | null | undefined>
 }> = (props) => {
   switch (props.name) {
     case 'page':
@@ -27,6 +29,12 @@ const XmlElement: XmlComponent<{
       )
     case 'try-it':
       return <TryIt fallback={Xml}>{props.children}</TryIt>
+    case 'sample':
+      return (
+        <Show when={props.attrs?.var} keyed>
+          {v => <Sample var={v}/>}
+        </Show>
+      )
     default:
       return <Error>Unsupported XML element: {props.name}</Error>
   }
@@ -37,7 +45,7 @@ const Xml: XmlComponent = (props) => {
     {(node) => {
       switch (node.type) {
         case 'element':
-          return <XmlElement name={node.name}>{node.children}</XmlElement>
+          return <XmlElement name={node.name} attrs={node.attributes}>{node.children}</XmlElement>
         case 'text':
           return node.value
         default:
