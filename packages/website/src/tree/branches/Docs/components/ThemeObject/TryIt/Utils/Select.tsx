@@ -1,5 +1,19 @@
-import { For } from 'solid-js'
+import type { Component } from 'solid-js'
+import { For, Show } from 'solid-js'
 import type { AddonXmlComponent } from '../../XmlComponent'
+import Error from '../../Error'
+import { applyVars } from '../../XmlVariables'
+
+const Option: Component<{
+  value: string
+}> = (props) => {
+  const value = () => applyVars(props.value)
+  return (
+    <option value={value()}>
+      {value()}
+    </option>
+  )
+}
 
 const Xml: AddonXmlComponent = props => (
   <For each={props.children}>
@@ -8,9 +22,11 @@ const Xml: AddonXmlComponent = props => (
         case 'element':
           switch (node.name) {
             case 'option':
-              return <option value={node.attributes?.value ?? ''}>
-                {node.attributes?.title ?? node.attributes?.value ?? ''}
-              </option>
+              return (
+                <Show when={node.attributes?.value} keyed fallback={() => <Error>'option' requires a 'value' attribute</Error>}>
+                  {value => <Option value={value} />}
+                </Show>
+              )
           }
       }
 
