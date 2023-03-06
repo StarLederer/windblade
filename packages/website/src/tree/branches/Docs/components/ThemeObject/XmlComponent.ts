@@ -5,7 +5,6 @@ export type XmlComponent<P = {}> = Component<P & {
   children: Content[]
 }>
 
-export type AddonXmlComponent<P = {}> = Component<P & {
-  children: Content[]
+export type AddonXmlComponent<P = {}> = XmlComponent<P & {
   fallback: XmlComponent
 }>
