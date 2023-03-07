@@ -1,8 +1,8 @@
 import type { Component } from 'solid-js'
 import { Suspense } from 'solid-js'
 import type { DocumentationPage } from 'unocss-docs'
-import Error from './ThemeObject/Error'
-import Xml from './ThemeObject/Xml'
+import Error from './Page/Error'
+import Xml from './Page/Xml'
 import libs from '~/lib/external'
 
 const Main: Component<{

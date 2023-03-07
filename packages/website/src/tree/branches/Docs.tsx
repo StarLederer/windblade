@@ -9,7 +9,7 @@ import type { Path } from '@ui/router'
 import router from '@ui/router'
 import Button from '@ui/primitives/Button'
 import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
-import ThemeObject from './Docs/components/ThemeObject'
+import Page from './Docs/components/Page'
 import Nav from './Docs/components/Nav'
 import docsStore from '~/stores/docsStore'
 import { Route } from '~/lib/rotuer'
@@ -22,7 +22,7 @@ const DocumentationRoutes: Component<{
     {({ name, value }) => (
       <Route path={[...props.prefix, name].join('/')}>
         {typeof value === 'string'
-          ? <ThemeObject page={value} />
+          ? <Page page={value} />
           : <DocumentationRoutes prefix={[...props.prefix, name]} tree={value} />
         }
       </Route>
