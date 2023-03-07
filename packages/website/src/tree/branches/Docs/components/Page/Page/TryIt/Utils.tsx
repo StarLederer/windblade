@@ -1,7 +1,7 @@
 import type { Accessor, Setter } from 'solid-js'
 import { createContext, createSignal, useContext } from 'solid-js'
 import type { Element } from 'xast-util-from-xml/lib'
-import type { AddonXmlComponent, XmlComponent } from '../../XmlComponent'
+import type { XmlComponent, XmlNodeRenderer } from '../../XmlComponent'
 import { XmlContext, extendXmlContext } from '../../XmlComponent'
 import XmlChildren from '../../XmlElement'
 import Util from './Utils/Util'
@@ -16,17 +16,15 @@ const styles = {
   th: 'p-b-s.6 text-start text-fg-3',
 }
 
-const Xml: AddonXmlComponent = (props) => {
+const render: XmlNodeRenderer = (node, i) => {
   const ctx = useContext(Context)
 
-  return <>{(() => {
-    if (props.type === 'element') {
-      switch (props.name) {
-        case 'util':
-          return <Util {...props} selected={ctx?.selected() === props.i} onSelect={() => ctx?.setSelected(props.i)}/>
-      }
+  if (node.type === 'element') {
+    switch (node.name) {
+      case 'util':
+        return <Util {...node} selected={ctx?.selected() === i} onSelect={() => ctx?.setSelected(i)} />
     }
-  })()}</>
+  }
 }
 
 const main: XmlComponent<Element> = (props) => {
@@ -34,7 +32,7 @@ const main: XmlComponent<Element> = (props) => {
 
   return (
     <Context.Provider value={{ selected, setSelected }}>
-      <XmlContext.Provider value={extendXmlContext([Xml])}>
+      <XmlContext.Provider value={extendXmlContext([render])}>
         <table class="border-collapse">
           <thead class="font-semibold">
             <tr class={styles.tr}>

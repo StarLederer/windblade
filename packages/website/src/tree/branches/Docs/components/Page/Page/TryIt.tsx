@@ -1,7 +1,7 @@
 import type { Accessor } from 'solid-js'
 import { Show, createContext, createEffect, createSignal, useContext } from 'solid-js'
 import type { Element } from 'xast-util-from-xml/lib'
-import type { AddonXmlComponent, XmlComponent } from '../XmlComponent'
+import type { XmlComponent, XmlNodeRenderer } from '../XmlComponent'
 import { XmlContext, extendXmlContext } from '../XmlComponent'
 import XmlChildren from '../XmlElement'
 import Utils from './TryIt/Utils'
@@ -34,42 +34,40 @@ const NothingSelected = () => (
   </div>
 )
 
-const Xml: AddonXmlComponent = (props) => {
+const render: XmlNodeRenderer = (node) => {
   const ctx = useContext(Context)
 
-  return <>{(() => {
-    if (props.type === 'element') {
-      switch (props.name) {
-        case 'utils':
-          return <Utils {...props} />
-        case 'renderer':
-          return null
-        case 'viewport':
-          return <Show when={ctx?.selected()} fallback={<NothingSelected />}>
-            <Viewport
-              html={ctx?.html() ?? ''}
-              css={ctx?.css()?.fullCss ?? ''}
-              class="bg-normal-2 rounded-s p-m.2 overflow-auto"
-              rootStyle="display: flex; align-items: center; justify-content: center;"
-            />
-          </Show>
-        case 'html':
-          return <Show when={ctx?.selected()} fallback={<NothingSelected />} keyed>
-            {({ util }) => <pre
-              class={styles.pre}
-              innerHTML={highlighter()?.highlight(formatter()?.html_beautify(ctx?.html() ?? '') ?? '', { language: 'xml' }).value.replaceAll(util, `<span class="bg-accent-2 rounded-s.4 p-i-s.2">${util}</span>`)}
-            />}
-          </Show>
-        case 'css':
-          return <Show when={ctx?.selected()} fallback={<NothingSelected />}>
-            <pre
-              class={`${styles.pre} css`}
-              innerHTML={highlighter()?.highlight(formatter()?.css_beautify(ctx?.css()?.shortCss ?? '') ?? '', { language: 'css' }).value}
-            />
-          </Show>
-      }
+  if (node.type === 'element') {
+    switch (node.name) {
+      case 'utils':
+        return <Utils {...node} />
+      case 'renderer':
+        return null
+      case 'viewport':
+        return <Show when={ctx?.selected()} fallback={<NothingSelected />}>
+          <Viewport
+            html={ctx?.html() ?? ''}
+            css={ctx?.css()?.fullCss ?? ''}
+            class="bg-normal-2 rounded-s p-m.2 overflow-auto"
+            rootStyle="display: flex; align-items: center; justify-content: center;"
+          />
+        </Show>
+      case 'html':
+        return <Show when={ctx?.selected()} fallback={<NothingSelected />} keyed>
+          {({ util }) => <pre
+            class={styles.pre}
+            innerHTML={highlighter()?.highlight(formatter()?.html_beautify(ctx?.html() ?? '') ?? '', { language: 'xml' }).value.replaceAll(util, `<span class="bg-accent-2 rounded-s.4 p-i-s.2">${util}</span>`)}
+          />}
+        </Show>
+      case 'css':
+        return <Show when={ctx?.selected()} fallback={<NothingSelected />}>
+          <pre
+            class={`${styles.pre} css`}
+            innerHTML={highlighter()?.highlight(formatter()?.css_beautify(ctx?.css()?.shortCss ?? '') ?? '', { language: 'css' }).value}
+          />
+        </Show>
     }
-  })()}</>
+  }
 }
 
 const main: XmlComponent<Element> = (props) => {
@@ -114,7 +112,7 @@ const main: XmlComponent<Element> = (props) => {
 
   return (
     <Context.Provider value={{ selectUtil, selected, html, css }}>
-      <XmlContext.Provider value={extendXmlContext([Xml])}>
+      <XmlContext.Provider value={extendXmlContext([render])}>
         <XmlChildren {...props} />
       </XmlContext.Provider>
     </Context.Provider>

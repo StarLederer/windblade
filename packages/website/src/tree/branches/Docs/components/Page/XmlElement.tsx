@@ -10,9 +10,9 @@ const main: XmlComponent<Element> = (props) => {
     <For each={props.children}>
       {(node, i) => {
         for (let j = context.length - 1; j >= 0; --j) {
-          const XmlComponent = context[j]
-          const JSX = <XmlComponent {...node} i={i()} />
-          if (JSX()() !== undefined) // TODO: This is unacceptable, just putting it here for now so that we have a proof of concept
+          const render = context[j]
+          const JSX = render(node, i())
+          if (JSX !== undefined)
             return JSX
         }
       }}

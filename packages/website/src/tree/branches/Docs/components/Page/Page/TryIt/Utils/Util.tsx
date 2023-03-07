@@ -2,7 +2,7 @@ import type { Accessor } from 'solid-js'
 import { createContext, createEffect, createSignal, useContext } from 'solid-js'
 import type { Element } from 'xast-util-from-xml/lib'
 import Button from '@ui/primitives/Button'
-import type { AddonXmlComponent, XmlComponent } from '../../../XmlComponent'
+import type { XmlComponent, XmlNodeRenderer } from '../../../XmlComponent'
 import { XmlContext, extendXmlContext } from '../../../XmlComponent'
 import XmlChildren from '../../../XmlElement'
 import { Context as TryItContext } from '../../TryIt'
@@ -17,35 +17,33 @@ export const Context = createContext<{
   select: () => void
 }>()
 
-const Xml: AddonXmlComponent = (props) => {
+const render: XmlNodeRenderer = (node, i) => {
   const ctx = useContext(Context)
 
   const select = (val: string) => {
-    ctx?.setPart(props.i, val)
+    ctx?.setPart(i, val)
     ctx?.select()
   }
 
-  return <>{(() => {
-    switch (props.type) {
-      case 'text':
-        return (
-          <Button
-            style="none"
-            class="text-accent transition ease-in"
-            onClick={() => select(props.value)}
-          >
-            {props.value}
-          </Button>
-        )
-      case 'element':
-        switch (props.name) {
-          case 'select':
-            return <Select {...props} onChange={val => select(val)} />
-          case 'input':
-            return <Input {...props} onChange={val => select(val)}/>
-        }
-    }
-  })()}</>
+  switch (node.type) {
+    case 'text':
+      return (
+        <Button
+          style="none"
+          class="text-accent transition ease-in"
+          onClick={() => select(node.value)}
+        >
+          {node.value}
+        </Button>
+      )
+    case 'element':
+      switch (node.name) {
+        case 'select':
+          return <Select {...node} onChange={val => select(val)} />
+        case 'input':
+          return <Input {...node} onChange={val => select(val)} />
+      }
+  }
 }
 
 const main: XmlComponent<Element & {
@@ -86,7 +84,7 @@ const main: XmlComponent<Element & {
 
   return (
     <Context.Provider value={{ parts, setPart, select }}>
-      <XmlContext.Provider value={extendXmlContext([Xml])}>
+      <XmlContext.Provider value={extendXmlContext([render])}>
         <tr class="border border-color-transparent border-be-color-fg-5">
           <td>
             <div class={`i-mdi-check m-auto transition opacity-${props.selected ? 's' : 'zero'}`} />
