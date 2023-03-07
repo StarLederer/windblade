@@ -2,7 +2,7 @@ import type { Component } from 'solid-js'
 import { Suspense } from 'solid-js'
 import type { DocumentationPage } from 'unocss-docs'
 import Error from './Page/Error'
-import Xml from './Page/Xml'
+import XmlRoot from './Page/XmlRoot'
 import libs from '~/lib/external'
 
 const Main: Component<{
@@ -27,7 +27,7 @@ const Main: Component<{
             }
 
             if (xml)
-              return <Xml>{xml.children}</Xml>
+              return <XmlRoot {...xml}/>
 
             return <Error>Error processing this page</Error>
           })()}
