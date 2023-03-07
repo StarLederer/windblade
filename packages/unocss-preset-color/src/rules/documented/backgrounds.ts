@@ -21,13 +21,17 @@ export const bgColor = () => {
       <p>Windblade uses semantic colors.</p>
 
       <h2>Try it</h2>
-      <try-it>
+      <try-it selected="$util">
         <utils>
           <util>
             bg-
             <select>
-              <option value="theme.windblade.colors" />
-              <option value="theme.windblade.miscColors" />
+              <for object="theme.windblade.colors" key-as="$name" value-as="$color">
+                <option value="$name"/>
+              </for>
+              <for object="theme.windblade.miscColors" key-as="$name" value-as="$color">
+                <option value="$name"/>
+              </for>
             </select>
           </util>
           <util renderer="fg">
