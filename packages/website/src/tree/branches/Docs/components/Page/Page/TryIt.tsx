@@ -5,7 +5,7 @@ import type { XmlComponent, XmlNodeRenderer } from '../XmlComponent'
 import { XmlContext, extendXmlContext } from '../XmlComponent'
 import XmlChildren from '../XmlElement'
 import Utils from './TryIt/Utils'
-import Viewport from './TryIt/Viewport'
+import Viewport from './Viewport'
 import libs from '~/lib/external'
 import uno from '~/unocss'
 

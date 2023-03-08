@@ -6,6 +6,7 @@ import Error from './Error'
 import TryIt from './Page/TryIt'
 import ForUno from './Page/For'
 import Sample from './Page/Sample'
+import Example from './Page/Example'
 import XmlChildren from './XmlElement'
 
 const render: XmlNodeRenderer = (node) => {
@@ -40,6 +41,8 @@ const render: XmlNodeRenderer = (node) => {
               <XmlChildren {...node} />
             </code>
           )
+        case 'example':
+          return <Example html={node.attributes?.html ?? ''} />
         case 'try-it':
           return <TryIt {...node} />
         case 'for':
