@@ -1,12 +1,12 @@
 import type { Rule } from '@unocss/core'
-import type { DocumentedRuleGroup, DocumentedRuleGroupDocs } from 'unocss-docs'
+import type { DocumentationPage } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
 import type { theme } from '@windblade/core'
 import { objectEntries } from 'ts-extras'
 
 const { logical } = ruleUtils
 
-export const aspectRatio = (): DocumentedRuleGroup<theme.Theme> => {
+export const aspectRatio = () => {
   const rules: Rule<theme.Theme>[] = [
     [
       /^(aspect)-(.+)$/,
@@ -18,7 +18,7 @@ export const aspectRatio = (): DocumentedRuleGroup<theme.Theme> => {
     ],
   ]
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: 'Windblade uses CSS ratios instead of presets.',
     utilities: ['aspect-<ratio>'],
     preview: util => 'TODO',
@@ -27,8 +27,8 @@ export const aspectRatio = (): DocumentedRuleGroup<theme.Theme> => {
   return { rules, docs }
 }
 
-export const container = (): DocumentedRuleGroup<theme.Theme> => {
-  const docs: DocumentedRuleGroupDocs = {
+export const container = () => {
+  const docs: DocumentationPage = {
     description: 'Windblade does not have container utilities or breakpoints becase it focuses on intrinsic sizing instead.',
     utilities: [],
   }
@@ -36,7 +36,7 @@ export const container = (): DocumentedRuleGroup<theme.Theme> => {
   return { rules: [], docs }
 }
 
-export const breakAfter = (): DocumentedRuleGroup<theme.Theme> => {
+export const breakAfter = () => {
   const values = ['auto', 'avoid', 'all', 'avoid-page', 'page', 'recto', 'verso', 'column']
 
   const rules: Rule<theme.Theme>[] = values.map((val): Rule<theme.Theme> => [
@@ -44,7 +44,7 @@ export const breakAfter = (): DocumentedRuleGroup<theme.Theme> => {
     { 'break-after': val },
   ])
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: 'Physical properties replaced with logocal.',
     utilities: values.map(val => `break-after-${val}`),
   }
@@ -52,7 +52,7 @@ export const breakAfter = (): DocumentedRuleGroup<theme.Theme> => {
   return { rules, docs }
 }
 
-export const breakBefore = (): DocumentedRuleGroup<theme.Theme> => {
+export const breakBefore = () => {
   const values = ['auto', 'avoid', 'all', 'avoid-page', 'page', 'recto', 'verso', 'column']
 
   const rules: Rule<theme.Theme>[] = values.map((val): Rule<theme.Theme> => [
@@ -60,7 +60,7 @@ export const breakBefore = (): DocumentedRuleGroup<theme.Theme> => {
     { 'break-before': val },
   ])
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: 'Physical properties replaced with logocal.',
     utilities: values.map(val => `break-before-${val}`),
   }
@@ -68,7 +68,7 @@ export const breakBefore = (): DocumentedRuleGroup<theme.Theme> => {
   return { rules, docs }
 }
 
-export const display = (): DocumentedRuleGroup<theme.Theme> => {
+export const display = () => {
   const values = ['block', 'inline-block', 'inline', 'flex', 'inline-flex', 'flow-root', 'grid', 'inline-grid', 'contents', 'hidden'] as const
   const overrides: Partial<Record<typeof values[number], string>> = {
     hidden: 'none',
@@ -79,7 +79,7 @@ export const display = (): DocumentedRuleGroup<theme.Theme> => {
     { display: Object.keys(overrides).includes(val) ? overrides[val] : val },
   ])
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: 'Windblade removes some utilities from this group that cannot be sued semantically.',
     utilities: values as unknown as string[],
     preview: (util) => {
@@ -99,7 +99,7 @@ export const display = (): DocumentedRuleGroup<theme.Theme> => {
   return { rules, docs }
 }
 
-export const objectPosition = (): DocumentedRuleGroup<theme.Theme> => {
+export const objectPosition = () => {
   const rules: Rule<theme.Theme>[] = [
     ...objectEntries(logical.abbreviations.edges).map(([key, val]): Rule<theme.Theme> => [
       `object-${key}`, { 'object-position': `var(--${val})` },
@@ -110,7 +110,7 @@ export const objectPosition = (): DocumentedRuleGroup<theme.Theme> => {
     ['object-center', { 'object-position': 'center' }],
   ]
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: 'Physical properties replaced with logocal.',
     utilities: [
       ...Object.keys(logical.abbreviations.edges),

@@ -1,12 +1,12 @@
 import type { Rule } from '@unocss/core'
-import type { DocumentedRuleGroup, DocumentedRuleGroupDocs } from 'unocss-docs'
+import type { DocumentationPage } from 'unocss-docs'
 import { objectEntries } from 'ts-extras'
 import { ruleUtils } from '@windblade/core'
 import type { theme } from '@windblade/core'
 
 const { logical } = ruleUtils
 
-export const backgroundPosition = (): DocumentedRuleGroup<theme.Theme> => {
+export const backgroundPosition = () => {
   const rules: Rule<theme.Theme>[] = [
     ...objectEntries(logical.abbreviations.edges).map(([key, val]): Rule<theme.Theme> => [
       `bg-${key}`, { 'background-position': `var(--${val})` },
@@ -17,7 +17,7 @@ export const backgroundPosition = (): DocumentedRuleGroup<theme.Theme> => {
     ['bg-center', { 'background-position': 'center' }],
   ]
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: 'Physical properties replaced with logocal.',
     utilities: [
       ...Object.keys(logical.abbreviations.edges),

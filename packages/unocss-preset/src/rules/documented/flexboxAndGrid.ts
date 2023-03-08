@@ -1,18 +1,18 @@
 import type { Rule } from '@unocss/core'
-import type { DocumentedRuleGroup, DocumentedRuleGroupDocs } from 'unocss-docs'
+import type { DocumentationPage } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
 import type { theme } from '@windblade/core'
 
 const { size } = ruleUtils
 
-const generateAuto = (ruleName: string, cssName: string) => (): DocumentedRuleGroup<theme.Theme> => {
+const generateAuto = (ruleName: string, cssName: string) => () => {
   const rules: Rule<theme.Theme>[] = [
     [`auto-${ruleName}-auto`, { [`grid-auto-${cssName}`]: 'auto' }],
     [`auto-${ruleName}-fr`, { [`grid-auto-${cssName}`]: 'minmax(0, 1fr)' }],
     size.rule(`auto-${ruleName}`, `grid-auto-${cssName}`),
   ]
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: 'Added utilities for controlling the size of implicitly-created grid columns with proportion units.',
     utilities: [`auto-${ruleName}-auto`, `auto-${ruleName}-fr`, `auto-${ruleName}-<theme.windblade.proportions>`],
     preview: util => `
@@ -36,12 +36,12 @@ const generateAuto = (ruleName: string, cssName: string) => (): DocumentedRuleGr
 export const gridAutoCols = generateAuto('cols', 'columns')
 export const gridAutoRows = generateAuto('rows', 'rows')
 
-const generateFitFill = (type: 'fit' | 'fill', ruleName: string, cssName: string) => (): DocumentedRuleGroup<theme.Theme> => {
+const generateFitFill = (type: 'fit' | 'fill', ruleName: string, cssName: string) => () => {
   const rules: Rule<theme.Theme>[] = [
     size.rule(`grid-${type}-${ruleName}s`, `grid-template-${cssName}s`, { postprocess: size => (`repeat(auto-fit, minmax(${size}, 1fr))`) }),
   ]
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: `Utilities specifying the columns in a grid layout using auto-${type}. Missing from Tailwind.`,
     utilities: [`grid-${type}-${ruleName}s-<theme.windblade.proportions>`],
     preview: util => `

@@ -1,12 +1,12 @@
 import type { Rule } from '@unocss/core'
-import type { DocumentedRuleGroup, DocumentedRuleGroupDocs } from 'unocss-docs'
+import type { DocumentationPage } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
 import type { theme } from '@windblade/core'
 
 const { size } = ruleUtils
 
-export const boxShadow = (): DocumentedRuleGroup<theme.Theme> => {
-  const docs: DocumentedRuleGroupDocs = {
+export const boxShadow = () => {
+  const docs: DocumentationPage = {
     description: 'Box shadows are removed for now because Tailwind\'s implementation is too limiting. Discussion in progress.',
     utilities: [],
   }
@@ -14,10 +14,10 @@ export const boxShadow = (): DocumentedRuleGroup<theme.Theme> => {
   return { rules: [], docs }
 }
 
-export const opacity = (): DocumentedRuleGroup<theme.Theme> => {
+export const opacity = () => {
   const rules: Rule<theme.Theme>[] = [size.rule('opacity', 'opacity', { defaultUnit: '' })]
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: 'Windblade uses proportions instead of separete values.',
     utilities: [],
   }

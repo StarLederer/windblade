@@ -1,14 +1,14 @@
 import type { Rule } from '@unocss/core'
-import type { DocumentedRuleGroup, DocumentedRuleGroupDocs } from 'unocss-docs'
+import type { DocumentationPage } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
 import type { theme } from '@windblade/core'
 
 const { logical, size } = ruleUtils
 
-export const padding = (): DocumentedRuleGroup<theme.Theme> => {
+export const padding = () => {
   const rules: Rule<theme.Theme>[] = size.edgeRules('p', '', 'padding', '')
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: 'Replaced physical properties with logical.',
     utilities: [
       'p',
@@ -25,10 +25,10 @@ export const padding = (): DocumentedRuleGroup<theme.Theme> => {
   return { rules, docs }
 }
 
-export const margin = (): DocumentedRuleGroup<theme.Theme> => {
+export const margin = () => {
   const rules: Rule<theme.Theme>[] = size.edgeRules('m', '', 'margin', '')
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: 'Replaced physical properties with logical.',
     utilities: [
       'm',
@@ -45,8 +45,8 @@ export const margin = (): DocumentedRuleGroup<theme.Theme> => {
   return { rules, docs }
 }
 
-export const spaceBetween = (): DocumentedRuleGroup<theme.Theme> => {
-  const docs: DocumentedRuleGroupDocs = {
+export const spaceBetween = () => {
+  const docs: DocumentationPage = {
     description: 'Removed this. Please use gap and flex/grid/columns instead',
     utilities: [],
   }

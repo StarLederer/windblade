@@ -1,18 +1,18 @@
 import type { Rule } from '@unocss/core'
-import type { DocumentedRuleGroup, DocumentedRuleGroupDocs } from 'unocss-docs'
+import type { DocumentationPage } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
 import type { theme } from '@windblade/core'
 
 const { logical, size } = ruleUtils
 
-export const borderRadius = (): DocumentedRuleGroup<theme.Theme> => {
+export const borderRadius = () => {
   const rules: Rule<theme.Theme>[] = [
     ...size.cornerRules('rounded', '', 'border', 'radius'),
     ...logical.cornerRules('rounded', 'full', 'border', 'radius', (pref, prop) => [pref, { [prop]: '99999px' }]),
     ...logical.cornerRules('rounded', 'none', 'border', 'radius', (pref, prop) => [pref, { [prop]: 'none' }]),
   ]
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: 'Windblade proportions are used instead of separate size values, and physical properties are replaced with logical.',
     utilities: [
       'rounded',
@@ -26,10 +26,10 @@ export const borderRadius = (): DocumentedRuleGroup<theme.Theme> => {
   return { rules, docs }
 }
 
-export const borderWidth = (): DocumentedRuleGroup<theme.Theme> => {
+export const borderWidth = () => {
   const rules: Rule<theme.Theme>[] = size.edgeRules('border', '', 'border', 'width')
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: 'Windblade proportions are used instead of separate size values, and physical properties are replaced with logical.',
     utilities: [
       'border',
@@ -44,10 +44,10 @@ export const borderWidth = (): DocumentedRuleGroup<theme.Theme> => {
   return { rules, docs }
 }
 
-export const outlineWidth = (): DocumentedRuleGroup<theme.Theme> => {
+export const outlineWidth = () => {
   const rules: Rule<theme.Theme>[] = [size.rule('outline', 'outline-width')]
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: 'Windblade proportions are used instead of separate size values.',
     utilities: [
       'outline-<theme.windblade.proportions>',
@@ -59,10 +59,10 @@ export const outlineWidth = (): DocumentedRuleGroup<theme.Theme> => {
   return { rules, docs }
 }
 
-export const outlineOffset = (): DocumentedRuleGroup<theme.Theme> => {
+export const outlineOffset = () => {
   const rules: Rule<theme.Theme>[] = [size.rule('outline-offset', 'outline-offset')]
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: 'Windblade proportions are used instead of separate offset values.',
     utilities: [
       'outline-offset-<theme.windblade.proportions>',
@@ -74,8 +74,8 @@ export const outlineOffset = (): DocumentedRuleGroup<theme.Theme> => {
   return { rules, docs }
 }
 
-export const divide = (): DocumentedRuleGroup<theme.Theme> => {
-  const docs: DocumentedRuleGroupDocs = {
+export const divide = () => {
+  const docs: DocumentationPage = {
     description: 'Divides have been removed.',
     utilities: [],
   }
@@ -83,8 +83,8 @@ export const divide = (): DocumentedRuleGroup<theme.Theme> => {
   return { rules: [], docs }
 }
 
-export const ring = (): DocumentedRuleGroup<theme.Theme> => {
-  const docs: DocumentedRuleGroupDocs = {
+export const ring = () => {
+  const docs: DocumentationPage = {
     description: 'Rings have been removed.',
     utilities: [],
   }

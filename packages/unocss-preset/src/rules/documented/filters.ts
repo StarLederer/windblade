@@ -1,8 +1,7 @@
-import type { DocumentedRuleGroup, DocumentedRuleGroupDocs } from 'unocss-docs'
-import type { theme } from '@windblade/core'
+import type { DocumentationPage } from 'unocss-docs'
 
-export const dropShadow = (): DocumentedRuleGroup<theme.Theme> => {
-  const docs: DocumentedRuleGroupDocs = {
+export const dropShadow = () => {
+  const docs: DocumentationPage = {
     description: 'Drop shadows are removed for now because Tailwind\'s implementation is too limiting. Discussion in progress.',
     utilities: [],
   }

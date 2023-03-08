@@ -1,14 +1,14 @@
 import type { Rule } from '@unocss/core'
-import type { DocumentedRuleGroup, DocumentedRuleGroupDocs } from 'unocss-docs'
+import type { DocumentationPage } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
 import type { theme } from '@windblade/core'
 
 const { size } = ruleUtils
 
-export const strokeWidth = (): DocumentedRuleGroup<theme.Theme> => {
+export const strokeWidth = () => {
   const rules: Rule<theme.Theme>[] = [size.rule('stroke', 'stroke-width')]
 
-  const docs: DocumentedRuleGroupDocs = {
+  const docs: DocumentationPage = {
     description: 'Windblade proportions are used instead of separate size values.',
     utilities: ['stroke-<theme.windblade.proportions>'],
     preview: util => 'TODO',
