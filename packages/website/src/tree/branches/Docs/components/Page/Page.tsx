@@ -34,6 +34,12 @@ const render: XmlNodeRenderer = (node) => {
               <XmlChildren {...node} />
             </a>
           )
+        case 'code':
+          return (
+            <code class="bg-surface p-i-s.4 rounded-s.4">
+              <XmlChildren {...node} />
+            </code>
+          )
         case 'try-it':
           return <TryIt {...node} />
         case 'for':
