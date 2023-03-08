@@ -8,6 +8,7 @@ import ForUno from './Page/For'
 import Sample from './Page/Sample'
 import Example from './Page/Example'
 import XmlChildren from './components/XmlChildren'
+import Code from './components/Code'
 
 const render: XmlNodeRenderer = (node) => {
   switch (node.type) {
@@ -42,7 +43,7 @@ const render: XmlNodeRenderer = (node) => {
             </code>
           )
         case 'pre':
-          return <pre innerText={node.attributes?.html ?? ''}/>
+          return <Code lang={node.attributes?.lang ?? 'txt'} value={node.attributes?.code ?? ''} />
         case 'example':
           return <Example html={node.attributes?.html ?? ''} />
         case 'try-it':
