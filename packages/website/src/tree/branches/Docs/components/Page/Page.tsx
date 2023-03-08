@@ -28,6 +28,12 @@ const render: XmlNodeRenderer = (node) => {
               <XmlChildren {...node} />
             </p>
           )
+        case 'a':
+          return (
+            <a href={node.attributes?.href ?? '#'} class="text-accent transition hover:highlight active:highlight+">
+              <XmlChildren {...node} />
+            </a>
+          )
         case 'try-it':
           return <TryIt {...node} />
         case 'for':
