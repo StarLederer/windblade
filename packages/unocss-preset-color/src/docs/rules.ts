@@ -14,21 +14,21 @@ const main: DocumentationTree = new Map([
     ['Background Gradient Stops', backgrounds.gradientColorStops().docs],
   ])],
   ['Text', new Map([
-    ['Text Color', typography.textColor()],
-    ['Text Decoration Color', typography.textDecorationColor()],
+    ['Text Color', typography.textColor().docs],
+    ['Text Decoration Color', typography.textDecorationColor().docs],
   ])],
   ['Border', new Map([
-    ['Border Color', borders.borderColor()],
-    ['Outline Color', borders.outlineColor()],
+    ['Border Color', borders.borderColor().docs],
+    ['Outline Color', borders.outlineColor().docs],
   ])],
   ['Other', new Map([
     ['Color Scheme', accessibility.colorScheme().docs],
 
-    ['Accent color', interactivity.accentColor()],
-    ['Caret color', interactivity.caretColor()],
+    ['Accent color', interactivity.accentColor().docs],
+    ['Caret color', interactivity.caretColor().docs],
 
-    ['Fill', svg.fill()],
-    ['Stroke Color', svg.stroke()],
+    ['Fill', svg.fill().docs],
+    ['Stroke Color', svg.stroke().docs],
   ])],
 ])
 
