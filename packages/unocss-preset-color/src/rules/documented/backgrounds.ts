@@ -86,25 +86,36 @@ export const backgroundImage = () => {
     ]),
   ]
 
-  const docs: DocumentationPage = `# :title
-Repalced static colors with sematic colors.
+  const docs: DocumentationPage = `
+    <page>
+      <h1><title /></h1>
+      <p>Repalced static colors with sematic colors.</p>
 
-## Try it
-::try-it-controls{${[
-  'none=bg-none',
-  ...Object.keys(logical.abbreviations.edges).map(val => `to-${val}=bg-gradient-to-${val}`),
-  ...Object.keys(logical.abbreviations.coners).map(val => `to-${val}=bg-gradient-to-${val}`),
-].join(' ')}}
+      <h2>Try it</h2>
+      <try-it selected="$util">
+        <utils>
+          ${[
+            'bg-none',
+            ...Object.keys(logical.abbreviations.edges).map(val => `bg-gradient-to-${val}`),
+            ...Object.keys(logical.abbreviations.coners).map(val => `bg-gradient-to-${val}`),
+          ].map(val => `<util>${val}</util>`).join('')}
+        </utils>
 
-:::try-it-preview
-<div class="$util from-accent size-i-full size-b-l.2 rounded-s"></div>
-:::
+        <renderer html="${encodeString(`
+          <div class="$util from-accent size-i-full size-b-l.2 rounded-s"></div>
+        `)}" />
 
-### HTML
-::try-it-html
+        <h3>Preview</h3>
+        <viewport />
 
-### Generated CSS
-::try-it-css`
+        <h3>HTML</h3>
+        <html />
+
+        <h3>Generated CSS</h3>
+        <css />
+      </try-it>
+    </page>
+  `
 
   return { rules, docs }
 }
@@ -117,31 +128,48 @@ export const gradientColorStops = () => {
     // colorRule('via', '--wb-gradient-stops', (val) => `var(--wb-gradient-from, transparent), ${val}, var(--wb-gradient-to, transparent)`),
   ]
 
-  const docs: DocumentationPage = `# :title
-Repalced static colors with sematic colors. Temporarily missing the \'via\' utilities.
+  const docs: DocumentationPage = `
+    <page>
+      <h1><title /></h1>
+      <p>Repalced static colors with sematic colors. Temporarily missing the \'via\' utilities.</p>
 
-## Try it
-::try-it-controls{${[
-  'fc=from-$theme.windblade.colors',
-  'fmc=from-$theme.windblade.miscColors',
-  'tc=to-$theme.windblade.colors',
-  'tmc=to-$theme.windblade.miscColors',
-].join(' ')}}
+      <h2>Try it</h2>
+      <try-it selected="$util">
+        <utils>
+          ${['from', 'to'].map(val => `
+            <util renderer="${val}">
+            ${val}-
+              <select>
+                <for object="theme.windblade.colors" key-as="$name" value-as="$color">
+                  <option value="$name"/>
+                </for>
+                <for object="theme.windblade.miscColors" key-as="$name" value-as="$color">
+                  <option value="$name"/>
+                </for>
+              </select>
+            </util>
+          `).join('')}
+        </utils>
 
-### Preview
-:::try-it-preview{for=fc,fmc}
-<div class="bg-gradient-to-ie $util to-accent-2 size-i-full size-b-l.2 rounded-s"></div>
-:::
+        <renderer html="${encodeString(`
+          <div class="bg-gradient-to-ie $util from-accent-2 size-i-full size-b-l.2 rounded-s"></div>
+        `)}" />
 
-:::try-it-preview{for=tc,tmc}
-<div class="bg-gradient-to-ie $util from-accent-2 size-i-full size-b-l.2 rounded-s"></div>
-:::
+        <renderer for="from" html="${encodeString(`
+          <div class="bg-gradient-to-ie $util to-accent-2 size-i-full size-b-l.2 rounded-s"></div>
+        `)}" />
 
-### HTML
-::try-it-html
+        <h3>Preview</h3>
+        <viewport />
 
-### Generated CSS
-::try-it-css`
+        <h3>HTML</h3>
+        <html />
+
+        <h3>Generated CSS</h3>
+        <css />
+      </try-it>
+    </page>
+  `
 
   return { rules, docs }
 }
