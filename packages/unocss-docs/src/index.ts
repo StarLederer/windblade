@@ -1,9 +1,10 @@
 export const encodeString = (str: string) => str.replace(/&/g, '&amp;')
+  .trimStart()
   .replace(/</g, '&lt;')
   .replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;')
   .replace(/'/g, '&apos;')
-  .trimStart()
+  .replace(/\n/g, '&#10;')
 
 export * as compiler from './compiler'
 export * from './types'
