@@ -1,6 +1,6 @@
 import { For } from 'solid-js'
-import type { XmlRootComponent } from './XmlComponent'
-import Error from './Error'
+import type { XmlRootComponent } from './types'
+import Error from './components/Error'
 import Page from './Page'
 
 const main: XmlRootComponent = (props) => {

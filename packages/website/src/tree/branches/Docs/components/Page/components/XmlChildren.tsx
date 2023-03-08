@@ -1,7 +1,7 @@
 import { For } from 'solid-js'
 import type { Element } from 'xast-util-from-xml/lib'
-import type { XmlComponent } from './XmlComponent'
-import { useXmlContext } from './XmlComponent'
+import type { XmlComponent } from '../types'
+import { useXmlContext } from '../types'
 
 const main: XmlComponent<Element> = (props) => {
   const context = useXmlContext()

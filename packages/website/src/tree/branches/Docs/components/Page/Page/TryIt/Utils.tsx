@@ -1,9 +1,9 @@
 import type { Accessor, Setter } from 'solid-js'
 import { createContext, createSignal, useContext } from 'solid-js'
 import type { Element } from 'xast-util-from-xml/lib'
-import type { XmlComponent, XmlNodeRenderer } from '../../XmlComponent'
-import { XmlContext, extendXmlContext } from '../../XmlComponent'
-import XmlChildren from '../../XmlElement'
+import type { XmlComponent, XmlNodeRenderer } from '../../types'
+import { XmlContext, extendXmlContext } from '../../types'
+import XmlChildren from '../../components/XmlChildren'
 import Util from './Utils/Util'
 
 export const Context = createContext<{

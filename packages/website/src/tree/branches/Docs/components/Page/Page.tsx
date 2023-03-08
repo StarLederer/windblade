@@ -1,13 +1,13 @@
 import { Show } from 'solid-js'
 import type { Element } from 'xast-util-from-xml/lib'
-import type { XmlComponent, XmlNodeRenderer } from './XmlComponent'
-import { XmlContext, extendXmlContext } from './XmlComponent'
-import Error from './Error'
+import type { XmlComponent, XmlNodeRenderer } from './types'
+import { XmlContext, extendXmlContext } from './types'
+import Error from './components/Error'
 import TryIt from './Page/TryIt'
 import ForUno from './Page/For'
 import Sample from './Page/Sample'
 import Example from './Page/Example'
-import XmlChildren from './XmlElement'
+import XmlChildren from './components/XmlChildren'
 
 const render: XmlNodeRenderer = (node) => {
   switch (node.type) {
@@ -41,6 +41,8 @@ const render: XmlNodeRenderer = (node) => {
               <XmlChildren {...node} />
             </code>
           )
+        case 'pre':
+          return <pre innerText={node.attributes?.html ?? ''}/>
         case 'example':
           return <Example html={node.attributes?.html ?? ''} />
         case 'try-it':

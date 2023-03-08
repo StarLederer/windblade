@@ -1,9 +1,9 @@
 import { For, useContext } from 'solid-js'
 import type { Element } from 'xast-util-from-xml/lib'
-import type { XmlComponent } from '../XmlComponent'
+import type { XmlComponent } from '../types'
 import VariableContext, { applyVars } from '../XmlVariables'
-import Error from '../Error'
-import XmlElement from '../XmlElement'
+import Error from '../components/Error'
+import XmlChildren from '../components/XmlChildren'
 import uno from '~/unocss'
 
 const navigateUnoConfig = (path: string) => {
@@ -30,7 +30,7 @@ const main: XmlComponent<Element> = (props) => {
     return <For each={navigateUnoConfig(applyVars(attrs.array))}>
       {value => (
         <VariableContext.Provider value={{ ...parentContext, value }}>
-          <XmlElement {...props} />
+          <XmlChildren {...props} />
         </VariableContext.Provider>
       )}
     </For>
@@ -52,7 +52,7 @@ const main: XmlComponent<Element> = (props) => {
           [keyAs]: key,
           [valueAs]: `${value}`,
         }}>
-          <XmlElement {...props} />
+          <XmlChildren {...props} />
         </VariableContext.Provider>
       )}
     </For>
