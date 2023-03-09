@@ -61,7 +61,7 @@ export const gridAutoRows = generateAuto('rows', 'rows')
 
 const generateFitFill = (type: 'fit' | 'fill', ruleName: string, cssName: string) => () => {
   const rules: Rule<theme.Theme>[] = [
-    size.rule(`grid-${type}-${ruleName}s`, `grid-template-${cssName}s`, { postprocess: size => (`repeat(auto-fit, minmax(${size}, 1fr))`) }),
+    size.rule(`grid-${type}-${ruleName}s`, `grid-template-${cssName}s`, { postprocess: size => (`repeat(auto-fit, minmax(min(${size}, 100%), 1fr))`) }),
   ]
 
   const docs: DocumentationPage = `
