@@ -13,12 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Brakets in grid rules now work much better.
+- `grid-fill-...` using `auto-fit` instead of `auto-fill`.
+- `grid-fit-...` and `grid-fill` overflowing containers at large sizes.
+- Brakets in some grid rules now work much better.
 
 ### Changed
 
 - `$` features are now implemented as a variant and work with utilities from other presets.
 - Colors and the `$` variant can now be used as separate presets.
+- Documentation is now completely in XML.
 
 ### Removed
 
