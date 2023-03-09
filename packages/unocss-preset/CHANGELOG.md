@@ -29,10 +29,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 2.0.0-beta.3
 
-### Added
-
-- .
-
 ### Fixed
 
 - `hidden` now correctly sets `display` to `none`.
@@ -41,10 +37,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Strictened default font properties.
-
-### Removed
-
-- .
 
 ## 2.0.0-beta - 2023-02-17
 
