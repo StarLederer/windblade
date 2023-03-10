@@ -1,6 +1,7 @@
 import type { Rule } from '@unocss/core'
 import { escapeSelector as e } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
+import { encodeString } from 'unocss-docs'
 import type { theme } from '@windblade/core'
 import { utils } from '@windblade/core'
 
@@ -89,7 +90,14 @@ export const colorScheme = () => {
           </util>
         </utils>
 
-        <renderer html="TODO" />
+        <renderer html="${encodeString(`
+          <div class="$util bg-normal p-m rounded-s">
+            <div class="bg-surface border border-color-surface p-s rounded-s flex gap-s items-center">
+              <div class="size-i-m.2 aspect-1/1 bg-accent rounded-full"></div>
+              <div>Hello</div>
+            </div>
+          </div>
+        `)}" />
 
         <h3>Preview</h3>
         <viewport />
