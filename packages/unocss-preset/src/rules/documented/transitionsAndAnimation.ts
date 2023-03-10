@@ -1,5 +1,6 @@
 import type { Rule } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
+import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
 import type { theme } from '@windblade/core'
 
@@ -11,11 +12,41 @@ export const transitionDelayAndDuration = () => {
     time.durationRule('delay', 'transition-delay'),
   ]
 
-  const docs: DocumentationPage = {
-    description: 'Time values in Windblade use same proportions as everything else.',
-    utilities: ['duration-<theme.windblade.proportions>', 'delay-<theme.windblade.proportions>'],
-    preview: () => 'TODO',
-  }
+  const docs: DocumentationPage = `
+    <page>
+      <h1><title /></h1>
+      <p>Time values in Windblade use same proportions as everything else.</p>
+
+      <h2>Try it</h2>
+      <try-it selected="$util">
+        <utils>
+          ${['duration', 'delay'].map(val => `
+            <util>
+              ${val}-
+              <select>
+                <for object="theme.windblade.proportions" key-as="$name" value-as="$value">
+                  <option value="$name" />
+                </for>
+              </select>
+            </util>
+          `).join('')}
+        </utils>
+
+        <renderer html="${encodeString(`
+          TODO
+        `)}" />
+
+        <h3>Preview</h3>
+        <viewport />
+
+        <h3>HTML</h3>
+        <html />
+
+        <h3>Generated CSS</h3>
+        <css />
+      </try-it>
+    </page>
+  `
 
   return { rules, docs }
 }
@@ -25,20 +56,50 @@ export const transitionTimingFunction = () => {
     time.timingFunctionRule('ease', 'transition-timing-function'),
   ]
 
-  const docs: DocumentationPage = {
-    description: 'Time values in Windblade use same proportions as everything else.',
-    utilities: ['ease-<theme.windblade.time.functions>'],
-    preview: () => 'TODO',
-  }
+  const docs: DocumentationPage = `
+    <page>
+      <h1><title /></h1>
+      <p>Time values in Windblade use same proportions as everything else.</p>
+
+      <h2>Try it</h2>
+      <try-it selected="$util">
+        <utils>
+          <util>
+            ease-
+            <select>
+              <for object="theme.windblade.time.functions" key-as="$name" value-as="$value">
+                <option value="$name" />
+              </for>
+            </select>
+          </util>
+        </utils>
+
+        <renderer html="${encodeString(`
+          TODO
+        `)}" />
+
+        <h3>Preview</h3>
+        <viewport />
+
+        <h3>HTML</h3>
+        <html />
+
+        <h3>Generated CSS</h3>
+        <css />
+      </try-it>
+    </page>
+  `
 
   return { rules, docs }
 }
 
 export const animation = () => {
-  const docs: DocumentationPage = {
-    description: 'Animations are missing at the moment because we are unsure how to implement them in a way that they can use theme proportions. Discussion in progress. You can, however, use animation control utilities, which are missing from Tailwind.',
-    utilities: [],
-  }
+  const docs: DocumentationPage = `
+    <page>
+      <h1><title /></h1>
+      <p>Animations are missing at the moment because we are unsure how to implement them in a way that they can use theme proportions. Discussion in progress. You can, however, use animation control utilities, which are missing from Tailwind.</p>
+    </page>
+  `
 
   return { rules: [], docs }
 }
@@ -49,11 +110,41 @@ export const animationDelayAndDuration = () => {
     time.durationRule('animation-delay', 'animation-delay'),
   ]
 
-  const docs: DocumentationPage = {
-    description: 'Utilities for controlling the duration & delay of CSS animations. Missing from Tailwind.',
-    utilities: ['animation-duration-<theme.windblade.proportions>', 'animation-delay-<theme.windblade.proportions>'],
-    preview: () => 'TODO',
-  }
+  const docs: DocumentationPage = `
+    <page>
+      <h1><title /></h1>
+      <p>Utilities for controlling the duration &amp; delay of CSS animations. Missing from Tailwind.</p>
+
+      <h2>Try it</h2>
+      <try-it selected="$util">
+        <utils>
+          ${['duration', 'delay'].map(val => `
+            <util>
+              animation-${val}-
+              <select>
+                <for object="theme.windblade.proportions" key-as="$name" value-as="$value">
+                  <option value="$name" />
+                </for>
+              </select>
+            </util>
+          `).join('')}
+        </utils>
+
+        <renderer html="${encodeString(`
+          TODO
+        `)}" />
+
+        <h3>Preview</h3>
+        <viewport />
+
+        <h3>HTML</h3>
+        <html />
+
+        <h3>Generated CSS</h3>
+        <css />
+      </try-it>
+    </page>
+  `
 
   return { rules, docs }
 }
@@ -63,11 +154,39 @@ export const animationTimingFunction = () => {
     time.timingFunctionRule('animation-ease', 'animation-timing-function'),
   ]
 
-  const docs: DocumentationPage = {
-    description: 'Utilities for controlling the easing of CSS animations. Missing from Tailwind.',
-    utilities: ['animation-ease-<theme.windblade.time.functions>'],
-    preview: () => 'TODO',
-  }
+  const docs: DocumentationPage = `
+    <page>
+      <h1><title /></h1>
+      <p>Utilities for controlling the easing of CSS animations. Missing from Tailwind.</p>
+
+      <h2>Try it</h2>
+      <try-it selected="$util">
+        <utils>
+          <util>
+            animation-ease-
+            <select>
+              <for object="theme.windblade.time.functions" key-as="$name" value-as="$value">
+                <option value="$name" />
+              </for>
+            </select>
+          </util>
+        </utils>
+
+        <renderer html="${encodeString(`
+          TODO
+        `)}" />
+
+        <h3>Preview</h3>
+        <viewport />
+
+        <h3>HTML</h3>
+        <html />
+
+        <h3>Generated CSS</h3>
+        <css />
+      </try-it>
+    </page>
+  `
 
   return { rules, docs }
 }
