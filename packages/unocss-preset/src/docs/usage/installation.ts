@@ -1,17 +1,7 @@
 import type { DocumentationPage } from 'unocss-docs'
+import { encodeString } from 'unocss-docs'
 
-const colors: DocumentationPage
-= `# Installation
-
-Windblade is an UnoCSS preset, please follow its own [guide](https://github.com/unocss/unocss#installation) to install it.
-
-Once UnoCSS is installed in your project simply get Windblade from npm and add it to the presets array.
-
-\`\`\`sh
-npm install unocss-preset-windblade
-\`\`\`
-
-\`\`\`ts
+const example = `
 import { defineConfig } from 'unocss';
 import presetWindblade from 'unocss-preset-windblade';
 
@@ -19,23 +9,9 @@ export default defineConfig({
   presets: [
     presetWindblade(),
   ],
-});
-\`\`\`
+});`
 
-## Recommended additions
-
-Windblade can be used by itself, however there are other UnoCSS presets that we recommend using together with it.
-
-### Getting hover, active, etc.
-
-Windblade does not come with combinators, pseudo-selectors or other query modifiers so you need to get this functionality elsewhere. We recommend using unocss-preset-mini-variants.
-
-\`\`\`sh
-npm install unocss-preset-mini-variants
-\`\`\`
-
-\`\`\`ts
-import { defineConfig } from 'unocss';
+const addition1 = `import { defineConfig } from 'unocss';
 import presetWindblade from 'unocss-preset-windblade';
 import presetVariants from 'unocss-preset-mini-variants';
 
@@ -44,19 +20,9 @@ export default defineConfig({
     presetWindblade(),
     presetVariants(),
   ],
-});
-\`\`\`
+});`
 
-### Getting @apply
-
-UnoCSS offers an official solution for getting @apply in your projects. We recommend to use that if you need this functionality.
-
-\`\`\`sh
-npm install -D @unocss/transformer-directives
-\`\`\`
-
-\`\`\`ts
-import { defineConfig } from 'unocss';
+const addition2 = `import { defineConfig } from 'unocss';
 import presetWindblade from 'unocss-preset-windblade';
 import transformerDirectives from '@unocss/transformer-directives';
 
@@ -67,8 +33,29 @@ export default defineConfig({
   transformers: [
     transformerDirectives(),
   ],
-});
-\`\`\`
+});`
+
+const main: DocumentationPage = `
+  <page>
+    <h1><title /></h1>
+    <p>Windblade is an UnoCSS preset, please follow its own <a href="https://github.com/unocss/unocss#installation">guide</a> to install it.</p>
+    <p>Once UnoCSS is installed in your project simply get Windblade from npm and add it to the presets array.</p>
+    <pre lang="sh" code="npm install unocss-preset-windblade" />
+    <pre lang="ts" code="${encodeString(example)}" />
+
+    <h2>Recommended additions</h2>
+    <p>Windblade can be used by itself, however there are other UnoCSS presets that we recommend using together with it.</p>
+
+    <h3>Getting hover, active, etc.</h3>
+    <p>Windblade does not come with combinators, pseudo-selectors or other query modifiers so you need to get this functionality elsewhere. We recommend using unocss-preset-mini-variants.</p>
+    <pre lang="sh" code="npm install unocss-preset-mini-variants" />
+    <pre lang="ts" code="${encodeString(addition1)}" />
+
+    <h3>Getting @apply</h3>
+    <p>UnoCSS offers an official solution for getting @apply in your projects. We recommend to use that if you need this functionality.</p>
+    <pre lang="sh" code="npm install -D @unocss/transformer-directives" />
+    <pre lang="ts" code="${encodeString(addition2)}" />
+  </page>
 `
 
-export default colors
+export default main
