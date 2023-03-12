@@ -2,7 +2,7 @@ import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import themes from '../../themes'
 
-const theme: DocumentationPage = `
+const theme = `
 import { defineConfig } from 'unocss';
 import presetWindblade from 'unocss-preset-windblade';
 
