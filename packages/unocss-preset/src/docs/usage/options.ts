@@ -26,7 +26,7 @@ const main: DocumentationPage = `
       ${Object.keys(themes).map(name => `<li><code>${name}</code></li>`).join('')}
     </ul>
 
-    <small>Please note that the <code>material3</code> theme is not finished and is almost unusable at the moment.</small>
+    <p><small>Please note that the <code>material3</code> theme is not finished and is almost unusable at the moment.</small></p>
   </page>
 `
 
