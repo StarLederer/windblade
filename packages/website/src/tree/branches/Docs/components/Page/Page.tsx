@@ -32,15 +32,27 @@ const render: XmlNodeRenderer = (node) => {
           )
         case 'small':
           return (
-              <small class="text-fg-4">
-                <XmlChildren {...node} />
-              </small>
+            <small class="text-fg-4">
+              <XmlChildren {...node} />
+            </small>
           )
         case 'a':
           return (
             <a href={node.attributes?.href ?? '#'} class="text-accent transition hover:highlight active:highlight+">
               <XmlChildren {...node} />
             </a>
+          )
+        case 'ul':
+          return (
+            <ul class="p-is-s flex flex-col gap-s.4">
+              <XmlChildren {...node} />
+            </ul>
+          )
+        case 'li':
+          return (
+            <li class="text-fg-3 font-semibold leading-$($s+$s.2)">
+              <XmlChildren {...node} />
+            </li>
           )
         case 'code':
           return (
