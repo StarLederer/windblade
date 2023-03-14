@@ -1,16 +1,19 @@
-import { Show } from 'solid-js'
+import { Show, useContext } from 'solid-js'
 import type { Element } from 'xast-util-from-xml/lib'
 import type { XmlComponent, XmlNodeRenderer } from './types'
 import { XmlContext, extendXmlContext } from './types'
+import { Context as RootContext } from './XmlRoot'
 import Error from './components/Error'
+import XmlChildren from './components/XmlChildren'
+import Code from './components/Code'
 import TryIt from './Page/TryIt'
 import ForUno from './Page/For'
 import Sample from './Page/Sample'
 import Example from './Page/Example'
-import XmlChildren from './components/XmlChildren'
-import Code from './components/Code'
 
 const render: XmlNodeRenderer = (node) => {
+  const ctx = useContext(RootContext)
+
   switch (node.type) {
     case 'text':
       return node.value
@@ -23,7 +26,7 @@ const render: XmlNodeRenderer = (node) => {
         case 'h3':
           return <h4 class="font-bold"><XmlChildren {...node} /></h4>
         case 'title':
-          return 'Title (TODO: pass actual title)'
+          return ctx?.title ?? <Error>No title</Error>
         case 'p':
           return (
             <p class="text-fg-3 font-semibold leading-$($s+$s.2) max-size-i-[128ch]">

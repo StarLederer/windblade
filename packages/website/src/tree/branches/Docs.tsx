@@ -22,7 +22,7 @@ const DocumentationRoutes: Component<{
     {({ name, value }) => (
       <Route path={[...props.prefix, name].join('/')}>
         {typeof value === 'string'
-          ? <Page page={value} />
+          ? <Page page={value} title={name} />
           : <DocumentationRoutes prefix={[...props.prefix, name]} tree={value} />
         }
       </Route>

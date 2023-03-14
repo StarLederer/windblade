@@ -6,7 +6,7 @@ import XmlRoot from './Page/XmlRoot'
 import libs from '~/lib/external'
 
 const Main: Component<{
-  title?: string // unused atm
+  title: string
   page: DocumentationPage
 }> = (props) => {
   return (
@@ -27,7 +27,7 @@ const Main: Component<{
             }
 
             if (xml)
-              return <XmlRoot {...xml}/>
+              return <XmlRoot {...xml} title={props.title}/>
 
             return <Error>Error processing this page</Error>
           })()}
