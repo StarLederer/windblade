@@ -1,13 +1,7 @@
 import type { DocumentationPage } from 'unocss-docs'
+import { encodeString } from 'unocss-docs'
 
-const main: DocumentationPage
-= `# Other theme objects
-
-See the theme type below for other values you can customize.
-
-## Theme type
-
-\`\`\`ts
+const example = `
 type ThemeColor = {
   dark: {
     l: number;
@@ -18,7 +12,7 @@ type ThemeColor = {
     l?: number;
     c?: number;
     a?: number;
-  }
+  };
 };
 
 type ThemeColorCombo = {
@@ -40,7 +34,16 @@ type Theme = {
     };
   };
 };
-\`\`\`
+`
+
+const main: DocumentationPage = `
+  <page>
+    <h1>Other theme objects</h1>
+    <p>See the theme type below for other values you can customize.</p>
+
+    <h2>Theme type</h2>
+    <pre lang="ts" code="${encodeString(example)}" />
+  </page>
 `
 
 export default main
