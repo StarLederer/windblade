@@ -30,6 +30,12 @@ const render: XmlNodeRenderer = (node) => {
               <XmlChildren {...node} />
             </p>
           )
+        case 'small':
+          return (
+              <small class="text-fg-4">
+                <XmlChildren {...node} />
+              </small>
+          )
         case 'a':
           return (
             <a href={node.attributes?.href ?? '#'} class="text-accent transition hover:highlight active:highlight+">
