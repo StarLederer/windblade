@@ -1,3 +1,0 @@
-[submodule "packages/website/submodules/ui"]
-	path = packages/website/submodules/ui
-	url = https://github.com/StarLederer/solid-components.git
