@@ -1,4 +1,5 @@
 import type { DocumentationTree } from 'unocss-docs'
+import { compiler } from 'unocss-docs'
 import dollarSyntax from './dollarSyntax'
 
 const main: DocumentationTree = new Map([
@@ -7,5 +8,5 @@ const main: DocumentationTree = new Map([
   ])],
 ])
 
-export default main
+export default compiler.compile(main)
 export * as dollarSyntax from './dollarSyntax'
