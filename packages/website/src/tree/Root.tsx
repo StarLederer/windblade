@@ -1,5 +1,6 @@
 import type { Component } from 'solid-js'
-import { Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js'
+import { Show, createEffect, createSignal } from 'solid-js'
+import { Route, Router, Routes } from '@solidjs/router'
 import {
   Popover,
   PopoverButton,
@@ -16,22 +17,27 @@ import Docs from './branches/Docs'
 import Modules from './branches/Modules'
 
 import themeStore from '~/stores/themeStore'
-import { LocalLink, Route, addNavigationHandler, removeNavigationHandler } from '~/lib/rotuer'
+import { LocalLink, Outlet, spaIntegration } from '~/lib/rotuer'
 
-const Main: Component = () => {
-  onMount(() => {
-    addNavigationHandler('/home')
-  })
-  onCleanup(() => {
-    removeNavigationHandler()
-  })
-
+const Layout: Component = () => {
   const [containerSize, setContainerSize] = createSignal(0)
   const [menuSize, setMenuSize] = createSignal(0)
   const [menuFlat, setMenuFlat] = createSignal(false)
 
   let container: HTMLDivElement | undefined
   let menu: HTMLDivElement | undefined
+
+  const menuItems = () => <>
+    <LocalLink href="/" >Home</LocalLink>
+    <LocalLink href="/docs/Usage/Installation" >Docs</LocalLink>
+    <LocalLink href="/modules" >Modules</LocalLink>
+    <Button onClick={themeStore.toggleScheme} class="p-s rounded-s relative">
+      <div class="i-mdi-brightness-4 transition" style={`opacity: ${themeStore.enforceScheme() === undefined ? 1 : 0}`} />
+      <div class="absolute i-mdi-brightness-7 transition" style={`opacity: ${themeStore.enforceScheme() === 'light' ? 1 : 0}`} />
+      <div class="absolute i-mdi-brightness-2 transition" style={`opacity: ${themeStore.enforceScheme() === 'dark' ? 1 : 0}`} />
+    </Button>
+    <Link href="https://github.com/StarLederer/windblade"><div class="i-simple-icons-github" /></Link>
+  </>
 
   const containerResizeObserver = new ResizeObserver(([entry]) => {
     setContainerSize(entry.borderBoxSize[0].inlineSize)
@@ -58,23 +64,11 @@ const Main: Component = () => {
     setMenuFlat(containerSize() >= menuSize() * 1.2)
   })
 
-  const menuItems = () => <>
-    <LocalLink href="/home" >Home</LocalLink>
-    <LocalLink href="/docs/Usage-Installation" >Docs</LocalLink>
-    <LocalLink href="/modules" >Modules</LocalLink>
-    <Button onClick={themeStore.toggleScheme} class="p-s rounded-s relative">
-      <div class="i-mdi-brightness-4 transition" style={`opacity: ${themeStore.enforceScheme() === undefined ? 1 : 0}`} />
-      <div class="absolute i-mdi-brightness-7 transition" style={`opacity: ${themeStore.enforceScheme() === 'light' ? 1 : 0}`} />
-      <div class="absolute i-mdi-brightness-2 transition" style={`opacity: ${themeStore.enforceScheme() === 'dark' ? 1 : 0}`} />
-    </Button>
-    <Link href="https://github.com/StarLederer/windblade"><div class="i-simple-icons-github" /></Link>
-  </>
-
   return (
     <div class="size-b-full grid" style="grid-template-rows: auto minmax(0, 1fr);">
       <header class="p-b-s.4 p-m.2 border border-color-transparent border-be-color-fg-5 flex items-center">
         <h1 class="font-bold text-fg-1 ">
-          <LocalLink style="none" href="/home" class="flex gap-s.4 items-center -m-i-s.4 p-s.4 p-ie-s rounded-full transition-all hover:bg-accent-4">
+          <LocalLink style="none" href="/" class="flex gap-s.4 items-center -m-i-s.4 p-s.4 p-ie-s rounded-full transition-all hover:bg-accent-4">
             <Show
               when={themeStore.scheme() === 'dark'}
               fallback={<img src={logoBlack} alt="Logo" class="size-b-m.2" />}
@@ -108,19 +102,23 @@ const Main: Component = () => {
       </header>
 
       <div class="relative">
-        <Route path="/home">
-          <Home />
-        </Route>
-
-        <Route path="/docs">
-          <Docs />
-        </Route>
-
-        <Route path="/modules">
-          <Modules />
-        </Route>
+        <Outlet />
       </div>
     </div>
+  )
+}
+
+const Main: Component = () => {
+  return (
+    <Router source={spaIntegration()}>
+      <Routes>
+        <Route path="/" component={Layout} >
+          <Route path="/" component={Home} />
+          <Docs />
+          <Route path="modules" component={Modules} />
+        </Route>
+      </Routes>
+    </Router>
   )
 }
 

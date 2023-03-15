@@ -16,7 +16,7 @@
 
 ## Installation
 
-Please see the [Docs](https://starlederer.github.io/windblade?navigation=/docs/Usage-Installation) for installation instrucions.
+Please see the [Docs](https://starlederer.github.io/windblade?navigation=/docs/Usage/Installation) for installation instrucions.
 
 ## Usage
 

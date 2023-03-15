@@ -10,7 +10,7 @@ const Main: Component<{
   page: DocumentationPage
 }> = (props) => {
   return (
-    <div class="size-b-full overflow-auto">
+    <div class="absolute size-i-full size-b-full overflow-auto">
       <div class="p-m.2 flex flex-col gap-s">
         <Suspense fallback="Loading...">
           {(() => {

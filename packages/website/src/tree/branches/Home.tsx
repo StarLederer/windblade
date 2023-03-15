@@ -77,7 +77,7 @@ const Comparison: Component<{
 )
 
 const CTA: Component = () => (
-  <LocalLink style="solid" href="/docs/Usage-Installation">
+  <LocalLink style="solid" href="/docs/Usage/Installation">
     Get started
     <div class="i-mdi-arrow-right" />
   </LocalLink>
@@ -85,7 +85,7 @@ const CTA: Component = () => (
 
 const Main: Component = () => {
   return (
-    <div class="size-b-full overflow-auto">
+    <div class="absolute size-i-full size-b-full overflow-auto">
       <section class="p--bm.2 p-b-m font-semibold bg-gradient-to-ss from-surface">
         <Container class="flex flex-col items-start">
           <div class="font-bold text-m.2">

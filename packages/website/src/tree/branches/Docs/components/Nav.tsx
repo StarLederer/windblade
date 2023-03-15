@@ -1,22 +1,23 @@
-import type { Path } from '@ui/router'
-import router, { pathStartsWith } from '@ui/router'
 import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
 import type { Component } from 'solid-js'
 import { For } from 'solid-js'
+import { useMatch } from '@solidjs/router'
+import { escapeString } from '../escapeString'
 import { LocalLink } from '~/lib/rotuer'
 
 const Button: Component<{
-  path: Path
+  path: string[]
   title: string
   i: number
 }> = (props) => {
-  const current = () => pathStartsWith(router.route().current, props.path)
+  const href = `/${props.path.map(val => escapeString(val)).join('/')}`
+  const current = useMatch(() => href)
   const style = `filter: hue-rotate(${3.6 * props.i}deg);`
 
   return (
     <LocalLink
       style="none"
-      href={props.path.join('/')}
+      href={href}
       // onClick={() => setDrawerOpen(false)}
       class={`${current() ? 'bg-surface text-fg-1' : 'text-fg-3'} block relative p-s.6 p-i-s p-is-m.2 rounded-full text-start justify-start transition ease-out overflow-hidden hover:bg-accent-3 hover:text-fg-1`}
     >
@@ -30,7 +31,7 @@ const Button: Component<{
 }
 
 const Main: Component<{
-  prefix: Path
+  prefix: string[]
   tree: CompiledDocumentationTree
   depth?: number
 }> = (props) => {

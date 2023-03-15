@@ -5,32 +5,38 @@ import {
   DialogOverlay,
   DialogPanel,
 } from 'solid-headless'
-import type { Path } from '@ui/router'
-import router from '@ui/router'
 import Button from '@ui/primitives/Button'
 import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
-import Page from './Docs/components/Page'
+import { Route } from '@solidjs/router'
 import Nav from './Docs/components/Nav'
+import Page from './Docs/components/Page'
+import { escapeString } from './Docs/escapeString'
 import docsStore from '~/stores/docsStore'
-import { Route } from '~/lib/rotuer'
+import { Outlet } from '~/lib/rotuer'
+
+const docs = (): CompiledDocumentationTree => docsStore.docs() ?? []
 
 const DocumentationRoutes: Component<{
-  prefix: Path
   tree: CompiledDocumentationTree
 }> = props => (
   <For each={props.tree}>
-    {({ name, value }) => (
-      <Route path={[...props.prefix, name].join('/')}>
-        {typeof value === 'string'
-          ? <Page page={value} title={name} />
-          : <DocumentationRoutes prefix={[...props.prefix, name]} tree={value} />
-        }
-      </Route>
-    )}
+    {({ name, value }) => {
+      const path = escapeString(name)
+      if (typeof value === 'string') {
+        return <Route path={path} element={<Page page={value} title={name} />} />
+      }
+      else {
+        return (
+          <Route path={`${path}`}>
+            <DocumentationRoutes tree={value} />
+          </Route>
+        )
+      }
+    }}
   </For>
 )
 
-const Main: Component = () => {
+const Layout: Component = () => {
   const [containerSize, setContainerSize] = createSignal(0)
   const [drawerSize, setDrawerSize] = createSignal(0)
   const [drawerOpen, setDrawerOpen] = createSignal(false)
@@ -65,8 +71,6 @@ const Main: Component = () => {
 
   const drawerVisible = () => drawerOpen() || drawerFlat()
 
-  const docs = (): CompiledDocumentationTree => docsStore.docs() ?? []
-
   const nav = (
     <nav class="p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 size-i-max size-b-full" ref={drawer}>
       <Nav prefix={['docs']} tree={docs()} />
@@ -74,7 +78,7 @@ const Main: Component = () => {
   )
 
   return (
-    <div class="flex flex-col size-b-full" ref={container}>
+    <div class="flex flex-col absolute size-i-full size-b-full" ref={container}>
       <Show when={!drawerFlat()}>
         <div class="relative flex gap-s items-center p-s.4 p-i-m.2 border-solid border-0 border-be-px border-color-fg-5">
           <Button onClick={() => setDrawerOpen(!drawerOpen())} class="p-s.6 rounded-full" style="half">
@@ -82,12 +86,12 @@ const Main: Component = () => {
             <div class={`i-mdi-backburger ${drawerOpen() ? 'opacity-s' : 'opacity-zero'} transition absolute`} />
           </Button>
           <div class="flex flex-wrap gap-s.4 text-fg-3">
-            <For each={router.route().current.at(-1)?.split('-')}>
+            {/* <For each={router.route().current.at(-1)?.split('-')}>
               {(crumb, i) => <>
                 <div class={`${i() === 0 ? '' : 'text-fg-1 font-semibold'}`}>{crumb}</div>
                 {i() === 0 && <div class="i-mdi-chevron-right" />}
               </>}
-            </For>
+            </For> */}
           </div>
         </div>
       </Show>
@@ -108,11 +112,27 @@ const Main: Component = () => {
         </Show>
 
         <main class={`relative flex-1 transition-all ${(drawerOpen() && !drawerFlat()) ? 'blur-s.2 opacity-s.4' : ''}`} onClick={() => setDrawerOpen(false)}>
-          <DocumentationRoutes prefix={['docs']} tree={docs()} />
+          <Outlet />
+          {/* <DocumentationRoutes tree={docs()}/> */}
         </main>
       </div>
     </div>
   )
 }
+
+const Main: Component = () => (
+  <Route path="docs" component={Layout}>
+    <DocumentationRoutes tree={docs()} />
+    <Route
+      path="/*"
+      element={
+        <div class="size-b-full p-m.2 flex gap-m.2 text-m.2 items-center font-bold">
+          <div class="i-mdi-arrow-left" />
+          Select something
+        </div>
+      }
+    />
+  </Route>
+)
 
 export default Main

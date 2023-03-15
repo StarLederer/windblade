@@ -136,6 +136,7 @@ importers:
 
   packages/website:
     specifiers:
+      '@solidjs/router': ^0.8.0
       '@types/js-beautify': ^1.13.3
       '@windblade/core': workspace:*
       highlight.js: ^11.7.0
@@ -147,12 +148,14 @@ importers:
       postcss-preset-env: ^8.0.1
       solid-headless: ^0.13.1
       solid-js: ^1.6.11
+      solid-transition-group: ^0.0.13
       ts-extras: ^0.11.0
       unocss-docs: workspace:*
       unocss-preset-mini-variants: ^0.49.7
       unocss-preset-windblade: workspace:*
       xast-util-from-xml: ^3.0.0
     dependencies:
+      '@solidjs/router': 0.8.0_solid-js@1.6.11
       '@types/js-beautify': 1.13.3
       '@windblade/core': link:../core
       highlight.js: 11.7.0
@@ -162,6 +165,7 @@ importers:
       micromark-extension-directive: 2.1.2
       solid-headless: 0.13.1_solid-js@1.6.11
       solid-js: 1.6.11
+      solid-transition-group: 0.0.13_solid-js@1.6.11
       unocss-docs: link:../unocss-docs
       unocss-preset-windblade: link:../unocss-preset
       xast-util-from-xml: 3.0.0
@@ -2268,6 +2272,14 @@ packages:
       picomatch: 2.3.1
       rollup: 3.17.3
     dev: true
+
+  /@solidjs/router/0.8.0_solid-js@1.6.11:
+    resolution: {integrity: sha512-gvKAfYbuq6rpuNM9E7qIRXOrUEHY4AoOiok3xo/Slw5ph+hvJ+gKRhQgW0Et8xcsq2NZcc4AvJF8VTBmXfwEyA==}
+    peerDependencies:
+      solid-js: ^1.5.3
+    dependencies:
+      solid-js: 1.6.11
+    dev: false
 
   /@types/debug/4.1.7:
     resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
@@ -6185,6 +6197,14 @@ packages:
       '@babel/types': 7.21.2
       solid-js: 1.6.11
     dev: true
+
+  /solid-transition-group/0.0.13_solid-js@1.6.11:
+    resolution: {integrity: sha512-VA1V0ip4dsNOQJ/dCluCiAPBUuHspYFm4WYG91jpNmcP4rC4DY1S1EGds44JjiUAP7qEoEZdMhPaiS6lqTF7AA==}
+    peerDependencies:
+      solid-js: ^1.5.0
+    dependencies:
+      solid-js: 1.6.11
+    dev: false
 
   /solid-use/0.6.2_solid-js@1.6.11:
     resolution: {integrity: sha512-0ShJ5s+4PIN0pJB/BtsQucsZB+xnUeeTGaxErQDu6USn5jygZWXicAtOEvFbI8gv40xE751uY1Tz7Aib9lxL/Q==}

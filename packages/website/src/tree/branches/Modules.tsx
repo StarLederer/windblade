@@ -55,7 +55,7 @@ const modules: {
 
 const Main: Component = () => {
   return (
-    <div class="size-b-full overflow-auto">
+    <div class="absolute size-i-full size-b-full overflow-auto">
       <section class="p-b-m font-semibold">
         <Container class="flex flex-col gap-s">
           <h2 class={styles.h2}>Modules</h2>

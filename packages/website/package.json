@@ -15,6 +15,7 @@
     "unocss-preset-mini-variants": "^0.49.7"
   },
   "dependencies": {
+    "@solidjs/router": "^0.8.0",
     "@types/js-beautify": "^1.13.3",
     "@windblade/core": "workspace:*",
     "highlight.js": "^11.7.0",
@@ -24,6 +25,7 @@
     "micromark-extension-directive": "^2.1.2",
     "solid-headless": "^0.13.1",
     "solid-js": "^1.6.11",
+    "solid-transition-group": "^0.0.13",
     "unocss-docs": "workspace:*",
     "unocss-preset-windblade": "workspace:*",
     "xast-util-from-xml": "^3.0.0"
