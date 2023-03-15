@@ -45,12 +45,6 @@ const modules: {
     official: true,
     loadDocs: async () => (await import('@windblade/unocss-preset-dollars')).docs.default,
   },
-  {
-    icon: <div class="i-mdi-palette-swatch" />,
-    name: 'Classless',
-    description: 'Default styles for semantic HTML. Same as PicoCSS but with Windblade utils.',
-    loadDocs: async () => [],
-  },
 ]
 
 const Main: Component = () => {
@@ -96,7 +90,6 @@ const Main: Component = () => {
                       </div>
                     </div>
                   </LocalLink>
-
                 </li>
               )}
             </For>
