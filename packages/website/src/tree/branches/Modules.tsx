@@ -1,6 +1,6 @@
 import type { Component, JSXElement } from 'solid-js'
 import { For } from 'solid-js'
-import type { DocumentationCategories } from '@windblade/unocss-docs'
+import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
 import { LocalLink } from '~/lib/rotuer'
 import Container from '~/lib/Container'
 import docsStore from '~/stores/docsStore'
@@ -22,7 +22,7 @@ const modules: {
   name: string
   description: string
   official?: boolean
-  loadDocs: () => Promise<DocumentationCategories<any>>
+  loadDocs: () => Promise<CompiledDocumentationTree>
 }[] = [
   {
     icon: <div class="i-mdi-package" />,
@@ -49,7 +49,7 @@ const modules: {
     icon: <div class="i-mdi-palette-swatch" />,
     name: 'Classless',
     description: 'Default styles for semantic HTML. Same as PicoCSS but with Windblade utils.',
-    loadDocs: async () => new Map(),
+    loadDocs: async () => [],
   },
 ]
 
