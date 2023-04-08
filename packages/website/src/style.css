@@ -41,9 +41,13 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
+html,
 body {
-  height: 100vh;
-  width: 100vw;
+  block-size: 100%;
+}
+
+body {
+  overflow: hidden;
 }
 
 .animate-in,
