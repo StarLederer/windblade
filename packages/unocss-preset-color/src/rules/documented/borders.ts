@@ -32,7 +32,7 @@ export const borderColor = () => {
             </select>
           </util>
           <util>
-            border-color-fg
+            border-color-fg-
             <input type="integer" />
           </util>
           <util>
