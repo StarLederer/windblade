@@ -111,7 +111,7 @@ const Layout: Component = () => {
           </Dialog>
         </Show>
 
-        <main class={`relative flex-1 transition-all ${(drawerOpen() && !drawerFlat()) ? 'blur-s.2 opacity-s.4' : ''}`} onClick={() => setDrawerOpen(false)}>
+        <main class={`flex-1 transition-all ${(drawerOpen() && !drawerFlat()) ? 'blur-s.2 opacity-s.4' : ''}`} onClick={() => setDrawerOpen(false)}>
           <Outlet />
         </main>
       </div>
