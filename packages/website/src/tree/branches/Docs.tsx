@@ -113,7 +113,6 @@ const Layout: Component = () => {
 
         <main class={`relative flex-1 transition-all ${(drawerOpen() && !drawerFlat()) ? 'blur-s.2 opacity-s.4' : ''}`} onClick={() => setDrawerOpen(false)}>
           <Outlet />
-          {/* <DocumentationRoutes tree={docs()}/> */}
         </main>
       </div>
     </div>
