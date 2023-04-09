@@ -7,7 +7,7 @@ import {
 } from 'solid-headless'
 import Button from '@ui/primitives/Button'
 import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
-import { Route } from '@solidjs/router'
+import { Route, useLocation } from '@solidjs/router'
 import Nav from './Docs/components/Nav'
 import DocPage from './Docs/components/Page'
 import { escapeString } from './Docs/escapeString'
@@ -86,12 +86,12 @@ const Layout: Component = () => {
             <div class={`i-mdi-backburger ${drawerOpen() ? 'opacity-s' : 'opacity-zero'} transition absolute`} />
           </Button>
           <div class="flex flex-wrap gap-s.4 text-fg-3">
-            {/* <For each={router.route().current.at(-1)?.split('-')}>
+            <For each={useLocation().pathname.split('/').slice(2)}>
               {(crumb, i) => <>
-                <div class={`${i() === 0 ? '' : 'text-fg-1 font-semibold'}`}>{crumb}</div>
+                <div class={`${i() === 0 ? '' : 'text-fg-1 font-semibold'}`}>{crumb.replaceAll('_', ' ')}</div>
                 {i() === 0 && <div class="i-mdi-chevron-right" />}
               </>}
-            </For> */}
+            </For>
           </div>
         </div>
       </Show>
