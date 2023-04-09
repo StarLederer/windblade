@@ -125,10 +125,10 @@ const Main: Component = () => (
     <Route
       path="/*"
       element={
-        <div class="size-b-full p-m.2 flex gap-m.2 text-m.2 items-center font-bold">
+        <Page class="p-m.2 flex gap-s text-m.2 items-center font-bold">
           <div class="i-mdi-arrow-left" />
           Select something
-        </div>
+        </Page>
       }
     />
   </Route>
