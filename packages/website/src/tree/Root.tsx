@@ -101,9 +101,7 @@ const Layout: Component = () => {
         </div>
       </header>
 
-      <div class="relative">
-        <Outlet />
-      </div>
+      <Outlet />
     </div>
   )
 }
