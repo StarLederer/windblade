@@ -9,10 +9,10 @@ import Button from '@ui/primitives/Button'
 import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
 import { Route } from '@solidjs/router'
 import Nav from './Docs/components/Nav'
-import Page from './Docs/components/Page'
+import DocPage from './Docs/components/Page'
 import { escapeString } from './Docs/escapeString'
 import docsStore from '~/stores/docsStore'
-import { Outlet } from '~/lib/rotuer'
+import { Outlet, Page } from '~/lib/rotuer'
 
 const docs = (): CompiledDocumentationTree => docsStore.docs() ?? []
 
@@ -23,7 +23,7 @@ const DocumentationRoutes: Component<{
     {({ name, value }) => {
       const path = escapeString(name)
       if (typeof value === 'string') {
-        return <Route path={path} element={<Page page={value} title={name} />} />
+        return <Route path={path} element={<DocPage page={value} title={name} />} />
       }
       else {
         return (
@@ -78,7 +78,7 @@ const Layout: Component = () => {
   )
 
   return (
-    <div class="flex flex-col absolute size-i-full size-b-full" ref={container}>
+    <Page class="flex flex-col" ref={container}>
       <Show when={!drawerFlat()}>
         <div class="relative flex gap-s items-center p-s.4 p-i-m.2 border-solid border-0 border-be-px border-color-fg-5">
           <Button onClick={() => setDrawerOpen(!drawerOpen())} class="p-s.6 rounded-full" style="half">
@@ -115,7 +115,7 @@ const Layout: Component = () => {
           <Outlet />
         </main>
       </div>
-    </div>
+    </Page>
   )
 }
 

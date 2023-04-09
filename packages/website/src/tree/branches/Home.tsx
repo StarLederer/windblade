@@ -17,7 +17,7 @@ import jsWb from './Home/content/js/wb.js.txt?raw'
 
 import libs from '~/lib/external'
 import Container from '~/lib/Container'
-import { LocalLink } from '~/lib/rotuer'
+import { LocalLink, Page } from '~/lib/rotuer'
 
 const styles = {
   header: {
@@ -85,8 +85,8 @@ const CTA: Component = () => (
 
 const Main: Component = () => {
   return (
-    <div class="absolute size-i-full size-b-full overflow-auto">
-      <section class="p--bm.2 p-b-m font-semibold bg-gradient-to-ss from-surface">
+    <Page>
+      <section class="p-b-m font-semibold bg-gradient-to-ss from-surface">
         <Container class="flex flex-col items-start">
           <div class="font-bold text-m.2">
             <h2 class="text-fg-1 text-m.4 font-extrabold m-be-s">
@@ -255,7 +255,7 @@ const Main: Component = () => {
           Made by <Link href="https://github.com/StarLederer">Star Lederer</Link>
         </Container>
       </footer>
-    </div>
+    </Page>
   )
 }
 

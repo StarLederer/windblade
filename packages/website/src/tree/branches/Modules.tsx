@@ -1,7 +1,7 @@
 import type { Component, JSXElement } from 'solid-js'
 import { For } from 'solid-js'
 import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
-import { LocalLink } from '~/lib/rotuer'
+import { LocalLink, Page } from '~/lib/rotuer'
 import Container from '~/lib/Container'
 import docsStore from '~/stores/docsStore'
 
@@ -49,7 +49,7 @@ const modules: {
 
 const Main: Component = () => {
   return (
-    <div class="absolute size-i-full size-b-full overflow-auto">
+    <Page>
       <section class="p-b-m font-semibold">
         <Container class="flex flex-col gap-s">
           <h2 class={styles.h2}>Modules</h2>
@@ -96,7 +96,7 @@ const Main: Component = () => {
           </ul>
         </section>
       </Container>
-    </div>
+    </Page>
   )
 }
 
