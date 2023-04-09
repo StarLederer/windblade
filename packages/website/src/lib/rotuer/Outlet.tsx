@@ -5,7 +5,7 @@ import { Transition } from 'solid-transition-group'
 const style = 'animation-duration-m.4'
 
 const Main: Component = () => (
-  <section class="relative size-i-full size-b-full">
+  <section class="relative size-i-full size-b-full overflow-hidden">
     <Transition enterActiveClass={`${style} animate-in`} exitActiveClass={`${style} animate-out`}>
       <Outlet />
     </Transition>
