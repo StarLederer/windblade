@@ -11,7 +11,7 @@ const Main: Component<{
   page: DocumentationPage
 }> = (props) => {
   return (
-    <Page class="p-m.2 flex flex-col gap-s">
+    <Page class="p-m.2 [&>*]:m-be-s">
       <Suspense fallback="Loading...">
         {(() => {
           const parser = libs.xml()
