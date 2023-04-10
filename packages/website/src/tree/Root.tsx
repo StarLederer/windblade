@@ -14,7 +14,6 @@ import logoBlack from '@windblade/brand/logo-black.svg'
 
 import Home from './branches/Home'
 import Docs from './branches/Docs'
-import Modules from './branches/Modules'
 
 import themeStore from '~/stores/themeStore'
 import { LocalLink, Outlet, spaIntegration } from '~/lib/rotuer'
@@ -30,7 +29,6 @@ const Layout: Component = () => {
   const menuItems = () => <>
     <LocalLink href="/" >Home</LocalLink>
     <LocalLink href="/docs/Usage/Installation" >Docs</LocalLink>
-    <LocalLink href="/modules" >Modules</LocalLink>
     <Button onClick={themeStore.toggleScheme} class="p-s rounded-s relative">
       <div class="i-mdi-brightness-4 transition" style={`opacity: ${themeStore.enforceScheme() === undefined ? 1 : 0}`} />
       <div class="absolute i-mdi-brightness-7 transition" style={`opacity: ${themeStore.enforceScheme() === 'light' ? 1 : 0}`} />
@@ -113,7 +111,6 @@ const Main: Component = () => {
         <Route path="/" component={Layout} >
           <Route path="/" component={Home} />
           <Docs />
-          <Route path="modules" component={Modules} />
         </Route>
       </Routes>
     </Router>

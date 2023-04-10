@@ -1,6 +1,7 @@
 import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
 import type { Component, ParentComponent } from 'solid-js'
 import { For, createContext, useContext } from 'solid-js'
+import Selector from './Nav/Selector'
 
 interface Settings {
   leafActive: (path: string[]) => boolean
@@ -108,7 +109,8 @@ const Main: Component<{
   settings: Settings
 }> = (props) => {
   return (
-    <nav class={props.class} ref={props.ref}>
+    <nav class={`${props.class} flex flex-col gap-s`} ref={props.ref}>
+      <Selector />
       <Context.Provider value={props.settings}>
         <Branch tree={props.tree} prefix={props.prefix} depth={0} />
       </Context.Provider>

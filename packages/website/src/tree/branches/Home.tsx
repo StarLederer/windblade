@@ -14,10 +14,13 @@ import calculationsTw from './Home/content/calculations/tw.html.txt?raw'
 import calculationsWb from './Home/content/calculations/wb.html.txt?raw'
 import jsTw from './Home/content/js/tw.js.txt?raw'
 import jsWb from './Home/content/js/wb.js.txt?raw'
+import Modules from './Home/Moludes'
 
 import libs from '~/lib/external'
 import Container from '~/lib/Container'
 import { LocalLink, Page } from '~/lib/rotuer'
+import docsStore from '~/stores/docsStore'
+import modules from '~/lib/modules'
 
 const styles = {
   header: {
@@ -77,7 +80,13 @@ const Comparison: Component<{
 )
 
 const CTA: Component = () => (
-  <LocalLink style="solid" href="/docs/Usage/Installation">
+  <LocalLink
+    style="solid"
+    href="/docs/Usage/Installation"
+    onClick={async () => {
+      docsStore.setDocs(await modules[0].loadDocs())
+    }}
+  >
     Get started
     <div class="i-mdi-arrow-right" />
   </LocalLink>
@@ -247,6 +256,14 @@ const Main: Component = () => {
           <h3 class={styles.h3}>Ready to improve your Tailwind workflow?</h3>
           <p class={styles.p}>Learn how to set up, customize and use Windblade. No preliminary knowledge of Tailwind required <span class="text-fg-3">(Actually it is required at the moment but we are working to change that)</span>.</p>
           <CTA />
+        </Container>
+      </section>
+
+      <section class="text-fg-3">
+        <Container class="flex flex-col items-start gap-s p-b-m.4">
+          <h4 class={styles.h4}>Not convinced about the whole package?</h4>
+          <p class={styles.p}>Best parts of Windblade are available standalone. Adopt Windblade incrementally or combine parts of it with other UnoCSS presets.</p>
+          <Modules />
         </Container>
       </section>
 
