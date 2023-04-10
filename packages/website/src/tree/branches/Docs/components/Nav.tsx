@@ -58,7 +58,7 @@ const Button: Component<{
         size-b-s.4
         size-i-s.4
         m-is-$(($m.2-$s.4)/2)
-        ${active() ? 'bg-accent' : ''}
+        ${active() ? 'bg-accent' : 'bg-accent-2'}
       `,
     },
   })
