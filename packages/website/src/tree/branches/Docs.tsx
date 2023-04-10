@@ -7,12 +7,12 @@ import {
 } from 'solid-headless'
 import Button from '@ui/primitives/Button'
 import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
-import { Route, useLocation } from '@solidjs/router'
+import { Route, useLocation, useMatch } from '@solidjs/router'
 import Nav from './Docs/components/Nav'
 import DocPage from './Docs/components/Page'
 import { escapeString } from './Docs/escapeString'
 import docsStore from '~/stores/docsStore'
-import { Outlet, Page } from '~/lib/rotuer'
+import { LocalLink, Outlet, Page } from '~/lib/rotuer'
 
 const docs = (): CompiledDocumentationTree => docsStore.docs() ?? []
 
@@ -71,11 +71,25 @@ const Layout: Component = () => {
 
   const drawerVisible = () => drawerOpen() || drawerFlat()
 
-  const nav = (
-    <nav class="p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 size-i-max size-b-full" ref={drawer}>
-      <Nav prefix={['docs']} tree={docs()} />
-    </nav>
-  )
+  const nav = <Nav
+    prefix={['docs']}
+    tree={docs()}
+    class="p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 size-i-max size-b-full"
+    ref={drawer}
+    settings={{
+      leafActive: path => !!useMatch(() => `/${path.map(val => escapeString(val)).join('/')}`)(),
+      leafAs: props => (
+        <LocalLink
+          style="none"
+          href={`/${props.path.map(val => escapeString(val)).join('/')}`}
+          onClick={() => setDrawerOpen(false)}
+          class={props.class}
+        >
+          {props.children}
+        </LocalLink>
+      ),
+    }}
+  />
 
   return (
     <Page class="flex flex-col" ref={container}>
