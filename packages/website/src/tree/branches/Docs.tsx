@@ -103,7 +103,7 @@ const Layout: Component = () => {
         >
           <Dialog isOpen={drawerVisible()} onClose={() => setDrawerOpen(false)} style="z-index: 1;" unmount={false} title="Navigation drawer">
             <Show when={drawerOpen() && !drawerFlat()}>
-              <DialogOverlay class="absolute inset-0" />
+              <DialogOverlay class="absolute inset-0" onClick={() => setDrawerOpen(false)} />
             </Show>
             <DialogPanel class={`bg-normal-3 transition-transform ease-out ${drawerFlat() ? 'relative' : 'absolute inset-b-0 inset-is-0'}`} style={`transform: translateX(${drawerVisible() ? '0' : '-100%'})`}>
               {nav}
@@ -111,9 +111,10 @@ const Layout: Component = () => {
           </Dialog>
         </Show>
 
-        <main class={`flex-1 transition-all ${(drawerOpen() && !drawerFlat()) ? 'blur-s.2 opacity-s.4' : ''}`} onClick={() => setDrawerOpen(false)}>
-          <Outlet />
-        </main>
+        <Outlet
+          class={`flex-1 transition-all ${(drawerOpen() && !drawerFlat()) ? 'blur-s.2 opacity-s.4' : ''}`}
+          as={props => <main class={props.class}>{props.children}</main>}
+        />
       </div>
     </Page>
   )
