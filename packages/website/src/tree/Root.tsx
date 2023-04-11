@@ -29,7 +29,7 @@ const Layout: Component = () => {
 
   const menuItems = () => <>
     <LocalLink href="/" >Home</LocalLink>
-    <LocalLink href="/docs/Usage/Installation" >Docs</LocalLink>
+    <LocalLink href="/docs" >Docs</LocalLink>
     <Button onClick={themeStore.toggleScheme} class="p-s rounded-s relative">
       <div class="i-mdi-brightness-4 transition" style={`opacity: ${themeStore.enforceScheme() === undefined ? 1 : 0}`} />
       <div class="absolute i-mdi-brightness-7 transition" style={`opacity: ${themeStore.enforceScheme() === 'light' ? 1 : 0}`} />
