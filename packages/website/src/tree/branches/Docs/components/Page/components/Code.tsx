@@ -1,5 +1,5 @@
 import type { Component } from 'solid-js'
-import Error from '../components/Error'
+import Error from '~/lib/Error'
 import libs from '~/lib/external'
 
 const { highlighter } = libs

@@ -14,6 +14,7 @@ import logoBlack from '@windblade/brand/logo-black.svg'
 
 import Home from './branches/Home'
 import Docs from './branches/Docs'
+import SelectModule from './branches/SelectModule'
 
 import themeStore from '~/stores/themeStore'
 import { LocalLink, Outlet, spaIntegration } from '~/lib/rotuer'
@@ -111,6 +112,7 @@ const Main: Component = () => {
         <Route path="/" component={Layout} >
           <Route path="/" component={Home} />
           <Docs />
+          <Route path="/selectModule" component={SelectModule} />
         </Route>
       </Routes>
     </Router>

@@ -1,9 +1,11 @@
 import { For, useContext } from 'solid-js'
 import type { Element } from 'xast-util-from-xml/lib'
+
 import type { XmlComponent } from '../types'
 import VariableContext, { applyVars } from '../XmlVariables'
-import Error from '../components/Error'
 import XmlChildren from '../components/XmlChildren'
+
+import Error from '~/lib/Error'
 import uno from '~/unocss'
 
 const navigateUnoConfig = (path: string) => {

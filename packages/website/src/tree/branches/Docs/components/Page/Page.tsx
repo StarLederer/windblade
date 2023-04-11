@@ -1,15 +1,17 @@
 import { Show, useContext } from 'solid-js'
 import type { Element } from 'xast-util-from-xml/lib'
+
 import type { XmlComponent, XmlNodeRenderer } from './types'
 import { XmlContext, extendXmlContext } from './types'
 import { Context as RootContext } from './XmlRoot'
-import Error from './components/Error'
 import XmlChildren from './components/XmlChildren'
 import Code from './components/Code'
 import TryIt from './Page/TryIt'
 import ForUno from './Page/For'
 import Sample from './Page/Sample'
 import Example from './Page/Example'
+
+import Error from '~/lib/Error'
 
 const render: XmlNodeRenderer = (node) => {
   const ctx = useContext(RootContext)

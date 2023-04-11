@@ -1,20 +1,17 @@
 import type { Component } from 'solid-js'
 import { For, Show, createEffect, createSignal } from 'solid-js'
-import {
-  Dialog,
-  DialogOverlay,
-  DialogPanel,
-} from 'solid-headless'
+import { Dialog, DialogOverlay, DialogPanel } from 'solid-headless'
 import Button from '@ui/primitives/Button'
 import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
-import { Route, useLocation, useMatch } from '@solidjs/router'
-import Nav from './Docs/components/Nav'
+import { Navigate, Route, useLocation, useMatch } from '@solidjs/router'
+
 import DocPage from './Docs/components/Page'
 import { escapeString } from './Docs/escapeString'
+import Nav from '~/components/DocsNav'
+import Error from '~/lib/Error'
+
 import docsStore from '~/stores/docsStore'
 import { LocalLink, Outlet, Page } from '~/lib/rotuer'
-
-const docs = (): CompiledDocumentationTree => docsStore.module()?.docs ?? []
 
 const DocumentationRoutes: Component<{
   tree: CompiledDocumentationTree
@@ -73,7 +70,6 @@ const Layout: Component = () => {
 
   const nav = <Nav
     prefix={['docs']}
-    tree={docs()}
     class="p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 size-i-max size-b-full"
     ref={drawer}
     settings={{
@@ -143,8 +139,24 @@ const NotFound: Component = () => (
 
 const Main: Component = () => (
   <Route path="docs" component={Layout}>
-    <DocumentationRoutes tree={docs()} />
-    <Route path="/*" component={NotFound} />
+    <Show
+      when={docsStore.moduleId()}
+      fallback={
+        <Route path="/*" element={<Navigate href="/selectModule" />}/>
+      }
+    >
+      <Route path="/*" component={NotFound} />
+      <Show
+        when={docsStore.module()}
+        fallback={<Error>Module is loading</Error>}
+        keyed
+      >
+        {mdle => mdle.success
+          ? <DocumentationRoutes tree={mdle.value.docs} />
+          : <Error>Module falied to load</Error>
+        }
+      </Show>
+    </Show>
   </Route>
 )
 

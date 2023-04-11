@@ -1,7 +1,10 @@
 import type { Component } from 'solid-js'
 import Root from './tree/Root'
 import themeStore from '~/stores/themeStore'
+import docsStore from '~/stores/docsStore'
+
 const Main: Component = () => {
+  docsStore.fetchIndex()
   const themeStyles = () => `${themeStore.scheme() === 'light' ? 'scheme-light' : 'scheme-dark'} scheme-auto-${themeStore.hue()}`
 
   return (

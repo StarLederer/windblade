@@ -1,11 +1,13 @@
 import { Show } from 'solid-js'
 import type { Element } from 'xast-util-from-xml/lib'
 import type { Component } from 'solid-js'
+
 import type { XmlComponent, XmlNodeRenderer } from '../../../types'
 import { XmlContext, extendXmlContext } from '../../../types'
 import XmlChildren from '../../../components/XmlChildren'
-import Error from '../../../components/Error'
 import { applyVars } from '../../../XmlVariables'
+
+import Error from '~/lib/Error'
 
 const Option: Component<{
   value: string

@@ -14,12 +14,12 @@ import calculationsTw from './Home/content/calculations/tw.html.txt?raw'
 import calculationsWb from './Home/content/calculations/wb.html.txt?raw'
 import jsTw from './Home/content/js/tw.js.txt?raw'
 import jsWb from './Home/content/js/wb.js.txt?raw'
-import Modules from './Home/Moludes'
 
 import libs from '~/lib/external'
 import Container from '~/lib/Container'
 import { LocalLink, Page } from '~/lib/rotuer'
 import docsStore from '~/stores/docsStore'
+import Modules from '~/components/MoludeList'
 
 const styles = {
   header: {

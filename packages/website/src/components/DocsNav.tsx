@@ -1,7 +1,12 @@
-import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
 import type { Component, ParentComponent } from 'solid-js'
-import { For, createContext, useContext } from 'solid-js'
-import Selector from './Nav/Selector'
+import { For, Show, createContext, useContext } from 'solid-js'
+import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
+import Progress from '@ui/primitives/Progress'
+
+import docsStore from '~/stores/docsStore'
+import Error from '~/lib/Error'
+
+import Selector from '~/components/ModuleSelector'
 
 interface Settings {
   leafActive: (path: string[]) => boolean
@@ -102,7 +107,6 @@ const Branch: Component<{
 }
 
 const Main: Component<{
-  tree: CompiledDocumentationTree
   prefix: string[]
   class?: string
   ref?: HTMLElement
@@ -112,7 +116,16 @@ const Main: Component<{
     <nav class={`${props.class} flex flex-col gap-s`} ref={props.ref}>
       <Selector />
       <Context.Provider value={props.settings}>
-        <Branch tree={props.tree} prefix={props.prefix} depth={0} />
+        <Show
+          when={docsStore.module()}
+          fallback={<div class="place-self-center"><Progress/></div>}
+          keyed
+        >
+          {option => option.success
+            ? <Branch tree={option.value.docs} prefix={props.prefix} depth={0} />
+            : <Error>Error loading index</Error>
+          }
+        </Show>
       </Context.Provider>
     </nav>
   )

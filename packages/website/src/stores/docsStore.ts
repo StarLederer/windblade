@@ -1,36 +1,27 @@
-import type { CompiledDocumentationTree } from 'unocss-docs'
 import { createRoot, createSignal } from 'solid-js'
 
-import type { ModuleId } from './docsStore/modules'
-import modules from './docsStore/modules'
+import type { Module, ModuleId, ModuleMeta, Option } from '~/api'
+import { get, getIndex } from '~/api'
 
 function main() {
-  const [module, setModule] = createSignal<{
-    id: ModuleId | undefined
-    docs: CompiledDocumentationTree | undefined
-    error: any
-  }>({
-    id: undefined,
-    docs: undefined,
-    error: undefined,
-  })
+  const [index, setIndex] = createSignal<Option<Map<ModuleId, ModuleMeta>, string>>()
+  const [module, setModule] = createSignal<Option<Module, string>>()
+  const [moduleId, setModuleId] = createSignal<ModuleId>()
 
-  const fetchModule = async (id: ModuleId) => {
-    let docs
-    let error
-
-    try {
-      docs = await modules[id].loadDocs()
-    }
-    catch (err) {
-      error = err
-    }
-
-    setModule({ id, docs, error })
+  const fetchIndex = async () => {
+    setIndex(getIndex())
   }
 
-  return { module, fetchModule }
+  const fetchModule = async (id: ModuleId) => {
+    if (id === moduleId())
+      return
+
+    setModuleId(id)
+    setModule(undefined)
+    setModule(await get(id))
+  }
+
+  return { index, fetchIndex, module, moduleId, fetchModule }
 }
 
 export default createRoot(main)
-export { default as modules } from './docsStore/modules'
