@@ -248,11 +248,11 @@ const rules: Rule<Theme>[] = [
   ['place-items-baseline', { 'place-items': 'baseline' }],
   ['place-items-stretch', { 'place-items': 'stretch' }],
 
-  ['place-items-auto', { 'place-self': 'auto' }],
-  ['place-items-start', { 'place-self': 'start' }],
-  ['place-items-end', { 'place-self': 'end' }],
-  ['place-items-center', { 'place-self': 'center' }],
-  ['place-items-stretch', { 'place-self': 'stretch' }],
+  ['place-self-auto', { 'place-self': 'auto' }],
+  ['place-self-start', { 'place-self': 'start' }],
+  ['place-self-end', { 'place-self': 'end' }],
+  ['place-self-center', { 'place-self': 'center' }],
+  ['place-self-stretch', { 'place-self': 'stretch' }],
 
   // Spacing
 

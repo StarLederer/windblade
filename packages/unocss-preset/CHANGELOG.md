@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `grid-fill-...` using `auto-fit` instead of `auto-fill`.
 - `grid-fit-...` and `grid-fill` overflowing containers at large sizes.
 - Brakets in some grid rules now work much better.
+- `place-self-...` and `place-items-...` no longer have a conflicting name.
 
 ### Changed
 
