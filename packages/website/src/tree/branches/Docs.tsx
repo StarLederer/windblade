@@ -136,9 +136,9 @@ const Layout: Component = () => {
 
 const NotFound: Component = () => (
   <Page class="p-m.2 flex gap-s text-m.2 items-center font-bold">
-  <div class="i-mdi-arrow-left" />
-  Select something
-</Page>
+    <div class="i-mdi-arrow-left" />
+    Select something
+  </Page>
 )
 
 const Main: Component = () => (
