@@ -14,7 +14,7 @@ import { escapeString } from './Docs/escapeString'
 import docsStore from '~/stores/docsStore'
 import { LocalLink, Outlet, Page } from '~/lib/rotuer'
 
-const docs = (): CompiledDocumentationTree => docsStore.docs() ?? []
+const docs = (): CompiledDocumentationTree => docsStore.module()?.docs ?? []
 
 const DocumentationRoutes: Component<{
   tree: CompiledDocumentationTree
@@ -134,18 +134,17 @@ const Layout: Component = () => {
   )
 }
 
+const NotFound: Component = () => (
+  <Page class="p-m.2 flex gap-s text-m.2 items-center font-bold">
+  <div class="i-mdi-arrow-left" />
+  Select something
+</Page>
+)
+
 const Main: Component = () => (
   <Route path="docs" component={Layout}>
     <DocumentationRoutes tree={docs()} />
-    <Route
-      path="/*"
-      element={
-        <Page class="p-m.2 flex gap-s text-m.2 items-center font-bold">
-          <div class="i-mdi-arrow-left" />
-          Select something
-        </Page>
-      }
-    />
+    <Route path="/*" component={NotFound} />
   </Route>
 )
 

@@ -1,17 +1,36 @@
 import type { CompiledDocumentationTree } from 'unocss-docs'
 import { createRoot, createSignal } from 'solid-js'
 
-import { docs as presetCompleteDocs } from 'unocss-preset-windblade'
+import type { ModuleId } from './docsStore/modules'
+import modules from './docsStore/modules'
 
 function main() {
-  // System sceheme
-  const [name, setName] = createSignal<string>()
-  const [docs, setDocs] = createSignal<CompiledDocumentationTree | undefined>(presetCompleteDocs.default)
+  const [module, setModule] = createSignal<{
+    id: ModuleId | undefined
+    docs: CompiledDocumentationTree | undefined
+    error: any
+  }>({
+    id: undefined,
+    docs: undefined,
+    error: undefined,
+  })
 
-  // Computed
-  // const scheme = createMemo(() => enforceScheme() ?? systemSceheme() ?? "dark");
+  const fetchModule = async (id: ModuleId) => {
+    let docs
+    let error
 
-  return { docs, setDocs, name, setName }
+    try {
+      docs = await modules[id].loadDocs()
+    }
+    catch (err) {
+      error = err
+    }
+
+    setModule({ id, docs, error })
+  }
+
+  return { module, fetchModule }
 }
 
 export default createRoot(main)
+export { default as modules } from './docsStore/modules'

@@ -20,7 +20,6 @@ import libs from '~/lib/external'
 import Container from '~/lib/Container'
 import { LocalLink, Page } from '~/lib/rotuer'
 import docsStore from '~/stores/docsStore'
-import modules from '~/lib/modules'
 
 const styles = {
   header: {
@@ -83,9 +82,7 @@ const CTA: Component = () => (
   <LocalLink
     style="solid"
     href="/docs/Usage/Installation"
-    onClick={async () => {
-      docsStore.setDocs(await modules[0].loadDocs())
-    }}
+    onClick={() => docsStore.fetchModule('complete')}
   >
     Get started
     <div class="i-mdi-arrow-right" />
