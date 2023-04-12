@@ -1,12 +1,11 @@
 import type { Preset, PresetOptions } from '@unocss/core'
-import { theme } from '@windblade/core'
+import type { WindbladeTheme } from '@windblade/core'
+import { theme, themes } from '@windblade/core'
 import merge from 'ts-deepmerge'
 import presetColor from '@windblade/unocss-preset-color'
 import presetDollars from '@windblade/unocss-preset-dollars'
 import rules from './rules'
 import preflights from './preflights'
-import type { WindbladeTheme } from './themes'
-import themes from './themes'
 
 export interface WindbladeOptions extends PresetOptions {
   theme?: WindbladeTheme

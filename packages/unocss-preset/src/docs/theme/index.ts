@@ -1,7 +1,9 @@
 import type { DocumentationTree } from 'unocss-docs'
-import colors from './colors'
+import { docs as colorDocs } from '@windblade/unocss-preset-color'
 import proportions from './proportions'
 import other from './other'
+
+const colors = colorDocs.usage.theme
 
 export const categoy: DocumentationTree = new Map([
   ['Semantic Colors', colors],

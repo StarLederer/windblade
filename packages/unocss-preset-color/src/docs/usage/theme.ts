@@ -1,7 +1,7 @@
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
+import { themes } from '@windblade/core'
 import type { theme } from '@windblade/core'
-import { themes } from '../../themes'
 
 const wb = themes.windblade.windblade
 

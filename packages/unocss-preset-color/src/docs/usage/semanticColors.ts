@@ -31,8 +31,10 @@ const example4 = `
 `
 
 const example5 = `
-import { getLCA, LCHToCSSColor } from "unocss-preset-windblade/core";
+import { utils } from "@windblade/core";
 import { theme } from "unocss-preset-windblade"; // this is just a source file and it does not know about your theme customizations. If you are using your own colors you should import them instead
+
+const { getColorSchemeCSSProps, objToCSS } = utils
 
 const brandHue = 80;
 

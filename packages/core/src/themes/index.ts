@@ -10,5 +10,3 @@ export const themes = {
 } as const
 
 export type WindbladeTheme = keyof typeof themes
-
-export default themes

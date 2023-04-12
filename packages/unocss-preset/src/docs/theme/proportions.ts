@@ -1,6 +1,6 @@
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
-import { themes } from '../../themes'
+import { themes } from '@windblade/core'
 
 const wb = themes.windblade.windblade
 
