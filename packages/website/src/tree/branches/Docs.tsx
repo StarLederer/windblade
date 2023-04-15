@@ -149,7 +149,7 @@ const Layout: Component<{
 
 const MaybeLayout: Component = () => {
   const { moduleId } = useParams<{ moduleId: ModuleId }>()
-  const [mdle] = createResource(() => docsStore.getModuleById(moduleId))
+  const [mdle, { refetch }] = createResource(() => docsStore.getModuleById(moduleId))
 
   return (
     <Page class="[*]:absolute flex justify-center items-center">
@@ -159,7 +159,15 @@ const MaybeLayout: Component = () => {
       >
         <Show
           when={mdle()?.success}
-          fallback="Error loading module"
+          fallback={
+            <div>
+              Error loading module with ID '{moduleId}'
+              <div class="flex flex-wrap justify-between gap-s.4 m-bs-s">
+                <Button style="half" onClick={refetch}>Retry</Button>
+                <LocalLink style="secondary" href="/docs">Back to all docs</LocalLink>
+              </div>
+            </div>
+          }
         >
           <Layout tree={(mdle() as { value: Module }).value.docs} moduleId={moduleId} />
         </Show>
