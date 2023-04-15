@@ -37,10 +37,6 @@ const MaybeDocumentationRoutes: Component = () => {
   const { moduleId } = useParams<{ moduleId: ModuleId }>()
   const [mdle] = createResource(() => docsStore.getModuleById(moduleId))
 
-  createEffect(() => {
-    console.log(mdle())
-  })
-
   return (
     <Show when={mdle()} keyed>
       {option => option.success && <DocumentationRoutes tree={option.value.docs} />}
