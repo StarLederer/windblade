@@ -39,6 +39,10 @@ const MaybeDocumentationRoutes: Component = () => {
   const { moduleId } = useParams<{ moduleId: ModuleId }>()
   const [mdle] = createResource(() => docsStore.getModuleById(moduleId))
 
+  createEffect(() => {
+    console.log(mdle())
+  })
+
   return (
     <Show when={mdle()} keyed>
       {option => option.success && <DocumentationRoutes tree={option.value.docs} />}
@@ -113,7 +117,7 @@ const Layout: Component<{
             <div class={`i-mdi-backburger ${drawerOpen() ? 'opacity-s' : 'opacity-zero'} transition absolute`} />
           </Button>
           <div class="flex flex-wrap gap-s.4 text-fg-3">
-            <For each={useLocation().pathname.split('/').slice(2)}>
+            <For each={useLocation().pathname.split('/').slice(3)}>
               {(crumb, i) => <>
                 <div class={`${i() === 0 ? '' : 'text-fg-1 font-semibold'}`}>{crumb.replaceAll('_', ' ')}</div>
                 {i() === 0 && <div class="i-mdi-chevron-right" />}
