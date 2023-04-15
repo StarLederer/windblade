@@ -11,10 +11,7 @@ const Main: Component = () => (
     keyed
   >
     {option => option.success
-      ? <ModuleList
-        map={option.value}
-        onInspect={id => docsStore.fetchModule(id)}
-      />
+      ? <ModuleList map={option.value} />
       : <Error>Error loading index</Error>
     }
   </Show>
