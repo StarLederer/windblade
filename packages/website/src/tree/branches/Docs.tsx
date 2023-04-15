@@ -5,11 +5,12 @@ import Button from '@ui/primitives/Button'
 import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
 import { Navigate, Route, useLocation, useMatch } from '@solidjs/router'
 
+import Index from './Docs/Index'
 import DocPage from './Docs/components/Page'
 import { escapeString } from './Docs/escapeString'
+
 import Nav from '~/components/DocsNav'
 import Error from '~/lib/Error'
-
 import docsStore from '~/stores/docsStore'
 import { LocalLink, Outlet, Page } from '~/lib/rotuer'
 
@@ -139,6 +140,7 @@ const NotFound: Component = () => (
 
 const Main: Component = () => (
   <Route path="docs" component={Layout}>
+    <Route path="/" component={Index} />
     <Show
       when={docsStore.moduleId()}
       fallback={
