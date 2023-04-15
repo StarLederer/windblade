@@ -11,7 +11,6 @@ import DocPage from './Docs/components/Page'
 import { escapeString } from './Docs/escapeString'
 
 import Nav from '~/components/DocsNav'
-import Error from '~/lib/Error'
 import docsStore from '~/stores/docsStore'
 import { LocalLink, Outlet, Page } from '~/lib/rotuer'
 import type { Module, ModuleId } from '~/api'
@@ -35,6 +34,17 @@ const DocumentationRoutes: Component<{
     }}
   </For>
 )
+
+const MaybeDocumentationRoutes: Component = () => {
+  const { moduleId } = useParams<{ moduleId: ModuleId }>()
+  const [mdle] = createResource(() => docsStore.getModuleById(moduleId))
+
+  return (
+    <Show when={mdle()} keyed>
+      {option => option.success && <DocumentationRoutes tree={option.value.docs} />}
+    </Show>
+  )
+}
 
 const Layout: Component<{
   tree: CompiledDocumentationTree
@@ -170,16 +180,7 @@ const Main: Component = () => (
     <Route path="/" component={Index} />
     <Route path="/:moduleId" component={MaybeLayout}>
       <Route path="/*" component={NotFound} />
-      <Show
-        when={docsStore.module()}
-        fallback={<Error>Module is loading</Error>}
-        keyed
-      >
-        {mdle => mdle.success
-          ? <DocumentationRoutes tree={mdle.value.docs} />
-          : <Error>Module falied to load</Error>
-        }
-      </Show>
+      <MaybeDocumentationRoutes />
     </Route>
   </Route>
 )
