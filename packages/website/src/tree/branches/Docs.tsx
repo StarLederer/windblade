@@ -8,7 +8,6 @@ import Progress from '@ui/primitives/Progress'
 
 import Index from './Docs/Index'
 import DocPage from './Docs/components/Page'
-import { escapeString } from './Docs/escapeString'
 
 import Nav from '~/components/DocsNav'
 import docsStore from '~/stores/docsStore'
@@ -20,13 +19,12 @@ const DocumentationRoutes: Component<{
 }> = props => (
   <For each={props.tree}>
     {({ name, value }) => {
-      const path = escapeString(name)
       if (typeof value === 'string') {
-        return <Route path={path} element={<DocPage page={value} title={name} />} />
+        return <Route path={name} element={<DocPage page={value} title={name} />} />
       }
       else {
         return (
-          <Route path={`${path}`}>
+          <Route path={name}>
             <DocumentationRoutes tree={value} />
           </Route>
         )
@@ -94,11 +92,11 @@ const Layout: Component<{
     class="p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 size-i-max size-b-full"
     ref={drawer}
     settings={{
-      leafActive: path => !!useMatch(() => `/${path.map(val => escapeString(val)).join('/')}`)(),
+      leafActive: path => !!useMatch(() => `/${path.join('/')}`)(),
       leafAs: props => (
         <LocalLink
           style="none"
-          href={`/${props.path.map(val => escapeString(val)).join('/')}`}
+          href={`/${props.path.join('/')}`}
           onClick={() => setDrawerOpen(false)}
           class={props.class}
         >
@@ -117,9 +115,9 @@ const Layout: Component<{
             <div class={`i-mdi-backburger ${drawerOpen() ? 'opacity-s' : 'opacity-zero'} transition absolute`} />
           </Button>
           <div class="flex flex-wrap gap-s.4 text-fg-3">
-            <For each={useLocation().pathname.split('/').slice(3)}>
+            <For each={decodeURIComponent(useLocation().pathname).split('/').slice(3)}>
               {(crumb, i) => <>
-                <div class={`${i() === 0 ? '' : 'text-fg-1 font-semibold'}`}>{crumb.replaceAll('_', ' ')}</div>
+                <div class={`${i() === 0 ? '' : 'text-fg-1 font-semibold'}`}>{crumb}</div>
                 {i() === 0 && <div class="i-mdi-chevron-right" />}
               </>}
             </For>
