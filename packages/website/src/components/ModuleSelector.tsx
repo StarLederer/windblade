@@ -1,5 +1,7 @@
 import type { Component } from 'solid-js'
 import { Show } from 'solid-js'
+import { useNavigate, useParams } from '@solidjs/router'
+
 import For from '~/lib/ForMap'
 import { getUid } from '~/lib/uid'
 import Select from '~/lib/Select'
@@ -11,6 +13,8 @@ const Form: Component<{
   index: Map<string, ModuleMeta>
 }> = (props) => {
   const id = getUid()
+  const { moduleId } = useParams<{ moduleId: ModuleId }>()
+  const navigate = useNavigate()
 
   return (
     <form class="relative">
@@ -19,13 +23,13 @@ const Form: Component<{
         id={id}
         class="p-bs-m.2 p-s rounded-s cursor-pointer bg-accent-4 hover:bg-accent-3 font-semibold"
         onChange={(e) => {
-          docsStore.fetchModule((e.target as HTMLSelectElement).value as ModuleId)
+          navigate(`/docs/${(e.target as HTMLSelectElement).value}`)
         }}
       >
         <option selected disabled value="">select</option>
         <For each={props.index}>
           {([id, meta]) => (
-            <option value={id} selected={docsStore.moduleId() === id}>
+            <option value={id} selected={moduleId === id}>
               {meta.title}
             </option>
           )}
