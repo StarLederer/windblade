@@ -1,9 +1,10 @@
 import type { Component } from 'solid-js'
-import { For, Show, createEffect, createSignal } from 'solid-js'
+import { For, Show, createEffect, createResource, createSignal } from 'solid-js'
 import { Dialog, DialogOverlay, DialogPanel } from 'solid-headless'
 import Button from '@ui/primitives/Button'
 import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
-import { Navigate, Route, useLocation, useMatch } from '@solidjs/router'
+import { Route, useLocation, useMatch, useParams } from '@solidjs/router'
+import Progress from '@ui/primitives/Progress'
 
 import Index from './Docs/Index'
 import DocPage from './Docs/components/Page'
@@ -13,6 +14,7 @@ import Nav from '~/components/DocsNav'
 import Error from '~/lib/Error'
 import docsStore from '~/stores/docsStore'
 import { LocalLink, Outlet, Page } from '~/lib/rotuer'
+import type { Module, ModuleId } from '~/api'
 
 const DocumentationRoutes: Component<{
   tree: CompiledDocumentationTree
@@ -34,7 +36,10 @@ const DocumentationRoutes: Component<{
   </For>
 )
 
-const Layout: Component = () => {
+const Layout: Component<{
+  tree: CompiledDocumentationTree
+  moduleId: ModuleId
+}> = (props) => {
   const [containerSize, setContainerSize] = createSignal(0)
   const [drawerSize, setDrawerSize] = createSignal(0)
   const [drawerOpen, setDrawerOpen] = createSignal(false)
@@ -70,7 +75,8 @@ const Layout: Component = () => {
   const drawerVisible = () => drawerOpen() || drawerFlat()
 
   const nav = <Nav
-    prefix={['docs']}
+    tree={props.tree}
+    prefix={['docs', props.moduleId]}
     class="p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 size-i-max size-b-full"
     ref={drawer}
     settings={{
@@ -89,7 +95,7 @@ const Layout: Component = () => {
   />
 
   return (
-    <Page class="flex flex-col" ref={container}>
+    <div class="size-i-full size-b-full flex flex-col" ref={container}>
       <Show when={!drawerFlat()}>
         <div class="relative flex gap-s items-center p-s.4 p-i-m.2 border-solid border-0 border-be-px border-color-fg-5">
           <Button onClick={() => setDrawerOpen(!drawerOpen())} class="p-s.6 rounded-full" style="half">
@@ -127,6 +133,27 @@ const Layout: Component = () => {
           as={props => <main class={props.class}>{props.children}</main>}
         />
       </div>
+    </div>
+  )
+}
+
+const MaybeLayout: Component = () => {
+  const { moduleId } = useParams<{ moduleId: ModuleId }>()
+  const [mdle] = createResource(() => docsStore.getModuleById(moduleId))
+
+  return (
+    <Page class="[*]:absolute flex justify-center items-center">
+      <Show
+        when={!mdle.loading}
+        fallback={<Progress />}
+      >
+        <Show
+          when={mdle()?.success}
+          fallback="Error loading module"
+        >
+          <Layout tree={(mdle() as { value: Module }).value.docs} moduleId={moduleId} />
+        </Show>
+      </Show>
     </Page>
   )
 }
@@ -139,14 +166,9 @@ const NotFound: Component = () => (
 )
 
 const Main: Component = () => (
-  <Route path="docs" component={Layout}>
+  <Route path="docs">
     <Route path="/" component={Index} />
-    <Show
-      when={docsStore.moduleId()}
-      fallback={
-        <Route path="/*" element={<Navigate href="/selectModule" />}/>
-      }
-    >
+    <Route path="/:moduleId" component={MaybeLayout}>
       <Route path="/*" component={NotFound} />
       <Show
         when={docsStore.module()}
@@ -158,7 +180,7 @@ const Main: Component = () => (
           : <Error>Module falied to load</Error>
         }
       </Show>
-    </Show>
+    </Route>
   </Route>
 )
 
