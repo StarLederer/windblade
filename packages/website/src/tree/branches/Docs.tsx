@@ -84,19 +84,18 @@ const Layout: Component<{
 
   const nav = <Nav
     tree={props.tree}
-    prefix={['docs', props.moduleId]}
     class="p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 size-i-max size-b-full"
     ref={drawer}
     settings={{
       leafActive: path => !!useMatch(() => `/${path.join('/')}`)(),
-      leafAs: props => (
+      leafAs: p => (
         <LocalLink
           style="none"
-          href={`/${props.path.join('/')}`}
+          href={`/docs/${props.moduleId}/${p.path.join('/')}`}
           onClick={() => setDrawerOpen(false)}
-          class={props.class}
+          class={p.class}
         >
-          {props.children}
+          {p.children}
         </LocalLink>
       ),
     }}

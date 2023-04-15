@@ -104,7 +104,6 @@ const Branch: Component<{
 
 const Main: Component<{
   tree: CompiledDocumentationTree
-  prefix: string[]
   class?: string
   ref?: HTMLElement
   settings: Settings
@@ -113,7 +112,7 @@ const Main: Component<{
     <nav class={`${props.class} flex flex-col gap-s`} ref={props.ref}>
       <Selector />
       <Context.Provider value={props.settings}>
-        <Branch tree={props.tree} prefix={props.prefix} depth={0} />
+        <Branch tree={props.tree} prefix={[]} depth={0} />
       </Context.Provider>
     </nav>
   )
