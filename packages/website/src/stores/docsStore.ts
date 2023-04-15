@@ -7,8 +7,6 @@ function main() {
   const modules = new Map<ModuleId, Module>()
 
   const [index, setIndex] = createSignal<Option<Map<ModuleId, ModuleMeta>, string>>()
-  const [module, setModule] = createSignal<Option<Module, string>>()
-  const [moduleId, setModuleId] = createSignal<ModuleId>()
 
   const getModuleById = async (id: ModuleId): Promise<Option<Module, string>> => {
     const cached = modules.get(id)
@@ -33,16 +31,7 @@ function main() {
     setIndex(getIndex())
   }
 
-  const fetchModule = async (id: ModuleId) => {
-    if (id === moduleId())
-      return
-
-    setModuleId(id)
-    setModule(undefined)
-    setModule(await get(id))
-  }
-
-  return { index, fetchIndex, module, moduleId, fetchModule, getModuleById }
+  return { index, fetchIndex, getModuleById }
 }
 
 export default createRoot(main)
