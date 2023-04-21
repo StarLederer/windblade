@@ -1,8 +1,8 @@
-import type { Component } from 'solid-js'
-import { For, Show, createEffect, createResource, createSignal } from 'solid-js'
+import type { Component, JSXElement } from 'solid-js'
+import { For, Show, createEffect, createResource, createSignal, on } from 'solid-js'
 import { Dialog, DialogOverlay, DialogPanel } from 'solid-headless'
 import Button from '@ui/primitives/Button'
-import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
+import type { CompiledDocumentationTree, DocumentationPage } from '@windblade/unocss-docs'
 import { Route, useLocation, useMatch, useParams } from '@solidjs/router'
 import Progress from '@ui/primitives/Progress'
 
@@ -13,36 +13,6 @@ import Nav from '~/components/DocsNav'
 import docsStore from '~/stores/docsStore'
 import { LocalLink, Outlet, Page } from '~/lib/rotuer'
 import type { Module, ModuleId } from '~/api'
-
-const DocumentationRoutes: Component<{
-  tree: CompiledDocumentationTree
-}> = props => (
-  <For each={props.tree}>
-    {({ name, value }) => {
-      if (typeof value === 'string') {
-        return <Route path={name} element={<DocPage page={value} title={name} />} />
-      }
-      else {
-        return (
-          <Route path={name}>
-            <DocumentationRoutes tree={value} />
-          </Route>
-        )
-      }
-    }}
-  </For>
-)
-
-const MaybeDocumentationRoutes: Component = () => {
-  const { moduleId } = useParams<{ moduleId: ModuleId }>()
-  const [mdle] = createResource(() => docsStore.getModuleById(moduleId))
-
-  return (
-    <Show when={mdle()} keyed>
-      {option => option.success && <DocumentationRoutes tree={option.value.docs} />}
-    </Show>
-  )
-}
 
 const Layout: Component<{
   tree: CompiledDocumentationTree
@@ -145,8 +115,8 @@ const Layout: Component<{
 }
 
 const MaybeLayout: Component = () => {
-  const { moduleId } = useParams<{ moduleId: ModuleId }>()
-  const [mdle, { refetch }] = createResource(() => docsStore.getModuleById(moduleId))
+  const params = useParams<{ moduleId: ModuleId }>()
+  const [mdle, { refetch }] = createResource(() => docsStore.getModuleById(params.moduleId))
 
   return (
     <Page class="[*]:absolute flex justify-center items-center">
@@ -158,7 +128,7 @@ const MaybeLayout: Component = () => {
           when={mdle()?.success}
           fallback={
             <div>
-              Error loading module with ID '{moduleId}'
+              Error loading module with ID '{params.moduleId}'
               <div class="flex flex-wrap justify-between gap-s.4 m-bs-s">
                 <Button style="half" onClick={refetch}>Retry</Button>
                 <LocalLink style="secondary" href="/docs">Back to all docs</LocalLink>
@@ -166,7 +136,7 @@ const MaybeLayout: Component = () => {
             </div>
           }
         >
-          <Layout tree={(mdle() as { value: Module }).value.docs} moduleId={moduleId} />
+          <Layout tree={(mdle() as { value: Module }).value.docs} moduleId={params.moduleId} />
         </Show>
       </Show>
     </Page>
@@ -180,12 +150,85 @@ const NotFound: Component = () => (
   </Page>
 )
 
+const navigateDocTree = (docs: CompiledDocumentationTree, path: string[], i = 0): DocumentationPage | CompiledDocumentationTree | undefined => {
+  const nav = path[i]
+
+  if (!nav)
+    return docs
+
+  const child = docs.find(val => val.name === decodeURIComponent(nav))?.value
+
+  if (Array.isArray(child))
+    return navigateDocTree(child, path, ++i)
+
+  return child
+}
+
+const A: Component = () => {
+  const params = useParams<{
+    moduleId: ModuleId
+    s1: string
+    s2: string
+    s3: string
+    s4: string
+    s5: string
+    s6: string
+  }>()
+  const [mdle] = createResource(() => docsStore.getModuleById(params.moduleId))
+  const [page, setPage] = createSignal<JSXElement>()
+
+  createEffect(on([
+    mdle,
+    () => params.s1,
+    () => params.s2,
+    () => params.s3,
+    () => params.s4,
+    () => params.s5,
+    () => params.s6,
+  ], () => {
+    if (mdle.loading) {
+      setPage(<Page>Loading...</Page>)
+      return
+    }
+
+    if (mdle.error) {
+      setPage(<Page>Error</Page>)
+      return
+    }
+
+    const md = mdle()
+
+    if (!md) {
+      setPage(<Page>No data</Page>)
+      return
+    }
+
+    if (md.success) {
+      const title = decodeURIComponent(params.s6 ?? params.s5 ?? params.s4 ?? params.s3 ?? params.s2 ?? params.s1)
+      const value = navigateDocTree(md.value.docs, [params.s1, params.s2, params.s3, params.s4, params.s5, params.s6])
+
+      if (typeof value !== 'string') {
+        setPage(<Page>This page doesn't exist</Page>)
+        return
+      }
+
+      const next = <DocPage page={value} title={title} />
+      setPage(next)
+    }
+    else {
+      setPage(<div>err</div>)
+    }
+  }))
+
+  return page
+}
+
 const Main: Component = () => (
   <Route path="docs">
     <Route path="/" component={Index} />
     <Route path="/:moduleId" component={MaybeLayout}>
       <Route path="/*" component={NotFound} />
-      <MaybeDocumentationRoutes />
+      <Route path="/:s1/:s2?" component={A} />
     </Route>
   </Route>
 )
