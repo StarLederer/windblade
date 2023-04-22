@@ -110,9 +110,9 @@ const Main: Component = () => {
       <Routes>
         <Route path="/" component={Layout} >
           <Route path="/" component={Index} />
-          <Route path="/docs">
+          <Route path="/docs" element={<Outlet />}>
             <Route path="/" component={DocsIndex} />
-            <Route path="/:moduleId" component={DocsId}>
+            <Route path="/:moduleId" element={<RematchDynamic on={p => p.moduleId} component={DocsId}/>}>
               <Route path="/*" component={DocsIdAll} />
               <Route path="/:l1/:l2?/:l3?/:l4?/:l5?/:l6?" element={<RematchDynamic component={DocsIdNav} />} />
             </Route>
