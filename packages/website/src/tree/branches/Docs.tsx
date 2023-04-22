@@ -228,7 +228,7 @@ const Main: Component = () => (
     <Route path="/" component={Index} />
     <Route path="/:moduleId" component={MaybeLayout}>
       <Route path="/*" component={NotFound} />
-      <Route path="/:s1/:s2?" component={A} />
+      <Route path="/:s1/:s2?/:s3?/:s4?/:s5?/:s6?" component={A} />
     </Route>
   </Route>
 )
