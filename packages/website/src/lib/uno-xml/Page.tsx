@@ -4,13 +4,13 @@ import type { Element } from 'xast-util-from-xml/lib'
 import type { XmlComponent, XmlNodeRenderer } from './types'
 import { XmlContext, extendXmlContext } from './types'
 import { Context as RootContext } from './XmlRoot'
-import XmlChildren from './components/XmlChildren'
-import Code from './components/Code'
+import XmlChildren from './XmlChildren'
 import TryIt from './Page/TryIt'
 import ForUno from './Page/For'
 import Sample from './Page/Sample'
 import Example from './Page/Example'
 
+import Code from '~/lib/Code'
 import Error from '~/lib/Error'
 
 const render: XmlNodeRenderer = (node) => {

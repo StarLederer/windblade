@@ -2,12 +2,14 @@ import type { Accessor } from 'solid-js'
 import { createContext, createEffect, createSignal, useContext } from 'solid-js'
 import type { Element } from 'xast-util-from-xml/lib'
 import Button from '@ui/primitives/Button'
-import type { XmlComponent, XmlNodeRenderer } from '../../../types'
-import { XmlContext, extendXmlContext } from '../../../types'
-import XmlChildren from '../../../components/XmlChildren'
+
 import { Context as TryItContext } from '../../TryIt'
 import Select from './Select'
 import Input from './Input'
+
+import type { XmlComponent, XmlNodeRenderer } from '~/lib/uno-xml/types'
+import { XmlContext, extendXmlContext } from '~/lib/uno-xml/types'
+import XmlChildren from '~/lib/uno-xml/XmlChildren'
 
 type PartSetter = (i: number, val: string) => void
 

@@ -2,8 +2,7 @@ import type { Component } from 'solid-js'
 import { Suspense } from 'solid-js'
 import type { DocumentationPage } from 'unocss-docs'
 
-import XmlRoot from './Page/XmlRoot'
-
+import XmlRoot from '~/lib/uno-xml/XmlRoot'
 import Error from '~/lib/Error'
 import libs from '~/lib/external'
 import { Page } from '~/lib/rotuer'

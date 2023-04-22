@@ -1,10 +1,12 @@
 import type { Accessor, Setter } from 'solid-js'
 import { createContext, createSignal, useContext } from 'solid-js'
 import type { Element } from 'xast-util-from-xml/lib'
-import type { XmlComponent, XmlNodeRenderer } from '../../types'
-import { XmlContext, extendXmlContext } from '../../types'
-import XmlChildren from '../../components/XmlChildren'
+
 import Util from './Utils/Util'
+
+import type { XmlComponent, XmlNodeRenderer } from '~/lib/uno-xml/types'
+import { XmlContext, extendXmlContext } from '~/lib/uno-xml/types'
+import XmlChildren from '~/lib/uno-xml/XmlChildren'
 
 export const Context = createContext<{
   selected: Accessor<number>

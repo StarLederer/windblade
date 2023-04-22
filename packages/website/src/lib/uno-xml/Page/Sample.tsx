@@ -1,6 +1,6 @@
 import type { Component } from 'solid-js'
 import { useContext } from 'solid-js'
-import VariableContext from '../XmlVariables'
+import VariableContext from '~/lib/uno-xml/XmlVariables'
 
 const main: Component<{
   var: string

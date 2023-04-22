@@ -3,7 +3,7 @@ import { Show, createContext, createEffect, createSignal, useContext } from 'sol
 import type { Element } from 'xast-util-from-xml/lib'
 import type { XmlComponent, XmlNodeRenderer } from '../types'
 import { XmlContext, extendXmlContext } from '../types'
-import XmlChildren from '../components/XmlChildren'
+import XmlChildren from '../XmlChildren'
 import Utils from './TryIt/Utils'
 import Viewport from './Viewport'
 import libs from '~/lib/external'

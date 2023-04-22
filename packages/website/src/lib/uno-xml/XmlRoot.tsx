@@ -1,6 +1,6 @@
 import { For, createContext } from 'solid-js'
-import type { XmlRootComponent } from './types'
 
+import type { XmlRootComponent } from './types'
 import Page from './Page'
 
 import Error from '~/lib/Error'

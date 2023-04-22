@@ -2,10 +2,10 @@ import { Show } from 'solid-js'
 import type { Element } from 'xast-util-from-xml/lib'
 import type { Component } from 'solid-js'
 
-import type { XmlComponent, XmlNodeRenderer } from '../../../types'
-import { XmlContext, extendXmlContext } from '../../../types'
-import XmlChildren from '../../../components/XmlChildren'
-import { applyVars } from '../../../XmlVariables'
+import type { XmlComponent, XmlNodeRenderer } from '~/lib/uno-xml/types'
+import { XmlContext, extendXmlContext } from '~/lib/uno-xml/types'
+import XmlChildren from '~/lib/uno-xml/XmlChildren'
+import { applyVars } from '~/lib/uno-xml/XmlVariables'
 
 import Error from '~/lib/Error'
 
