@@ -3,6 +3,7 @@ import { For, Show, createEffect, createResource, createSignal, on } from 'solid
 import { Dialog, DialogOverlay, DialogPanel } from 'solid-headless'
 import Button from '@ui/primitives/Button'
 import type { CompiledDocumentationTree, DocumentationPage } from '@windblade/unocss-docs'
+import type { Params } from '@solidjs/router'
 import { Route, useLocation, useMatch, useParams } from '@solidjs/router'
 import Progress from '@ui/primitives/Progress'
 
@@ -164,71 +165,75 @@ const navigateDocTree = (docs: CompiledDocumentationTree, path: string[], i = 0)
   return child
 }
 
-const A: Component = () => {
+const MaybeDocPage: Component = () => {
   const params = useParams<{
     moduleId: ModuleId
-    s1: string
-    s2: string
-    s3: string
-    s4: string
-    s5: string
-    s6: string
+    l1: string
+    l2: string
+    l3: string
+    l4: string
+    l5: string
+    l6: string
   }>()
   const [mdle] = createResource(() => docsStore.getModuleById(params.moduleId))
+
+  return (
+    <Show
+      when={!mdle.loading}
+      fallback={<Page>Loading...</Page>}
+    >
+      <Show
+        when={!mdle.error}
+        fallback={<Page>Error</Page>}
+      >
+        <Show
+          when={mdle()}
+          fallback={<Page>No data</Page>}
+          keyed
+        >
+          {(md) => {
+            if (md.success) {
+              const title = decodeURIComponent(params.l6 ?? params.l5 ?? params.l4 ?? params.l3 ?? params.l2 ?? params.l1)
+              const value = navigateDocTree(md.value.docs, [params.l1, params.l2, params.l3, params.l4, params.l5, params.l6])
+
+              if (typeof value !== 'string')
+                return <Page>This page doesn't exist</Page>
+
+              return <DocPage page={value} title={title} />
+            }
+            else {
+              return <Page>Error</Page>
+            }
+          }}
+        </Show>
+      </Show>
+    </Show>
+  )
+}
+
+/** Re-renders when contents of `useParams()` update. */
+const RematchDynamic: Component<{
+  component: Component
+  on?: (params: Params) => any
+}> = (props) => {
+  const params = useParams()
   const [page, setPage] = createSignal<JSXElement>()
 
-  createEffect(on([
-    mdle,
-    () => params.s1,
-    () => params.s2,
-    () => params.s3,
-    () => params.s4,
-    () => params.s5,
-    () => params.s6,
-  ], () => {
-    if (mdle.loading) {
-      setPage(<Page>Loading...</Page>)
-      return
-    }
+  const paramSignal = () => props.on ? props.on(params) : Object.values(params)
 
-    if (mdle.error) {
-      setPage(<Page>Error</Page>)
-      return
-    }
-
-    const md = mdle()
-
-    if (!md) {
-      setPage(<Page>No data</Page>)
-      return
-    }
-
-    if (md.success) {
-      const title = decodeURIComponent(params.s6 ?? params.s5 ?? params.s4 ?? params.s3 ?? params.s2 ?? params.s1)
-      const value = navigateDocTree(md.value.docs, [params.s1, params.s2, params.s3, params.s4, params.s5, params.s6])
-
-      if (typeof value !== 'string') {
-        setPage(<Page>This page doesn't exist</Page>)
-        return
-      }
-
-      const next = <DocPage page={value} title={title} />
-      setPage(next)
-    }
-    else {
-      setPage(<div>err</div>)
-    }
+  createEffect(on(paramSignal, () => {
+    setPage(<props.component />)
   }))
 
   return page
 }
 
 const Main: Component = () => (
-  <Route path="docs">
+  <Route path="/docs">
     <Route path="/" component={Index} />
     <Route path="/:moduleId" component={MaybeLayout}>
       <Route path="/*" component={NotFound} />
-      <Route path="/:s1/:s2?/:s3?/:s4?/:s5?/:s6?" component={A} />
+      <Route path="/:l1/:l2?/:l3?/:l4?/:l5?/:l6?" element={<RematchDynamic component={MaybeDocPage}/>} />
     </Route>
   </Route>
 )
