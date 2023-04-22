@@ -1,19 +1,19 @@
 import type { Component } from 'solid-js'
 import { Show, createEffect, createSignal } from 'solid-js'
 import { Route, Router, Routes } from '@solidjs/router'
-import {
-  Popover,
-  PopoverButton,
-  PopoverPanel,
-} from 'solid-headless'
+import { Popover, PopoverButton, PopoverPanel } from 'solid-headless'
+import logoWhite from '@windblade/brand/logo-white.svg'
+import logoBlack from '@windblade/brand/logo-black.svg'
 import Button from '@ui/primitives/Button'
 import ButtonBase from '@ui/primitives/Button/Base'
 import Link from '@ui/primitives/Button/Link'
-import logoWhite from '@windblade/brand/logo-white.svg'
-import logoBlack from '@windblade/brand/logo-black.svg'
+import { RematchDynamic } from '@ui/solid-router'
 
-import Home from './branches/Home'
-import Docs from './branches/Docs'
+import Index from './pages/index'
+import DocsIndex from './pages/docs/index'
+import DocsId from './pages/docs/[id]'
+import DocsIdAll from './pages/docs/[id]/[...all]'
+import DocsIdNav from './pages/docs/[id]/[nav]'
 
 import themeStore from '~/stores/themeStore'
 import { LocalLink, Outlet, spaIntegration } from '~/lib/rotuer'
@@ -27,8 +27,8 @@ const Layout: Component = () => {
   let menu: HTMLDivElement | undefined
 
   const menuItems = () => <>
-    <LocalLink href="/" >Home</LocalLink>
-    <LocalLink href="/docs" >Docs</LocalLink>
+    <LocalLink href="/">Home</LocalLink>
+    <LocalLink href="/docs">Docs</LocalLink>
     <Button onClick={themeStore.toggleScheme} class="p-s rounded-s relative">
       <div class="i-mdi-brightness-4 transition" style={`opacity: ${themeStore.enforceScheme() === undefined ? 1 : 0}`} />
       <div class="absolute i-mdi-brightness-7 transition" style={`opacity: ${themeStore.enforceScheme() === 'light' ? 1 : 0}`} />
@@ -109,8 +109,14 @@ const Main: Component = () => {
     <Router source={spaIntegration()}>
       <Routes>
         <Route path="/" component={Layout} >
-          <Route path="/" component={Home} />
-          <Docs />
+          <Route path="/" component={Index} />
+          <Route path="/docs">
+            <Route path="/" component={DocsIndex} />
+            <Route path="/:moduleId" component={DocsId}>
+              <Route path="/*" component={DocsIdAll} />
+              <Route path="/:l1/:l2?/:l3?/:l4?/:l5?/:l6?" element={<RematchDynamic component={DocsIdNav} />} />
+            </Route>
+          </Route>
         </Route>
       </Routes>
     </Router>

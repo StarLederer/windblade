@@ -1,5 +1,5 @@
 import type { Component } from 'solid-js'
-import Root from './tree/Root'
+import Root from './router'
 import themeStore from '~/stores/themeStore'
 import docsStore from '~/stores/docsStore'
 

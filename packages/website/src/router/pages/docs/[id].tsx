@@ -2,13 +2,9 @@ import type { Component } from 'solid-js'
 import { For, Show, createEffect, createResource, createSignal } from 'solid-js'
 import { Dialog, DialogOverlay, DialogPanel } from 'solid-headless'
 import Button from '@ui/primitives/Button'
-import type { CompiledDocumentationTree, DocumentationPage } from '@windblade/unocss-docs'
-import { Route, useLocation, useMatch, useParams } from '@solidjs/router'
+import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
+import { useLocation, useMatch, useParams } from '@solidjs/router'
 import Progress from '@ui/primitives/Progress'
-import { RematchDynamic } from '@ui/solid-router'
-
-import Index from './Docs/Index'
-import DocPage from './Docs/components/Page'
 
 import Nav from '~/components/DocsNav'
 import docsStore from '~/stores/docsStore'
@@ -115,7 +111,7 @@ const Layout: Component<{
   )
 }
 
-const MaybeLayout: Component = () => {
+const Main: Component = () => {
   const params = useParams<{ moduleId: ModuleId }>()
   const [mdle, { refetch }] = createResource(() => docsStore.getModuleById(params.moduleId))
 
@@ -143,82 +139,5 @@ const MaybeLayout: Component = () => {
     </Page>
   )
 }
-
-const NotFound: Component = () => (
-  <Page class="p-m.2 flex gap-s text-m.2 items-center font-bold">
-    <div class="i-mdi-arrow-left" />
-    Select something
-  </Page>
-)
-
-const navigateDocTree = (docs: CompiledDocumentationTree, path: string[], i = 0): DocumentationPage | CompiledDocumentationTree | undefined => {
-  const nav = path[i]
-
-  if (!nav)
-    return docs
-
-  const child = docs.find(val => val.name === decodeURIComponent(nav))?.value
-
-  if (Array.isArray(child))
-    return navigateDocTree(child, path, ++i)
-
-  return child
-}
-
-const MaybeDocPage: Component = () => {
-  const params = useParams<{
-    moduleId: ModuleId
-    l1: string
-    l2: string
-    l3: string
-    l4: string
-    l5: string
-    l6: string
-  }>()
-  const [mdle] = createResource(() => docsStore.getModuleById(params.moduleId))
-
-  return (
-    <Show
-      when={!mdle.loading}
-      fallback={<Page>Loading...</Page>}
-    >
-      <Show
-        when={!mdle.error}
-        fallback={<Page>Error</Page>}
-      >
-        <Show
-          when={mdle()}
-          fallback={<Page>No data</Page>}
-          keyed
-        >
-          {(md) => {
-            if (md.success) {
-              const title = decodeURIComponent(params.l6 ?? params.l5 ?? params.l4 ?? params.l3 ?? params.l2 ?? params.l1)
-              const value = navigateDocTree(md.value.docs, [params.l1, params.l2, params.l3, params.l4, params.l5, params.l6])
-
-              if (typeof value !== 'string')
-                return <Page>This page doesn't exist</Page>
-
-              return <DocPage page={value} title={title} />
-            }
-            else {
-              return <Page>Error</Page>
-            }
-          }}
-        </Show>
-      </Show>
-    </Show>
-  )
-}
-
-const Main: Component = () => (
-  <Route path="/docs">
-    <Route path="/" component={Index} />
-    <Route path="/:moduleId" component={MaybeLayout}>
-      <Route path="/*" component={NotFound} />
-      <Route path="/:l1/:l2?/:l3?/:l4?/:l5?/:l6?" element={<RematchDynamic component={MaybeDocPage}/>} />
-    </Route>
-  </Route>
-)
 
 export default Main
