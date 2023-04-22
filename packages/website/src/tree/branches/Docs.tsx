@@ -1,11 +1,11 @@
-import type { Component, JSXElement } from 'solid-js'
-import { For, Show, createEffect, createResource, createSignal, on } from 'solid-js'
+import type { Component } from 'solid-js'
+import { For, Show, createEffect, createResource, createSignal } from 'solid-js'
 import { Dialog, DialogOverlay, DialogPanel } from 'solid-headless'
 import Button from '@ui/primitives/Button'
 import type { CompiledDocumentationTree, DocumentationPage } from '@windblade/unocss-docs'
-import type { Params } from '@solidjs/router'
 import { Route, useLocation, useMatch, useParams } from '@solidjs/router'
 import Progress from '@ui/primitives/Progress'
+import { RematchDynamic } from '@ui/solid-router'
 
 import Index from './Docs/Index'
 import DocPage from './Docs/components/Page'
@@ -209,23 +209,6 @@ const MaybeDocPage: Component = () => {
       </Show>
     </Show>
   )
-}
-
-/** Re-renders when contents of `useParams()` update. */
-const RematchDynamic: Component<{
-  component: Component
-  on?: (params: Params) => any
-}> = (props) => {
-  const params = useParams()
-  const [page, setPage] = createSignal<JSXElement>()
-
-  const paramSignal = () => props.on ? props.on(params) : Object.values(params)
-
-  createEffect(on(paramSignal, () => {
-    setPage(<props.component />)
-  }))
-
-  return page
 }
 
 const Main: Component = () => (
