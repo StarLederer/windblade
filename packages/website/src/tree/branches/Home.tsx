@@ -18,7 +18,6 @@ import jsWb from './Home/content/js/wb.js.txt?raw'
 import libs from '~/lib/external'
 import Container from '~/lib/Container'
 import { LocalLink, Page } from '~/lib/rotuer'
-import docsStore from '~/stores/docsStore'
 import Modules from '~/components/MoludeList'
 
 const styles = {
@@ -81,8 +80,7 @@ const Comparison: Component<{
 const CTA: Component = () => (
   <LocalLink
     style="solid"
-    href="/docs/Usage/Installation"
-    onClick={() => docsStore.fetchModule('complete')}
+    href="/docs/complete"
   >
     Get started
     <div class="i-mdi-arrow-right" />
