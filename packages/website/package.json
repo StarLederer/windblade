@@ -9,21 +9,21 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "postcss": "^8.4.21",
-    "postcss-preset-env": "^8.0.1",
+    "postcss": "^8.4.23",
+    "postcss-preset-env": "^8.3.2",
     "ts-extras": "^0.11.0",
     "unocss-preset-mini-variants": "^0.49.7"
   },
   "dependencies": {
-    "@solidjs/router": "^0.8.0",
+    "@solidjs/router": "^0.8.2",
     "@types/js-beautify": "^1.13.3",
     "@windblade/core": "workspace:*",
     "highlight.js": "^11.7.0",
     "js-beautify": "^1.14.7",
     "solid-headless": "^0.13.1",
-    "solid-js": "^1.6.11",
+    "solid-js": "^1.7.3",
     "solid-transition-group": "^0.0.13",
-    "unocss-docs": "workspace:*",
+    "unocss-docs": "workspace:0.1.0",
     "unocss-preset-windblade": "workspace:*",
     "xast-util-from-xml": "^3.0.0"
   }
