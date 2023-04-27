@@ -1,5 +1,5 @@
 import type { Preset, PresetOptions } from '@unocss/core'
-import type { WindbladeTheme } from '@windblade/core'
+import type { Theme, WindbladeTheme } from '@windblade/core'
 import { theme, themes } from '@windblade/core'
 import merge from 'ts-deepmerge'
 import presetColor from '@windblade/unocss-preset-color'
@@ -11,10 +11,10 @@ export interface WindbladeOptions extends PresetOptions {
   theme?: WindbladeTheme
 }
 
-const main = (options: WindbladeOptions = {}): Preset<theme.Theme> => {
+const main = (options: WindbladeOptions = {}): Preset<Theme> => {
   options.theme = options.theme ?? 'windblade'
 
-  const mergedTheme = merge(theme.default, themes[options.theme]) as theme.Theme
+  const mergedTheme = merge(theme, themes[options.theme]) as Theme
 
   // Create presets that we inherit
   const pColor = presetColor()

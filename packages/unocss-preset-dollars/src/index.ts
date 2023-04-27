@@ -1,8 +1,8 @@
 import type { Preset } from '@unocss/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 import variants from './variants'
 
-const main = (options: {} = {}): Preset<theme.Theme> => {
+const main = (options: {} = {}): Preset<Theme> => {
   return {
     name: '@windblade/unocss-preset-dollars',
     options,

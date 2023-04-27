@@ -1,7 +1,7 @@
 import type { Preflight } from '@unocss/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 
-const preflights: Preflight<theme.Theme>[] = [
+const preflights: Preflight<Theme>[] = [
   // Setup
   {
     getCSS: () => `

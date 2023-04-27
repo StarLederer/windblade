@@ -1,5 +1,5 @@
 import type { Rule } from '@unocss/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 
 import * as backgrounds from './documented/backgrounds'
 import * as borders from './documented/borders'
@@ -8,7 +8,7 @@ import * as svg from './documented/svg'
 import * as typography from './documented/typography'
 import * as accessibility from './documented/accessibility'
 
-const rules: Rule<theme.Theme>[] = [
+const rules: Rule<Theme>[] = [
   // Backgrounds
   ...backgrounds.bgColor().rules,
   ...backgrounds.backgroundImage().rules,

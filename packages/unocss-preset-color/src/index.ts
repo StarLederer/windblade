@@ -1,5 +1,5 @@
 import type { Preset } from '@unocss/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 import rules from './rules'
 
 const main = (options: {} = {}): Preset<theme.Theme> => {

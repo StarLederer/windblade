@@ -1,7 +1,7 @@
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { themes } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { ThemeColorCombo } from '@windblade/core'
 
 const wb = themes.windblade.windblade
 
@@ -51,7 +51,7 @@ const colors: DocumentationPage = `
         ${((): string => {
           const colors = wb.colors
           if (typeof colors === 'object') {
-            return Object.entries(colors as Record<string, theme.ThemeColorCombo>).map(([name, colorCombo]) => `
+            return Object.entries(colors as Record<string, ThemeColorCombo>).map(([name, colorCombo]) => `
               <div class="bg-${name} flex flex-col border border-color-surface rounded-s overflow-hidden font-bold">
                 <h1 class="p-s">${name}</h1>
                 <div class="size-b-px shrink-0 bg-fg-1 opacity-[0.1]"></div>

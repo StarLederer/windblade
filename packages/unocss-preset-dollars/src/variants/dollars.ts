@@ -1,7 +1,7 @@
 import type { Variant } from '@unocss/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 
-export const resolveDollars = (expr: string, theme: theme.Theme): string => {
+export const resolveDollars = (expr: string, theme: Theme): string => {
   let resolved = expr
 
   // Resolve variables
@@ -44,7 +44,7 @@ export const resolveDollars = (expr: string, theme: theme.Theme): string => {
   return resolved
 }
 
-const main: Variant<theme.Theme> = (matcher, ctx) => {
+const main: Variant<Theme> = (matcher, ctx) => {
   return {
     matcher: resolveDollars(matcher, ctx.theme),
   }

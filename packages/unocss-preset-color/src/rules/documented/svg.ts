@@ -2,12 +2,12 @@ import type { Rule } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 
 const { color } = ruleUtils
 
 export const fill = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     color.colorRule('fill', 'fill'),
     color.fgColorRule('fill-fg', 'fill'),
   ]
@@ -57,7 +57,7 @@ export const fill = () => {
 }
 
 export const stroke = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     color.colorRule('stroke', 'stroke'),
     color.fgColorRule('stroke-fg', 'stroke'),
   ]

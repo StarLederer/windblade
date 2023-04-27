@@ -1,6 +1,6 @@
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 
-const main: theme.Theme = {
+const main: Theme = {
   windblade: {
     colors: {
       // TODO: Fill this

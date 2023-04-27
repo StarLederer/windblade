@@ -1,4 +1,5 @@
-export * as theme from './theme'
+export * from './theme'
+export { default as theme } from './theme'
 export * as utils from './utils'
 export * as ruleUtils from './rule-utils'
 export * from './themes'

@@ -3,12 +3,12 @@ import { objectKeys } from 'ts-extras'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 
 const { color, logical } = ruleUtils
 
 export const bgColor = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     color.colorRule('bg', 'background-color'),
     color.colorBgRule('bg'),
     color.fgColorRule('bg-fg', 'background-color'),
@@ -68,16 +68,16 @@ export const bgColor = () => {
 }
 
 export const backgroundImage = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     ['bg-none', { 'background-image': 'none' }],
-    ...objectKeys(logical.abbreviations.edges).map((edgeKey): Rule<theme.Theme> => [
+    ...objectKeys(logical.abbreviations.edges).map((edgeKey): Rule<Theme> => [
       `bg-gradient-to-${edgeKey}`,
       {
         '--wb-gradient-stops': 'var(--wb-gradient-from, transparent), var(--wb-gradient-to, transparent)',
         'background-image': `linear-gradient(to var(--${logical.abbreviations.edges[edgeKey]}), var(--wb-gradient-stops))`,
       },
     ]),
-    ...objectKeys(logical.abbreviations.coners).map((cornerKey): Rule<theme.Theme> => [
+    ...objectKeys(logical.abbreviations.coners).map((cornerKey): Rule<Theme> => [
       `bg-gradient-to-${cornerKey}`,
       {
         '--wb-gradient-stops': 'var(--wb-gradient-from, transparent), var(--wb-gradient-to, transparent)',
@@ -121,7 +121,7 @@ export const backgroundImage = () => {
 }
 
 export const gradientColorStops = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     color.colorRule('from', '--wb-gradient-from'),
     color.colorRule('to', '--wb-gradient-to'),
     // TODO implement 'via'

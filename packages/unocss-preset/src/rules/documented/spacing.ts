@@ -2,13 +2,13 @@ import type { Rule } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 import { iterObjects, selectLogical } from './doc-components'
 
 const { logical, size } = ruleUtils
 
 export const padding = () => {
-  const rules: Rule<theme.Theme>[] = size.edgeRules('p', '', 'padding', '')
+  const rules: Rule<Theme>[] = size.edgeRules('p', '', 'padding', '')
 
   const docs: DocumentationPage = `
     <page>
@@ -59,7 +59,7 @@ export const padding = () => {
 }
 
 export const margin = () => {
-  const rules: Rule<theme.Theme>[] = size.edgeRules('m', '', 'margin', '')
+  const rules: Rule<Theme>[] = size.edgeRules('m', '', 'margin', '')
 
   const docs: DocumentationPage = `
     <page>

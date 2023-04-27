@@ -3,16 +3,16 @@ import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { objectEntries } from 'ts-extras'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 
 const { logical } = ruleUtils
 
 export const backgroundPosition = () => {
-  const rules: Rule<theme.Theme>[] = [
-    ...objectEntries(logical.abbreviations.edges).map(([key, val]): Rule<theme.Theme> => [
+  const rules: Rule<Theme>[] = [
+    ...objectEntries(logical.abbreviations.edges).map(([key, val]): Rule<Theme> => [
       `bg-${key}`, { 'background-position': `var(--${val})` },
     ]),
-    ...objectEntries(logical.abbreviations.coners).map(([key, val]): Rule<theme.Theme> => [
+    ...objectEntries(logical.abbreviations.coners).map(([key, val]): Rule<Theme> => [
       `bg-${key}`, { 'background-position': `var(--${val})` },
     ]),
     ['bg-center', { 'background-position': 'center' }],

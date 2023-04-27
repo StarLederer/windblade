@@ -2,12 +2,12 @@ import type { Rule } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 
 const { time } = ruleUtils
 
 export const transitionDelayAndDuration = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     time.durationRule('duration', 'transition-duration'),
     time.durationRule('delay', 'transition-delay'),
   ]
@@ -52,7 +52,7 @@ export const transitionDelayAndDuration = () => {
 }
 
 export const transitionTimingFunction = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     time.timingFunctionRule('ease', 'transition-timing-function'),
   ]
 
@@ -105,7 +105,7 @@ export const animation = () => {
 }
 
 export const animationDelayAndDuration = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     time.durationRule('animation-duration', 'animation-duration'),
     time.durationRule('animation-delay', 'animation-delay'),
   ]
@@ -150,7 +150,7 @@ export const animationDelayAndDuration = () => {
 }
 
 export const animationTimingFunction = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     time.timingFunctionRule('animation-ease', 'animation-timing-function'),
   ]
 

@@ -2,12 +2,12 @@ import type { Rule } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 
 const { color, logical } = ruleUtils
 
 export const borderColor = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     ...logical.edgeRules('border', 'color', 'border', 'color', color.colorRule),
     ...logical.edgeRules('border', 'color-fg', 'border', 'color', color.fgColorRule),
   ]
@@ -82,7 +82,7 @@ export const borderColor = () => {
 }
 
 export const outlineColor = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     color.colorRule('outline', 'outline-color'),
     color.fgColorRule('outline-fg', 'outline-color'),
   ]

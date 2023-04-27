@@ -2,13 +2,13 @@ import type { Rule } from '@unocss/core'
 import { escapeSelector as e } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 import { utils } from '@windblade/core'
 
 const { getColorSchemeCSSProps, objToCSS } = utils
 
 export const colorScheme = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     [
       /^scheme-(dark|light|inverse|auto)-(\d+)$/,
       (match, { rawSelector, theme }) => {

@@ -2,12 +2,12 @@ import type { Rule } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 
 const { color } = ruleUtils
 
 export const accentColor = () => {
-  const rules: Rule<theme.Theme>[] = [color.colorRule('accent', 'accent-color')]
+  const rules: Rule<Theme>[] = [color.colorRule('accent', 'accent-color')]
 
   const docs: DocumentationPage = `
     <page>
@@ -54,7 +54,7 @@ export const accentColor = () => {
 }
 
 export const caretColor = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     color.colorRule('caret', 'caret-color'),
     color.fgColorRule('caret-fg', 'caret-color'),
   ]

@@ -2,13 +2,13 @@ import type { Rule } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 import { objectEntries } from 'ts-extras'
 
 const { logical } = ruleUtils
 
 export const aspectRatio = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     [
       /^(aspect)-(.+)$/,
       (match) => {
@@ -64,7 +64,7 @@ export const container = () => {
 export const breakAfter = () => {
   const values = ['auto', 'avoid', 'all', 'avoid-page', 'page', 'recto', 'verso', 'column']
 
-  const rules: Rule<theme.Theme>[] = values.map((val): Rule<theme.Theme> => [
+  const rules: Rule<Theme>[] = values.map((val): Rule<Theme> => [
     `break-after-${val}`,
     { 'break-after': val },
   ])
@@ -102,7 +102,7 @@ export const breakAfter = () => {
 export const breakBefore = () => {
   const values = ['auto', 'avoid', 'all', 'avoid-page', 'page', 'recto', 'verso', 'column']
 
-  const rules: Rule<theme.Theme>[] = values.map((val): Rule<theme.Theme> => [
+  const rules: Rule<Theme>[] = values.map((val): Rule<Theme> => [
     `break-before-${val}`,
     { 'break-before': val },
   ])
@@ -143,7 +143,7 @@ export const display = () => {
     hidden: 'none',
   }
 
-  const rules: Rule<theme.Theme>[] = values.map((val): Rule<theme.Theme> => [
+  const rules: Rule<Theme>[] = values.map((val): Rule<Theme> => [
     `${val}`,
     { display: Object.keys(overrides).includes(val) ? overrides[val] : val },
   ])
@@ -184,11 +184,11 @@ export const display = () => {
 }
 
 export const objectPosition = () => {
-  const rules: Rule<theme.Theme>[] = [
-    ...objectEntries(logical.abbreviations.edges).map(([key, val]): Rule<theme.Theme> => [
+  const rules: Rule<Theme>[] = [
+    ...objectEntries(logical.abbreviations.edges).map(([key, val]): Rule<Theme> => [
       `object-${key}`, { 'object-position': `var(--${val})` },
     ]),
-    ...objectEntries(logical.abbreviations.coners).map(([key, val]): Rule<theme.Theme> => [
+    ...objectEntries(logical.abbreviations.coners).map(([key, val]): Rule<Theme> => [
       `object-${key}`, { 'object-position': `var(--${val})` },
     ]),
     ['object-center', { 'object-position': 'center' }],

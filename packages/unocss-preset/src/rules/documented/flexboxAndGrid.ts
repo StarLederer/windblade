@@ -2,14 +2,14 @@ import type { Rule } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 
 const { size } = ruleUtils
 
 const nineChildren = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(val => `<div class="bg-accent rounded-s.4 p-s flex items-center justify-center text-center">0${val}</div>`).join('\n')
 
 const generateAuto = (ruleName: string, cssName: string) => () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     [`auto-${ruleName}-auto`, { [`grid-auto-${cssName}`]: 'auto' }],
     [`auto-${ruleName}-fr`, { [`grid-auto-${cssName}`]: 'minmax(0, 1fr)' }],
     size.rule(`auto-${ruleName}`, `grid-auto-${cssName}`),
@@ -60,7 +60,7 @@ export const gridAutoCols = generateAuto('cols', 'columns')
 export const gridAutoRows = generateAuto('rows', 'rows')
 
 const generateFitFill = (type: 'fit' | 'fill', ruleName: string, cssName: string) => () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     size.rule(`grid-${type}-${ruleName}s`, `grid-template-${cssName}s`, { postprocess: size => (`repeat(auto-${type}, minmax(min(${size}, 100%), 1fr))`) }),
   ]
 

@@ -2,7 +2,7 @@ import type { Rule } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 
 const { size } = ruleUtils
 
@@ -18,7 +18,7 @@ export const boxShadow = () => {
 }
 
 export const opacity = () => {
-  const rules: Rule<theme.Theme>[] = [size.rule('opacity', 'opacity', { defaultUnit: '' })]
+  const rules: Rule<Theme>[] = [size.rule('opacity', 'opacity', { defaultUnit: '' })]
 
   const docs: DocumentationPage = `
     <page>

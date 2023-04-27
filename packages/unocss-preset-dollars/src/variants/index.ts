@@ -1,8 +1,8 @@
 import type { Variant } from '@unocss/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 import dollars from './dollars'
 
-const main: Variant<theme.Theme>[] = [
+const main: Variant<Theme>[] = [
   dollars,
 ]
 

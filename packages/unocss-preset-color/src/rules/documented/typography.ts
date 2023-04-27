@@ -2,12 +2,12 @@ import type { Rule } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 
 const { color } = ruleUtils
 
 export const textColor = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     color.colorRule('text', 'color'),
     color.fgColorRule('text-fg', 'color'),
   ]
@@ -57,7 +57,7 @@ export const textColor = () => {
 }
 
 export const textDecorationColor = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     color.colorRule('decoration', 'text-decoration-color'),
     color.fgColorRule('decoration-fg', 'text-decoration-color'),
   ]

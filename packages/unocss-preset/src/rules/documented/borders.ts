@@ -2,13 +2,13 @@ import type { Rule } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 import { iterObjects, selectLogical } from './doc-components'
 
 const { logical, size } = ruleUtils
 
 export const borderRadius = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     ...size.cornerRules('rounded', '', 'border', 'radius'),
     ...logical.cornerRules('rounded', 'full', 'border', 'radius', (pref, prop) => [pref, { [prop]: '99999px' }]),
     ...logical.cornerRules('rounded', 'none', 'border', 'radius', (pref, prop) => [pref, { [prop]: 'none' }]),
@@ -61,7 +61,7 @@ export const borderRadius = () => {
 }
 
 export const borderWidth = () => {
-  const rules: Rule<theme.Theme>[] = size.edgeRules('border', '', 'border', 'width')
+  const rules: Rule<Theme>[] = size.edgeRules('border', '', 'border', 'width')
 
   const docs: DocumentationPage = `
     <page>
@@ -106,7 +106,7 @@ export const borderWidth = () => {
 }
 
 export const outlineWidth = () => {
-  const rules: Rule<theme.Theme>[] = [size.rule('outline', 'outline-width')]
+  const rules: Rule<Theme>[] = [size.rule('outline', 'outline-width')]
 
   const docs: DocumentationPage = `
     <page>
@@ -144,7 +144,7 @@ export const outlineWidth = () => {
 }
 
 export const outlineOffset = () => {
-  const rules: Rule<theme.Theme>[] = [size.rule('outline-offset', 'outline-offset')]
+  const rules: Rule<Theme>[] = [size.rule('outline-offset', 'outline-offset')]
 
   const docs: DocumentationPage = `
     <page>

@@ -2,7 +2,7 @@ import type { Rule } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 import { iterObjects } from './doc-components'
 
 const { size } = ruleUtils
@@ -19,7 +19,7 @@ export const fontFamily = () => {
 }
 
 export const fontSize = () => {
-  const rules: Rule<theme.Theme>[] = [size.rule('text', 'font-size')]
+  const rules: Rule<Theme>[] = [size.rule('text', 'font-size')]
 
   const docs: DocumentationPage = `
     <page>
@@ -70,7 +70,7 @@ export const fontSmoothing = () => {
 }
 
 export const tracking = () => {
-  const rules: Rule<theme.Theme>[] = [size.rule('tracking', 'letter-spacing', { defaultUnit: 'em' })]
+  const rules: Rule<Theme>[] = [size.rule('tracking', 'letter-spacing', { defaultUnit: 'em' })]
 
   const docs: DocumentationPage = `
     <page>
@@ -110,7 +110,7 @@ export const tracking = () => {
 }
 
 export const leading = () => {
-  const rules: Rule<theme.Theme>[] = [size.rule('leading', 'line-height', { defaultUnit: '' })]
+  const rules: Rule<Theme>[] = [size.rule('leading', 'line-height', { defaultUnit: '' })]
 
   const docs: DocumentationPage = `
     <page>
@@ -150,7 +150,7 @@ export const leading = () => {
 }
 
 export const textDecorationThickness = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     ['decoration-from-font', { 'text-decoration-thickness': 'from-font' }],
     size.rule('decoration', 'text-decoration-thickness'),
   ]
@@ -192,7 +192,7 @@ export const textDecorationThickness = () => {
 }
 
 export const textUnderlineOffset = () => {
-  const rules: Rule<theme.Theme>[] = [size.rule('underline-offset', 'text-underline-offset')]
+  const rules: Rule<Theme>[] = [size.rule('underline-offset', 'text-underline-offset')]
 
   const docs: DocumentationPage = `
     <page>

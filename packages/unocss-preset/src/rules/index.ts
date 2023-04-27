@@ -2,7 +2,7 @@ import type { Rule } from '@unocss/core'
 import { contents, grids } from '@unocss/preset-mini/rules'
 
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 
 import * as layout from './documented/layout'
 import * as flexboxAndGrid from './documented/flexboxAndGrid'
@@ -20,8 +20,6 @@ import * as interactivity from './documented/interactivity'
 import * as svg from './documented/svg'
 
 const { logical, size } = ruleUtils
-
-type Theme = theme.Theme
 
 const rules: Rule<Theme>[] = [
   // Layout

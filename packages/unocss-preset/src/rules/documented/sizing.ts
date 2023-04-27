@@ -2,7 +2,7 @@ import type { Rule } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 import { objectKeys } from 'ts-extras'
 import { iterObjects } from './doc-components'
 
@@ -20,7 +20,7 @@ export const widthHeight = () => {
 }
 
 export const size = () => {
-  const rules: Rule<theme.Theme>[] = sizes.axisRules('size', '', '', 'size')
+  const rules: Rule<Theme>[] = sizes.axisRules('size', '', '', 'size')
 
   const docs: DocumentationPage = `
     <page>
@@ -68,7 +68,7 @@ const minMaxSizeHtml = (axis: string) => `
 `
 
 export const minSize = () => {
-  const rules: Rule<theme.Theme>[] = sizes.axisRules('min-size', '', 'min', 'size')
+  const rules: Rule<Theme>[] = sizes.axisRules('min-size', '', 'min', 'size')
 
   const docs: DocumentationPage = `
     <page>
@@ -112,7 +112,7 @@ export const minSize = () => {
 }
 
 export const maxSize = () => {
-  const rules: Rule<theme.Theme>[] = sizes.axisRules('max-size', '', 'max', 'size')
+  const rules: Rule<Theme>[] = sizes.axisRules('max-size', '', 'max', 'size')
 
   const docs: DocumentationPage = `
     <page>

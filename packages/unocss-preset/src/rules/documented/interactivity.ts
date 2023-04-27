@@ -2,13 +2,13 @@ import type { Rule } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 import { selectLogical } from './doc-components'
 
 const { logical, size } = ruleUtils
 
 export const scrollMargin = () => {
-  const rules: Rule<theme.Theme>[] = size.edgeRules('scroll-m', '', 'scroll-margin', '')
+  const rules: Rule<Theme>[] = size.edgeRules('scroll-m', '', 'scroll-margin', '')
 
   const docs: DocumentationPage = `
     <page>
@@ -51,7 +51,7 @@ export const scrollMargin = () => {
 }
 
 export const scrollPadding = () => {
-  const rules: Rule<theme.Theme>[] = size.edgeRules('scroll-p', '', 'scroll-padding', '')
+  const rules: Rule<Theme>[] = size.edgeRules('scroll-p', '', 'scroll-padding', '')
 
   const docs: DocumentationPage = `
     <page>
@@ -94,7 +94,7 @@ export const scrollPadding = () => {
 }
 
 export const scrollSnapType = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     ['snap-none', { 'scroll-snap-type': 'none' }],
     ['snap-both', { 'scroll-snap-type': 'both var(--wb-scroll-snap-strictness)' }],
     ['snap-mandatory', { '--wb-scroll-snap-strictness': 'mandatory' }],
@@ -135,7 +135,7 @@ export const scrollSnapType = () => {
 }
 
 export const touchAction = () => {
-  const rules: Rule<theme.Theme>[] = [
+  const rules: Rule<Theme>[] = [
     ['touch-auto', { 'touch-action': 'auto' }],
     ['touch-none', { 'touch-action': 'none' }],
     ['touch-pinch-zoom', { 'touch-action': 'pinch-zoom' }],

@@ -1,6 +1,6 @@
-import type { theme } from '@windblade/core'
+import type { Theme, ThemeColorCombo } from '@windblade/core'
 
-const tailwindColorSet = (name: string, colors: { l: number; c: number }[]): Record<string, theme.ThemeColorCombo> => {
+const tailwindColorSet = (name: string, colors: { l: number; c: number }[]): Record<string, ThemeColorCombo> => {
   return {
     [`${name}-900`]: {
       base: { dark: { l: colors[0].l, c: colors[0].c }, light: { l: colors[9].l, c: colors[9].c } },
@@ -45,7 +45,7 @@ const tailwindColorSet = (name: string, colors: { l: number; c: number }[]): Rec
   }
 }
 
-const main: theme.Theme = {
+const main: Theme = {
   windblade: {
     colors: {
       absolute: {

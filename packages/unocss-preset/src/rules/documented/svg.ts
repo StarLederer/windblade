@@ -2,12 +2,12 @@ import type { Rule } from '@unocss/core'
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
 import { ruleUtils } from '@windblade/core'
-import type { theme } from '@windblade/core'
+import type { Theme } from '@windblade/core'
 
 const { size } = ruleUtils
 
 export const strokeWidth = () => {
-  const rules: Rule<theme.Theme>[] = [size.rule('stroke', 'stroke-width')]
+  const rules: Rule<Theme>[] = [size.rule('stroke', 'stroke-width')]
 
   const docs: DocumentationPage = `
     <page>

@@ -1,6 +1,6 @@
 import type { DynamicRule } from '@unocss/core'
 import { handler as h } from '@unocss/preset-mini/utils'
-import type Theme from '../theme/Theme'
+import type { Theme } from '../theme'
 import * as logical from './logicalSet'
 
 export const resolve = (value: string, theme: Theme, unit: string) => {
