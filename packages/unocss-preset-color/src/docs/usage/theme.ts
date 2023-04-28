@@ -1,9 +1,9 @@
 import type { DocumentationPage } from 'unocss-docs'
 import { encodeString } from 'unocss-docs'
-import { themes } from '@windblade/core'
 import type { ThemeColorCombo } from '@windblade/core'
+import theme from '../../theme'
 
-const wb = themes.windblade.windblade
+const wb = theme.windblade
 
 const example = `
 const theme: Theme = {

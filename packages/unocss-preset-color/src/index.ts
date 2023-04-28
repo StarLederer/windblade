@@ -1,10 +1,12 @@
 import type { Preset } from '@unocss/core'
 import type { Theme } from '@windblade/core'
+import theme from './theme'
 import rules from './rules'
 
-const main = (options: {} = {}): Preset<theme.Theme> => {
+const main = (options: {} = {}): Preset<Theme> => {
   return {
     name: '@windblade/unocss-preset-color',
+    theme,
     rules,
     options,
     prefix: undefined,
@@ -13,4 +15,4 @@ const main = (options: {} = {}): Preset<theme.Theme> => {
 
 export default main
 export * as docs from './docs'
-export { rules }
+export { theme, rules }
