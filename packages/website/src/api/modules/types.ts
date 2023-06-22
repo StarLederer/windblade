@@ -5,6 +5,7 @@ export type ModuleId = string
 export interface ModuleMeta {
   title: string
   description: string
+  openOn: string[]
 }
 
 export interface Module {

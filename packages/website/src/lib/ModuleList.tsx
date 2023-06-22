@@ -11,7 +11,7 @@ const Main: Component<{
     <For each={props.map}>
       {([id, meta]) => (
         <li>
-          <ModuleCard href={`/docs/${id}`} meta={meta} onInspect={() => props.onInspect?.(id)}/>
+          <ModuleCard href={`/docs/${id}/${meta.openOn.join('/')}`} meta={meta} onInspect={() => props.onInspect?.(id)}/>
         </li>
       )}
     </For>

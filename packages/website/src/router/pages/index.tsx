@@ -80,7 +80,7 @@ const Comparison: Component<{
 const CTA: Component = () => (
   <LocalLink
     style="solid"
-    href="/docs/complete"
+    href="/docs/complete/Usage/Installation"
   >
     Get started
     <div class="i-mdi-arrow-right" />

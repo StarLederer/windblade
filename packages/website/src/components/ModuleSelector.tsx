@@ -23,7 +23,8 @@ const Form: Component<{
         id={id}
         class="p-bs-m.2 p-s rounded-s cursor-pointer bg-accent-4 hover:bg-accent-3 font-semibold"
         onChange={(e) => {
-          navigate(`/docs/${(e.target as HTMLSelectElement).value}`)
+          const moduleId = (e.target as HTMLSelectElement).value
+          navigate(`/docs/${moduleId}/${props.index.get(moduleId)?.openOn.join('/')}`)
         }}
       >
         <option selected disabled value="">select</option>
