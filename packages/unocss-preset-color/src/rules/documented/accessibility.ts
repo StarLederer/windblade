@@ -10,7 +10,7 @@ const { getColorSchemeCSSProps, objToCSS } = utils
 export const colorScheme = () => {
   const rules: Rule<Theme>[] = [
     [
-      /^scheme-(dark|light|inverse|auto)-(\d+)$/,
+      /^scheme-(dark|light|auto)-(\d+)$/,
       (match, { rawSelector, theme }) => {
         const hue = Number(match[2] ?? 0)
         if (Number.isNaN(hue))
@@ -32,16 +32,7 @@ export const colorScheme = () => {
                 ${objToCSS(dark)}
               }
             `
-          // TODO: Discus whether we need this and how to implement it (what happens when you stack these?)
-          // case "inverse":
-          //   return `
-          //     .scheme-dark .${selector} {
-          //       ${objToCSS(dark)}
-          //     }
-          //     .scheme-light .${selector} {
-          //       ${objToCSS(light)}
-          //     }
-          //   `;
+
           default:
             return `
               .${selector} {
