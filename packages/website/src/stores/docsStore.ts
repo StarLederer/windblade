@@ -27,11 +27,28 @@ function main() {
     }
   }
 
+  const getCachedModuleById = (id: ModuleId): Option<Module, string> => {
+    const cached = modules.get(id)
+
+    if (cached) {
+      return {
+        success: true,
+        value: cached,
+      }
+    }
+    else {
+      return {
+        success: false,
+        error: 'Not cached',
+      }
+    }
+  }
+
   const fetchIndex = async () => {
     setIndex(getIndex())
   }
 
-  return { index, fetchIndex, getModuleById }
+  return { index, fetchIndex, getModuleById, getCachedModuleById }
 }
 
 export default createRoot(main)
