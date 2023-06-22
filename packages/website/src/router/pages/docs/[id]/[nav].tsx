@@ -1,9 +1,9 @@
-import { Show, Suspense, createResource } from 'solid-js'
+import { Show, Suspense } from 'solid-js'
 import type { Component } from 'solid-js'
 import { useParams } from '@solidjs/router'
 import type { DocumentationPage, DocumentationTree } from '@windblade/unocss-docs'
 
-import type { ModuleId } from '~/api'
+import type { Module, ModuleId, Success } from '~/api'
 import docsStore from '~/stores/docsStore'
 import XmlRoot from '~/lib/uno-xml/XmlRoot'
 import Error from '~/lib/Error'
@@ -64,37 +64,22 @@ const Main: Component = () => {
     l5: string
     l6: string
   }>()
-  const [mdle] = createResource(() => docsStore.getModuleById(params.moduleId))
+  const mdle = docsStore.getCachedModuleById(params.moduleId)
+
+  const someMdle = () => mdle.success
+  const title = () => decodeURIComponent(params.l6 ?? params.l5 ?? params.l4 ?? params.l3 ?? params.l2 ?? params.l1)
+  const value = () => navigateDocTree((mdle as Success<Module>).value.docs, [params.l1, params.l2, params.l3, params.l4, params.l5, params.l6])
 
   return (
     <Show
-      when={!mdle.loading}
-      fallback={<Page>Loading...</Page>}
+      when={someMdle()}
+      fallback={<Page>Error</Page>}
     >
       <Show
-        when={!mdle.error}
-        fallback={<Page>Error</Page>}
+        when={typeof value() === 'string'}
+        fallback={<Page>Not a page</Page>}
       >
-        <Show
-          when={mdle()}
-          fallback={<Page>No data</Page>}
-          keyed
-        >
-          {(md) => {
-            if (md.success) {
-              const title = decodeURIComponent(params.l6 ?? params.l5 ?? params.l4 ?? params.l3 ?? params.l2 ?? params.l1)
-              const value = navigateDocTree(md.value.docs, [params.l1, params.l2, params.l3, params.l4, params.l5, params.l6])
-
-              if (typeof value !== 'string')
-                return <Page>This page doesn't exist</Page>
-
-              return <DocPage page={value} title={title} />
-            }
-            else {
-              return <Page>Error</Page>
-            }
-          }}
-        </Show>
+        <DocPage page={value() as string} title={title()} />
       </Show>
     </Show>
   )
