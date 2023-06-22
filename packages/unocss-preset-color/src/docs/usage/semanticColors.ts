@@ -21,15 +21,6 @@ const example3 = `
 </body>
 `
 
-const example4 = `
-<body class="scheme-dark scheme-auto-80 bg-normal">
-  <h1>Always-dark website</h1>
-  <section class="bg-accent">Default (orange)</section>
-  <section class="scheme-auto-240 bg-accent">Blue</section>
-  <section class="scheme-auto-280 bg-accent">Purple</section>
-</body>
-`
-
 const example5 = `
 import { utils } from "@windblade/core";
 import { theme } from "unocss-preset-windblade"; // this is just a source file and it does not know about your theme customizations. If you are using your own colors you should import them instead
@@ -63,15 +54,12 @@ const main: DocumentationPage = `
     <p>All colors have one or more foreground colors. The first foreground color is set as CSS color automatically but you can override it with others or use it for other properties. The foreground colors are updated whenever the bg utility is applied.</p>
     <pre lang="html" code="${encodeString(example2)}" />
 
-    <h2>Hue &amp; color scheme</h2>
-    <p>Change color hue by applying color rules together with or sheme-(auto|dark|light)-{number} or inside elemetns with that class.</p>
+    <h2>Color scheme</h2>
+    <p>Change hue and color scheme by applying color rules together with or inside of sheme-(auto|light|dark)-{number}.</p>
     <pre lang="html" code="${encodeString('<div class="scheme-auto-80 bg-normal"></div>')}" />
 
-    <p>It is a good idea apply a default color scheme at the root of your app.</p>
+    <p>It is a good idea apply a color scheme at the root of your app.</p>
     <pre lang="html" code="${encodeString(example3)}" />
-
-    <p><code>@media(prefers-color-scheme)</code> is used for scheme-auto-... by default but you can override this behaviour with <code>scheme-(dark|light)</code>.</p>
-    <pre lang="html" code="${encodeString(example4)}" />
 
     <h2>Using Windblade colors in JavaScrtipt</h2>
     <p>Sometimes you might need to set a color with JavaScript and you might be unable to use a class (e.g. drawing to a canvas). In those situations, you can use Windblade's core module.</p>

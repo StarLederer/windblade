@@ -10,7 +10,7 @@ const { getColorSchemeCSSProps, objToCSS } = utils
 export const colorScheme = () => {
   const rules: Rule<Theme>[] = [
     [
-      /^scheme-(dark|light|auto)-(\d+)$/,
+      /^scheme-(auto|light|dark)-(\d+)$/,
       (match, { rawSelector, theme }) => {
         const hue = Number(match[2] ?? 0)
         if (Number.isNaN(hue))
@@ -23,12 +23,14 @@ export const colorScheme = () => {
           case 'light':
             return `
               .${selector} {
+                color-scheme: light;
                 ${objToCSS(light)}
               }
             `
           case 'dark':
             return `
               .${selector} {
+                color-scheme: dark;
                 ${objToCSS(dark)}
               }
             `
@@ -37,26 +39,9 @@ export const colorScheme = () => {
             return `
               .${selector} {
                 color-scheme: light dark;
-              }
-
-              .scheme-dark.${selector},
-              .scheme-dark .${selector} {
-                color-scheme: dark;
-              }
-              .scheme-light.${selector},
-              .scheme-light .${selector} {
-                color-scheme: light;
-              }
-
-              .${selector},
-              .scheme-dark.${selector},
-              .scheme-dark .${selector} {
                 ${objToCSS(dark)}
               }
-              .scheme-light.${selector},
-              .scheme-light .${selector} {
-                ${objToCSS(light)}
-              }
+
               @media (prefers-color-scheme: light) { .${selector} {
                   ${objToCSS(light)}
                 }
@@ -78,13 +63,6 @@ export const colorScheme = () => {
           <util>
             scheme-
             <select>
-              <option value="dark" />
-              <option value="light" />
-            </select>
-          </util>
-          <util>
-            scheme-
-            <select>
               <option value="auto" />
               <option value="dark" />
               <option value="light" />
@@ -102,6 +80,7 @@ export const colorScheme = () => {
             </div>
           </div>
         `)}" />
+
 
         <h3>Preview</h3>
         <viewport />

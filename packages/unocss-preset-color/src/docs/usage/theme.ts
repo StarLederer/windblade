@@ -61,7 +61,7 @@ const colors: DocumentationPage = `
               </div>
             `).join('')
           }
-          return '<div class="theme-auto-20 font-bold">Error</div>'
+          return 'Error: windblade.colors is not an object.'
         })()}
       </div>
     `)}" />

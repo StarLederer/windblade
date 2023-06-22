@@ -23,10 +23,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `$` features are now implemented as a variant and work with utilities from other presets.
 - Colors and the `$` variant can now be used as separate presets.
 - Documentation is now completely in XML.
+- `scheme-auto-<number>` now follows system scheme and is not affected by anthing else.
 
 ### Removed
 
-- .
+- `scheme-(light|dark)` due to unintiutive specificity. Use `scheme-(light|dark)-<number>`.
 
 ## 2.0.0-beta.3
 
