@@ -40,7 +40,7 @@ const Main: Component = () => {
     <Page class="p-m.2 flex flex-col gap-s justify-center items-center text-center font-semibold">
       <h2 class="text-fg-3 text-s">Navigation error</h2>
       <p class="text-m.2 font-bold">
-        The page you are looking for is now a whole chapter.
+        The page you are looking for is now a chapter.
       </p>
       <p class="text-$($s+$s.2)">
         Use the navigation menu to open any page inside this chapter.
