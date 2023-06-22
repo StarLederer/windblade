@@ -15,7 +15,6 @@ const preflights: Preflight<Theme>[] = [
         font: inherit;
         line-height: 1;
 
-        color-scheme: light dark;
         box-sizing: border-box;
       }
 

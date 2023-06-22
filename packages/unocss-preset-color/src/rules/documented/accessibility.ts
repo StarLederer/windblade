@@ -44,6 +44,19 @@ export const colorScheme = () => {
           //   `;
           default:
             return `
+              .${selector} {
+                color-scheme: light dark;
+              }
+
+              .scheme-dark.${selector},
+              .scheme-dark .${selector} {
+                color-scheme: dark;
+              }
+              .scheme-light.${selector},
+              .scheme-light .${selector} {
+                color-scheme: light;
+              }
+
               .${selector},
               .scheme-dark.${selector},
               .scheme-dark .${selector} {
