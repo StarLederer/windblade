@@ -79,7 +79,7 @@ const Layout: Component = () => {
 
         <div ref={container} class="flex-1 flex justify-end">
           <div class={`flex gap-s.4 ${!menuFlat() ? 'invisible fixed' : ''}`} ref={menu} aria-hidden={!menuFlat()}>
-            {menuItems}
+            {menuItems()}
           </div>
 
           <Popover defaultOpen={false} class={`${menuFlat() ? 'hidden' : ''}`} >
@@ -91,7 +91,7 @@ const Layout: Component = () => {
               </ButtonBase>
               <PopoverPanel unmount={false} class="relative">
                 <div class={`flex flex-col gap-s.2 absolute inset-ie-0 inset-bs-0 bg-surface rounded-s m-b-s.8 p-s.2 border border-color-surface animation-duration-s animation-ease-linear backdrop-blur-s delay-m.2 ${isOpen() ? 'delay-zero animate-in' : 'animate-out invisible'}`} style={'z-index: 1'}>
-                  {menuItems}
+                  {menuItems()}
                 </div>
               </PopoverPanel>
             </>}
