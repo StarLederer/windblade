@@ -3,7 +3,7 @@ import { For, Show, createEffect, createResource, createSignal } from 'solid-js'
 import { Dialog, DialogOverlay, DialogPanel } from 'solid-headless'
 import Button from '@ui/primitives/Button'
 import type { DocumentationTree } from '@windblade/unocss-docs'
-import { useLocation, useMatch, useParams } from '@solidjs/router'
+import { useLocation, useParams } from '@solidjs/router'
 import Progress from '@ui/primitives/Progress'
 
 import Nav from '~/components/DocsNav'
@@ -54,7 +54,7 @@ const Layout: Component<{
     class="p-m.2 overflow-auto border-solid border-0 border-ie-px border-color-fg-5 size-i-max size-b-full"
     ref={drawer}
     settings={{
-      leafActive: path => !!useMatch(() => `/${path.join('/')}`)(),
+      leafActive: path => useLocation().pathname.endsWith(path.join('/').replaceAll(' ', '%20')),
       leafAs: p => (
         <LocalLink
           style="none"
