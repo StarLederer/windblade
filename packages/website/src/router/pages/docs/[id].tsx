@@ -2,7 +2,7 @@ import type { Component } from 'solid-js'
 import { For, Show, createEffect, createResource, createSignal } from 'solid-js'
 import { Dialog, DialogOverlay, DialogPanel } from 'solid-headless'
 import Button from '@ui/primitives/Button'
-import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
+import type { DocumentationTree } from '@windblade/unocss-docs'
 import { useLocation, useMatch, useParams } from '@solidjs/router'
 import Progress from '@ui/primitives/Progress'
 
@@ -12,7 +12,7 @@ import { LocalLink, Outlet, Page } from '~/lib/rotuer'
 import type { Module, ModuleId } from '~/api'
 
 const Layout: Component<{
-  tree: CompiledDocumentationTree
+  tree: DocumentationTree
   moduleId: ModuleId
 }> = (props) => {
   const [containerSize, setContainerSize] = createSignal(0)

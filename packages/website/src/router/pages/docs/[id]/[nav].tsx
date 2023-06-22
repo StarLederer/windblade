@@ -1,7 +1,7 @@
 import { Show, Suspense, createResource } from 'solid-js'
 import type { Component } from 'solid-js'
 import { useParams } from '@solidjs/router'
-import type { CompiledDocumentationTree, DocumentationPage } from '@windblade/unocss-docs'
+import type { DocumentationPage, DocumentationTree } from '@windblade/unocss-docs'
 
 import type { ModuleId } from '~/api'
 import docsStore from '~/stores/docsStore'
@@ -40,15 +40,15 @@ const DocPage: Component<{
   )
 }
 
-const navigateDocTree = (docs: CompiledDocumentationTree, path: string[], i = 0): DocumentationPage | CompiledDocumentationTree | undefined => {
+const navigateDocTree = (docs: DocumentationTree, path: string[], i = 0): DocumentationPage | DocumentationTree | undefined => {
   const nav = path[i]
 
   if (!nav)
     return docs
 
-  const child = docs.find(val => val.name === decodeURIComponent(nav))?.value
+  const child = docs.get(decodeURIComponent(nav))
 
-  if (Array.isArray(child))
+  if (child instanceof Map)
     return navigateDocTree(child, path, ++i)
 
   return child

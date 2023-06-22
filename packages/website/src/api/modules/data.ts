@@ -1,9 +1,9 @@
-import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
+import type { DocumentationTree } from '@windblade/unocss-docs'
 import type { ModuleId, ModuleMeta } from './types'
 
 const defs: Record<ModuleId, {
   meta: ModuleMeta
-  loadDocs: () => Promise<CompiledDocumentationTree>
+  loadDocs: () => Promise<DocumentationTree>
 }> = {
   complete: {
     meta: {

@@ -1,23 +1,22 @@
 import { useNavigate, useParams } from '@solidjs/router'
 import Button from '@ui/primitives/Button'
-import type { CompiledDocumentationTree } from '@windblade/unocss-docs/src'
+import type { DocumentationTree } from '@windblade/unocss-docs/src'
 import type { Component } from 'solid-js'
 import { Page } from '~/lib/rotuer'
 import docsStore from '~/stores/docsStore'
 
-const findFirstPage = (docs: CompiledDocumentationTree, prefix: string[] = []): string[] | undefined => {
-  for (let i = 0; i < docs.length; ++i) {
-    const pageOrChapter = docs[i].value
-    if (typeof pageOrChapter === 'string')
-      return [...prefix, docs[i].name]
+const findFirstPage = (docs: DocumentationTree, prefix: string[] = []): string[] | undefined => {
+  for (const [name, child] of docs.entries()) {
+    if (typeof child === 'string')
+      return [...prefix, name]
 
-    const inChildren = findFirstPage(pageOrChapter, [...prefix, docs[i].name])
+    const inChildren = findFirstPage(child, [...prefix, name])
 
     if (inChildren)
       return inChildren
   }
 
-  // No pages in these docs
+  // No pages in this chapter
   return undefined
 }
 

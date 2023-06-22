@@ -6,5 +6,4 @@ export const encodeString = (str: string) => str.replace(/&/g, '&amp;')
   .replace(/'/g, '&apos;')
   .replace(/\n/g, '&#10;')
 
-export * as compiler from './compiler'
 export * from './types'

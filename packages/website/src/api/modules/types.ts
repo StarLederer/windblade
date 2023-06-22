@@ -1,4 +1,4 @@
-import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
+import type { DocumentationTree } from '@windblade/unocss-docs'
 
 export type ModuleId = string
 
@@ -9,5 +9,5 @@ export interface ModuleMeta {
 
 export interface Module {
   meta: ModuleMeta
-  docs: CompiledDocumentationTree
+  docs: DocumentationTree
 }

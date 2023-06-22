@@ -1,8 +1,9 @@
 import type { Component, ParentComponent } from 'solid-js'
-import { For, createContext, useContext } from 'solid-js'
-import type { CompiledDocumentationTree } from '@windblade/unocss-docs'
+import { createContext, useContext } from 'solid-js'
+import type { DocumentationTree } from '@windblade/unocss-docs'
 
 import Selector from '~/components/ModuleSelector'
+import ForMap from '~/lib/ForMap'
 
 interface Settings {
   leafActive: (path: string[]) => boolean
@@ -80,7 +81,7 @@ const Button: Component<{
 }
 
 const Branch: Component<{
-  tree: CompiledDocumentationTree
+  tree: DocumentationTree
   prefix: string[]
   depth: number
 }> = (props) => {
@@ -88,8 +89,8 @@ const Branch: Component<{
 
   return (<>
     <ul class={`list-none flex flex-col ${props.depth > 0 ? 'before:font-semibold before:m-be-s before:block gap-s.2' : 'gap-s'}`} title={props.depth > 0 ? props.prefix.at(-1) : undefined}>
-      <For each={props.tree}>
-        {({ name, value }) => (
+      <ForMap each={props.tree}>
+        {([name, value]) => (
           <li>
             {typeof value === 'string'
               ? <Button path={[...props.prefix, name]} title={name} i={++i} />
@@ -97,13 +98,13 @@ const Branch: Component<{
             }
           </li>
         )}
-      </For>
+      </ForMap>
     </ul>
   </>)
 }
 
 const Main: Component<{
-  tree: CompiledDocumentationTree
+  tree: DocumentationTree
   class?: string
   ref?: HTMLElement
   settings: Settings
