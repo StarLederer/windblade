@@ -112,9 +112,9 @@ const Main: Component = () => {
           <Route path="/" component={Index} />
           <Route path="/docs" element={<Outlet />}>
             <Route path="/" component={DocsIndex} />
-            <Route path="/:moduleId" element={<RematchDynamic on={p => p.moduleId} component={DocsId}/>}>
+            <Route path="/:moduleId" element={<RematchDynamic when={p => p.moduleId} component={DocsId}/>}>
               <Route path="/*" component={DocsIdAll} />
-              <Route path="/:l1/:l2?/:l3?/:l4?/:l5?/:l6?" element={<RematchDynamic component={DocsIdNav} />} />
+              <Route path="/:l1/:l2?/:l3?/:l4?/:l5?/:l6?" element={<RematchDynamic when={p => Object.values(p)} component={DocsIdNav} />} />
             </Route>
           </Route>
         </Route>
