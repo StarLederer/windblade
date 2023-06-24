@@ -1,0 +1,43 @@
+{
+  "name": "unocss-preset-windblade",
+  "version": "2.0.0-beta.4",
+  "description": "Tailwind-inspired UnoCSS preset with considerable improvements",
+  "author": "Star Lederer <germans.lederers@gmail.com>",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/StarLederer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StarLederer/windblade.git"
+  },
+  "bugs": {
+    "url": "https://github.com/StarLederer/windblade/issues"
+  },
+  "keywords": [
+    "unocss",
+    "unocss-preset",
+    "tailwind",
+    "windblade"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "unbuild",
+    "stub": "unbuild --stub"
+  },
+  "dependencies": {
+    "@windblade/core": "workspace:*",
+    "@windblade/unocss-preset": "workspace:*",
+    "@windblade/unocss-preset-color": "workspace:*",
+    "@windblade/unocss-preset-dollars": "workspace:*"
+  }
+}

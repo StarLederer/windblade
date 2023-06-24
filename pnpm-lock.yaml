@@ -80,13 +80,13 @@ importers:
         specifier: 0.53.3
         version: 0.53.3
       '@windblade/core':
-        specifier: workspace:2.0.0-beta.3
+        specifier: workspace:*
         version: link:../core
       '@windblade/unocss-preset-color':
-        specifier: workspace:2.0.0-beta.3
+        specifier: workspace:*
         version: link:../unocss-preset-color
       '@windblade/unocss-preset-dollars':
-        specifier: workspace:2.0.0-beta.3
+        specifier: workspace:*
         version: link:../unocss-preset-dollars
       ts-deepmerge:
         specifier: ^6.1.0
@@ -167,6 +167,21 @@ importers:
       unocss-preset-mini-variants:
         specifier: ^0.53.3
         version: 0.53.3
+
+  unocss-preset-windblade:
+    dependencies:
+      '@windblade/core':
+        specifier: workspace:*
+        version: link:../packages/core
+      '@windblade/unocss-preset':
+        specifier: workspace:*
+        version: link:../packages/unocss-preset
+      '@windblade/unocss-preset-color':
+        specifier: workspace:*
+        version: link:../packages/unocss-preset-color
+      '@windblade/unocss-preset-dollars':
+        specifier: workspace:*
+        version: link:../packages/unocss-preset-dollars
 
 packages:
 
