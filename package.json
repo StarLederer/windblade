@@ -4,6 +4,7 @@
   "private": true,
   "packageManager": "pnpm@7.11.0",
   "scripts": {
+    "taze": "taze minor -wIr && pnpm -r --parallel run update-post",
     "dev": "pnpm stub",
     "stub": "pnpm -r --filter=./packages/* --parallel run stub"
   },
@@ -20,6 +21,7 @@
     "@unocss/vite": "0.51.8",
     "eslint": "^8.39.0",
     "simple-git-hooks": "^2.8.1",
+    "taze": "^0.10.2",
     "typescript": "^4.9.5",
     "unbuild": "^1.2.1",
     "unocss": "~0.51.8",
