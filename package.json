@@ -6,6 +6,8 @@
   "scripts": {
     "taze": "taze minor -wIr && pnpm -r --parallel run update-post",
     "dev": "pnpm stub",
+    "lint": "eslint --cache .",
+    "lint:fix": "nr lint --fix",
     "stub": "pnpm -r --filter=./packages/* --parallel run stub"
   },
   "dependencies": {
