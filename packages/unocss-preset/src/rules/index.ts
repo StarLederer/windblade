@@ -172,7 +172,7 @@ const rules: Rule<Theme>[] = [
   //   ],
   //   [`${ruleName}-end-auto`, { ['grid-' + cssName + '-end']: 'auto' }]
   // ]),
-  ...grids,
+  ...grids as Rule<Theme>[],
 
   ...flexboxAndGrid.gridFitCols().rules,
   ...flexboxAndGrid.gridFillCols().rules,
@@ -399,7 +399,7 @@ const rules: Rule<Theme>[] = [
   ['break-all', { 'word-break': 'break-all' }],
   ['break-keep', { 'word-break': 'keep-all' }],
 
-  ...contents,
+  ...contents as Rule<Theme>[],
 
   // Borders
   ...borders.borderRadius().rules,
