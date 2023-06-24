@@ -26,6 +26,6 @@
     "postcss": "^8.4.24",
     "postcss-preset-env": "^8.5.1",
     "ts-extras": "^0.11.0",
-    "unocss-preset-mini-variants": "^0.49.7"
+    "unocss-preset-mini-variants": "^0.53.3"
   }
 }

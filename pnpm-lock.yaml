@@ -63,8 +63,8 @@ importers:
   packages/core:
     dependencies:
       '@unocss/preset-mini':
-        specifier: 0.49.8
-        version: 0.49.8
+        specifier: 0.53.3
+        version: 0.53.3
       better-color-tools:
         specifier: ^0.12.3
         version: 0.12.3
@@ -165,8 +165,8 @@ importers:
         specifier: ^0.11.0
         version: 0.11.0
       unocss-preset-mini-variants:
-        specifier: ^0.49.7
-        version: 0.49.7
+        specifier: ^0.53.3
+        version: 0.53.3
 
 packages:
 
@@ -1811,14 +1811,6 @@ packages:
       - rollup
     dev: true
 
-  /@unocss/config@0.49.8:
-    resolution: {integrity: sha512-tEpxZ/FvmvBV+PdF7hiqRT7F4PTI2HG6Ytw4cgusmp62VeWJ1t1L+9DuGsUDpaLL/LYyYS7wiCdZj/m+GeNBLg==}
-    engines: {node: '>=14'}
-    dependencies:
-      '@unocss/core': 0.49.8
-      unconfig: 0.3.9
-    dev: true
-
   /@unocss/config@0.53.3:
     resolution: {integrity: sha512-72sP17B09ZT/PBJMeFGN1U5y0VhC9sBHTcIQ3GgsRxRnmCRZyzyyRyp9jwBkLRCqWfaKyWgELz1opnWGBhegFw==}
     engines: {node: '>=14'}
@@ -1826,9 +1818,6 @@ packages:
       '@unocss/core': 0.53.3
       unconfig: 0.3.9
     dev: true
-
-  /@unocss/core@0.49.8:
-    resolution: {integrity: sha512-00BXRcMn6ERIkWHM64g6Uv6YZ3GUR8HjrMAzJZdd+04WcG2xCOyen8k+yDCxslqL0YsLqXYyLsgFSunHfYWy8w==}
 
   /@unocss/core@0.53.3:
     resolution: {integrity: sha512-28xxgZZBaGeDUULoNrpmSP4ZtNn41b2NlBnOe2ta+TnA4F0R5v8bW0w8CxHoYGiHS8mbCq4Aw1ReNlqVhfar8Q==}
@@ -1874,11 +1863,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /@unocss/preset-mini@0.49.8:
-    resolution: {integrity: sha512-iJEbunr8sPdvZkp/ncHL3853LobfMtn5l1yE+6MDr7kjiS9Teiopt+FkR2xSmv8nCcCp39gFT3mKtJ/sZVG61Q==}
-    dependencies:
-      '@unocss/core': 0.49.8
 
   /@unocss/preset-mini@0.53.3:
     resolution: {integrity: sha512-Sr61c/UPCD4OjWSXE+30FxXJHMdzh/Zc8Ow6RzlT+fqUBYyNw3WpXwRW3Goxnxl98FvK2vb+cZGTxVRlezO8Pw==}
@@ -5976,12 +5960,12 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: true
 
-  /unocss-preset-mini-variants@0.49.7:
-    resolution: {integrity: sha512-6H1Elp7Jupclk4suviklTz7qoaWsLs7w6FoYcCETvP0e2+kpxNXcVZIX5IRdfXd4st0JpGJpmiirlYHUiFFh8g==}
+  /unocss-preset-mini-variants@0.53.3:
+    resolution: {integrity: sha512-i6z1Zif72KoM/6pg75d8Eo9JGiK3AFFuOv2motH151Q/pv0qMUATyJOfrioCP5bOslcSh1t7mHp0robCIGYJVg==}
     dependencies:
-      '@unocss/config': 0.49.8
-      '@unocss/core': 0.49.8
-      '@unocss/preset-mini': 0.49.8
+      '@unocss/config': 0.53.3
+      '@unocss/core': 0.53.3
+      '@unocss/preset-mini': 0.53.3
     dev: true
 
   /unocss@0.53.3(postcss@8.4.24)(rollup@3.25.1)(vite@4.3.9):
