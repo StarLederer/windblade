@@ -33,9 +33,7 @@
   },
   "pnpm": {
     "overrides": {
-      "@nuxt/kit-edge": "npm:@nuxt/kit@latest",
-      "nuxt": "^3.2.0",
-      "magic-string": "^0.27.0"
+      "magic-string": "^0.30.0"
     }
   },
   "simple-git-hooks": {
