@@ -23,7 +23,7 @@ const example3 = `
 
 const example5 = `
 import { utils } from "@windblade/core";
-import { theme } from "unocss-preset-windblade"; // this is just a source file and it does not know about your theme customizations. If you are using your own colors you should import them instead
+import { theme } from "@windblade/unocss-preset"; // this is just a source file and it does not know about your theme customizations. If you are using your own colors you should import them instead
 
 const { getColorSchemeCSSProps, objToCSS } = utils
 

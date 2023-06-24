@@ -11,7 +11,7 @@ const defs: Record<ModuleId, {
       description: 'Complete package intended to replace Tailwind or unocss-preset-wind. Not recommended at the moment',
       openOn: ['Usage', 'Installation'],
     },
-    loadDocs: async () => (await import('unocss-preset-windblade')).docs.default,
+    loadDocs: async () => (await import('@windblade/unocss-preset')).docs.default,
   },
   color: {
     meta: {

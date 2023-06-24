@@ -6,7 +6,7 @@ import unocss from '@unocss/vite'
 import transformerDirective from '@unocss/transformer-directives'
 import presetIcons from '@unocss/preset-icons'
 import presetVariants from 'unocss-preset-mini-variants'
-import presetWindblade from 'unocss-preset-windblade'
+import presetWindblade from '@windblade/unocss-preset'
 
 export default defineConfig({
   base: './',
@@ -14,8 +14,8 @@ export default defineConfig({
   resolve: {
     alias: {
       'unocss-docs': resolve('../unocss-docs/src/index.ts'),
-      'unocss-preset-windblade': resolve('../unocss-preset/src/index.ts'),
       '@windblade/core': resolve('../core/src/index.ts'),
+      '@windblade/unocss-preset': resolve('../unocss-preset/src/index.ts'),
       '@windblade/unocss-preset-color': resolve('../unocss-preset-color/src/index.ts'),
       '@windblade/unocss-preset-dollars': resolve('../unocss-preset-dollars/src/index.ts'),
       '@windblade/unocss-docs-frontend': resolve('../unocss-docs-frontend/src/index.ts'),

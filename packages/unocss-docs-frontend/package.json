@@ -37,6 +37,6 @@
     "solid-headless": "^0.13.1",
     "solid-js": "^1.6.11",
     "unocss-docs": "workspace:*",
-    "unocss-preset-windblade": "workspace:*"
+    "@windblade/unocss-preset": "workspace:*"
   }
 }

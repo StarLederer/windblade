@@ -62,6 +62,7 @@ importers:
       '@rollup/plugin-typescript': ^11.0.0
       '@types/js-beautify': ^1.13.3
       '@windblade/core': workspace:*
+      '@windblade/unocss-preset': workspace:*
       highlight.js: ^11.7.0
       js-beautify: ^1.14.7
       jsx-pragmatic: ^2.0.22
@@ -74,19 +75,18 @@ importers:
       ts-extras: ^0.11.0
       unocss-docs: workspace:*
       unocss-preset-mini-variants: ^0.49.7
-      unocss-preset-windblade: workspace:*
     dependencies:
       '@types/js-beautify': 1.13.3
       '@windblade/core': link:../core
+      '@windblade/unocss-preset': link:../unocss-preset
       highlight.js: 11.7.0
       js-beautify: 1.14.7
       jsx-pragmatic: 2.0.22
       solid-headless: 0.13.1_solid-js@1.6.11
       solid-js: 1.6.11
       unocss-docs: link:../unocss-docs
-      unocss-preset-windblade: link:../unocss-preset
     devDependencies:
-      '@rollup/plugin-typescript': 11.0.0_5h3uv6h5hdci4akcbsseut5pjq
+      '@rollup/plugin-typescript': 11.0.0_bnlhbrkpqofrmzzenpsnru62pi
       postcss: 8.4.21
       postcss-preset-env: 8.0.1_postcss@8.4.21
       rollup: 3.17.3
@@ -136,7 +136,8 @@ importers:
     specifiers:
       '@solidjs/router': ^0.8.2
       '@types/js-beautify': ^1.13.3
-      '@windblade/core': workspace:2.0.0-beta.3
+      '@windblade/core': workspace:*
+      '@windblade/unocss-preset': workspace:*
       highlight.js: ^11.7.0
       js-beautify: ^1.14.7
       postcss: ^8.4.23
@@ -147,19 +148,18 @@ importers:
       ts-extras: ^0.11.0
       unocss-docs: workspace:0.1.0
       unocss-preset-mini-variants: ^0.49.7
-      unocss-preset-windblade: workspace:2.0.0-beta.3
       xast-util-from-xml: ^3.0.0
     dependencies:
       '@solidjs/router': 0.8.2_solid-js@1.7.3
       '@types/js-beautify': 1.13.3
       '@windblade/core': link:../core
+      '@windblade/unocss-preset': link:../unocss-preset
       highlight.js: 11.7.0
       js-beautify: 1.14.7
       solid-headless: 0.13.1_solid-js@1.7.3
       solid-js: 1.7.3
       solid-transition-group: 0.0.13_solid-js@1.7.3
       unocss-docs: link:../unocss-docs
-      unocss-preset-windblade: link:../unocss-preset
       xast-util-from-xml: 3.0.0
     devDependencies:
       postcss: 8.4.23
@@ -2786,7 +2786,7 @@ packages:
       terser: 5.16.5
     dev: true
 
-  /@rollup/plugin-typescript/11.0.0_5h3uv6h5hdci4akcbsseut5pjq:
+  /@rollup/plugin-typescript/11.0.0_bnlhbrkpqofrmzzenpsnru62pi:
     resolution: {integrity: sha512-goPyCWBiimk1iJgSTgsehFD5OOFHiAknrRJjqFCudcW8JtWiBlK284Xnn4flqMqg6YAjVG/EE+3aVzrL5qNSzQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -2802,7 +2802,7 @@ packages:
       '@rollup/pluginutils': 5.0.2_rollup@3.17.3
       resolve: 1.22.1
       rollup: 3.17.3
-      typescript: 4.9.5
+      typescript: 5.0.4
     dev: true
 
   /@rollup/pluginutils/5.0.2_rollup@3.17.3:

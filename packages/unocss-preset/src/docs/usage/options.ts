@@ -4,7 +4,7 @@ import { themes } from '@windblade/core'
 
 const theme = `
 import { defineConfig } from 'unocss';
-import presetWindblade from 'unocss-preset-windblade';
+import presetWindblade from '@windblade/unocss-preset';
 
 export default defineConfig({
   presets: [
