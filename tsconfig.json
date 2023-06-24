@@ -18,7 +18,6 @@
     "paths": {
       "@windblade/core": ["./packages/core/src/index.ts"],
       "@windblade/website": ["./packages/website/src/index.ts"],
-      "@windblade/unocss-docs-frontned": ["./packages/unocss-docs-frontned/src/index.ts"],
       "@windblade/unocss-preset": ["./packages/unocss-preset/src/index.ts"],
       "@windblade/unocss-preset-color": ["./packages/unocss-preset-color/src/index.ts"],
       "@windblade/unocss-preset-dollars": ["./packages/unocss-preset-dollars/src/index.ts"],
