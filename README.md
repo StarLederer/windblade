@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="https://starlederer.github.io/windblade">Homepage</a> | <a href="https://starlederer.github.io/windblade?navigation=/docs">Documentation</a> (WIP) | <a href="https://github.com/unocss/unocss">UnoCSS</a> | <a href="https://tailwindcss.com/">Tailwind</a>
+  <a href="https://starlederer.github.io/windblade">Homepage</a> | <a href="https://starlederer.github.io/windblade?navigation=/docs">Documentation</a> (WIP) | <a href="https://unocss.dev">UnoCSS</a> | <a href="https://tailwindcss.com/">Tailwind</a>
 </p>
 
 ## Installation
@@ -32,12 +32,11 @@ Documentation is in development. Until it is complete please follow [Tailwind's 
 - [x] Detailed README.
 - [x] Basic documentation with demos.
 - [x] Published to NPM.
-- [ ] Listed on [UnoCSS](https://github.com/unocss/unocss) readme.
-- [ ] Documentation search.
+- [x] Flexible XML documentation format.
+- [ ] Document and reuse features from [@unocss-preset-wind](https://unocss.dev/presets/wind).
 - [ ] Better bracket (`...-[...]`) implementation.
-- [ ] Markdown documentation format.
-- [ ] Complete documentation.
-- [ ] Become UnoCSS default preset 🤷🫣
+- [ ] Documentation search.
+- [ ] Listed on [UnoCSS](https://github.com/unocss/unocss) readme.
 
 ## Sponsors
 
