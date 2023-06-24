@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "postcss": "^8.4.23",
-    "postcss-preset-env": "^8.3.2",
+    "postcss": "^8.4.24",
+    "postcss-preset-env": "^8.5.1",
     "ts-extras": "^0.11.0",
     "unocss-preset-mini-variants": "^0.49.7"
   },
@@ -20,12 +20,12 @@
     "@types/js-beautify": "^1.13.3",
     "@windblade/core": "workspace:*",
     "@windblade/unocss-preset": "workspace:*",
-    "highlight.js": "^11.7.0",
-    "js-beautify": "^1.14.7",
+    "highlight.js": "^11.8.0",
+    "js-beautify": "^1.14.8",
     "solid-headless": "^0.13.1",
-    "solid-js": "^1.7.3",
-    "solid-transition-group": "^0.0.13",
-    "unocss-docs": "workspace:0.1.0",
+    "solid-js": "^1.7.6",
+    "solid-transition-group": "^0.2.2",
+    "unocss-docs": "workspace:*",
     "xast-util-from-xml": "^3.0.0"
   }
 }
