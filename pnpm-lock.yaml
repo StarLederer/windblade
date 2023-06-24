@@ -6,10 +6,6 @@ overrides:
 importers:
 
   .:
-    dependencies:
-      '@unocss/core':
-        specifier: 0.53.3
-        version: 0.53.3
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^0.39.5
@@ -85,6 +81,9 @@ importers:
 
   packages/unocss-preset:
     dependencies:
+      '@unocss/core':
+        specifier: 0.53.3
+        version: 0.53.3
       '@unocss/preset-mini':
         specifier: 0.53.3
         version: 0.53.3
@@ -142,6 +141,9 @@ importers:
       '@types/js-beautify':
         specifier: ^1.13.3
         version: 1.13.3
+      '@unocss/core':
+        specifier: 0.53.3
+        version: 0.53.3
       '@windblade/core':
         specifier: workspace:*
         version: link:../core

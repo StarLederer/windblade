@@ -12,6 +12,7 @@
   "dependencies": {
     "@solidjs/router": "^0.8.2",
     "@types/js-beautify": "^1.13.3",
+    "@unocss/core": "0.53.3",
     "@windblade/core": "workspace:*",
     "@windblade/unocss-preset": "workspace:*",
     "highlight.js": "^11.8.0",

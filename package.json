@@ -44,8 +44,5 @@
     "*.{js,ts,tsx,vue,md}": [
       "eslint --cache --fix"
     ]
-  },
-  "dependencies": {
-    "@unocss/core": "0.53.3"
   }
 }
