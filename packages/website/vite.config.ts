@@ -18,7 +18,6 @@ export default defineConfig({
       '@windblade/unocss-preset': resolve('../unocss-preset/src/index.ts'),
       '@windblade/unocss-preset-color': resolve('../unocss-preset-color/src/index.ts'),
       '@windblade/unocss-preset-dollars': resolve('../unocss-preset-dollars/src/index.ts'),
-      '@windblade/unocss-docs-frontend': resolve('../unocss-docs-frontend/src/index.ts'),
 
       '@windblade': resolve('..'),
       '@ui': resolve('./submodules/ui'),
