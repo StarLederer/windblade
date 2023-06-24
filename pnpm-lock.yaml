@@ -88,9 +88,6 @@ importers:
       '@windblade/unocss-preset-dollars':
         specifier: workspace:2.0.0-beta.3
         version: link:../unocss-preset-dollars
-      better-color-tools:
-        specifier: ^0.10.2
-        version: 0.10.2
       ts-deepmerge:
         specifier: ^6.1.0
         version: 6.1.0
@@ -2187,10 +2184,6 @@ packages:
   /base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
     dev: true
-
-  /better-color-tools@0.10.2:
-    resolution: {integrity: sha512-YVu7jDYb19XUfosvEmSb0dD+gkQrW1rJ0hDEwcW5KoJOC1iTiUMrXpDWlkU34Q3V24qbAovCR9FwnjgSxD8gpw==}
-    dev: false
 
   /better-color-tools@0.12.3:
     resolution: {integrity: sha512-0XEdDUO1JpAM1++x7dYJA6ggRypAkGbGHWsD/eirddkC8p+5qNU1nbfOwraqMDsJr6ttktpeqEI0VH3VS+ZkPw==}

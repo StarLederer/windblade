@@ -43,7 +43,6 @@
     "@windblade/core": "workspace:2.0.0-beta.3",
     "@windblade/unocss-preset-color": "workspace:2.0.0-beta.3",
     "@windblade/unocss-preset-dollars": "workspace:2.0.0-beta.3",
-    "better-color-tools": "^0.10.2",
     "ts-deepmerge": "^6.1.0",
     "ts-extras": "^0.11.0",
     "unocss-docs": "workspace:*"
