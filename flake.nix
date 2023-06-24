@@ -1,9 +1,7 @@
 {
-  description = "pnpm";
-
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "github:NixOS/nixpkgs/22.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/23.05";
   };
 
   outputs = { self, flake-utils, nixpkgs }:
