@@ -1,7 +1,7 @@
 import type { DynamicRule } from '@unocss/core'
 import type Theme from '../theme/Theme'
 
-const colorRule = (prefix: string, property: string): DynamicRule<Theme> => {
+function colorRule(prefix: string, property: string): DynamicRule<Theme> {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
@@ -26,7 +26,7 @@ const colorRule = (prefix: string, property: string): DynamicRule<Theme> => {
  * @param prefix The Atomic CSS class name prefix
  * @returns UnoCSS dynamic rule that sets the background to the color defined in the class name as well as sets --fg variables and changes text to var(--fg0)
  */
-const colorBgRule = (prefix: string): DynamicRule<Theme> => {
+function colorBgRule(prefix: string): DynamicRule<Theme> {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
@@ -47,7 +47,7 @@ const colorBgRule = (prefix: string): DynamicRule<Theme> => {
   ]
 }
 
-const fgColorRule = (prefix: string, property: string): DynamicRule<Theme> => {
+function fgColorRule(prefix: string, property: string): DynamicRule<Theme> {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {

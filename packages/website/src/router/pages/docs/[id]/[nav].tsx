@@ -40,7 +40,7 @@ const DocPage: Component<{
   )
 }
 
-const navigateDocTree = (docs: DocumentationTree, path: string[], i = 0): DocumentationPage | DocumentationTree | undefined => {
+function navigateDocTree(docs: DocumentationTree, path: string[], i = 0): DocumentationPage | DocumentationTree | undefined {
   const nav = path[i]
 
   if (!nav)

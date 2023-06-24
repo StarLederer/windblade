@@ -8,7 +8,7 @@ import { iterObjects } from './doc-components'
 
 const { logical, size: sizes } = ruleUtils
 
-export const widthHeight = () => {
+export function widthHeight() {
   const docs: DocumentationPage = `
     <page>
       <h1><title /></h1>
@@ -19,7 +19,7 @@ export const widthHeight = () => {
   return { rules: [], docs }
 }
 
-export const size = () => {
+export function size() {
   const rules: Rule<Theme>[] = sizes.axisRules('size', '', '', 'size')
 
   const docs: DocumentationPage = `
@@ -63,11 +63,13 @@ export const size = () => {
   return { rules, docs }
 }
 
-const minMaxSizeHtml = (axis: string) => `
+function minMaxSizeHtml(axis: string) {
+  return `
   <div class="$util ${axis === 'inline' ? 'min-size-b-m.2' : 'min-size-i-m.2'} bg-accent rounded-s"></div>
 `
+}
 
-export const minSize = () => {
+export function minSize() {
   const rules: Rule<Theme>[] = sizes.axisRules('min-size', '', 'min', 'size')
 
   const docs: DocumentationPage = `
@@ -111,7 +113,7 @@ export const minSize = () => {
   return { rules, docs }
 }
 
-export const maxSize = () => {
+export function maxSize() {
   const rules: Rule<Theme>[] = sizes.axisRules('max-size', '', 'max', 'size')
 
   const docs: DocumentationPage = `

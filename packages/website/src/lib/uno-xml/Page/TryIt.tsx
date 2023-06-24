@@ -1,4 +1,4 @@
-import type { Accessor } from 'solid-js'
+import type { Accessor, Component } from 'solid-js'
 import { Show, createContext, createEffect, createSignal, useContext } from 'solid-js'
 import type { Element } from 'xast-util-from-xml/lib'
 import type { XmlComponent, XmlNodeRenderer } from '../types'
@@ -27,7 +27,7 @@ const styles = {
   pre: 'bg-surface p-s rounded-s leading-$($s+$s.4) overflow-auto',
 }
 
-const NothingSelected = () => (
+const NothingSelected: Component = () => (
   <div class="bg-surface rounded-s p-s flex gap-s text-fg-3">
     <div class="i-mdi-exclamation"></div>
     Please select a utility first

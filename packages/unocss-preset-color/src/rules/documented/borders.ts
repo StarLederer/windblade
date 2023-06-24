@@ -6,7 +6,7 @@ import type { Theme } from '@windblade/core'
 
 const { color, logical } = ruleUtils
 
-export const borderColor = () => {
+export function borderColor() {
   const rules: Rule<Theme>[] = [
     ...logical.edgeRules('border', 'color', 'border', 'color', color.colorRule),
     ...logical.edgeRules('border', 'color-fg', 'border', 'color', color.fgColorRule),
@@ -81,7 +81,7 @@ export const borderColor = () => {
   return { rules, docs }
 }
 
-export const outlineColor = () => {
+export function outlineColor() {
   const rules: Rule<Theme>[] = [
     color.colorRule('outline', 'outline-color'),
     color.fgColorRule('outline-fg', 'outline-color'),

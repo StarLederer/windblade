@@ -3,7 +3,7 @@ import type { Theme } from '@windblade/core'
 import theme from './theme'
 import rules from './rules'
 
-const main = (options: {} = {}): Preset<Theme> => {
+function main(options: {} = {}): Preset<Theme> {
   return {
     name: '@windblade/unocss-preset-color',
     theme,

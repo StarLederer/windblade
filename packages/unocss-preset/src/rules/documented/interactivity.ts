@@ -5,9 +5,9 @@ import { ruleUtils } from '@windblade/core'
 import type { Theme } from '@windblade/core'
 import { selectLogical } from './doc-components'
 
-const { logical, size } = ruleUtils
+const { size } = ruleUtils
 
-export const scrollMargin = () => {
+export function scrollMargin() {
   const rules: Rule<Theme>[] = size.edgeRules('scroll-m', '', 'scroll-margin', '')
 
   const docs: DocumentationPage = `
@@ -50,7 +50,7 @@ export const scrollMargin = () => {
   return { rules, docs }
 }
 
-export const scrollPadding = () => {
+export function scrollPadding() {
   const rules: Rule<Theme>[] = size.edgeRules('scroll-p', '', 'scroll-padding', '')
 
   const docs: DocumentationPage = `
@@ -93,7 +93,7 @@ export const scrollPadding = () => {
   return { rules, docs }
 }
 
-export const scrollSnapType = () => {
+export function scrollSnapType() {
   const rules: Rule<Theme>[] = [
     ['snap-none', { 'scroll-snap-type': 'none' }],
     ['snap-both', { 'scroll-snap-type': 'both var(--wb-scroll-snap-strictness)' }],
@@ -134,7 +134,7 @@ export const scrollSnapType = () => {
   return { rules, docs }
 }
 
-export const touchAction = () => {
+export function touchAction() {
   const rules: Rule<Theme>[] = [
     ['touch-auto', { 'touch-action': 'auto' }],
     ['touch-none', { 'touch-action': 'none' }],

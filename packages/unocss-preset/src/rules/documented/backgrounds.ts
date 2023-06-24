@@ -7,7 +7,7 @@ import type { Theme } from '@windblade/core'
 
 const { logical } = ruleUtils
 
-export const backgroundPosition = () => {
+export function backgroundPosition() {
   const rules: Rule<Theme>[] = [
     ...objectEntries(logical.abbreviations.edges).map(([key, val]): Rule<Theme> => [
       `bg-${key}`, { 'background-position': `var(--${val})` },

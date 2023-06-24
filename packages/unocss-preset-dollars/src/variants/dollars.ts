@@ -1,7 +1,7 @@
 import type { Variant } from '@unocss/core'
 import type { Theme } from '@windblade/core'
 
-export const resolveDollars = (expr: string, theme: Theme): string => {
+export function resolveDollars(expr: string, theme: Theme): string {
   let resolved = expr
 
   // Resolve variables
@@ -33,6 +33,7 @@ export const resolveDollars = (expr: string, theme: Theme): string => {
 
     // Evaluate and resolve
     try {
+      // eslint-disable-next-line no-new-func
       resolved = resolved.replace(`$${parenExpr}`, Function(`'use strict'; return (${parenExpr})`)())
     }
     catch (_) {

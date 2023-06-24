@@ -1,19 +1,13 @@
 {
   "name": "@windblade/website",
-  "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "update-post": "vite build",
     "preview": "vite preview"
-  },
-  "devDependencies": {
-    "postcss": "^8.4.24",
-    "postcss-preset-env": "^8.5.1",
-    "ts-extras": "^0.11.0",
-    "unocss-preset-mini-variants": "^0.49.7"
   },
   "dependencies": {
     "@solidjs/router": "^0.8.2",
@@ -27,5 +21,11 @@
     "solid-transition-group": "^0.2.2",
     "unocss-docs": "workspace:*",
     "xast-util-from-xml": "^3.0.0"
+  },
+  "devDependencies": {
+    "postcss": "^8.4.24",
+    "postcss-preset-env": "^8.5.1",
+    "ts-extras": "^0.11.0",
+    "unocss-preset-mini-variants": "^0.49.7"
   }
 }

@@ -6,7 +6,7 @@ import type { Theme } from '@windblade/core'
 
 const { size } = ruleUtils
 
-export const boxShadow = () => {
+export function boxShadow() {
   const docs: DocumentationPage = `
     <page>
       <h1><title /></h1>
@@ -17,7 +17,7 @@ export const boxShadow = () => {
   return { rules: [], docs }
 }
 
-export const opacity = () => {
+export function opacity() {
   const rules: Rule<Theme>[] = [size.rule('opacity', 'opacity', { defaultUnit: '' })]
 
   const docs: DocumentationPage = `

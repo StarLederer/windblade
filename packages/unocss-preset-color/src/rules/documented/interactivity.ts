@@ -6,7 +6,7 @@ import type { Theme } from '@windblade/core'
 
 const { color } = ruleUtils
 
-export const accentColor = () => {
+export function accentColor() {
   const rules: Rule<Theme>[] = [color.colorRule('accent', 'accent-color')]
 
   const docs: DocumentationPage = `
@@ -53,7 +53,7 @@ export const accentColor = () => {
   return { rules, docs }
 }
 
-export const caretColor = () => {
+export function caretColor() {
   const rules: Rule<Theme>[] = [
     color.colorRule('caret', 'caret-color'),
     color.fgColorRule('caret-fg', 'caret-color'),

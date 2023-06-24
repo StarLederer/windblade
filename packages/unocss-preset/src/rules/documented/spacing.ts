@@ -5,9 +5,9 @@ import { ruleUtils } from '@windblade/core'
 import type { Theme } from '@windblade/core'
 import { iterObjects, selectLogical } from './doc-components'
 
-const { logical, size } = ruleUtils
+const { size } = ruleUtils
 
-export const padding = () => {
+export function padding() {
   const rules: Rule<Theme>[] = size.edgeRules('p', '', 'padding', '')
 
   const docs: DocumentationPage = `
@@ -58,7 +58,7 @@ export const padding = () => {
   return { rules, docs }
 }
 
-export const margin = () => {
+export function margin() {
   const rules: Rule<Theme>[] = size.edgeRules('m', '', 'margin', '')
 
   const docs: DocumentationPage = `
@@ -109,7 +109,7 @@ export const margin = () => {
   return { rules, docs }
 }
 
-export const spaceBetween = () => {
+export function spaceBetween() {
   const docs: DocumentationPage = `
     <page>
       <h1><title /></h1>

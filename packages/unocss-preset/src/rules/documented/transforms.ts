@@ -6,7 +6,7 @@ import type { Theme } from '@windblade/core'
 
 const { size } = ruleUtils
 
-export const scale = () => {
+export function scale() {
   const rules: Rule<Theme>[] = [size.rule('scale', 'transform', { defaultUnit: '', postprocess: val => `scale${val}` })]
 
   const docs: DocumentationPage = `
@@ -46,7 +46,7 @@ export const scale = () => {
   return { rules, docs }
 }
 
-export const rotate = () => {
+export function rotate() {
   const rules: Rule<Theme>[] = [size.rule('rotate', 'transform', { defaultUnit: 'deg', postprocess: val => `rotate${Number(val) * 360}` })]
 
   const docs: DocumentationPage = `
@@ -86,7 +86,7 @@ export const rotate = () => {
   return { rules, docs }
 }
 
-export const translate = () => {
+export function translate() {
   const rules: Rule<Theme>[] = [size.rule('translate', 'transform', { postprocess: val => `translate${val}` })]
 
   const docs: DocumentationPage = `
@@ -126,7 +126,7 @@ export const translate = () => {
   return { rules, docs }
 }
 
-export const skew = () => {
+export function skew() {
   const rules: Rule<Theme>[] = [size.rule('skew', 'transform', { defaultUnit: 'deg', postprocess: val => `skew${Number(val) * 360}` })]
 
   const docs: DocumentationPage = `

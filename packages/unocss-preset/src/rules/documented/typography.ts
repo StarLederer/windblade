@@ -7,7 +7,7 @@ import { iterObjects } from './doc-components'
 
 const { size } = ruleUtils
 
-export const fontFamily = () => {
+export function fontFamily() {
   const docs: DocumentationPage = `
     <page>
       <h1><title /></h1>
@@ -18,7 +18,7 @@ export const fontFamily = () => {
   return { rules: [], docs }
 }
 
-export const fontSize = () => {
+export function fontSize() {
   const rules: Rule<Theme>[] = [size.rule('text', 'font-size')]
 
   const docs: DocumentationPage = `
@@ -58,7 +58,7 @@ export const fontSize = () => {
   return { rules, docs }
 }
 
-export const fontSmoothing = () => {
+export function fontSmoothing() {
   const docs: DocumentationPage = `
     <page>
       <h1><title /></h1>
@@ -69,7 +69,7 @@ export const fontSmoothing = () => {
   return { rules: [], docs }
 }
 
-export const tracking = () => {
+export function tracking() {
   const rules: Rule<Theme>[] = [size.rule('tracking', 'letter-spacing', { defaultUnit: 'em' })]
 
   const docs: DocumentationPage = `
@@ -109,7 +109,7 @@ export const tracking = () => {
   return { rules, docs }
 }
 
-export const leading = () => {
+export function leading() {
   const rules: Rule<Theme>[] = [size.rule('leading', 'line-height', { defaultUnit: '' })]
 
   const docs: DocumentationPage = `
@@ -149,7 +149,7 @@ export const leading = () => {
   return { rules, docs }
 }
 
-export const textDecorationThickness = () => {
+export function textDecorationThickness() {
   const rules: Rule<Theme>[] = [
     ['decoration-from-font', { 'text-decoration-thickness': 'from-font' }],
     size.rule('decoration', 'text-decoration-thickness'),
@@ -191,7 +191,7 @@ export const textDecorationThickness = () => {
   return { rules, docs }
 }
 
-export const textUnderlineOffset = () => {
+export function textUnderlineOffset() {
   const rules: Rule<Theme>[] = [size.rule('underline-offset', 'text-underline-offset')]
 
   const docs: DocumentationPage = `

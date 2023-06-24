@@ -1,11 +1,10 @@
 import type { DynamicRule } from '@unocss/core'
 import type Theme from '../theme/Theme'
 
-const durationRule = (
-  prefix: string,
+function durationRule(prefix: string,
   property: string,
   value?: (size: string) => string,
-): DynamicRule<Theme> => {
+): DynamicRule<Theme> {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
@@ -19,10 +18,10 @@ const durationRule = (
   ]
 }
 
-const timingFunctionRule = (
+function timingFunctionRule(
   prefix: string,
   property: string,
-): DynamicRule<Theme> => {
+): DynamicRule<Theme> {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {

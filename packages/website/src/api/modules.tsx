@@ -2,7 +2,7 @@ import type { Module, ModuleId, ModuleMeta } from './modules/types'
 import type { Option } from './core'
 import moduleDefs from './modules/data'
 
-export const getIndex = (): Option<Map<ModuleId, ModuleMeta>, string> => {
+export function getIndex(): Option<Map<ModuleId, ModuleMeta>, string> {
   try {
     const value = new Map()
     Object.entries(moduleDefs).forEach(([id, def]) => {
@@ -21,7 +21,7 @@ export const getIndex = (): Option<Map<ModuleId, ModuleMeta>, string> => {
   }
 }
 
-export const get = async (id: ModuleId): Promise<Option<Module, string>> => {
+export async function get(id: ModuleId): Promise<Option<Module, string>> {
   try {
     const def = moduleDefs[id]
     return {

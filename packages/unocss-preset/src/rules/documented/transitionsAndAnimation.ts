@@ -6,7 +6,7 @@ import type { Theme } from '@windblade/core'
 
 const { time } = ruleUtils
 
-export const transitionDelayAndDuration = () => {
+export function transitionDelayAndDuration() {
   const rules: Rule<Theme>[] = [
     time.durationRule('duration', 'transition-duration'),
     time.durationRule('delay', 'transition-delay'),
@@ -51,7 +51,7 @@ export const transitionDelayAndDuration = () => {
   return { rules, docs }
 }
 
-export const transitionTimingFunction = () => {
+export function transitionTimingFunction() {
   const rules: Rule<Theme>[] = [
     time.timingFunctionRule('ease', 'transition-timing-function'),
   ]
@@ -93,7 +93,7 @@ export const transitionTimingFunction = () => {
   return { rules, docs }
 }
 
-export const animation = () => {
+export function animation() {
   const docs: DocumentationPage = `
     <page>
       <h1><title /></h1>
@@ -104,7 +104,7 @@ export const animation = () => {
   return { rules: [], docs }
 }
 
-export const animationDelayAndDuration = () => {
+export function animationDelayAndDuration() {
   const rules: Rule<Theme>[] = [
     time.durationRule('animation-duration', 'animation-duration'),
     time.durationRule('animation-delay', 'animation-delay'),
@@ -149,7 +149,7 @@ export const animationDelayAndDuration = () => {
   return { rules, docs }
 }
 
-export const animationTimingFunction = () => {
+export function animationTimingFunction() {
   const rules: Rule<Theme>[] = [
     time.timingFunctionRule('animation-ease', 'animation-timing-function'),
   ]

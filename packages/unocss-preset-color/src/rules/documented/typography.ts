@@ -6,7 +6,7 @@ import type { Theme } from '@windblade/core'
 
 const { color } = ruleUtils
 
-export const textColor = () => {
+export function textColor() {
   const rules: Rule<Theme>[] = [
     color.colorRule('text', 'color'),
     color.fgColorRule('text-fg', 'color'),
@@ -56,7 +56,7 @@ export const textColor = () => {
   return { rules, docs }
 }
 
-export const textDecorationColor = () => {
+export function textDecorationColor() {
   const rules: Rule<Theme>[] = [
     color.colorRule('decoration', 'text-decoration-color'),
     color.fgColorRule('decoration-fg', 'text-decoration-color'),

@@ -3,7 +3,7 @@ import { handler as h } from '@unocss/preset-mini/utils'
 import type { Theme } from '../theme'
 import * as logical from './logicalSet'
 
-export const resolve = (value: string, theme: Theme, unit: string) => {
+export function resolve(value: string, theme: Theme, unit: string) {
   // Try to resolve proportion
   const token = theme.windblade.proportions[value]
   if (token !== undefined)
@@ -21,14 +21,13 @@ export const resolve = (value: string, theme: Theme, unit: string) => {
   return undefined
 }
 
-export const rule = (
-  prefix: string,
+export function rule(prefix: string,
   property: string,
   options?: {
     defaultUnit?: string
     postprocess?: (size: string) => string
   },
-): DynamicRule<Theme> => {
+): DynamicRule<Theme> {
   return [
     new RegExp(`^${prefix}-(.+)$`),
     ([_, value], { theme }) => {
@@ -59,14 +58,14 @@ export const rule = (
   ]
 }
 
-export const axisRules = (prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) => (
-  logical.axisRules(prefix, postfix, propertyPrefix, propertyPostfix, rule)
-)
+export function axisRules(prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) {
+  return logical.axisRules(prefix, postfix, propertyPrefix, propertyPostfix, rule)
+}
 
-export const edgeRules = (prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) => (
-  logical.edgeRules(prefix, postfix, propertyPrefix, propertyPostfix, rule)
-)
+export function edgeRules(prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) {
+  return logical.edgeRules(prefix, postfix, propertyPrefix, propertyPostfix, rule)
+}
 
-export const cornerRules = (prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) => (
-  logical.cornerRules(prefix, postfix, propertyPrefix, propertyPostfix, rule)
-)
+export function cornerRules(prefix: string, postfix: string, propertyPrefix: string, propertyPostfix: string) {
+  return logical.cornerRules(prefix, postfix, propertyPrefix, propertyPostfix, rule)
+}

@@ -4,7 +4,7 @@ import type Theme from '../theme/Theme'
 
 export type ColorScheme = 'dark' | 'light'
 
-export const getLCA = (color: ThemeColor): Record<ColorScheme, { l: number; c: number; a: number }> => {
+export function getLCA(color: ThemeColor): Record<ColorScheme, { l: number; c: number; a: number }> {
   const l = color.dark.l
   const c = color.dark.c
   const a = color.dark.a ?? 1
@@ -19,7 +19,7 @@ export const getLCA = (color: ThemeColor): Record<ColorScheme, { l: number; c: n
   }
 }
 
-export const getLCHA = (hue: number, color: ThemeColor): Record<ColorScheme, { l: number; c: number; h: number; a: number }> => {
+export function getLCHA(hue: number, color: ThemeColor): Record<ColorScheme, { l: number; c: number; h: number; a: number }> {
   const sla: any = getLCA(color)
   Object.assign(sla, {
     dark: { h: hue },
@@ -33,7 +33,7 @@ export const LCHToCSSColor = (l: number, c: number, h: number, a = 1) => convert
 
 export type ColorSchemeProps = Record<ColorScheme, Record<string, string>>
 
-export const getColorSchemeCSSProps = (theme: Theme, hue: number): ColorSchemeProps => {
+export function getColorSchemeCSSProps(theme: Theme, hue: number): ColorSchemeProps {
   const { windblade } = theme
   const { colors: colorCombos } = windblade
 

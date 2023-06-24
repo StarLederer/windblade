@@ -7,7 +7,7 @@ import { objectEntries } from 'ts-extras'
 
 const { logical } = ruleUtils
 
-export const aspectRatio = () => {
+export function aspectRatio() {
   const rules: Rule<Theme>[] = [
     [
       /^(aspect)-(.+)$/,
@@ -50,7 +50,7 @@ export const aspectRatio = () => {
   return { rules, docs }
 }
 
-export const container = () => {
+export function container() {
   const docs: DocumentationPage = `
     <page>
       <h1><title /></h1>
@@ -61,7 +61,7 @@ export const container = () => {
   return { rules: [], docs }
 }
 
-export const breakAfter = () => {
+export function breakAfter() {
   const values = ['auto', 'avoid', 'all', 'avoid-page', 'page', 'recto', 'verso', 'column']
 
   const rules: Rule<Theme>[] = values.map((val): Rule<Theme> => [
@@ -99,7 +99,7 @@ export const breakAfter = () => {
   return { rules, docs }
 }
 
-export const breakBefore = () => {
+export function breakBefore() {
   const values = ['auto', 'avoid', 'all', 'avoid-page', 'page', 'recto', 'verso', 'column']
 
   const rules: Rule<Theme>[] = values.map((val): Rule<Theme> => [
@@ -137,7 +137,7 @@ export const breakBefore = () => {
   return { rules, docs }
 }
 
-export const display = () => {
+export function display() {
   const values = ['block', 'inline-block', 'inline', 'flex', 'inline-flex', 'flow-root', 'grid', 'inline-grid', 'contents', 'hidden'] as const
   const overrides: Partial<Record<typeof values[number], string>> = {
     hidden: 'none',
@@ -183,7 +183,7 @@ export const display = () => {
   return { rules, docs }
 }
 
-export const objectPosition = () => {
+export function objectPosition() {
   const rules: Rule<Theme>[] = [
     ...objectEntries(logical.abbreviations.edges).map(([key, val]): Rule<Theme> => [
       `object-${key}`, { 'object-position': `var(--${val})` },

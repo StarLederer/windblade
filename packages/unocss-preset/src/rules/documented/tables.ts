@@ -6,7 +6,7 @@ import type { Theme } from '@windblade/core'
 
 const { size } = ruleUtils
 
-export const borderSpacing = () => {
+export function borderSpacing() {
   const rules: Rule<Theme>[] = [
     size.rule('border-spacing', 'border-spacing'),
     // we are skiping border-spacing-b and borer-spacing-i for now beccause they are hard to implement

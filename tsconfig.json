@@ -21,7 +21,7 @@
       "@windblade/unocss-preset": ["./packages/unocss-preset/src/index.ts"],
       "@windblade/unocss-preset-color": ["./packages/unocss-preset-color/src/index.ts"],
       "@windblade/unocss-preset-dollars": ["./packages/unocss-preset-dollars/src/index.ts"],
-      "unocss-docs": ["./packages/unocss-docs/src/index.ts"],
+      "unocss-docs": ["./packages/unocss-docs/src/index.ts"]
     }
   },
   "exclude": [

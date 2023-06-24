@@ -5,7 +5,7 @@ import type { Component } from 'solid-js'
 import { Page } from '~/lib/rotuer'
 import docsStore from '~/stores/docsStore'
 
-const findFirstPage = (docs: DocumentationTree, prefix: string[] = []): string[] | undefined => {
+function findFirstPage(docs: DocumentationTree, prefix: string[] = []): string[] | undefined {
   for (const [name, child] of docs.entries()) {
     if (typeof child === 'string')
       return [...prefix, name]

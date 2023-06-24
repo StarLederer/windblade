@@ -7,7 +7,7 @@ import type { Theme } from '@windblade/core'
 
 const { color, logical } = ruleUtils
 
-export const bgColor = () => {
+export function bgColor() {
   const rules: Rule<Theme>[] = [
     color.colorRule('bg', 'background-color'),
     color.colorBgRule('bg'),
@@ -67,7 +67,7 @@ export const bgColor = () => {
   return { rules, docs }
 }
 
-export const backgroundImage = () => {
+export function backgroundImage() {
   const rules: Rule<Theme>[] = [
     ['bg-none', { 'background-image': 'none' }],
     ...objectKeys(logical.abbreviations.edges).map((edgeKey): Rule<Theme> => [
@@ -120,7 +120,7 @@ export const backgroundImage = () => {
   return { rules, docs }
 }
 
-export const gradientColorStops = () => {
+export function gradientColorStops() {
   const rules: Rule<Theme>[] = [
     color.colorRule('from', '--wb-gradient-from'),
     color.colorRule('to', '--wb-gradient-to'),

@@ -7,7 +7,7 @@ import { iterObjects, selectLogical } from './doc-components'
 
 const { logical, size } = ruleUtils
 
-export const borderRadius = () => {
+export function borderRadius() {
   const rules: Rule<Theme>[] = [
     ...size.cornerRules('rounded', '', 'border', 'radius'),
     ...logical.cornerRules('rounded', 'full', 'border', 'radius', (pref, prop) => [pref, { [prop]: '99999px' }]),
@@ -60,7 +60,7 @@ export const borderRadius = () => {
   return { rules, docs }
 }
 
-export const borderWidth = () => {
+export function borderWidth() {
   const rules: Rule<Theme>[] = size.edgeRules('border', '', 'border', 'width')
 
   const docs: DocumentationPage = `
@@ -105,7 +105,7 @@ export const borderWidth = () => {
   return { rules, docs }
 }
 
-export const outlineWidth = () => {
+export function outlineWidth() {
   const rules: Rule<Theme>[] = [size.rule('outline', 'outline-width')]
 
   const docs: DocumentationPage = `
@@ -143,7 +143,7 @@ export const outlineWidth = () => {
   return { rules, docs }
 }
 
-export const outlineOffset = () => {
+export function outlineOffset() {
   const rules: Rule<Theme>[] = [size.rule('outline-offset', 'outline-offset')]
 
   const docs: DocumentationPage = `
@@ -181,7 +181,7 @@ export const outlineOffset = () => {
   return { rules, docs }
 }
 
-export const divide = () => {
+export function divide() {
   const docs: DocumentationPage = `
     <page>
       <h1><title /></h1>
@@ -192,7 +192,7 @@ export const divide = () => {
   return { rules: [], docs }
 }
 
-export const ring = () => {
+export function ring() {
   const docs: DocumentationPage = `
     <page>
       <h1><title /></h1>

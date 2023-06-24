@@ -8,7 +8,7 @@ const { size } = ruleUtils
 
 const nineChildren = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(val => `<div class="bg-accent rounded-s.4 p-s flex items-center justify-center text-center">0${val}</div>`).join('\n')
 
-const generateAuto = (ruleName: string, cssName: string) => () => {
+function generateAuto(ruleName: string, cssName: string) {
   const rules: Rule<Theme>[] = [
     [`auto-${ruleName}-auto`, { [`grid-auto-${cssName}`]: 'auto' }],
     [`auto-${ruleName}-fr`, { [`grid-auto-${cssName}`]: 'minmax(0, 1fr)' }],
@@ -56,10 +56,10 @@ const generateAuto = (ruleName: string, cssName: string) => () => {
   return { rules, docs }
 }
 
-export const gridAutoCols = generateAuto('cols', 'columns')
-export const gridAutoRows = generateAuto('rows', 'rows')
+export const gridAutoCols = () => generateAuto('cols', 'columns')
+export const gridAutoRows = () => generateAuto('rows', 'rows')
 
-const generateFitFill = (type: 'fit' | 'fill', ruleName: string, cssName: string) => () => {
+function generateFitFill(type: 'fit' | 'fill', ruleName: string, cssName: string) {
   const rules: Rule<Theme>[] = [
     size.rule(`grid-${type}-${ruleName}s`, `grid-template-${cssName}s`, { postprocess: size => (`repeat(auto-${type}, minmax(min(${size}, 100%), 1fr))`) }),
   ]
@@ -103,7 +103,7 @@ const generateFitFill = (type: 'fit' | 'fill', ruleName: string, cssName: string
   return { rules, docs }
 }
 
-export const gridFitCols = generateFitFill('fit', 'col', 'column')
-export const gridFillCols = generateFitFill('fill', 'col', 'column')
-export const gridFitRows = generateFitFill('fit', 'row', 'row')
-export const gridFillRows = generateFitFill('fill', 'row', 'row')
+export const gridFitCols = () => generateFitFill('fit', 'col', 'column')
+export const gridFillCols = () => generateFitFill('fill', 'col', 'column')
+export const gridFitRows = () => generateFitFill('fit', 'row', 'row')
+export const gridFillRows = () => generateFitFill('fill', 'row', 'row')

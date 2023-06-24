@@ -8,7 +8,7 @@ import XmlChildren from '~/lib/uno-xml/XmlChildren'
 import Error from '~/lib/Error'
 import uno from '~/unocss'
 
-const navigateUnoConfig = (path: string) => {
+function navigateUnoConfig(path: string) {
   let destination: any = uno.config
   path.split('.').forEach(node => destination = destination[node])
   return destination

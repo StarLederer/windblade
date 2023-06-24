@@ -18,7 +18,7 @@ export const useXmlContext = () => useContext(XmlContext) ?? {}
 
 export const XmlContextProvider = () => XmlContext.Provider
 
-export const extendXmlContext = (extension: XmlNodeRenderer[]): XmlNodeRenderer[] => {
+export function extendXmlContext(extension: XmlNodeRenderer[]): XmlNodeRenderer[] {
   return [
     ...useXmlContext(),
     ...extension,

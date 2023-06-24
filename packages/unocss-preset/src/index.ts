@@ -11,7 +11,7 @@ export interface WindbladeOptions extends PresetOptions {
   theme?: WindbladeTheme
 }
 
-const main = (options: WindbladeOptions = {}): Preset<Theme> => {
+function main(options: WindbladeOptions = {}): Preset<Theme> {
   options.theme = options.theme ?? 'windblade'
 
   // Create presets that we inherit

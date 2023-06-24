@@ -6,7 +6,7 @@ import type { Theme } from '@windblade/core'
 
 const { size } = ruleUtils
 
-export const strokeWidth = () => {
+export function strokeWidth() {
   const rules: Rule<Theme>[] = [size.rule('stroke', 'stroke-width')]
 
   const docs: DocumentationPage = `

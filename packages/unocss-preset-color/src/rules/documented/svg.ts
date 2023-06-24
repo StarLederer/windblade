@@ -6,7 +6,7 @@ import type { Theme } from '@windblade/core'
 
 const { color } = ruleUtils
 
-export const fill = () => {
+export function fill() {
   const rules: Rule<Theme>[] = [
     color.colorRule('fill', 'fill'),
     color.fgColorRule('fill-fg', 'fill'),
@@ -56,7 +56,7 @@ export const fill = () => {
   return { rules, docs }
 }
 
-export const stroke = () => {
+export function stroke() {
   const rules: Rule<Theme>[] = [
     color.colorRule('stroke', 'stroke'),
     color.fgColorRule('stroke-fg', 'stroke'),

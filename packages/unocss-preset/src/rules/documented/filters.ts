@@ -1,6 +1,6 @@
 import type { DocumentationPage } from 'unocss-docs'
 
-export const dropShadow = () => {
+export function dropShadow() {
   const docs: DocumentationPage = `
     <page>
       <h1><title /></h1>

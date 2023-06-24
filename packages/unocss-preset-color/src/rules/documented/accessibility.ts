@@ -7,7 +7,7 @@ import { utils } from '@windblade/core'
 
 const { getColorSchemeCSSProps, objToCSS } = utils
 
-export const colorScheme = () => {
+export function colorScheme() {
   const rules: Rule<Theme>[] = [
     [
       /^scheme-(auto|light|dark)-(\d+)$/,
