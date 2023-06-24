@@ -38,7 +38,7 @@ export default defineConfig({
 const main: DocumentationPage = `
   <page>
     <h1><title /></h1>
-    <p>Windblade is an UnoCSS preset, please follow its own <a href="https://github.com/unocss/unocss#installation">guide</a> to install it.</p>
+    <p>Windblade is an UnoCSS preset, please follow its own <a href="https://unocss.dev/integrations">guide</a> to install it.</p>
     <p>Once UnoCSS is installed in your project simply get Windblade from npm and add it to the presets array.</p>
     <pre lang="sh" code="npm install @windblade/unocss-preset" />
     <pre lang="ts" code="${encodeString(example)}" />
