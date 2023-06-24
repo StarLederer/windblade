@@ -5,13 +5,13 @@ function colorRule(prefix: string, property: string): DynamicRule<Theme> {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
-      if (theme.windblade.miscColors?.[match[2]]) {
+      if (theme.windblade?.miscColors?.[match[2]]) {
         return {
           [property]: match[2],
         }
       }
 
-      if (theme.windblade.colors[match[2]]) {
+      if (theme.windblade?.colors[match[2]]) {
         return {
           [property]: `var(--${match[2]}-base)`,
         }
@@ -30,7 +30,7 @@ function colorBgRule(prefix: string): DynamicRule<Theme> {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
-      const color = theme.windblade.colors[match[2]]
+      const color = theme.windblade?.colors[match[2]]
       if (!color)
         return
 
@@ -51,7 +51,7 @@ function fgColorRule(prefix: string, property: string): DynamicRule<Theme> {
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
-      if (theme.windblade.miscColors?.[match[2]]) {
+      if (theme.windblade?.miscColors?.[match[2]]) {
         return {
           [property]: match[2],
         }

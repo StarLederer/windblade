@@ -34,13 +34,15 @@ export const LCHToCSSColor = (l: number, c: number, h: number, a = 1) => convert
 export type ColorSchemeProps = Record<ColorScheme, Record<string, string>>
 
 export function getColorSchemeCSSProps(theme: Theme, hue: number): ColorSchemeProps {
-  const { windblade } = theme
-  const { colors: colorCombos } = windblade
-
   const colorSchemeProps: ColorSchemeProps = {
     light: {},
     dark: {},
   }
+
+  if (!theme.windblade)
+    return colorSchemeProps
+
+  const { colors: colorCombos } = theme.windblade
 
   // Iterate over color combos
   Object.entries(colorCombos).forEach(([colorComboName, colorCombo]) => {

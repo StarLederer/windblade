@@ -8,11 +8,15 @@ function durationRule(prefix: string,
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
+      if (!theme.windblade)
+        return
+
       const css: any = {}
       const parameter = `${theme.windblade.proportions[match[2]] * theme.windblade.time.baseUnitMs}ms`
       if (parameter === undefined)
         return undefined
       css[property] = value?.(parameter) ?? parameter
+
       return css
     },
   ]
@@ -25,6 +29,9 @@ function timingFunctionRule(
   return [
     new RegExp(`^(${prefix})-(.+)$`),
     (match, { theme }) => {
+      if (!theme.windblade)
+        return
+
       const css: any = {}
       const parameter = theme.windblade.time.functions[match[2]]
       if (parameter === undefined)

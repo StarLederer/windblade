@@ -5,12 +5,12 @@ import * as logical from './logicalSet'
 
 export function resolve(value: string, theme: Theme, unit: string) {
   // Try to resolve proportion
-  const token = theme.windblade.proportions[value]
+  const token = theme.windblade?.proportions[value]
   if (token !== undefined)
     return `${token}${unit}`
 
   // Try to resolve miscSize
-  const misc = theme.windblade.miscSizes?.[value]
+  const misc = theme.windblade?.miscSizes?.[value]
   if (misc !== undefined)
     return `${misc}`
 

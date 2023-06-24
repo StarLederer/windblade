@@ -5,9 +5,11 @@ export function resolveDollars(expr: string, theme: Theme): string {
   let resolved = expr
 
   // Resolve variables
-  Object.entries(theme.windblade.proportions).forEach(([name, value]) => {
-    resolved = resolved.replaceAll(`$${name}`, value.toString())
-  })
+  if (theme.windblade) {
+    Object.entries(theme.windblade.proportions).forEach(([name, value]) => {
+      resolved = resolved.replaceAll(`$${name}`, value.toString())
+    })
+  }
 
   // Resolve expressions
   while (resolved.includes('$(')) {

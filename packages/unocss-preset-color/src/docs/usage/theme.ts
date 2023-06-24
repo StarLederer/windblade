@@ -49,7 +49,7 @@ const colors: DocumentationPage = `
     <example html="${encodeString(`
       <div class="grid grid-fit-cols-m gap-s.4">
         ${((): string => {
-          const colors = wb.colors
+          const colors = wb?.colors
           if (typeof colors === 'object') {
             return Object.entries(colors as Record<string, ThemeColorCombo>).map(([name, colorCombo]) => `
               <div class="bg-${name} flex flex-col border border-color-surface rounded-s overflow-hidden font-bold">

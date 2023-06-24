@@ -37,7 +37,7 @@ const main: DocumentationPage = `
           <th class="${styles.th}"></th>
         </tr>
         ${((): string => {
-          const proportions = wb.proportions
+          const proportions = wb?.proportions
           if (typeof proportions === 'object') {
             return Object.entries(proportions as Record<string, number>).map(([name, value]) => `
               <tr class="${styles.tr}">

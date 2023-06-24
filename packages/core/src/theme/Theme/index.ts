@@ -1,7 +1,7 @@
 import type { ThemeColorCombo } from './ThemeColors'
 
 export interface Theme {
-  windblade: {
+  windblade?: {
     colors: Record<string, ThemeColorCombo>
     miscColors?: Record<string, string>
     proportions: Record<string, number>
