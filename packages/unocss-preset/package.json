@@ -39,8 +39,8 @@
     "stub": "unbuild --stub"
   },
   "dependencies": {
-    "@unocss/core": "0.53.3",
-    "@unocss/preset-mini": "0.53.3",
+    "@unocss/core": "0.53.4",
+    "@unocss/preset-mini": "0.53.4",
     "@windblade/core": "workspace:*",
     "@windblade/unocss-preset-color": "workspace:*",
     "@windblade/unocss-preset-dollars": "workspace:*",

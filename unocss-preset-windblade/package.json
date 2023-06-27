@@ -35,7 +35,7 @@
     "stub": "unbuild --stub"
   },
   "dependencies": {
-    "@unocss/core": "0.53.3",
+    "@unocss/core": "0.53.4",
     "@windblade/core": "workspace:*",
     "@windblade/unocss-preset": "workspace:*",
     "@windblade/unocss-preset-color": "workspace:*",
