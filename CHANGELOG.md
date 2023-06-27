@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- .
+- `unocss-preset-dollars` now accepts an option that configures where the dollars come from.
 
 ### Fixed
 
