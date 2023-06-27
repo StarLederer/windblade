@@ -26,7 +26,11 @@ const render: XmlNodeRenderer = (node) => {
       switch (node.name) {
         case 'option':
           return (
-            <Show when={node.attributes?.value} keyed fallback={() => <Error>'option' requires a 'value' attribute</Error>}>
+            <Show
+              when={node.attributes?.value}
+              keyed
+              fallback={<Error>'option' requires a 'value' attribute</Error>}
+            >
               {value => <Option value={value} />}
             </Show>
           )

@@ -16,7 +16,7 @@ const main: Component<{
   return (
     <div class="rounded-s.4 overflow-hidden flex items-center">
       <Button style="secondary" class={buttonClasses} onClick={() => setVal(val() - 1)}>-</Button>
-      <Button style="secondary" class={buttonClasses} onClick={activate}>{val}</Button>
+      <Button style="secondary" class={buttonClasses} onClick={activate}>{val()}</Button>
       <Button style="secondary" class={buttonClasses} onClick={() => setVal(val() + 1)}>+</Button>
     </div>
   )

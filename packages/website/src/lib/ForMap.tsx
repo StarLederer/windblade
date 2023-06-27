@@ -15,7 +15,7 @@ function Main<K, V>(props: {
     setChildren(nextChildren)
   }))
 
-  return () => children
+  return <>{children}</>
 }
 
 export default Main
