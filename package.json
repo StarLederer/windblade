@@ -11,7 +11,8 @@
     "lint": "eslint --cache .",
     "lint:fix": "nr lint --fix",
     "release": "bumpp -r",
-    "stub": "pnpm -r --filter=./packages/* --parallel run stub"
+    "stub": "pnpm -r --filter=./packages/* --parallel run stub",
+    "typecheck": "tsc --noEmit && pnpm -r --parallel run typecheck"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.5",

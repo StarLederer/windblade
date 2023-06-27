@@ -32,6 +32,7 @@
     "**/examples/**",
     "**/fixtures/**",
     "**/interactive/**",
-    "**/test/dts/**"
+    "**/test/dts/**",
+    "./packages/website"
   ]
 }
