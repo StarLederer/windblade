@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + @windblade/unocss-preset-dollars</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <h1 class="font-size-$large">
+      @windblade/unocss-preset-dollars
+    </h1>
+
+    <p class="font-size-$($small+$normal)">
+      Mutates your utils replacing things like <code>$value</code> with anything you define in the config. You can replace dollar names with custom values or even values from the theme!
+    </p>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

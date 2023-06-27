@@ -1,0 +1,17 @@
+{
+  "name": "vite-dollars",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@unocss/core": "0.53.4",
+    "@windblade/unocss-preset-dollars": "link:../../packages/unocss-preset-dollars",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.9"
+  }
+}
