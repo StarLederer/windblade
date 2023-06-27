@@ -1,13 +1,12 @@
 import type { Variant } from '@unocss/core'
 import type { Theme } from '@windblade/core'
-import dollars from './dollars'
+import type { DollarGetter } from '..'
+import createVariantDollars from './dollars'
 
-const main: Variant<Theme>[] = [
-  dollars,
-]
-
-export {
-  dollars,
+export function createVariants(dolarGetter: DollarGetter): Variant<Theme>[] {
+  return [
+    createVariantDollars(dolarGetter),
+  ]
 }
 
-export default main
+export { createVariantDollars }

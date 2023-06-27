@@ -1,15 +1,14 @@
 import type { Variant } from '@unocss/core'
 import type { Theme } from '@windblade/core'
+import type { DollarGetter } from '..'
 
-export function resolveDollars(expr: string, theme: Theme): string {
+export function resolveDollars(expr: string, theme: Theme, getter: DollarGetter): string {
   let resolved = expr
 
   // Resolve variables
-  if (theme.windblade) {
-    Object.entries(theme.windblade.proportions).forEach(([name, value]) => {
-      resolved = resolved.replaceAll(`$${name}`, value.toString())
-    })
-  }
+  getter(theme).forEach(([name, value]) => {
+    resolved = resolved.replaceAll(`$${name}`, value.toString())
+  })
 
   // Resolve expressions
   while (resolved.includes('$(')) {
@@ -47,10 +46,12 @@ export function resolveDollars(expr: string, theme: Theme): string {
   return resolved
 }
 
-const main: Variant<Theme> = (matcher, ctx) => {
-  return {
-    matcher: resolveDollars(matcher, ctx.theme),
+function createVariant(getter: DollarGetter): Variant<Theme> {
+  return (matcher, { theme }) => {
+    return {
+      matcher: resolveDollars(matcher, theme, getter),
+    }
   }
 }
 
-export default main
+export default createVariant
