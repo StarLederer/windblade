@@ -1,4 +1,4 @@
-import type { DocumentationPage } from 'unocss-docs'
+import type { DocumentationPage } from '@windblade/unocss-docs'
 
 export function dropShadow() {
   const docs: DocumentationPage = `

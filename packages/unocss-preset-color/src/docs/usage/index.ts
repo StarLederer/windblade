@@ -1,4 +1,4 @@
-import type { DocumentationTree } from 'unocss-docs'
+import type { DocumentationTree } from '@windblade/unocss-docs'
 import installation from './installation'
 import theme from './theme'
 import semanticColors from './semanticColors'

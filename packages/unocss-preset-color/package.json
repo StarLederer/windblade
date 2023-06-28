@@ -24,7 +24,7 @@
   "dependencies": {
     "@unocss/core": "0.53.4",
     "@windblade/core": "workspace:*",
-    "ts-extras": "^0.11.0",
-    "unocss-docs": "workspace:*"
+    "@windblade/unocss-docs": "workspace:*",
+    "ts-extras": "^0.11.0"
   }
 }

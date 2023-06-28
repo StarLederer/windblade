@@ -1,4 +1,4 @@
-import type { DocumentationTree } from 'unocss-docs'
+import type { DocumentationTree } from '@windblade/unocss-docs'
 import { docs as colorDocs } from '@windblade/unocss-preset-color'
 import proportions from './proportions'
 import other from './other'

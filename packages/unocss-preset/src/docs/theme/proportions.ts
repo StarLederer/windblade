@@ -1,5 +1,5 @@
-import type { DocumentationPage } from 'unocss-docs'
-import { encodeString } from 'unocss-docs'
+import type { DocumentationPage } from '@windblade/unocss-docs'
+import { encodeString } from '@windblade/unocss-docs'
 import { themes } from '@windblade/core'
 
 const wb = themes.windblade.windblade

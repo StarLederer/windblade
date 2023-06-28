@@ -1,4 +1,4 @@
-import type { DocumentationPage } from 'unocss-docs'
+import type { DocumentationPage } from '@windblade/unocss-docs'
 
 const main: DocumentationPage = `
   <page>

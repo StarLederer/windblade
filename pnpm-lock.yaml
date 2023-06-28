@@ -73,9 +73,6 @@ importers:
       better-color-tools:
         specifier: ^0.12.3
         version: 0.12.3
-      unocss-docs:
-        specifier: workspace:*
-        version: link:../unocss-docs
 
   packages/unocss-docs: {}
 
@@ -90,6 +87,9 @@ importers:
       '@windblade/core':
         specifier: workspace:*
         version: link:../core
+      '@windblade/unocss-docs':
+        specifier: workspace:*
+        version: link:../unocss-docs
       '@windblade/unocss-preset-color':
         specifier: workspace:*
         version: link:../unocss-preset-color
@@ -102,9 +102,6 @@ importers:
       ts-extras:
         specifier: ^0.11.0
         version: 0.11.0
-      unocss-docs:
-        specifier: workspace:*
-        version: link:../unocss-docs
 
   packages/unocss-preset-color:
     dependencies:
@@ -114,12 +111,12 @@ importers:
       '@windblade/core':
         specifier: workspace:*
         version: link:../core
+      '@windblade/unocss-docs':
+        specifier: workspace:*
+        version: link:../unocss-docs
       ts-extras:
         specifier: ^0.11.0
         version: 0.11.0
-      unocss-docs:
-        specifier: workspace:*
-        version: link:../unocss-docs
 
   packages/unocss-preset-dollars:
     dependencies:
@@ -129,7 +126,7 @@ importers:
       '@windblade/core':
         specifier: workspace:*
         version: link:../core
-      unocss-docs:
+      '@windblade/unocss-docs':
         specifier: workspace:*
         version: link:../unocss-docs
 
@@ -147,6 +144,9 @@ importers:
       '@windblade/core':
         specifier: workspace:*
         version: link:../core
+      '@windblade/unocss-docs':
+        specifier: workspace:*
+        version: link:../unocss-docs
       '@windblade/unocss-preset':
         specifier: workspace:*
         version: link:../unocss-preset
@@ -165,9 +165,6 @@ importers:
       solid-transition-group:
         specifier: ^0.2.2
         version: 0.2.2(solid-js@1.7.7)
-      unocss-docs:
-        specifier: workspace:*
-        version: link:../unocss-docs
       xast-util-from-xml:
         specifier: ^3.0.0
         version: 3.0.0

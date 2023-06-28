@@ -1,4 +1,4 @@
-import type { DocumentationTree } from 'unocss-docs'
+import type { DocumentationTree } from '@windblade/unocss-docs'
 import { docs } from '@windblade/unocss-preset-color'
 
 import * as layout from '../../rules/documented/layout'

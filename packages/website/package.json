@@ -15,13 +15,13 @@
     "@types/js-beautify": "^1.13.3",
     "@unocss/core": "0.53.4",
     "@windblade/core": "workspace:*",
+    "@windblade/unocss-docs": "workspace:*",
     "@windblade/unocss-preset": "workspace:*",
     "highlight.js": "^11.8.0",
     "js-beautify": "^1.14.8",
     "solid-headless": "^0.13.1",
     "solid-js": "^1.7.7",
     "solid-transition-group": "^0.2.2",
-    "unocss-docs": "workspace:*",
     "xast-util-from-xml": "^3.0.0"
   },
   "devDependencies": {

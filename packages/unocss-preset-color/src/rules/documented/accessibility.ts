@@ -1,7 +1,7 @@
 import type { Rule } from '@unocss/core'
 import { escapeSelector as e } from '@unocss/core'
-import type { DocumentationPage } from 'unocss-docs'
-import { encodeString } from 'unocss-docs'
+import type { DocumentationPage } from '@windblade/unocss-docs'
+import { encodeString } from '@windblade/unocss-docs'
 import type { Theme } from '@windblade/core'
 import { utils } from '@windblade/core'
 

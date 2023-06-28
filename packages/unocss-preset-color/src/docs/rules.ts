@@ -1,4 +1,4 @@
-import type { DocumentationTree } from 'unocss-docs'
+import type { DocumentationTree } from '@windblade/unocss-docs'
 
 import * as backgrounds from '../rules/documented/backgrounds'
 import * as typography from '../rules/documented/typography'

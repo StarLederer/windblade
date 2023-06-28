@@ -1,4 +1,4 @@
-import type { DocumentationTree } from 'unocss-docs'
+import type { DocumentationTree } from '@windblade/unocss-docs'
 import { docs as dollarsDocs } from '@windblade/unocss-preset-dollars'
 import { docs as colorDocs } from '@windblade/unocss-preset-color'
 import installation from './installation'

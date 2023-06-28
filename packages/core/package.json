@@ -24,7 +24,6 @@
   "dependencies": {
     "@unocss/core": "0.53.4",
     "@unocss/preset-mini": "0.53.4",
-    "better-color-tools": "^0.12.3",
-    "unocss-docs": "workspace:*"
+    "better-color-tools": "^0.12.3"
   }
 }

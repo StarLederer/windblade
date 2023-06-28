@@ -14,8 +14,8 @@ export default defineConfig({
 
   resolve: {
     alias: {
-      'unocss-docs': resolve('../unocss-docs/src/index.ts'),
       '@windblade/core': resolve('../core/src/index.ts'),
+      '@windblade/unocss-docs': resolve('../unocss-docs/src/index.ts'),
       '@windblade/unocss-preset': resolve('../unocss-preset/src/index.ts'),
       '@windblade/unocss-preset-color': resolve('../unocss-preset-color/src/index.ts'),
       '@windblade/unocss-preset-dollars': resolve('../unocss-preset-dollars/src/index.ts'),

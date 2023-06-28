@@ -42,10 +42,10 @@
     "@unocss/core": "0.53.4",
     "@unocss/preset-mini": "0.53.4",
     "@windblade/core": "workspace:*",
+    "@windblade/unocss-docs": "workspace:*",
     "@windblade/unocss-preset-color": "workspace:*",
     "@windblade/unocss-preset-dollars": "workspace:*",
     "ts-deepmerge": "^6.1.0",
-    "ts-extras": "^0.11.0",
-    "unocss-docs": "workspace:*"
+    "ts-extras": "^0.11.0"
   }
 }
