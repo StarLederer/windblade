@@ -22,7 +22,7 @@
     "stub": "unbuild --stub"
   },
   "dependencies": {
-    "@unocss/core": "0.53.4",
+    "@unocss/core": "0.55.0",
     "@windblade/core": "workspace:*",
     "@windblade/unocss-docs": "workspace:*",
     "ts-extras": "^0.11.0"
